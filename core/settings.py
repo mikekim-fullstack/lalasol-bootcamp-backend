@@ -38,7 +38,7 @@ SECRET_KEY =  env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',') #['lalasol.herokuapp.com', '127.0.0.1']
-csrf = env('CSRF_TRUSTED_ORIGINS').split(',')
+
 def addHttp (a):
     return 'https://'+a
 # print(list_csrf)
