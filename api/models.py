@@ -4,7 +4,7 @@ from re import T
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from django.core.serializers import serialize
-import cv2
+# import cv2
 from account.models import UserAccount
 from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.translation import gettext_lazy as _
