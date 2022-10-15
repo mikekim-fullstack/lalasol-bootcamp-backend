@@ -38,7 +38,11 @@ SECRET_KEY =  env('SECRET_KEY')
 DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',') #['lalasol.herokuapp.com', '127.0.0.1']
-
+csrf = env('CSRF_TRUSTED_ORIGINS').split(',')
+def addHttp (a):
+    return 'https://'+a
+# print(list_csrf)
+CSRF_TRUSTED_ORIGINS = list(map(addHttp,ALLOWED_HOSTS))
 # Where is your frontend code? (CORS: Cross-Origin Resource Sharing)
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:3000", # React local port number(3000)
