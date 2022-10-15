@@ -1,13 +1,13 @@
-
-
 from pathlib import Path
 import environ
 import os
 
 
-env = environ.Env()
 environ.Env.read_env()
-AUTH_USER_MODEL = 'account.UserAccount'
+env = environ.Env()
+
+# print('env: ', env('ALLOWED_HOSTS'))
+# AUTH_USER_MODEL = 'account.UserAccount'
 # ------------ email setup -------------------------- 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = env('EMAIL_HOST')
@@ -20,8 +20,8 @@ EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 # Custom setting. To email
 RECIPIENT_ADDRESS = env('RECIPIENT_ADDRESS')
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-REAL_BASE_DIR = Path(__file__).resolve().parent.parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent
+# REAL_BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -35,11 +35,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY =  env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',') #['lalasol.herokuapp.com', '127.0.0.1']
 
-
+# Where is your frontend code? (CORS: Cross-Origin Resource Sharing)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000", # React local port number(3000)
+    "https://lalasol-bootcamp-frontend-45f8c.web.app",# frontend web app address...
+   
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -49,10 +54,18 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'corsheaders',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'api',
 ]
 
 MIDDLEWARE = [
+     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
+
+    "whitenoise.middleware.WhiteNoiseMiddleware",#Whitenoise for collecting all static files
+
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -85,10 +98,21 @@ WSGI_APPLICATION = "core.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('PGDATABASE'),
+        'USER': env('PGUSER'),
+        'PASSWORD':env('PGPASSWORD'),
+        'HOST': env('PGHOST'),
+        'PORT': env('PGPORT'),
     }
 }
 
