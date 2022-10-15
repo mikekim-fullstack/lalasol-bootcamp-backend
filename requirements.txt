@@ -17,6 +17,7 @@ psycopg2==2.9.3
 psycopg2-binary==2.9.4
 PyJWT==2.5.0
 python-magic==0.4.27
+python-magic-bin==0.4.14
 pytz==2022.1
 sqlparse==0.4.2
 whitenoise==6.2.0
