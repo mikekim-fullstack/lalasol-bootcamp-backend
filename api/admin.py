@@ -2,8 +2,8 @@ from django.contrib import admin
 
 from api.models import *
 class TeacherAdmin(admin.ModelAdmin):
-    list_display = ['id', 'full_name','bio', 'email', 'qualification', 'mobile_no', 'skills']
-    list_display_links= ['id', 'full_name', 'email']
+    list_display = ['id', 'user','bio',  'qualification',  'skills']
+    list_display_links= ['id', 'user']
 
 class CourseAdmin(admin.ModelAdmin):
     list_display = ['id', 'title', 'teacher', 'description']

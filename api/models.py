@@ -68,7 +68,7 @@ class Student(models.Model):
     class Meta:
         verbose_name_plural = '1. Students'
     def __str__(self):
-        return self.full_name
+        return self.user.first_name+' '+self.user.last_name
     def enrolled_courses(self):
         '''
         Total enrolled course by student.
@@ -92,12 +92,15 @@ class Student(models.Model):
 
 # ---- Teacher -----
 class Teacher(models.Model):
-    full_name=models.CharField(max_length=100)
-    bio=models.TextField(null=True)
-    email=models.CharField(max_length=100, unique=True)
-    password=models.CharField(max_length=100)
+    user = models.ForeignKey(UserAccount, on_delete=models.CASCADE, related_name='user_teacher')
+    # full_name=models.CharField(max_length=100)
+    # 
+    # email=models.CharField(max_length=100, unique=True)
+    # password=models.CharField(max_length=100)
+    # qualification=models.CharField(max_length=200)
+    # mobile_no=models.CharField(max_length=20)
     qualification=models.CharField(max_length=200)
-    mobile_no=models.CharField(max_length=20)
+    bio=models.TextField(null=True)
     skills=models.TextField()
     photo = models.ImageField(upload_to='teacher_imgs', null=True)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
@@ -106,7 +109,7 @@ class Teacher(models.Model):
     class Meta:
         verbose_name_plural = '2. Teachers'
     def __str__(self):
-        return self.full_name
+        return self.user.first_name+' '+self.user.last_name
     def skill_lists(self):
         skill_lists = self.skills.split(',')
         return [s.strip() for s in skill_lists]
