@@ -1,4 +1,8 @@
 venv/
 build/
+
 /core/.env
 #  git rm --cached core/.env  
+
+/core/__pycache__/
+# git rm -r --cached core/__pycache__/
