@@ -44,11 +44,11 @@ def addHttp (a):
 # print(list_csrf)
 CSRF_TRUSTED_ORIGINS = list(map(addHttp,ALLOWED_HOSTS))
 # Where is your frontend code? (CORS: Cross-Origin Resource Sharing)
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:3000", # React local port number(3000)
-    "https://lalasol-bootcamp-frontend-45f8c.web.app",# frontend web app address...
-   
-]
+CORS_ALLOWED_ORIGINS = list(map(addHttp,env('CORS_ALLOWED_ORIGINS').split(',')))
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000", # React local port number(3000)
+#     "https://lalasol-bootcamp.web.app",# frontend web app address...
+# ]
 # Application definition
 
 INSTALLED_APPS = [
