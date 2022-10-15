@@ -6,3 +6,6 @@ build/
 
 /core/__pycache__/
 # git rm -r --cached core/__pycache__/
+
+/api/__pycache__/
+# git rm -r --cached api/__pycache__/
