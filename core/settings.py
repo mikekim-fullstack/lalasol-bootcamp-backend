@@ -5,7 +5,7 @@ import os
 
 environ.Env.read_env()
 env = environ.Env()
-
+AUTH_USER_MODEL = 'account.UserAccount'
 # print('env: ', env('ALLOWED_HOSTS'))
 # AUTH_USER_MODEL = 'account.UserAccount'
 # ------------ email setup -------------------------- 
@@ -61,7 +61,11 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
+    'mptt',
+    'phonenumber_field',
+    'account',
     'api',
+
 ]
 
 MIDDLEWARE = [
