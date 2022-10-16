@@ -5,7 +5,7 @@ import os
 
 environ.Env.read_env()
 env = environ.Env()
-
+AUTH_USER_MODEL = 'account.UserAccount'
 # print('env: ', env('ALLOWED_HOSTS'))
 # AUTH_USER_MODEL = 'account.UserAccount'
 # ------------ email setup -------------------------- 
@@ -61,11 +61,17 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework',
     'rest_framework_simplejwt',
+    # 'versatileimagefield',
+    'mptt',
+    'phonenumber_field',
+    'account',
     'api',
+
 ]
 
 MIDDLEWARE = [
-     "corsheaders.middleware.CorsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",#CORS
+
     "django.middleware.security.SecurityMiddleware",
 
     "whitenoise.middleware.WhiteNoiseMiddleware",#Whitenoise for collecting all static files
@@ -155,7 +161,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+# STATIC_URL = '/static/'
+# STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+# STATICFILES_DIRS = (os.path.join(BASE_DIR,  'static'),)
+
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+
+MEDIA_URL='/media/'
+MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
