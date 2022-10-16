@@ -9,3 +9,6 @@ build/
 
 /api/__pycache__/
 # git rm -r --cached api/__pycache__/
+
+/api/migrations/
+# git rm -r --cached api/migrations/
