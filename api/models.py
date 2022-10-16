@@ -8,7 +8,7 @@ from django.core.serializers import serialize
 from account.models import UserAccount
 from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.translation import gettext_lazy as _
-from versatileimagefield.fields import VersatileImageField, PPOIField
+# from versatileimagefield.fields import VersatileImageField, PPOIField
 from django.conf import settings
 import datetime
 from django.core.validators import MaxValueValidator, MinValueValidator
