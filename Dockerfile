@@ -2,8 +2,11 @@
 ARG EnvironmentVariable
 FROM python:3.10.6-slim
 
-# COPY requirements.txt /app/requirements.txt
-COPY requirements.txt /requirements.txt
+ENTRYPOINT command param1 param2
+
+
+COPY requirements.txt /app/requirements.txt
+# COPY requirements.txt /requirements.txt
 
 
 ENV PYTHONUNBUFFERED=1
@@ -19,24 +22,26 @@ RUN echo deb http://deb.debian.org/debian testing main contrib non-free >> /etc/
 RUN DEBIAN_FRONTEND="noninteractive" apt-get install libmagickwand-dev --no-install-recommends -y
 
 # Install GDAL dependencies
-RUN apt-get install -y libgdal-dev g++ --no-install-recommends && \
-    pip install pipenv && \
-    pip install whitenoise && \
-    pip install gunicorn && \
-    apt-get clean -y
+# RUN apt-get install -y libgdal-dev g++ --no-install-recommends && \
+#     pip install pipenv && \
+#     pip install whitenoise && \
+#     pip install gunicorn && \
+#     apt-get clean -y
 
-# RUN pip install --no-cache-dir -r /app/requirements.txt 
-RUN pip install --no-cache-dir -r /requirements.txt 
+RUN pip install --no-cache-dir -r /app/requirements.txt 
+# RUN pip install --no-cache-dir -r /requirements.txt 
+
+
 # Update C env vars so compiler can find gdal
-ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
-ENV C_INCLUDE_PATH=/usr/include/gdal
+# ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
+# ENV C_INCLUDE_PATH=/usr/include/gdal
 
 ENV LC_ALL="C.UTF-8"
 ENV LC_CTYPE="C.UTF-8"
 
-# WORKDIR /app
+WORKDIR /app
 
 ADD . .
 
-# EXPOSE 8000
 EXPOSE 8000
+# EXPOSE 8000
