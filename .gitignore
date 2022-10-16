@@ -8,7 +8,18 @@ build/
 # git rm -r --cached core/__pycache__/
 
 /api/__pycache__/
+<<<<<<< HEAD
 # git rm -r --cached api/__pycache__/
 
 /api/migrations/
 # git rm -r --cached api/migrations/
+=======
+/api/migrations/
+# git rm -r --cached api/__pycache__/
+# git rm -r --cached api/migrations/
+
+/account/__pycache__/
+/account/migrations/
+# git rm -r --cached account/__pycache__/
+# git rm -r --cached account/migrations/
+>>>>>>> 964c73d888ebbbf512631b4760fa5255a95f0169
