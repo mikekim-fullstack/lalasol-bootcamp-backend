@@ -13,7 +13,7 @@ class TeacherSerializer(serializers.ModelSerializer):
 class CourseCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model=CourseCategory
-        fields=['id', 'title','description']
+        fields=['id', 'title','description','order']
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Course
@@ -29,7 +29,7 @@ class AllCourseSerializer(serializers.ModelSerializer):
 class ChapterSerializer(serializers.ModelSerializer):
     class Meta:
         model=Chapter
-        fields=['id','course', 'title','description','video', 'remarks','chapter_duration','created_date','updated_date']
+        fields=['id','course', 'title','description','html', 'remarks','chapter_duration','created_date','updated_date']
         # depth=1
     def __init__(self, instance=None, data=..., **kwargs):
         print('ChapterSerializer().__init__')

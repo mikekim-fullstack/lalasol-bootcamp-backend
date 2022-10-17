@@ -16,6 +16,11 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models import F
 
 '''---------------------------------------------------''' 
+# def remove_field(model_cls, field_name):
+#     for field in model_cls._meta.local_fields:
+#         if field.name == field_name:
+#             model_cls._meta.local_fields.remove(field)
+'''---------------------------------------------------''' 
 
 
 class CourseCategory(MPTTModel):
@@ -179,22 +184,24 @@ class Chapter(models.Model):
     course=models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_chapters')
     title=models.CharField(max_length=150)
     description=models.TextField()
-    video=models.FileField(upload_to='chapter_videos/', null=True)
+    # video=models.FileField(upload_to='chapter_videos/', null=True)
+    html=models.FileField(upload_to='chapter_htmlfile/', null=True, blank=True)
     remarks=models.TextField(null=True)
+    
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
     class Meta:
         verbose_name_plural = '6. Chapter'
     def __str__(self):
         return self.title
-    def chapter_duration(self):
-        cap = cv2.VideoCapture(self.video.path)
-        fps = cap.get(cv2.CAP_PROP_FPS)
-        frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-        duration=0
-        if frame_count:
-            duration = frame_count/fps
-        return duration
+    # def chapter_duration(self):
+    #     cap = cv2.VideoCapture(self.video.path)
+    #     fps = cap.get(cv2.CAP_PROP_FPS)
+    #     frame_count = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+    #     duration=0
+    #     if frame_count:
+    #         duration = frame_count/fps
+    #     return duration
 
 # ----------------------------------------------------------------
 
