@@ -57,6 +57,16 @@ class CourseCategory(MPTTModel):
     class MPTTMeta:
         order_insertion_by = ['title',]
 
+class ChapterCategory(models.Model):
+    title=models.CharField(max_length=150)
+    created_date = models.DateTimeField(auto_now_add=True, null=True)
+    class Meta:
+        verbose_name_plural = '3-1. Chapter Categories'
+    def __str__(self):     
+        return self.title
+
+
+
 # ---- Students -----
 class Student(models.Model):
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE, related_name='user_student')
@@ -181,6 +191,7 @@ class CourseRating(models.Model):
         return f'rating:{self.course}-{self.student}-{self.rating}'
 
 class Chapter(models.Model):
+    category=models.ForeignKey(ChapterCategory, on_delete=models.CASCADE, related_name='category_chapter', null=True)
     course=models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_chapters')
     title=models.CharField(max_length=150)
     description=models.TextField()

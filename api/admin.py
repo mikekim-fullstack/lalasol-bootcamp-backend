@@ -26,6 +26,7 @@ admin.site.register(StudentEnrolledCourse)
 admin.site.register(CourseRating)
 admin.site.register(StudentFavoriteCourse)
 admin.site.register(StudentAssignment)
+admin.site.register(ChapterCategory)
 
 # class NotificationAdmin(admin.ModelAdmin):
 #     list_display = ['id', 'notif_subject', 'notif_for', 'notifread_status']

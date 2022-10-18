@@ -69,3 +69,8 @@ class CourseRatingSerializer(serializers.ModelSerializer):
     #     self.Meta.depth=0
     #     if request and request.method=='GET':
     #         self.Meta.depth=2
+# ----------- Chaper --------------
+class ChapterCategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=ChapterCategory
+        fields=['id', 'title', 'created_date']
