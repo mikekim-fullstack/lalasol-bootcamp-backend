@@ -149,8 +149,8 @@ class ChapterListsView(generics.ListCreateAPIView):
     serializer_class = ChapterSerializer
     # queryset = Chapter.objects.all()
     # permission_classes=[permissions.IsAuthenticated]
-    @csrf_exempt
-    @xframe_options_exempt
+    # @csrf_exempt
+    # @xframe_options_exempt
     def get_queryset(self):
         return Chapter.objects.all()
 

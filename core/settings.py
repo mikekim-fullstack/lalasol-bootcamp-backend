@@ -116,9 +116,8 @@ INSTALLED_APPS = [
     'api',
 
 ]
-
 MIDDLEWARE = [
-    'csp.middleware.CSPMiddleware', #Content Security Policy (CSP)
+#  'csp.middleware.CSPMiddleware', #Content Security Policy (CSP)
     "corsheaders.middleware.CorsMiddleware",#CORS
 
     "django.middleware.security.SecurityMiddleware",
@@ -134,9 +133,9 @@ MIDDLEWARE = [
 ]
 # CSP_IMG_SRC = ("'self'", "https://lalasol-bootcamp.web.app")
 
-CSP_DEFAULT_SRC = ("'self'", "https://lalasol-bootcamp.web.app",
-    "https://lalasol-bootcamp-backend-production.up.railway.app",)
-CSP_STYLE_SRC = ("'unsafe-inline'", "https:",)
+# CSP_DEFAULT_SRC = ("'self'", "https://lalasol-bootcamp.web.app",
+#     "https://lalasol-bootcamp-backend-production.up.railway.app",)
+# CSP_STYLE_SRC = ("'unsafe-inline'", "https:",)
 # CSP_SCRIPT_SRC = [
 #     "'self'","https://lalasol-bootcamp.web.app",
 # ]
@@ -237,8 +236,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = True #'None'
-SESSION_COOKIE_SAMESITE = True #'None'
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
 SESSION_COOKIE_SAMESITE_FORCE_ALL = True
 
 
