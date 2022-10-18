@@ -18,5 +18,5 @@ build/
 # git rm -r --cached account/__pycache__/
 # git rm -r --cached account/migrations/
 
-/media/
+# /media/
 

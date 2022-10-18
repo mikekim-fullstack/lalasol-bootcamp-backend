@@ -2,9 +2,19 @@ from pathlib import Path
 import environ
 import os
 
-
+BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env()
 env = environ.Env()
+# environ.Env.read_env(env_file=os.path.join(BASE_DIR, '/core1/.env'))
+
+print(environ.Env.read_env())
+# from dotenv import load_dotenv 
+
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
+
+# load_dotenv(os.path.join(BASE_DIR, "project", ".env"))
+
 AUTH_USER_MODEL = 'account.UserAccount'
 # print('env: ', env('ALLOWED_HOSTS'))
 # AUTH_USER_MODEL = 'account.UserAccount'
@@ -24,8 +34,7 @@ RECIPIENT_ADDRESS = env('RECIPIENT_ADDRESS')
 # REAL_BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 
 # Quick-start development settings - unsuitable for production
@@ -39,17 +48,56 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',') #['lalasol.herokuapp.com', '127.0.0.1']
 
+
+print('ALLOWED_HOSTS:',ALLOWED_HOSTS)
+print('CORS_ALLOWED_ORIGINS:',env('CORS_ALLOWED_ORIGINS').split(','))
+
+
 def addHttp (a):
+    if 'localhost' in a:
+        return 'http://'+a
+    if '127' in a:
+        return 'http://'+a
     return 'https://'+a
 # print(list_csrf)
-CSRF_TRUSTED_ORIGINS = list(map(addHttp,ALLOWED_HOSTS))
+# CSRF_TRUSTED_ORIGINS = list(map(addHttp,ALLOWED_HOSTS))
 # Where is your frontend code? (CORS: Cross-Origin Resource Sharing)
-CORS_ALLOWED_ORIGINS = list(map(addHttp,env('CORS_ALLOWED_ORIGINS').split(',')))
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000", # React local port number(3000)
-#     "https://lalasol-bootcamp.web.app",# frontend web app address...
-# ]
+# CORS_ALLOWED_ORIGINS = list(map(addHttp,env('CORS_ALLOWED_ORIGINS').split(',')))
+# print('CORS_ALLOWED_ORIGINS: ', CORS_ALLOWED_ORIGINS, env('CORS_ALLOWED_ORIGINS'))
+# CORS_ALLOWED_ORIGINS +=["http://127.0.0.1:3000"]
+
+CSRF_TRUSTED_ORIGINS=[
+     "http://127.0.0.1:3000",
+     "http://localhost:3000", 
+    "https://lalasol-bootcamp.web.app",
+    "https://lalasol-bootcamp-backend-production.up.railway.app",
+]
+CORS_ALLOWED_ORIGINS = [
+    "http://127.0.0.1:3000",
+    "http://localhost:3000", 
+    "https://lalasol-bootcamp.web.app",
+    "https://lalasol-bootcamp-backend-production.up.railway.app",
+]
+CORS_ORIGIN_ALLOW_ALL = True
+
+X_FRAME_OPTIONS = 'ALLOWALL'
+# X_FRAME_OPTIONS = 'ALLOW-FROM=https://lalasol-bootcamp.web.app'
+# X_FRAME_OPTIONS = 'SAMEORIGIN'
+# X_CONTENT_TYPE_OPTIONS='NOSNIFF'
+# X_XSS_PROTECTION= "1; mode=block"
+# CONTENT_SECURITY_POLICY="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'  https://lalasol-bootcamp.web.app https://lalasol-bootcamp-backend-production.up.railway.app; object-src 'none'"; 
+# X-Content-Type-Options nosniff
+#  Content Security Policy
+
+
+
+
+
+
+# Access-Control-Allow-Origin= "https://lalasol-bootcamp.web.app"
+
 # Application definition
+
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -70,6 +118,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'csp.middleware.CSPMiddleware', #Content Security Policy (CSP)
     "corsheaders.middleware.CorsMiddleware",#CORS
 
     "django.middleware.security.SecurityMiddleware",
@@ -83,7 +132,14 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
+# CSP_IMG_SRC = ("'self'", "https://lalasol-bootcamp.web.app")
 
+CSP_DEFAULT_SRC = ("'self'", "https://lalasol-bootcamp.web.app",
+    "https://lalasol-bootcamp-backend-production.up.railway.app",)
+CSP_STYLE_SRC = ("'unsafe-inline'", "https:",)
+# CSP_SCRIPT_SRC = [
+#     "'self'","https://lalasol-bootcamp.web.app",
+# ]
 ROOT_URLCONF = "core.urls"
 
 TEMPLATES = [
@@ -178,3 +234,13 @@ MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = True #'None'
+SESSION_COOKIE_SAMESITE = True #'None'
+SESSION_COOKIE_SAMESITE_FORCE_ALL = True
+
+
+# X_FRAME_OPTIONS = 'ALLOWALL'
+XS_SHARING_ALLOWED_METHODS = ['POST','GET','OPTIONS', 'PUT', 'DELETE']

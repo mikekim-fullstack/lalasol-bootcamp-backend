@@ -29,15 +29,15 @@ class AllCourseSerializer(serializers.ModelSerializer):
 class ChapterSerializer(serializers.ModelSerializer):
     class Meta:
         model=Chapter
-        fields=['id','course', 'title','description','html', 'remarks','chapter_duration','created_date','updated_date']
+        fields=['id','course', 'title','description','html', 'remarks','created_date','updated_date']
         # depth=1
-    def __init__(self, instance=None, data=..., **kwargs):
-        print('ChapterSerializer().__init__')
-        super().__init__(instance, data, **kwargs)
-        request = self.context.get('request') 
-        self.Meta.depth=0
-        if request and request.method=='GET':
-            self.Meta.depth=1
+    # def __init__(self, instance=None, data=..., **kwargs):
+    #     print('ChapterSerializer().__init__')
+    #     super().__init__(instance, data, **kwargs)
+    #     request = self.context.get('request') 
+    #     self.Meta.depth=0
+    #     if request and request.method=='GET':
+    #         self.Meta.depth=1
 
 # Students
 class StudentSerializer(serializers.ModelSerializer):

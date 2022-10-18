@@ -7,6 +7,7 @@ from rest_framework import generics
 from rest_framework import permissions
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.clickjacking import xframe_options_exempt
 import json
 
 class TeacherListsView(generics.ListCreateAPIView):
@@ -146,8 +147,13 @@ class CourseDeleteView(generics.DestroyAPIView):
 
 class ChapterListsView(generics.ListCreateAPIView):
     serializer_class = ChapterSerializer
-    queryset = Chapter.objects.all()
+    # queryset = Chapter.objects.all()
     # permission_classes=[permissions.IsAuthenticated]
+    @csrf_exempt
+    @xframe_options_exempt
+    def get_queryset(self):
+        return Chapter.objects.all()
+
 
 class ChapterDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ChapterSerializer
@@ -158,6 +164,7 @@ class ChapterDetailView(generics.RetrieveUpdateDestroyAPIView):
     #     context['chapter_duration'] = self.chapter_duration
     #     print('context----->', context)
     #     return context
+
 
 class CourseChapterListsView(generics.ListAPIView):
     serializer_class = ChapterSerializer
