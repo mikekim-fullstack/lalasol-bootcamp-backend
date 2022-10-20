@@ -1,3 +1,4 @@
+from enum import unique
 from django.db import models
 
 from re import T
@@ -31,7 +32,7 @@ class CourseCategory(MPTTModel):
     popularity = models.SmallIntegerField(default=0)
     image_max_number = models.SmallIntegerField(default=10)
     post_validity_in_day = models.SmallIntegerField(default=30)
-    order = models.PositiveSmallIntegerField(null=True) # category order to display
+    order = models.PositiveSmallIntegerField(null=True,unique=True) # category order to display
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
 
