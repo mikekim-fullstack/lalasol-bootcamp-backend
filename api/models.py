@@ -139,7 +139,7 @@ class Course(models.Model):
     title=models.CharField(max_length=150)
     description=models.TextField()
     course_image=models.ImageField(upload_to='course_imgs/', null=True)
-    techs=models.TextField(null=True)
+    # techs=models.TextField(null=True)
     course_views = models.IntegerField(default=0, null=True)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
