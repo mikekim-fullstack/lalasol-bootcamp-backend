@@ -1,3 +1,4 @@
+from email.policy import default
 from enum import unique
 from django.db import models
 
@@ -66,15 +67,16 @@ class ChapterCategory(models.Model):
     def __str__(self):     
         return self.title
 
-
-
+#------- Team -----------------
+class Team(models.Model):
+    name=models.CharField(max_length=100)
+    added_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.name
 # ---- Students -----
 class Student(models.Model):
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE, related_name='user_student')
-    # full_name=models.CharField(max_length=100)
-    # email=models.CharField(max_length=100, unique=True)
-    # password=models.CharField(max_length=100)
-    # username=models.CharField(max_length=200)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_student', null=True)
     interested_categories=models.ManyToManyField(CourseCategory, related_name='cat_student')
     profile_img = models.ImageField(upload_to='student_profile_imgs/', null=True)
 
@@ -109,12 +111,7 @@ class Student(models.Model):
 # ---- Teacher -----
 class Teacher(models.Model):
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE, related_name='user_teacher')
-    # full_name=models.CharField(max_length=100)
-    # 
-    # email=models.CharField(max_length=100, unique=True)
-    # password=models.CharField(max_length=100)
-    # qualification=models.CharField(max_length=200)
-    # mobile_no=models.CharField(max_length=20)
+    team = models.ManyToManyField(Team,  related_name='team_teacher', null=True)
     qualification=models.CharField(max_length=200)
     bio=models.TextField(null=True)
     skills=models.TextField()
@@ -197,7 +194,8 @@ class Chapter(models.Model):
     title=models.CharField(max_length=150)
     description=models.TextField()
     # video=models.FileField(upload_to='chapter_videos/', null=True)
-    html=models.FileField(upload_to='chapter_htmlfile/', null=True, blank=True)
+    file=models.FileField(upload_to='chapter_htmlfile/', null=True, blank=True)
+    url=models.URLField(max_length=200, null=True, blank=True)
     remarks=models.TextField(null=True)
     
     created_date = models.DateTimeField(auto_now_add=True, null=True)
@@ -248,3 +246,76 @@ class StudentAssignment(models.Model):
         verbose_name_plural='9. Student Assignments'
     def __str__(self):
         return 'assignment: '+self.title
+
+# ---------- Quiz -----------------
+
+class InputQuizType(models.Model):
+    type = models.CharField( max_length=20)
+    class Meta:
+        verbose_name_plural='20. InputQuizType'
+    def __str__(self):
+        return self.type
+
+class OfferedAnswer(models.Model):
+    course_category = models.ForeignKey(CourseCategory,on_delete=models.CASCADE, related_name='course_offeredAnswer', null=True)
+    teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='teacher_offeredAnswer', null=True)
+    number=models.PositiveSmallIntegerField(null=True)
+    answer = models.CharField( max_length=150)
+    class Meta:
+        verbose_name_plural='21.OfferedAnswer'
+    def __str__(self):
+        return str( self.teacher)+'-'+str(self.course_category)+'-'+str(self.id)+'-'+str(self.number) +': '+ self.answer
+
+# class OfferedQuizAnswers(models.Model):
+#     teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='teacher_offeredQuizAnswers', null=True)
+#     type = models.ForeignKey(InputQuizType, on_delete=models.CASCADE, related_name='type_offeredQuizAnswers')
+#     course_category = models.ForeignKey(CourseCategory,on_delete=models.CASCADE, related_name='course_offeredQuizAnswers', null=True)
+#     answers = models.ManyToManyField( OfferedAnswer, related_name='answers_offeredQuizAnswers')
+
+#     added_date = models.DateTimeField(auto_now_add=True)
+#     class Meta:
+#         verbose_name_plural='23. OfferedQuizAnswers'
+#     def __str__(self):
+#         return str(self.id)
+
+class CourseCategoryQuiz(models.Model):
+    '''
+    Add quiz to Course
+    '''
+    teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='teacher_courseCategoryQuiz')
+    course_category = models.ForeignKey(CourseCategory,on_delete=models.CASCADE, related_name='course_courseCategoryQuiz')
+    input_type = models.ForeignKey(InputQuizType, on_delete=models.CASCADE, related_name='type_courseCategoryQuiz')
+    # offered_answers = models.ForeignKey(OfferedQuizAnswers, on_delete=models.CASCADE, related_name='offeredAnswers_courseCategoryQuiz')
+    offered_answers = models.ManyToManyField( OfferedAnswer, related_name='offeredAnswers_courseCategoryQuiz')
+    question = models.CharField(max_length=300)
+    right_answer = models.CharField(max_length=200)
+    added_date = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        verbose_name_plural='24. CourseCategoryQuiz'
+    def __str__(self):
+        return self.question
+class StudentQuizSolution(models.Model):
+    '''
+    Add StudentQuizSolution
+    '''
+    student = models.ForeignKey(Student,on_delete=models.CASCADE, related_name='student_StudentQuizSolution')
+    course_cat_quiz = models.ForeignKey(CourseCategoryQuiz,on_delete=models.CASCADE, related_name='catquiz_StudentQuizSolution')
+    answer = models.CharField(max_length=200, null=True)
+    taken = models.BooleanField(default=False, null=True)
+    added_date = models.DateTimeField(auto_now_add=True)
+    class Meta:
+        verbose_name_plural='24. StudentQuizSolution'
+    def __str__(self):
+        return self.student
+# class StudentScore(models.Model):
+#     student = models.ForeignKey(Student,on_delete=models.CASCADE, related_name='student_StudentScore')
+#--------------- ClassRoom -------------------
+
+class ClassRoom(models.Model):
+    name=models.CharField(max_length=100)
+   
+    student = models.ManyToManyField(Student, related_name='student_classRoom')
+    teacher = models.ManyToManyField(Teacher, related_name='teacher_classRoom')
+    added_date = models.DateTimeField(auto_now_add=True)
+
+

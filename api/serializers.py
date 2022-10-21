@@ -17,12 +17,12 @@ class CourseCategorySerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Course
-        fields=['id','category','teacher', 'title','description','course_image', 'techs','related_video','tech_lists','created_date','updated_date']
+        fields=['id','category','teacher', 'title','description','course_image', 'related_video','tech_lists','created_date','updated_date']
 #----------------------------------------------------------
 class AllCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Course
-        fields=['id','category','teacher', 'title','description','course_image', 'techs','course_chapters','related_video','tech_lists','created_date','updated_date']
+        fields=['id','category','teacher', 'title','description','course_image', 'course_chapters','related_video','tech_lists','created_date','updated_date']
         depth=1
 
 
@@ -31,7 +31,7 @@ class AllCourseSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model=Student
-        fields=['id', 'user', 'interested_categories','created_date','updated_date','profile_img']
+        fields=['id', 'user','team', 'interested_categories','created_date','updated_date','profile_img']
         # depth=1
 
 class StudentEnrolledCourseSerializer(serializers.ModelSerializer):
