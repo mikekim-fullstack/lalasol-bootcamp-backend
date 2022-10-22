@@ -66,7 +66,7 @@ class ChapterCategorySerializer(serializers.ModelSerializer):
 class ChapterSerializer(serializers.ModelSerializer):
     class Meta:
         model=Chapter
-        fields=['id','course', 'title','category','description','html', 'remarks','created_date','updated_date']
+        fields=['id','course', 'title','category','description','file','url', 'text','created_date','updated_date']
         depth=1
     # def __init__(self, instance=None, data=..., **kwargs):
     #     print('ChapterSerializer().__init__')

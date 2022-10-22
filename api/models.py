@@ -1,6 +1,7 @@
 from email.policy import default
 from enum import unique
 from django.db import models
+import os
 
 from re import T
 from django.db import models
@@ -136,7 +137,7 @@ class Course(models.Model):
     title=models.CharField(max_length=150)
     description=models.TextField()
     course_image=models.ImageField(upload_to='course_imgs/', null=True)
-    # techs=models.TextField(null=True)
+    taken = models.BooleanField(default=False, null=True)
     course_views = models.IntegerField(default=0, null=True)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
@@ -188,15 +189,22 @@ class CourseRating(models.Model):
     def __str__(self):
         return f'rating:{self.course}-{self.student}-{self.rating}'
 
+
+def hash_upload(instance, filename):
+        instance.file.open() # make sure we're at the beginning of the file
+        contents = instance.file.read() # get the contents
+        fname, ext = os.path.splitext(filename)
+        return "'chapter_files/'{0}_{1}{2}".format(fname, hash(contents), ext) # assemble the filename
+
 class Chapter(models.Model):
     category=models.ForeignKey(ChapterCategory, on_delete=models.CASCADE, related_name='category_chapter', null=True)
     course=models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_chapters')
     title=models.CharField(max_length=150)
     description=models.TextField()
     # video=models.FileField(upload_to='chapter_videos/', null=True)
-    file=models.FileField(upload_to='chapter_htmlfile/', null=True, blank=True)
+    file=models.FileField(upload_to=hash_upload, null=True, blank=True)
     url=models.URLField(max_length=200, null=True, blank=True)
-    remarks=models.TextField(null=True)
+    text=models.TextField(null=True, blank=True)
     
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
@@ -204,6 +212,7 @@ class Chapter(models.Model):
         verbose_name_plural = '6. Chapter'
     def __str__(self):
         return self.title
+    
     # def chapter_duration(self):
     #     cap = cv2.VideoCapture(self.video.path)
     #     fps = cap.get(cv2.CAP_PROP_FPS)
