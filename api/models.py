@@ -7,11 +7,11 @@ from re import T
 from django.db import models
 from mptt.models import MPTTModel, TreeForeignKey
 from django.core.serializers import serialize
-# import cv2
+# --- import cv2
 from account.models import UserAccount
 from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.translation import gettext_lazy as _
-# from versatileimagefield.fields import VersatileImageField, PPOIField
+# --- from versatileimagefield.fields import VersatileImageField, PPOIField
 from django.conf import settings
 import datetime
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -75,11 +75,19 @@ class Team(models.Model):
     def __str__(self):
         return self.name
 # ---- Students -----
+# TRIGGER FUNCTION
+# def student_file_upload(instance, filename):
+#     'student_profile_imgs/'
+#     instance.file.open() # make sure we're at the beginning of the file
+#         contents = instance.file.read() # get the contents
+#         fname, ext = os.path.splitext(filename)
+#         return "'chapter_files/'{0}_{1}{2}".format(fname, hash(contents), ext)
+#     pass
 class Student(models.Model):
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE, related_name='user_student')
-    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_student', null=True)
-    interested_categories=models.ManyToManyField(CourseCategory, related_name='cat_student')
-    profile_img = models.ImageField(upload_to='student_profile_imgs/', null=True)
+    team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_student', null=True, blank=True)
+    # interested_categories=models.ManyToManyField(CourseCategory, related_name='cat_student')
+    profile_img = models.ImageField(upload_to='student_profile_imgs/', null=True, blank=True)
 
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
@@ -88,6 +96,7 @@ class Student(models.Model):
         verbose_name_plural = '1. Students'
     def __str__(self):
         return self.user.first_name+' '+self.user.last_name
+    
     def enrolled_courses(self):
         '''
         Total enrolled course by student.

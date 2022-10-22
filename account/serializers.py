@@ -4,3 +4,4 @@ class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model=UserAccount
         fields = '__all__' #['id', 'email', 'first_name', 'last_name', 'phone', 'role', 'is_active']
+        exclude = ('groups', "user_permissions")

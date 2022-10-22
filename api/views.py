@@ -1,6 +1,10 @@
+from ast import If
 import re
+from time import time
+
 
 from account.models import UserRole
+from account.models import UserAccount
 from api.models import *
 from api.serializers import *
 from rest_framework import generics
@@ -9,6 +13,8 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.clickjacking import xframe_options_exempt
 import json
+from django.utils import timezone
+
 
 class TeacherListsView(generics.ListCreateAPIView):
     queryset = Teacher.objects.all()
@@ -186,6 +192,116 @@ class TeacherCourseListsView(generics.ListAPIView):
         return Course.objects.filter(teacher=teacher)
     # permission_classes=[permissions.IsAuthenticated]
 
+
+#---------------- Student -------------------------
+@csrf_exempt # stop Cross-Site Reqeust Forgery  protection
+def StudentLogin(request):
+    # print('student login request: ', request.body, request.method)
+    if request.method=='POST':
+        # print('request.body.decode): ', request.body.decode('utf-8'))
+        data = json.loads(request.body.decode('utf-8'))#Json object to python object
+        # data = request.body.decode('utf-8')#Json object to python object
+        # print('student email: ', data['email'])
+        email = data['email']
+        password = data['password']
+        if(email and password):
+            print('studen email password: ', email, password)
+            # return JsonResponse({'bool':True,'email':email, 'password':password}) #test
+            try:
+                # -- Get Student RoleType: 0. --
+                role = UserRole.objects.get(role_type=0)
+                user=UserAccount.objects.get(email=email, password=password, role=role)
+                user.last_login=timezone.now()
+                user.save()
+                # # -- check if user is a student. --
+                # isStudent = False
+                # for i in user.role.all():
+                #     if i.get_mytype()=='STUDENT':isStudent=True
+                # if not isStudent: return JsonResponse({'bool':False,'error':'Your aren\'t a student!'})
+                try:
+                    student = Student.objects.get(user=user)
+                    print('user: ', user.role.all(), str(user.email), student.team , student.profile_img)
+                except(Student.DoesNotExist, Student.MultipleObjectsReturned) as e:
+                    return JsonResponse({'bool':False, 'error':str(e)})
+            except(UserAccount.DoesNotExist, UserAccount.MultipleObjectsReturned) as e:
+            # except :
+                print('error----', e)
+                return JsonResponse({'bool':False, 'error':str(e)})
+            finally:
+                print('final student login----')
+            if student:
+                return JsonResponse({'bool':True,'id':user.id,', email': user.email, 'full_name':user.get_full_name()})
+                # return JsonResponse({'bool':True,'id':user.id, 'full_name':studentData.full_name})
+            else:
+                return JsonResponse({'bool':False,'error':'User does not exist'})
+        else:
+            return JsonResponse({'bool':False, 'error':'email or password is missing'})
+    else:
+        return JsonResponse({'boo':'fasle','error': 'wrong request'})
+
+# ---------- StudentSignUp ----------
+#  --- reqest: form-data input so use request.POST and request.FILES. ---
+@csrf_exempt # stop Cross-Site Reqeust Forgery  protection
+def StudentSignUp(request):
+    if request.method=='POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        firstName = request.POST.get('first_name')
+        lastName = request.POST.get('last_name')
+        imageUrl = request.FILES.get('image')
+        myteam = request.POST.get('team')
+        # print('---',email, password, firstName, lastName, imageUrl, myteam)
+        if email and password and firstName and lastName :
+            # --- Get Role Object for Student. ---
+            try:
+                role = UserRole.objects.get(role_type=0)
+            except:
+                return JsonResponse({'bool':False, 'error': 'Student Role does not exist!'})
+
+            # --- Check if UserAccount Object exists or not. ---
+            user = UserAccount.objects.filter(email=email, 
+                    first_name=firstName,
+                    last_name=lastName,
+                    role=role, 
+                    ).exists()
+            if(user):
+                return JsonResponse({'bool':False, 'error': 'User '+email+' already exist!'})
+                
+            # --- Get team object. ---
+            if(myteam):
+                try:
+                    team = Team.objects.get(name=myteam)
+                except(Team.DoesNotExist) as e:
+                    team=None
+            
+            print(team, imageUrl)
+
+            # --- Create new UserAccount object. ---
+            try:
+                newUser = UserAccount.objects.create(email=email, 
+                    password=password, 
+                    first_name=firstName,
+                    last_name=lastName,
+                    
+                    )
+                newUser.role.add(role)
+                newUser.save()
+                # --- Create new Student object. ---
+                try:
+                   newStudent = Student.objects.create(user=newUser)
+                   if(team): newStudent.team = team
+                   if(imageUrl): newStudent.profile_img = imageUrl
+                   newStudent.save()
+                except:
+                    newUser.delete()
+                    # print('error-newUser Creation')
+                    return JsonResponse({'bool':False, 'error':'Fail to create Student'})
+            except:
+                # print('---error---')
+                return JsonResponse({'bool':False, 'error':'Fail to create Student'})
+        return JsonResponse({'bool':True, 'message':'Student successfully created!'})
+
+        
 class StudentListsView(generics.ListCreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer

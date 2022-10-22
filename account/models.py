@@ -13,8 +13,16 @@ class UserRole(models.Model):
     role_type = models.SmallIntegerField(choices=ROLE_TYPE, default=ROLE_TYPE[0][0])
     def __str__(self):
         return self.ROLE_TYPE[self.role_type][1]
-    def get_type(self):
+    def get_types(self):
         return self.ROLE_TYPE
+    def get_index_by_name(self, name):
+        role_num = -1
+        for num in self.ROLE_TYPE:
+            if name==self.ROLE_TYPE[num][1]:
+                role_num = num
+        return num
+    def get_mytype(self):
+        return self.ROLE_TYPE[self.role_type][1]
 
 
 class UserAccountManager(BaseUserManager):
@@ -66,7 +74,8 @@ class UserAccount(PermissionsMixin, AbstractBaseUser):
 
 
     def get_full_name(self):
-        return u'{self.first_name}, {self.first_name}'
+        return self.first_name+' '+ self.first_name
+        # return u'{self.first_name}, {self.first_name}'
 
     def get_short_name(self):
         return u'{self.first_name}'

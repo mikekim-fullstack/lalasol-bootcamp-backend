@@ -18,6 +18,7 @@ class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Course
         fields=['id','category','teacher', 'title','description','course_image', 'related_video','tech_lists','created_date','updated_date']
+        
 #----------------------------------------------------------
 class AllCourseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -31,8 +32,8 @@ class AllCourseSerializer(serializers.ModelSerializer):
 class StudentSerializer(serializers.ModelSerializer):
     class Meta:
         model=Student
-        fields=['id', 'user','team', 'interested_categories','created_date','updated_date','profile_img']
-        # depth=1
+        fields=['id', 'user','team', 'created_date','updated_date','profile_img']
+        depth=1
 
 class StudentEnrolledCourseSerializer(serializers.ModelSerializer):
     class Meta:
