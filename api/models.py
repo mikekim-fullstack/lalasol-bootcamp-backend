@@ -189,7 +189,7 @@ class CourseRating(models.Model):
     def __str__(self):
         return f'rating:{self.course}-{self.student}-{self.rating}'
 
-
+# TRIGGER FUNCTION
 def hash_upload(instance, filename):
         instance.file.open() # make sure we're at the beginning of the file
         contents = instance.file.read() # get the contents
@@ -307,10 +307,13 @@ class StudentQuizSolution(models.Model):
     '''
     Add StudentQuizSolution
     '''
+    gradeby  = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='teacher_StudentQuizSolution', null=True, blank=True)
     student = models.ForeignKey(Student,on_delete=models.CASCADE, related_name='student_StudentQuizSolution')
     course_cat_quiz = models.ForeignKey(CourseCategoryQuiz,on_delete=models.CASCADE, related_name='catquiz_StudentQuizSolution')
-    answer = models.CharField(max_length=200, null=True)
-    taken = models.BooleanField(default=False, null=True)
+    answer = models.CharField(max_length=200, null=True, blank=True)
+    taken = models.BooleanField(default=False, null=True, blank=True)
+    feedback = models.CharField(max_length=200, null=True, blank=True)
+    score = models.PositiveSmallIntegerField(null=True, blank=True)
     added_date = models.DateTimeField(auto_now_add=True)
     class Meta:
         verbose_name_plural='24. StudentQuizSolution'
