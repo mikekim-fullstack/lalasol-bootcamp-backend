@@ -1,7 +1,8 @@
 from ast import If
 import re
 from time import time
-
+import json
+from django.utils import timezone
 
 from account.models import UserRole
 from account.models import UserAccount
@@ -11,9 +12,11 @@ from rest_framework import generics
 from rest_framework import permissions
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-from django.views.decorators.clickjacking import xframe_options_exempt
-import json
-from django.utils import timezone
+from django.core import serializers
+# from django.views.decorators.clickjacking import xframe_options_exempt
+
+
+
 
 
 class TeacherListsView(generics.ListCreateAPIView):
@@ -40,7 +43,7 @@ class CourseCreateView(generics.CreateAPIView):
 
 class AllCourseListsView(generics.ListAPIView):
     serializer_class = AllCourseSerializer
-    # queryset = Course.objects.all().order_by('-id')
+    queryset = Course.objects.all().order_by('-id')
     print('---- CourseListsView----')
     def get_param_from_request(self, string_param):
         '''
@@ -52,85 +55,86 @@ class AllCourseListsView(generics.ListAPIView):
                 param = self.kwargs[string_param]
                 print('param: ', param)
         return param
-    def get_queryset(self):
-        result=''
-        qs=None
-        if(self.request.method=='GET'):
-            # self.request.query_params or self.request.GET contains by .../?query_key=query_value
-            # sel.kwargs contains by .../keyword_value
-            # self.request.GET has both cases.
+    # def get_queryset(self):
+    #     result=''
+    #     qs=None
+    #     if(self.request.method=='GET'):
+    #         # self.request.query_params or self.request.GET contains by .../?query_key=query_value
+    #         # sel.kwargs contains by .../keyword_value
+    #         # self.request.GET has both cases.
 
-            print('query_params: ', self.request.query_params,'kwargs:  ', self.kwargs,'', 'GET: ',self.request.GET)
-            # print('request.GET: ', self. )
-            limit = self.get_param_from_request('limit')
-            category_slug = self.get_param_from_request('category_slug')
-            skill_name = self.get_param_from_request('skill_name')
-            teacher_id = self.get_param_from_request('teacher_id')
-            student_id = self.get_param_from_request('student_id')
-            search = self.get_param_from_request('search')
+    #         print('query_params: ', self.request.query_params,'kwargs:  ', self.kwargs,'', 'GET: ',self.request.GET)
+    #         # print('request.GET: ', self. )
+    #         limit = self.get_param_from_request('limit')
+    #         category_slug = self.get_param_from_request('category_slug')
+    #         skill_name = self.get_param_from_request('skill_name')
+    #         teacher_id = self.get_param_from_request('teacher_id')
+    #         student_id = self.get_param_from_request('student_id')
+    #         search = self.get_param_from_request('search')
 
-            print('skill_name', skill_name , teacher_id)
+    #         print('skill_name', skill_name , teacher_id)
 
-            if(limit):
-                '''
-                    Find the latest updated courses by limit.
-                '''
-                try:
-                    qs = Course.objects.all().order_by('-updated_date')[:int(limit)]
-                    print('>>CourseListsView-limit: ',  limit )
-                except:
-                    print('>>CourseListsView: ',  "no match" )
-            elif(category_slug):
-                '''
-                    Find all courses where category_slug matches to the course's techs.
-                '''
-                try:
-                    qs = Course.objects.filter(techs__icontains=category_slug)
-                    print('>>CourseListsView-category_slug: ',  category_slug )
-                except:
-                    print('>>CourseListsView: ',  "no match" )
-            elif(skill_name and teacher_id):
-                '''
-                    Find all courses where skill_name matches to course's techs by teacher_id.
-                '''
-                print('== skill_name, teacher_id', skill_name, teacher_id)
-                try:
-                    qs=Course.objects.filter(techs__icontains=skill_name, teacher=int(teacher_id))
-                except:
-                    print('>>CourseListsView: ',  "no match" )
-                    # qs=Course.objects.all()
-            elif(student_id):
-                '''
-                    Find all courses where the student's interested_categories matches to course's techs by student_id.
-                '''
-                try:
-                    student_id=int(student_id)
-                    student = Student.objects.get(id=student_id)
-                    if(student):
-                        # -- Regular expression( '\s|,' ) meaning that find the space to end of line or comma
-                        # and split by them and choose only not empty string from the splited array.
-                        queries_string=[Q(techs__iendswith=c) for c in re.split(r'\s|,',student.interested_categories.strip()) if c]
-                        # -- queries are joined with AND so switch it to OR
-                        queries = queries_string.pop()
-                        for item in queries_string:
-                            queries |=item
-                        print('stuent: ', queries)
+    #         if(limit):
+    #             '''
+    #                 Find the latest updated courses by limit.
+    #             '''
+    #             try:
+    #                 qs = Course.objects.all().order_by('-updated_date')[:int(limit)]
+    #                 print('>>CourseListsView-limit: ',  limit )
+    #             except:
+    #                 print('>>CourseListsView: ',  "no match" )
+    #         elif(category_slug):
+    #             '''
+    #                 Find all courses where category_slug matches to the course's techs.
+    #             '''
+    #             try:
+    #                 qs = Course.objects.filter(techs__icontains=category_slug)
+    #                 print('>>CourseListsView-category_slug: ',  category_slug )
+    #             except:
+    #                 print('>>CourseListsView: ',  "no match" )
+    #         elif(skill_name and teacher_id):
+    #             '''
+    #                 Find all courses where skill_name matches to course's techs by teacher_id.
+    #             '''
+    #             print('== skill_name, teacher_id', skill_name, teacher_id)
+    #             try:
+    #                 qs=Course.objects.filter(techs__icontains=skill_name, teacher=int(teacher_id))
+    #             except:
+    #                 print('>>CourseListsView: ',  "no match" )
+    #                 # qs=Course.objects.all()
+    #         elif(student_id):
+    #             '''
+    #                 Find all courses where the student's interested_categories matches to course's techs by student_id.
+    #             '''
+    #             try:
+    #                 student_id=int(student_id)
+    #                 student = Student.objects.get(id=student_id)
+    #                 if(student):
+    #                     # -- Regular expression( '\s|,' ) meaning that find the space to end of line or comma
+    #                     # and split by them and choose only not empty string from the splited array.
+    #                     queries_string=[Q(techs__iendswith=c) for c in re.split(r'\s|,',student.interested_categories.strip()) if c]
+    #                     # -- queries are joined with AND so switch it to OR
+    #                     queries = queries_string.pop()
+    #                     for item in queries_string:
+    #                         queries |=item
+    #                     print('stuent: ', queries)
 
-                        return Course.objects.filter(queries)
-                except:
-                    print('interested_categories does not match with techs in cousrs')
-            elif search :
-                '''
-                    Find all couses whrere search_string is in title or techs fields
-                '''
-                try:
-                    return Course.objects.filter(Q(title__icontains=search)|Q(techs__icontains=search))
-                except:
-                    print('search query has an error')
-            else:
-                print('no matches: ')
-                qs = Course.objects.all()
-        return qs
+    #                     return Course.objects.filter(queries)
+    #             except:
+    #                 print('interested_categories does not match with techs in cousrs')
+    #         elif search :
+    #             '''
+    #                 Find all couses whrere search_string is in title or techs fields
+    #             '''
+    #             try:
+    #                 return Course.objects.filter(Q(title__icontains=search)|Q(techs__icontains=search))
+    #             except:
+    #                 print('search query has an error')
+    #         else:
+    #             print('no matches: ')
+    #             qs = Course.objects.all()
+    #     return qs
+        
 
 
 
@@ -231,7 +235,9 @@ def StudentLogin(request):
                 print('final student login----')
             if student:
                 return JsonResponse({'bool':True,'id':user.id,', email': user.email, 'full_name':user.get_full_name()})
-                # return JsonResponse({'bool':True,'id':user.id, 'full_name':studentData.full_name})
+                # serializer = StudentSerializer(student)
+                # print('---output----' , student, json.dumps(serializer.data))
+                # return JsonResponse(serializer.data)
             else:
                 return JsonResponse({'bool':False,'error':'User does not exist'})
         else:
@@ -337,6 +343,20 @@ def fetch_enroll_status(request, course_id, student_id):
     enroll = StudentEnrolledCourse.objects.get(course=course_id, student=student_id)
     if enroll:
         return JsonResponse({'bool':'true'})
+    
+    return JsonResponse({'bool':'false'})
+
+def fetch_enrolled_courses_by_student_id(request, student_id):
+   
+    course = Course.objects.filter(course_enrolled_course__student=student_id)
+    # enroll = StudentEnrolledCourse.objects.filter( student=student_id)
+    
+    print('course: ', course)
+    if course:
+        # serializer  = StudentEnrolledCourseSerializer(enroll, many=True)     
+        serializer  = CourseSerializer(course, many=True)
+
+        return JsonResponse(serializer.data, safe=False)
     
     return JsonResponse({'bool':'false'})
 

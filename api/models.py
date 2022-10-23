@@ -121,7 +121,7 @@ class Student(models.Model):
 # ---- Teacher -----
 class Teacher(models.Model):
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE, related_name='user_teacher')
-    team = models.ManyToManyField(Team,  related_name='team_teacher', null=True)
+    team = models.ManyToManyField(Team,  related_name='team_teacher')
     qualification=models.CharField(max_length=200)
     bio=models.TextField(null=True)
     skills=models.TextField()
@@ -235,8 +235,8 @@ class Chapter(models.Model):
 
 # Student  enrolled courses
 class StudentEnrolledCourse(models.Model):
-    student=models.ForeignKey(Student, on_delete=models.CASCADE, related_name='enrollments')
-    course=models.ForeignKey(Course, on_delete=models.CASCADE, related_name='enrollments')
+    student=models.ForeignKey(Student, on_delete=models.CASCADE, related_name='student_enrolled_courses', related_query_name="student_enrolled_course")
+    course=models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_enrolled_courses', related_query_name="course_enrolled_course",)
     enrolled_date=models.DateTimeField(auto_now_add=True)
 
     class Meta:

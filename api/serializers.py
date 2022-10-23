@@ -17,13 +17,13 @@ class CourseCategorySerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Course
-        fields=['id','category','teacher', 'title','description','course_image', 'related_video','tech_lists','created_date','updated_date']
+        fields=['id','category','teacher', 'title','description','course_image', 'course_views' ,'taken','created_date','updated_date']
         
 #----------------------------------------------------------
 class AllCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Course
-        fields=['id','category','teacher', 'title','description','course_image', 'course_chapters','related_video','tech_lists','created_date','updated_date']
+        fields=['id','category','teacher', 'title','description','course_image','course_views' ,'taken','created_date','updated_date']
         depth=1
 
 
