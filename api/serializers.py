@@ -39,7 +39,7 @@ class StudentEnrolledCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=StudentEnrolledCourse
         fields=['id', 'student', 'course','enrolled_date']
-        depth=1
+        # depth=1
     # def __init__(self, *args, **kwargs):
     #     super(StudentEnrolledCourse,self).__init__( *args, **kwargs)
     #     request = self.context.get('request') 

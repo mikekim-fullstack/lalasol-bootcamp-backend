@@ -1,5 +1,6 @@
 from email.policy import default
 from enum import unique
+from secrets import choice
 from django.db import models
 import os
 
@@ -84,14 +85,19 @@ class Team(models.Model):
 #         return "'chapter_files/'{0}_{1}{2}".format(fname, hash(contents), ext)
 #     pass
 class Student(models.Model):
+    STATUS=[
+        ('STUDENT',  'STUDENT'),
+        ('GRADUATE', 'GRADUATE'),
+        ('AUDIT',    'AUDIT'),
+    ]
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE, related_name='user_student')
     team = models.ForeignKey(Team, on_delete=models.CASCADE, related_name='team_student', null=True, blank=True)
     # interested_categories=models.ManyToManyField(CourseCategory, related_name='cat_student')
     profile_img = models.ImageField(upload_to='student_profile_imgs/', null=True, blank=True)
-
+    status = models.CharField(max_length=10, null=True, choices=STATUS, default=STATUS[0][0])
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
-
+    end_date = models.DateTimeField( null=True)
     class Meta:
         verbose_name_plural = '1. Students'
     def __str__(self):
@@ -120,14 +126,21 @@ class Student(models.Model):
 
 # ---- Teacher -----
 class Teacher(models.Model):
+    STATUS=[
+        ('EMPLOYEE',  'EMPLOYEE'),
+        ('EXEMPLOYEE', 'EXEMPLOYEE'),
+        ('PARTTIME',    'PARTTIME'),
+    ]
     user = models.ForeignKey(UserAccount, on_delete=models.CASCADE, related_name='user_teacher')
     team = models.ManyToManyField(Team,  related_name='team_teacher')
     qualification=models.CharField(max_length=200)
     bio=models.TextField(null=True)
     skills=models.TextField()
+    status = models.CharField(max_length=12, choices=STATUS, default=STATUS[0][0], null=True)
     photo = models.ImageField(upload_to='teacher_imgs', null=True)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
+    end_date = models.DateTimeField( null=True)
 
     class Meta:
         verbose_name_plural = '2. Teachers'
@@ -154,7 +167,7 @@ class Course(models.Model):
     class Meta:
         verbose_name_plural = '4. Courses'
     def __str__(self):
-        return self.title
+        return (self.category.title +':'+self.title)
     def related_video(self):
         search = self.techs.split() 
         # print('Course: techs:', self.techs, search)
