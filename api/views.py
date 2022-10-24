@@ -1,4 +1,6 @@
 from ast import If
+from email.policy import HTTP
+from http import HTTPStatus
 import re
 from time import time
 import json
@@ -202,8 +204,12 @@ class TeacherCourseListsView(generics.ListAPIView):
 def StudentLogin(request):
     # print('student login request: ', request.body, request.method)
     if request.method=='POST':
-        # print('request.body.decode): ', request.body.decode('utf-8'))
-        data = json.loads(request.body.decode('utf-8'))#Json object to python object
+        try:
+            print('request.body): ',request.body, request.body.decode('utf-8'))
+            # print('request.body.decode): ', request.body.decode('utf-8'))
+            data = json.loads(request.body.decode('utf-8'))#Json object to python object
+        except:
+            return JsonResponse({'bool':False, 'error':'No input'}, status=HTTPStatus.BAD_REQUEST)
         # data = request.body.decode('utf-8')#Json object to python object
         # print('student email: ', data['email'])
         email = data['email']
@@ -226,24 +232,24 @@ def StudentLogin(request):
                     student = Student.objects.get(user=user)
                     print('user: ', user.role.all(), str(user.email), student.team , student.profile_img)
                 except(Student.DoesNotExist, Student.MultipleObjectsReturned) as e:
-                    return JsonResponse({'bool':False, 'error':str(e)})
+                    return JsonResponse({'bool':False, 'error':str(e)}, status=HTTPStatus.BAD_REQUEST)
             except(UserAccount.DoesNotExist, UserAccount.MultipleObjectsReturned) as e:
             # except :
                 print('error----', e)
-                return JsonResponse({'bool':False, 'error':str(e)})
+                return JsonResponse({'bool':False, 'error':str(e)},status=HTTPStatus.BAD_REQUEST)
             finally:
                 print('final student login----')
             if student:
-                return JsonResponse({'bool':True,'id':user.id,', email': user.email, 'full_name':user.get_full_name()})
+                return JsonResponse({'bool':True,'id':user.id,'email': user.email, 'first_name':user.first_name, 'last_name':user.last_name})
                 # serializer = StudentSerializer(student)
                 # print('---output----' , student, json.dumps(serializer.data))
                 # return JsonResponse(serializer.data)
             else:
-                return JsonResponse({'bool':False,'error':'User does not exist'})
+                return JsonResponse({'bool':False,'error':'User does not exist'}, status=HTTPStatus.BAD_REQUEST)
         else:
-            return JsonResponse({'bool':False, 'error':'email or password is missing'})
+            return JsonResponse({'bool':False, 'error':'email or password is missing'}, status=HTTPStatus.BAD_REQUEST)
     else:
-        return JsonResponse({'boo':'fasle','error': 'wrong request'})
+        return JsonResponse({'boo':'fasle','error': 'wrong request'}, status=HTTPStatus.BAD_REQUEST)
 
 # ---------- StudentSignUp ----------
 #  --- reqest: form-data input so use request.POST and request.FILES. ---
@@ -266,8 +272,6 @@ def StudentSignUp(request):
 
             # --- Check if UserAccount Object exists or not. ---
             user = UserAccount.objects.filter(email=email, 
-                    first_name=firstName,
-                    last_name=lastName,
                     role=role, 
                     ).exists()
             if(user):
@@ -305,7 +309,9 @@ def StudentSignUp(request):
             except:
                 # print('---error---')
                 return JsonResponse({'bool':False, 'error':'Fail to create Student'})
-        return JsonResponse({'bool':True, 'message':'Student successfully created!'})
+            return JsonResponse({'bool':True, 'message':'Student successfully created!'})
+        else:
+            return JsonResponse({'bool':False, 'message':'One of information missing!'})
 
         
 class StudentListsView(generics.ListCreateAPIView):
