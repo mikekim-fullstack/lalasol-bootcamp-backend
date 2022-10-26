@@ -4,6 +4,7 @@ from http import HTTPStatus
 import re
 from time import time
 import json
+from unicodedata import category
 from django.utils import timezone
 
 from account.models import UserRole
@@ -240,7 +241,7 @@ def StudentLogin(request):
             finally:
                 print('final student login----')
             if student:
-                return JsonResponse({'bool':True,'id':user.id,'email': user.email, 'first_name':user.first_name, 'last_name':user.last_name, 'role':'student'})
+                return JsonResponse({'bool':True,'id':student.id,'email': user.email, 'first_name':user.first_name, 'last_name':user.last_name, 'role':'student'})
                 # serializer = StudentSerializer(student)
                 # print('---output----' , student, json.dumps(serializer.data))
                 # return JsonResponse(serializer.data)
@@ -344,6 +345,28 @@ class StudentCourseEnrollmentLists(generics.ListCreateAPIView):
     # def get_queryset(self):
     #     print('StudentCourseEnrollmentLists', super().get_queryset())
     #     return super().get_queryset()
+@csrf_exempt
+def manage_student_enroll_course(request, student_id, cat_id):
+    try:
+        student = Student.objects.get(id = student_id)
+        allCourse = Course.objects.filter(category_id = cat_id)
+        # StudentEnrolledCourse.objects.create(student=1,course=5)
+        if allCourse.exists():
+            for course in allCourse.iterator():
+                
+                if(not StudentEnrolledCourse.objects.filter(course__id=course.id).exists()):
+                    print(student, course, course.id)
+                    StudentEnrolledCourse.objects.create(student=student,course=course)
+                    
+            return JsonResponse({'bool':'true'})
+        else:
+            return JsonResponse({'bool':'false','message':'no data'})
+    except:
+        return JsonResponse({'bool':'false'})
+    
+   
+    
+
 
 def fetch_enroll_status(request, course_id, student_id):
     enroll = StudentEnrolledCourse.objects.get(course=course_id, student=student_id)
@@ -351,20 +374,34 @@ def fetch_enroll_status(request, course_id, student_id):
         return JsonResponse({'bool':'true'})
     
     return JsonResponse({'bool':'false'})
-
+@csrf_exempt
 def fetch_enrolled_courses_by_student_id(request, student_id):
-   
-    course = Course.objects.filter(course_enrolled_course__student=student_id)
-    # enroll = StudentEnrolledCourse.objects.filter( student=student_id)
-    
-    print('course: ', course)
-    if course:
-        # serializer  = StudentEnrolledCourseSerializer(enroll, many=True)     
-        serializer  = CourseSerializer(course, many=True)
+    if(request.method=='GET'):
+        course = Course.objects.filter(course_enrolled_course__student=student_id)
+        print('course: ', student_id, course)
+        if course:
+            serializer  = CourseSerializer(course, many=True)
+            return JsonResponse(serializer.data, safe=False)
+        
+        return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
+    else:
+        return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
 
-        return JsonResponse(serializer.data, safe=False)
-    
-    return JsonResponse({'bool':'false'})
+@csrf_exempt
+def fetch_enrolled_courses_by_student_id_n_cat_id(request, student_id, category_id):
+    print('fetch_enrolled_courses_by_student_id_n_cat_id: ', student_id, category_id)
+    if(request.method=='GET'):
+        try: #
+            course = Course.objects.filter(course_enrolled_course__student=student_id,category__id=category_id)
+
+            serializer  = CourseSerializer(course, many=True)
+            return JsonResponse(serializer.data, safe=False)
+        except(Course.DoesNotExist) as e:
+            print('error:',e)
+            
+            return JsonResponse({'bool':'false'},status = HTTPStatus.NOT_FOUND)    
+    else:
+        return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
 
 class EnrolledStudentLists(generics.ListAPIView):
     serializer_class=StudentEnrolledCourseSerializer

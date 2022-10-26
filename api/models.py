@@ -145,7 +145,7 @@ class Teacher(models.Model):
     class Meta:
         verbose_name_plural = '2. Teachers'
     def __str__(self):
-        return self.user.first_name+' '+self.user.last_name
+        return self.user.get_full_name()
     def skill_lists(self):
         skill_lists = self.skills.split(',')
         return [s.strip() for s in skill_lists]
@@ -160,6 +160,7 @@ class Course(models.Model):
     description=models.TextField()
     course_image=models.ImageField(upload_to='course_imgs/', null=True)
     taken = models.BooleanField(default=False, null=True)
+    course_no = models.PositiveSmallIntegerField(null=True, default=1)
     course_views = models.IntegerField(default=0, null=True)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
@@ -217,16 +218,32 @@ def hash_upload(instance, filename):
         contents = instance.file.read() # get the contents
         fname, ext = os.path.splitext(filename)
         return "'chapter_files/'{0}_{1}{2}".format(fname, hash(contents), ext) # assemble the filename
-
-class Chapter(models.Model):
-    category=models.ForeignKey(ChapterCategory, on_delete=models.CASCADE, related_name='category_chapter', null=True)
-    course=models.ForeignKey(Course, on_delete=models.CASCADE, related_name='course_chapters')
-    title=models.CharField(max_length=150)
-    description=models.TextField()
-    # video=models.FileField(upload_to='chapter_videos/', null=True)
+#  ---------- ChapterContent ----------------
+class ChapterContent(models.Model):
+    chapter_category=models.ForeignKey(ChapterCategory, on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
+    creater = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
+    title = models.CharField(max_length=150, null=True, blank=True)
     file=models.FileField(upload_to=hash_upload, null=True, blank=True)
     url=models.URLField(max_length=200, null=True, blank=True)
     text=models.TextField(null=True, blank=True)
+    content_no=models.PositiveSmallIntegerField(null=True, default=1)
+    created_date = models.DateTimeField(auto_now_add=True, null=True)
+    updated_date = models.DateTimeField(auto_now=True, null=True)
+    class Meta:
+        verbose_name_plural = '6.1 ChapterContent'
+    def __str__(self):
+        return str(self.id) +':'+self.chapter_category.title+'-'+self.creater.user.get_full_name()+'-'+str(self.content_no)
+class Chapter(models.Model):
+    content=models.ManyToManyField(ChapterContent, related_name='chapters',related_query_name='chapter')
+    course=models.ForeignKey(Course, on_delete=models.CASCADE, related_name='chapters',related_query_name='chapter', null=True)
+    title=models.CharField(max_length=150, null=True, blank=True)
+    sub_title=models.CharField(max_length=150, null=True, blank=True)
+    chapter_no=models.PositiveSmallIntegerField(null=True, default=1)
+    description=models.TextField(null=True, blank=True)
+    # video=models.FileField(upload_to='chapter_videos/', null=True)
+    # file=models.FileField(upload_to=hash_upload, null=True, blank=True)
+    # url=models.URLField(max_length=200, null=True, blank=True)
+    # text=models.TextField(null=True, blank=True)
     
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)

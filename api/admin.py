@@ -10,18 +10,27 @@ class CourseAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'title']
 
 class ChapterAdmin(admin.ModelAdmin):
-    list_display = ['id', 'title', 'course', 'description']
+    list_display = ['id','title','sub_title', 'course', 'description']
     list_display_links = ['id', 'title']
+
+class ChapterContentAdmin(admin.ModelAdmin):
+    list_display = ['id', 'chapter_category', 'creater', 'file', 'url', 'text']
+    list_display_links = ['id']
 
 class CourseCategoryAdmin(admin.ModelAdmin):
     list_display = ('id','title', 'description')
     list_display_links = ['id', 'title']
 
+class StudentCategoryAdmin(admin.ModelAdmin):
+    list_display = ('id','user', 'team', 'status')
+    list_display_links = ['id', 'user']
+
 admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(CourseCategory, CourseCategoryAdmin)
 admin.site.register(Chapter, ChapterAdmin)
+admin.site.register(ChapterContent, ChapterContentAdmin)
 admin.site.register(Course, CourseAdmin)
-admin.site.register(Student)
+admin.site.register(Student, StudentCategoryAdmin)
 admin.site.register(StudentEnrolledCourse)
 admin.site.register(CourseRating)
 admin.site.register(StudentFavoriteCourse)
