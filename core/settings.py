@@ -69,6 +69,8 @@ def addHttp (a):
 CSRF_TRUSTED_ORIGINS=[
      "http://127.0.0.1:3000",
      "http://localhost:3000", 
+     "http://127.0.0.1:8000",
+    "http://localhost:8000", 
     "https://lalasol-bootcamp.web.app",
     "https://lalasol-bootcamp-backend-production.up.railway.app",
     "https://github.com",
@@ -77,6 +79,8 @@ CSRF_TRUSTED_ORIGINS=[
 CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1:3000",
     "http://localhost:3000", 
+    "http://127.0.0.1:8000",
+    "http://localhost:8000", 
     "https://lalasol-bootcamp.web.app",
     "https://lalasol-bootcamp-backend-production.up.railway.app",
     "https://github.com",
@@ -87,7 +91,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 X_FRAME_OPTIONS = 'ALLOWALL'
 # X_FRAME_OPTIONS = 'ALLOW-FROM=https://lalasol-bootcamp.web.app'
 # X_FRAME_OPTIONS = 'SAMEORIGIN'
-# X_CONTENT_TYPE_OPTIONS='NOSNIFF'
+X_CONTENT_TYPE_OPTIONS='NOSNIFF'
 # X_XSS_PROTECTION= "1; mode=block"
 # CONTENT_SECURITY_POLICY="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'  https://lalasol-bootcamp.web.app https://lalasol-bootcamp-backend-production.up.railway.app; object-src 'none'"; 
 # X-Content-Type-Options nosniff

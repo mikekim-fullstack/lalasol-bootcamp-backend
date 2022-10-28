@@ -217,7 +217,8 @@ def hash_upload(instance, filename):
         instance.file.open() # make sure we're at the beginning of the file
         contents = instance.file.read() # get the contents
         fname, ext = os.path.splitext(filename)
-        return "'chapter_files/'{0}_{1}{2}".format(fname, hash(contents), ext) # assemble the filename
+        # print('---- upload file: ',"chapter_files/{0}_{1}{2}".format(fname, hash(contents), ext))
+        return "chapter_files/{0}_{1}{2}".format(fname, hash(contents), ext) # assemble the filename
 #  ---------- ChapterContent ----------------
 class ChapterContent(models.Model):
     chapter_category=models.ForeignKey(ChapterCategory, on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')

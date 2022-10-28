@@ -1,4 +1,5 @@
 from ast import If
+from cmath import exp
 from email.policy import HTTP
 from http import HTTPStatus
 import re
@@ -16,7 +17,7 @@ from rest_framework import permissions
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
-# from django.views.decorators.clickjacking import xframe_options_exempt
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 
 
@@ -158,6 +159,7 @@ class CourseDeleteView(generics.DestroyAPIView):
     queryset = Course.objects.all()
     # permission_classes=[permissions.IsAuthenticated]
 
+# @xframe_options_exempt
 class ChapterListsView(generics.ListCreateAPIView):
     serializer_class = ChapterSerializer
     # queryset = Chapter.objects.all()
@@ -167,7 +169,7 @@ class ChapterListsView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Chapter.objects.all()
 
-
+# @xframe_options_exempt
 class ChapterDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ChapterSerializer
     queryset = Chapter.objects.all()
@@ -367,7 +369,24 @@ def manage_student_enroll_course(request, student_id, cat_id):
    
     
 
+@csrf_exempt
+def fetch_chapters_by_course_id(request, course_id):
+    try:
+        if(request.method=='GET'):
+            chapters = Chapter.objects.filter(course__id=course_id)
+            try:
+                serializer  = ChapterSerializer(chapters, many=True)
+                # print('chapter: ', serializer_c,(serializer.data))
+                return JsonResponse(serializer.data, safe=False)
+            except:
+                return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
 
+        else:
+            return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
+
+    except:
+        return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
+    pass
 def fetch_enroll_status(request, course_id, student_id):
     enroll = StudentEnrolledCourse.objects.get(course=course_id, student=student_id)
     if enroll:

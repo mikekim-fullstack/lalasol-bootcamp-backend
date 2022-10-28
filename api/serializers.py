@@ -1,5 +1,8 @@
 from rest_framework import serializers
 from api.models import *
+from django.db import IntegrityError
+from django.core.exceptions import ValidationError
+
 # Teachers
 class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
@@ -64,11 +67,22 @@ class ChapterCategorySerializer(serializers.ModelSerializer):
         model=ChapterCategory
         fields=['id', 'title', 'created_date']
 
-class ChapterSerializer(serializers.ModelSerializer):
+class ChapterContentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=ChapterContent
+        fields=['id', 'chapter_category','title','creater','file', 'url','text','content_no','created_date']
+
+class ChapterSerializer(serializers.ModelSerializer):#'file','url', 'text',
+    content = ChapterContentSerializer(read_only = True, many = True)
     class Meta:
         model=Chapter
-        fields=['id','course', 'title','category','description','file','url', 'text','created_date','updated_date']
-        depth=1
+        fields=['id','content','course', 'title','sub_title','description','chapter_no','created_date','updated_date']
+        # depth=1
+    def create(self, validated_data):
+        try:
+            return super().create(validated_data)
+        except IntegrityError as e:
+            raise serializers.ValidationError(str(e))
     # def __init__(self, instance=None, data=..., **kwargs):
     #     print('ChapterSerializer().__init__')
     #     super().__init__(instance, data, **kwargs)
