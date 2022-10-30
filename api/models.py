@@ -233,7 +233,10 @@ class ChapterContent(models.Model):
     class Meta:
         verbose_name_plural = '6.1 ChapterContent'
     def __str__(self):
-        return str(self.id) +':'+self.chapter_category.title+'-'+self.creater.user.get_full_name()+'-'+str(self.content_no)
+        if self.title:
+            return str(self.id) +':'+self.title+'-'+self.chapter_category.title+'-'+self.creater.user.get_full_name()+'-'+str(self.content_no)
+        else :
+            return str(self.id) +':'+self.chapter_category.title+'-'+self.creater.user.get_full_name()+'-'+str(self.content_no)
 class Chapter(models.Model):
     content=models.ManyToManyField(ChapterContent, related_name='chapters',related_query_name='chapter')
     course=models.ForeignKey(Course, on_delete=models.CASCADE, related_name='chapters',related_query_name='chapter', null=True)

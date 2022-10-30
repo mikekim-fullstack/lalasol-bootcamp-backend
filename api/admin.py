@@ -10,12 +10,12 @@ class CourseAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'title']
 
 class ChapterAdmin(admin.ModelAdmin):
-    list_display = ['id','title','sub_title', 'course', 'description']
+    list_display = ['id','title','sub_title', 'chapter_no','course', 'description']
     list_display_links = ['id', 'title']
 
 class ChapterContentAdmin(admin.ModelAdmin):
-    list_display = ['id', 'chapter_category', 'creater', 'file', 'url', 'text']
-    list_display_links = ['id']
+    list_display = ['id', 'chapter_category','title','content_no', 'creater', 'file', 'url', 'text']
+    list_display_links = ['id','title',]
 
 class CourseCategoryAdmin(admin.ModelAdmin):
     list_display = ('id','title', 'description')
@@ -28,6 +28,10 @@ class StudentCategoryAdmin(admin.ModelAdmin):
 class ChapterCategoryAdmin(admin.ModelAdmin):
     list_display = ('id','title', 'created_date')
     list_display_links = ['id', 'title']
+
+# class ChapterContentAdmin(admin.ModelAdmin):
+#     list_display = ('id','title', 'created_date')
+#     list_display_links = ['id', 'title']
 
 admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(CourseCategory, CourseCategoryAdmin)
