@@ -227,6 +227,7 @@ class ChapterContent(models.Model):
     file=models.FileField(upload_to=hash_upload, null=True, blank=True)
     url=models.URLField(max_length=200, null=True, blank=True)
     text=models.TextField(null=True, blank=True)
+    
     content_no=models.PositiveSmallIntegerField(null=True, default=1)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
@@ -298,6 +299,13 @@ class StudentAssignment(models.Model):
         verbose_name_plural='9. Student Assignments'
     def __str__(self):
         return 'assignment: '+self.title
+
+class StudentChapterContentViewed(models.Model):
+    student = models.ForeignKey(Student,on_delete=models.CASCADE, related_name='student_chapter_contentVieweds', related_query_name='student_chapter_contentViewed', null=True)
+    chapter = models.ForeignKey(Chapter,on_delete=models.CASCADE, related_name='student_chapter_contentVieweds', related_query_name='student_chapter_contentViewed', null=True)
+    content = models.ForeignKey(ChapterContent,on_delete=models.CASCADE, related_name='student_chapter_contentVieweds', null=True)
+    viewed = models.BooleanField(default=False)
+
 
 # ---------- Quiz -----------------
 

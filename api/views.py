@@ -169,7 +169,65 @@ class ChapterListsView(generics.ListCreateAPIView):
     def get_queryset(self):
         return Chapter.objects.all()
 
-# @xframe_options_exempt
+@csrf_exempt
+def set_chapter_content_viewed(request):
+    if(request.method=='POST'):
+        student_id = request.POST.get('student_id')
+        chapter_id = request.POST.get('chapter_id')
+        content_id = request.POST.get('content_id')
+        if(content_id and chapter_id and student_id):
+        # if(content_id ):
+            try:
+                qs = StudentChapterContentViewed.objects.get(student=student_id, content=content_id, chapter=chapter_id)#, content=content_id, chapter=content_id
+                # qs = StudentChapterContentViewed.objects.get( content=content_id)
+                if not qs.viewed:
+                    qs.viewed=True
+                    qs.save()
+                # print('StudentChapterContentViewed:', qs)
+                return JsonResponse({'bool':True,'message':'successfully updated' })
+            except StudentChapterContentViewed.DoesNotExist:
+                try:
+                    student = Student.objects.get(id=student_id)
+                    chapter = Chapter.objects.get(id=chapter_id)
+                    content = ChapterContent.objects.get(id=content_id)
+                    StudentChapterContentViewed.objects.create(student=student, chapter=chapter, content=content, viewed=True)
+                    # StudentChapterContentViewed.objects.create(content=content, viewed=True)
+                    return JsonResponse({'bool':True,'message':'successfully created' })
+                except (Student.DoesNotExist, Chapter.DoesNotExist,ChapterContent.DoesNotExist ) as e:
+                # except (ChapterContent.DoesNotExist ) as e:
+                    return JsonResponse({'bool':False, 'error':str(e)}, status=HTTPStatus.NOT_FOUND)
+        else:
+            return JsonResponse({'bool':False, 'error':'one of input missing'}, status=HTTPStatus.BAD_REQUEST)
+        
+    return JsonResponse({'bool':False, 'error':'request is wrong!'}, status=HTTPStatus.BAD_REQUEST)
+
+
+@csrf_exempt
+def get_chapter_viewed(request):
+    if(request.method=='POST'):
+        student_id = request.POST.get('student_id')
+        chapter_id = request.POST.get('chapter_id')
+        print('-- get_chapter_viewed: ', student_id, chapter_id)
+        if(chapter_id and student_id):
+            try:
+                qs_content_viewed = Student.objects.filter(student_chapter_contentViewed__student__id=student_id, 
+                student_chapter_contentViewed__chapter__id=chapter_id,
+                student_chapter_contentViewed__viewed=True
+                )
+
+                chapter_total_content = Chapter.objects.get(id=chapter_id).content.count()
+                
+                print('get_chapter_viewed: ', qs_content_viewed, qs_content_viewed.count(),', chapter_total_content: ',chapter_total_content)
+                return JsonResponse({'bool':True,'chapter_total_content':str(chapter_total_content),'viewed_count':str(qs_content_viewed.count()) })
+            except (Student.DoesNotExist, 
+                    Chapter.DoesNotExist,
+                    StudentChapterContentViewed.DoesNotExist) as e:
+                return JsonResponse({'bool':False, 'error':str(e)}, status=HTTPStatus.NOT_FOUND)
+        else:
+            return JsonResponse({'bool':False, 'error':'one of input missing'}, status=HTTPStatus.BAD_REQUEST)
+        
+    return JsonResponse({'bool':False, 'error':'request is wrong!'}, status=HTTPStatus.BAD_REQUEST)
+
 class ChapterDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ChapterSerializer
     queryset = Chapter.objects.all()

@@ -29,14 +29,15 @@ class ChapterCategoryAdmin(admin.ModelAdmin):
     list_display = ('id','title', 'created_date')
     list_display_links = ['id', 'title']
 
-# class ChapterContentAdmin(admin.ModelAdmin):
-#     list_display = ('id','title', 'created_date')
-#     list_display_links = ['id', 'title']
+class StudentChapterContentViewedAdmin(admin.ModelAdmin):
+    list_display = ('id','student', 'chapter', 'content', 'viewed')
+    list_display_links = ['id', 'content']
 
 admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(CourseCategory, CourseCategoryAdmin)
 admin.site.register(Chapter, ChapterAdmin)
 admin.site.register(ChapterContent, ChapterContentAdmin)
+admin.site.register(StudentChapterContentViewed, StudentChapterContentViewedAdmin)
 admin.site.register(ChapterCategory, ChapterCategoryAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Student, StudentCategoryAdmin)
