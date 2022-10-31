@@ -24,6 +24,7 @@ urlpatterns = [
     # Content
     path('chapters-content-viewed/', set_chapter_content_viewed),
     path('chapters-viewed/', get_chapter_viewed),
+    # path('chapters-viewed/<int:student_id>/<int:chapter_id>', get_chapter_viewed),
 
     #Students
     path('student/', StudentListsView.as_view()),
@@ -37,7 +38,7 @@ urlpatterns = [
     path('student-course-enrollment/<int:student_id>/<int:category_id>', fetch_enrolled_courses_by_student_id_n_cat_id),
     path('fetch-enroll-status/<int:course_id>/<int:student_id>/', fetch_enroll_status),
     path('fetch-enrolled-students/',EnrolledStudentLists.as_view()),
-    path('fetch-chapters-bycourse/<int:course_id>', fetch_chapters_by_course_id),
+    path('fetch-viewed-chapters-bycourse/', fetch_viewed_chapters_by_course_id),
     # path('fetch-enrolled-student-with/<int:course_id>/',EnrolledStudentLists.as_view()),
     # path('fetch-enrolled-teacher-with/<int:teacher_id>/',EnrolledStudentLists.as_view()),
     path('course-rating/', CourseRatingLists.as_view()), 

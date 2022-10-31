@@ -30,7 +30,7 @@ class ChapterCategoryAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'title']
 
 class StudentChapterContentViewedAdmin(admin.ModelAdmin):
-    list_display = ('id','student', 'chapter', 'content', 'viewed')
+    list_display = ('id','student', 'chapter', 'content', 'viewed','viewed_date')
     list_display_links = ['id', 'content']
 
 admin.site.register(Teacher, TeacherAdmin)

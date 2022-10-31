@@ -304,7 +304,12 @@ class StudentChapterContentViewed(models.Model):
     student = models.ForeignKey(Student,on_delete=models.CASCADE, related_name='student_chapter_contentVieweds', related_query_name='student_chapter_contentViewed', null=True)
     chapter = models.ForeignKey(Chapter,on_delete=models.CASCADE, related_name='student_chapter_contentVieweds', related_query_name='student_chapter_contentViewed', null=True)
     content = models.ForeignKey(ChapterContent,on_delete=models.CASCADE, related_name='student_chapter_contentVieweds', null=True)
+    viewed_date = models.DateTimeField(auto_now_add=True, null=True)
     viewed = models.BooleanField(default=False)
+    class Meta:
+        verbose_name_plural='10.1 StudentChapterContentViewed'
+    def __str__(self):
+        return 'viewed: '+str(self.viewed)
 
 
 # ---------- Quiz -----------------

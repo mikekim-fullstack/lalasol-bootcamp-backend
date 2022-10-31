@@ -175,6 +175,7 @@ def set_chapter_content_viewed(request):
         student_id = request.POST.get('student_id')
         chapter_id = request.POST.get('chapter_id')
         content_id = request.POST.get('content_id')
+        print('set_chapter_content_viewed: ', student_id,chapter_id,content_id  )
         if(content_id and chapter_id and student_id):
         # if(content_id ):
             try:
@@ -182,7 +183,8 @@ def set_chapter_content_viewed(request):
                 # qs = StudentChapterContentViewed.objects.get( content=content_id)
                 if not qs.viewed:
                     qs.viewed=True
-                    qs.save()
+                qs.viewed_date=timezone.now()
+                qs.save()
                 # print('StudentChapterContentViewed:', qs)
                 return JsonResponse({'bool':True,'message':'successfully updated' })
             except StudentChapterContentViewed.DoesNotExist:
@@ -204,9 +206,9 @@ def set_chapter_content_viewed(request):
 
 @csrf_exempt
 def get_chapter_viewed(request):
-    if(request.method=='POST'):
-        student_id = request.POST.get('student_id')
-        chapter_id = request.POST.get('chapter_id')
+    if(request.method=='GET'):
+        student_id = request.GET.get('student_id')
+        chapter_id = request.GET.get('chapter_id')
         print('-- get_chapter_viewed: ', student_id, chapter_id)
         if(chapter_id and student_id):
             try:
@@ -231,12 +233,16 @@ def get_chapter_viewed(request):
 class ChapterDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ChapterSerializer
     queryset = Chapter.objects.all()
+    # lookup_url_kwarg = 'user_id'
+    # print('lookup_url_kwarg: ', lookup_url_kwarg)
+
     # permission_classes=[permissions.IsAuthenticated]
     # def get_serializer_context(self):
     #     context = super().get_serializer_context()
     #     context['chapter_duration'] = self.chapter_duration
     #     print('context----->', context)
     #     return context
+ 
 
 
 class CourseChapterListsView(generics.ListAPIView):
@@ -428,17 +434,23 @@ def manage_student_enroll_course(request, student_id, cat_id):
     
 
 @csrf_exempt
-def fetch_chapters_by_course_id(request, course_id):
+def fetch_viewed_chapters_by_course_id(request):
     try:
         if(request.method=='GET'):
-            chapters = Chapter.objects.filter(course__id=course_id)
-            try:
-                serializer  = ChapterSerializer(chapters, many=True)
-                # print('chapter: ', serializer_c,(serializer.data))
-                return JsonResponse(serializer.data, safe=False)
-            except:
-                return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
-
+            user_id = request.GET.get('user_id')
+            course_id = request.GET.get('course_id')
+            # print('fetch_chapters_by_course_id: ', user_id, course_id)
+            if(user_id and course_id ):
+                chapters = Chapter.objects.filter(course__id=course_id)
+                try:
+                    # serializer  = ChapterSerializer(chapters, many=True)
+                    serializer  = ChapterViewedSerializer(chapters, many=True, context={'user_id': user_id})
+                    # print('chapter: ', serializer_c,(serializer.data))
+                    return JsonResponse(serializer.data, safe=False)
+                except:
+                    return JsonResponse({'bool':'false'}, status=HTTPStatus.NOT_FOUND)
+            else:
+                return JsonResponse({'bool':'false'}, status=HTTPStatus.NOT_FOUND)
         else:
             return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
 
@@ -458,6 +470,7 @@ def fetch_enrolled_courses_by_student_id(request, student_id):
         print('course: ', student_id, course)
         if course:
             serializer  = CourseSerializer(course, many=True)
+            # serializer  = CourseSerializer(course, many=True, context={'user_id':1})
             return JsonResponse(serializer.data, safe=False)
         
         return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
