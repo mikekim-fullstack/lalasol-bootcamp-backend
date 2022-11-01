@@ -177,30 +177,29 @@ def set_chapter_content_viewed(request):
         content_id = request.POST.get('content_id')
         print('set_chapter_content_viewed: ', student_id,chapter_id,content_id  )
         if(content_id and chapter_id and student_id):
-        # if(content_id ):
             try:
-                qs = StudentChapterContentViewed.objects.get(student=student_id, content=content_id, chapter=chapter_id)#, content=content_id, chapter=content_id
-                # qs = StudentChapterContentViewed.objects.get( content=content_id)
+                qs = StudentChapterContentViewed.objects.get(student=student_id,chapter=chapter_id, content=content_id)
+                print('set_chapter_content_viewed---updated', qs)
                 if not qs.viewed:
                     qs.viewed=True
                 qs.viewed_date=timezone.now()
                 qs.save()
-                # print('StudentChapterContentViewed:', qs)
+                
                 return JsonResponse({'bool':True,'message':'successfully updated' })
             except StudentChapterContentViewed.DoesNotExist:
                 try:
+                    # StudentChapterContentViewed.objects.filter(student=student_id, content=content_id, chapter=chapter_id).delete()
+                    
                     student = Student.objects.get(id=student_id)
                     chapter = Chapter.objects.get(id=chapter_id)
                     content = ChapterContent.objects.get(id=content_id)
                     StudentChapterContentViewed.objects.create(student=student, chapter=chapter, content=content, viewed=True)
-                    # StudentChapterContentViewed.objects.create(content=content, viewed=True)
+                    print('set_chapter_content_viewed---created')
                     return JsonResponse({'bool':True,'message':'successfully created' })
                 except (Student.DoesNotExist, Chapter.DoesNotExist,ChapterContent.DoesNotExist ) as e:
-                # except (ChapterContent.DoesNotExist ) as e:
                     return JsonResponse({'bool':False, 'error':str(e)}, status=HTTPStatus.NOT_FOUND)
         else:
             return JsonResponse({'bool':False, 'error':'one of input missing'}, status=HTTPStatus.BAD_REQUEST)
-        
     return JsonResponse({'bool':False, 'error':'request is wrong!'}, status=HTTPStatus.BAD_REQUEST)
 
 
@@ -416,12 +415,13 @@ def manage_student_enroll_course(request, student_id, cat_id):
     try:
         student = Student.objects.get(id = student_id)
         allCourse = Course.objects.filter(category_id = cat_id)
+        print('student: ', student, ' ,allCourse: ',allCourse)
         # StudentEnrolledCourse.objects.create(student=1,course=5)
         if allCourse.exists():
             for course in allCourse.iterator():
                 
-                if(not StudentEnrolledCourse.objects.filter(course__id=course.id).exists()):
-                    print(student, course, course.id)
+                if(not StudentEnrolledCourse.objects.filter(student__id=student.id,course__id=course.id).exists()):
+                    print('StudentEnrolledCourse is created: ', student, course, course.id)
                     StudentEnrolledCourse.objects.create(student=student,course=course)
                     
             return JsonResponse({'bool':'true'})
