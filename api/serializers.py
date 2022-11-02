@@ -22,6 +22,18 @@ class CourseSerializer(serializers.ModelSerializer):
         model=Course
         fields=['id','category','teacher', 'title','description','course_image', 'course_views' ,'taken','created_date','updated_date']
         
+class AllCourseEnrolledSerializer(serializers.ModelSerializer):
+    enrolled = serializers.SerializerMethodField(method_name='get_enrolled')
+    class Meta:
+        model=Course
+        fields=['id','category','enrolled','teacher', 'title','description','course_image', 'course_views' ,'taken','created_date','updated_date']
+    def get_enrolled(self, coursesObj):
+        print(self.context.get('student_id'))
+        student_id = self.context['student_id']
+        # course_exist = Course.objects.filter(id=coursesObj.id,course_enrolled_course__student=student_id).exists()
+        return Course.objects.filter(id=coursesObj.id,course_enrolled_course__student=student_id).exists()
+
+        
 #----------------------------------------------------------
 class AllCourseSerializer(serializers.ModelSerializer):
     class Meta:
@@ -42,13 +54,7 @@ class StudentEnrolledCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=StudentEnrolledCourse
         fields=['id', 'student', 'course','enrolled_date']
-        # depth=1
-    # def __init__(self, *args, **kwargs):
-    #     super(StudentEnrolledCourse,self).__init__( *args, **kwargs)
-    #     request = self.context.get('request') 
-    #     self.Meta.depth=0
-    #     if request and request.method=='GET':
-    #         self.Meta.depth=2
+
 
 class CourseRatingSerializer(serializers.ModelSerializer):
     class Meta:
@@ -107,8 +113,6 @@ class ChapterViewedSerializer(serializers.ModelSerializer):#'file','url', 'text'
     def get_viewed(self, chapterObj):
         # print(self.context.get('user_id'))
         user_id = self.context['user_id']
-        
-        
         try:
             viewed_count = Student.objects.filter(student_chapter_contentViewed__student__id=user_id, 
                     student_chapter_contentViewed__chapter__id=chapterObj.id,

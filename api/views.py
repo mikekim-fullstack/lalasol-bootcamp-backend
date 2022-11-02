@@ -476,6 +476,19 @@ def fetch_enrolled_courses_by_student_id(request, student_id):
         return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
     else:
         return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
+@csrf_exempt
+def fetch_courses_with_enrolled_student_id(request, student_id):
+    if(request.method=='GET'):
+        course = Course.objects.all()
+        # print('course: ', student_id, course)
+        if course:
+            serializer  = AllCourseEnrolledSerializer(course, many=True, context={'student_id':student_id})
+            # serializer  = CourseSerializer(course, many=True, context={'user_id':1})
+            return JsonResponse(serializer.data, safe=False)
+        
+        return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
+    else:
+        return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
 
 @csrf_exempt
 def fetch_enrolled_courses_by_student_id_n_cat_id(request, student_id, category_id):
