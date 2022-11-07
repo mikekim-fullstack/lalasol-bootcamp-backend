@@ -1,7 +1,7 @@
-from ast import If
 from cmath import exp
 from email.policy import HTTP
 from http import HTTPStatus
+from numbers import Number
 import re
 from time import time
 import json
@@ -159,15 +159,135 @@ class CourseDeleteView(generics.DestroyAPIView):
     queryset = Course.objects.all()
     # permission_classes=[permissions.IsAuthenticated]
 
-# @xframe_options_exempt
+class ChapterConentListsView(generics.ListCreateAPIView):
+    serializer_class = ChapterContentSerializer 
+    queryset = ChapterContent.objects.all()
+
 class ChapterListsView(generics.ListCreateAPIView):
     serializer_class = ChapterSerializer
-    # queryset = Chapter.objects.all()
+    queryset = Chapter.objects.all()
+    def post(self, request, *args, **kwargs):
+        course_id = request.data.get('course')
+        title = request.data.get('title')
+        sub_title = request.data.get('sub_title')
+        chapter_no = request.data.get('chapter_no')
+        description = request.data.get('description')
+        chapterObject=None
+        if(course_id and title and sub_title and chapter_no and description):
+            try:
+                course = Course.objects.get(id=course_id)
+                chapterObject = Chapter.objects.create(
+                    course=course,
+                    title=title,
+                    sub_title=sub_title,
+                    chapter_no=int(chapter_no),
+                    description=description
+                    )
+            except:
+                return JsonResponse({'bool':False, 'error':'one of input missing'}, status=HTTPStatus.BAD_REQUEST)
+            pass
+        else :
+            return JsonResponse({'bool':False, 'error':'one of input missing'}, status=HTTPStatus.BAD_REQUEST)
+
+
+    
+        # print('request.data: ', request.data, request.data.get('conent'))
+        # content=[{'file':'', 'chapter_category':0, 'creater':0, 'content_no':0}]
+        
+        '''
+        Parsing reqest dat for the nested content data and store in cotent array like this.
+        e.g. Input: content[0].chapter_category
+                    content[0].creater
+                    content[0].content_no
+             Output in cotent array
+            [
+                {'file': <InMemoryUploadedFile: html-css-homework-1.html (text/html)>, 'chapter_category': 1, 'creater': 1, 'content_no': 2}, 
+                {'file': <InMemoryUploadedFile: html-css-practice-1.html (text/html)>, 'chapter_category': 1, 'creater': 1, 'content_no': 3}
+            ]
+        '''
+        content=[]
+        for key in request.data:
+            if(key.startswith('content')):
+                # -- Search for [number] and get number
+                m = int(re.search(r"\[([0-9]+)\]", key).group(1))
+                # get last word
+                pattern = re.compile(r"(\w+)$")
+                has = pattern.search(key).group(0)       
+
+                size = m-len(content)+1
+                # -- if necessary, create dictionary and append it into array.
+                if(size>0):
+                    for i in range(size):
+                        # print('i: ', i)
+                        content.append({'file':'', 'chapter_category':0, 'creater':0, 'content_no':0})
+                if has=='file':
+                    content[m]['file'] = request.data.get(key)
+                elif has=='chapter_category':
+                    content[m]['chapter_category'] = int(request.data.get(key))
+                elif has=='content_no':
+                    content[m]['content_no'] = int(request.data.get(key))
+                elif has=='creater':
+                    content[m]['creater'] = int(request.data.get(key))
+                else :
+                    print('--- raise error ---')
+                    pass
+                # print (m, has,request.data.get(key))
+                # print(key)
+        # print('----------------',content, len(content),'--------------/n')#,' ,',{'a':request.data.get('content[1].file')}, request.data.get('content[1].file'))
+        content_id=[]
+        for item in content:
+            # print(item['file'],item['chapter_category'],item['creater'],item['content_no'])
+            try:
+                chapter_category = ChapterCategory.objects.get(id=item['chapter_category'])
+                creater = Teacher.objects.get(id=item['creater'])
+                # print('chapter_category----',item['chapter_category'], chapter_category)
+                
+                # validated_data = ChapterContentSerializer(
+                #         chapter_category=chapter_category.id,
+                #     creater=creater.id,
+                #     content_no=item['content_no'],
+                #     file=item['file']
+                # )
+
+                new_content = ChapterContent.objects.create(
+                    chapter_category=chapter_category,
+                    creater=creater,
+                    content_no=item['content_no'],
+                    file=item['file']
+                )
+                content_id.append(new_content.id)
+            
+            except:
+                if(type(chapterObject)!=None):
+                    qs = Chapter.objects.filter(pk=chapterObject.id)
+                    # print('type', type(chapterObject),chapterObject.id, ', qs:',qs,' end')
+                    qs.delete()
+                return JsonResponse({'bool':False, 'error':'Faied to create chapter'}, status=HTTPStatus.BAD_REQUEST)
+
+                # print('error-validation', type(chapterObject),  chapterObject)
+        ## -- Finally add all content to chapter
+        for contentId in content_id:
+            try:
+                chapterObject.content.add(contentId)
+            except:
+                return JsonResponse({'bool':False, 'error':'adding conent failed'}, status=HTTPStatus.NO_CONTENT)
+
+       
+        return JsonResponse({'bool':True}, status=HTTPStatus.CREATED)
+    # def post(self, request, format=None):
+    #     print('---------ChapterListsView: ', request.data)
+    #     query = request.data.get('query')
     # permission_classes=[permissions.IsAuthenticated]
     # @csrf_exempt
     # @xframe_options_exempt
-    def get_queryset(self):
-        return Chapter.objects.all()
+    # def get_queryset(self):
+    #     return Chapter.objects.all()
+@csrf_exempt
+def create_chapter_content(request):
+    pass
+class ChapterCategoryListsView(generics.ListCreateAPIView):
+    serializer_class = ChapterCategorySerializer
+    queryset = ChapterCategory.objects.all()
 
 @csrf_exempt
 def set_chapter_content_viewed(request):

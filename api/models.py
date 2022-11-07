@@ -223,6 +223,7 @@ def hash_upload(instance, filename):
 class ChapterContent(models.Model):
     chapter_category=models.ForeignKey(ChapterCategory, on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
     creater = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
+    # chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
     title = models.CharField(max_length=150, null=True, blank=True)
     file=models.FileField(upload_to=hash_upload, null=True, blank=True)
     url=models.URLField(max_length=200, null=True, blank=True)
@@ -238,6 +239,7 @@ class ChapterContent(models.Model):
             return str(self.id) +':'+self.title+'-'+self.chapter_category.title+'-'+self.creater.user.get_full_name()+'-'+str(self.content_no)
         else :
             return str(self.id) +':'+self.chapter_category.title+'-'+self.creater.user.get_full_name()+'-'+str(self.content_no)
+            
 class Chapter(models.Model):
     content=models.ManyToManyField(ChapterContent, related_name='chapters',related_query_name='chapter')
     course=models.ForeignKey(Course, on_delete=models.CASCADE, related_name='chapters',related_query_name='chapter', null=True)

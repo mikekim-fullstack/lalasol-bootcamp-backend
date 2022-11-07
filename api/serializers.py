@@ -85,6 +85,19 @@ class ChapterSerializer(serializers.ModelSerializer):#'file','url', 'text',
         fields=['id','content','course', 'title','sub_title','description','chapter_no','created_date','updated_date']
         # depth=1
     def create(self, validated_data):
+        print('-----validated_data:' , validated_data)
+        # validated_data = validated_data.pop('content')
+        # for validated_data in validated_data:
+        #     print('-----validated_data:' , validated_data)
+        #     pass
+            # module, created = RfiParticipation.objects.update_or_create(
+            #     rfi=validated_data.get('rfi', None),
+            #     vendor=validated_data.get('vendor', None),
+            #     m=validated_data.get('m', None),
+            #     defaults={'active': validated_data.get('active', False)})
+        # return module
+
+    # def create(self, validated_data):
         try:
             return super().create(validated_data)
         except IntegrityError as e:

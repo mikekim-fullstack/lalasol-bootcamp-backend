@@ -23,8 +23,10 @@ urlpatterns = [
     path('course-chapter/<int:course_id>', CourseChapterListsView.as_view()),
 
     # Content
+    path('chapter-content/', ChapterConentListsView.as_view()),
     path('chapters-content-viewed/', set_chapter_content_viewed),
     path('chapters-viewed/', get_chapter_viewed),
+    path('chapter-category/', ChapterCategoryListsView.as_view()),
     # path('chapters-viewed/<int:student_id>/<int:chapter_id>', get_chapter_viewed),
 
     #Students
