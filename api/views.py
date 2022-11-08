@@ -163,6 +163,8 @@ class ChapterConentListsView(generics.ListCreateAPIView):
     serializer_class = ChapterContentSerializer 
     queryset = ChapterContent.objects.all()
 
+
+
 class ChapterListsView(generics.ListCreateAPIView):
     serializer_class = ChapterSerializer
     queryset = Chapter.objects.all()
@@ -188,12 +190,6 @@ class ChapterListsView(generics.ListCreateAPIView):
             pass
         else :
             return JsonResponse({'bool':False, 'error':'one of input missing'}, status=HTTPStatus.BAD_REQUEST)
-
-
-    
-        # print('request.data: ', request.data, request.data.get('conent'))
-        # content=[{'file':'', 'chapter_category':0, 'creater':0, 'content_no':0}]
-        
         '''
         Parsing reqest dat for the nested content data and store in cotent array like this.
         e.g. Input: content[0].chapter_category
@@ -205,6 +201,7 @@ class ChapterListsView(generics.ListCreateAPIView):
                 {'file': <InMemoryUploadedFile: html-css-practice-1.html (text/html)>, 'chapter_category': 1, 'creater': 1, 'content_no': 3}
             ]
         '''
+        
         content=[]
         for key in request.data:
             if(key.startswith('content')):
@@ -219,9 +216,16 @@ class ChapterListsView(generics.ListCreateAPIView):
                 if(size>0):
                     for i in range(size):
                         # print('i: ', i)
-                        content.append({'file':'', 'chapter_category':0, 'creater':0, 'content_no':0})
+                        content.append({'type':'','file':'', 'url':'','text':'','chapter_category':0, 'creater':0, 'content_no':0})
                 if has=='file':
                     content[m]['file'] = request.data.get(key)
+                    content[m]['type'] = 'file'
+                elif has=='url':
+                    content[m]['url'] = request.data.get(key)
+                    content[m]['type'] = 'url'
+                elif has=='text':
+                    content[m]['text'] = request.data.get(key)
+                    content[m]['type'] = 'text'
                 elif has=='chapter_category':
                     content[m]['chapter_category'] = int(request.data.get(key))
                 elif has=='content_no':
@@ -253,7 +257,9 @@ class ChapterListsView(generics.ListCreateAPIView):
                     chapter_category=chapter_category,
                     creater=creater,
                     content_no=item['content_no'],
-                    file=item['file']
+                    file=item['file'],
+                    url=item['url'],
+                    text=item['text']
                 )
                 content_id.append(new_content.id)
             
@@ -282,6 +288,144 @@ class ChapterListsView(generics.ListCreateAPIView):
     # @xframe_options_exempt
     # def get_queryset(self):
     #     return Chapter.objects.all()
+
+
+class ChapterUpdateView(generics.UpdateAPIView):
+    serializer_class = ChapterSerializer
+    queryset = Chapter.objects.all()
+    def put(self, request, *args, **kwargs):
+        print(request.data)
+        chapter_id = request.data.get('chapter_id')
+        title = request.data.get('title')
+        sub_title = request.data.get('sub_title')
+        chapter_no = request.data.get('chapter_no')
+        description = request.data.get('description')
+
+        
+
+        if(not chapter_id or not title or not sub_title or not chapter_no or not description):
+            return JsonResponse({'bool':False, 'error':'input is missing'}, status=HTTPStatus.NOT_FOUND)
+        # -- Get Content data. --
+        content=[]
+        for key in request.data:
+            if(key.startswith('content')):
+                # -- Search for [number] and get number
+                m = int(re.search(r"\[([0-9]+)\]", key).group(1))
+                # get last word
+                pattern = re.compile(r"(\w+)$")
+                has = pattern.search(key).group(0)       
+
+                size = m-len(content)+1
+                # -- if necessary, create dictionary and append it into array.
+                if(size>0):
+                    content.append({'id':0,'file':'', 'url':'','text':'','chapter_category':0, 'creater':0, 'content_no':0})
+                if has=='file':
+                    content[m]['file'] = request.data.get(key)
+                    
+                elif has=='url':
+                    content[m]['url'] = request.data.get(key)
+                    
+                elif has=='text':
+                    content[m]['text'] = request.data.get(key)
+                   
+                elif has=='chapter_category':
+                    content[m]['chapter_category'] = int(request.data.get(key))
+                elif has=='content_no':
+                    content[m]['content_no'] = int(request.data.get(key))
+                elif has=='creater':
+                    content[m]['creater'] = int(request.data.get(key))
+                elif has=='id':
+                    content[m]['id'] = int(request.data.get(key))
+                else :
+                    print('--- raise error ---')
+                    pass
+        print('/n ------ content: ', content,'\n\n')
+        #------------------------------------------------------------
+        try:
+            chapter = Chapter.objects.get(id=chapter_id)
+
+            
+            chapter.title = title
+            chapter.sub_title = sub_title
+            chapter.chapter_no = chapter_no
+            chapter.description = description
+            chapter.save()
+
+            for itemConent in content:
+                # contentObj = ChapterContent.objects.filter(chapter__id=chapter_id).order_by('id')
+                try:
+                    contentObj = ChapterContent.objects.filter(id=itemConent['id'])
+                    print('chapter', chapter, contentObj,', file: ',itemConent['file'], itemConent['id'])
+                    if(len(contentObj)>0 and contentObj[0]):
+                        contentObj = contentObj[0]
+                        contentObj.delete()
+                        try:
+                            chapter_category = ChapterCategory.objects.get(id=itemConent['chapter_category'])
+                            creater = Teacher.objects.get(id=itemConent['creater'])
+                            new_content = ChapterContent.objects.create(
+                                chapter_category=chapter_category,
+                                creater=creater,
+                                content_no=itemConent['content_no'],
+                                file=itemConent['file'],
+                                url=itemConent['url'],
+                                text=itemConent['text']
+                                )
+                            chapter.content.add(new_content)
+                            chapter.save()
+
+                            print('created_content: ', new_content)
+                        except:
+                            return JsonResponse({'bool':False, 'error':'Faied to update content'}, status=HTTPStatus.BAD_REQUEST)
+                            # print('**failed to create content**', itemConent['chapter_category'],
+                            # itemConent['creater'],
+                            # itemConent['content_no'],
+                            # itemConent['file'],
+                            # itemConent['url'],
+                            # itemConent['text']
+                            # )
+ 
+                    #     if( (itemConent['url']!='' or itemConent['text']!='' or itemConent['file']!='' ) and contentObj.file !='' ):
+                    #         contentObj.delete()
+                    #         try:
+                    #             chapter_category = ChapterCategory.objects.get(id=itemConent['chapter_category'])
+                    #             creater = Teacher.objects.get(id=itemConent['creater'])
+                    #             new_content = ChapterContent.objects.create(
+                    #                 chapter_category=chapter_category,
+                    #                 creater=creater,
+                    #                 content_no=itemConent['content_no'],
+                    #                 file=itemConent['file'],
+                    #                 url=itemConent['url'],
+                    #                 text=itemConent['text']
+                    #                 )
+                    #             chapter.content.add(new_content)
+                    #             chapter.save()
+
+                    #             print('created_content: ', new_content)
+                    #         except:
+                    #             return JsonResponse({'bool':False, 'error':'Faied to update content'}, status=HTTPStatus.BAD_REQUEST)
+                    #             # print('**failed to create content**', itemConent['chapter_category'],
+                    #             # itemConent['creater'],
+                    #             # itemConent['content_no'],
+                    #             # itemConent['file'],
+                    #             # itemConent['url'],
+                    #             # itemConent['text']
+                    #             # )
+                            
+                    # else:
+                    #     contentObj.update(chapter_category = itemConent['chapter_category'])
+                    #     contentObj.update(content_no = itemConent['content_no'])
+                    #     contentObj.update(creater = itemConent['creater'])
+                    #     contentObj.update(url = itemConent['url'])
+                    #     contentObj.update(text = itemConent['text'])  
+                except:
+                    return JsonResponse({'bool':False, 'error':'Faied to update content'}, status=HTTPStatus.BAD_REQUEST)
+            # print('chapter.content: ', chapter.objects.filter(content__id=29))
+        except:
+            return JsonResponse({'bool':False, 'error':'Faied to find chapter'}, status=HTTPStatus.BAD_REQUEST)
+
+        return JsonResponse({'bool':True}, status=HTTPStatus.OK)
+        pass
+
 @csrf_exempt
 def create_chapter_content(request):
     pass

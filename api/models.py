@@ -239,7 +239,12 @@ class ChapterContent(models.Model):
             return str(self.id) +':'+self.title+'-'+self.chapter_category.title+'-'+self.creater.user.get_full_name()+'-'+str(self.content_no)
         else :
             return str(self.id) +':'+self.chapter_category.title+'-'+self.creater.user.get_full_name()+'-'+str(self.content_no)
-            
+    def delete(self, using=None, keep_parents=False):
+        # print('---file deleted: ',self.file.name)
+        if(self.file.name):
+            # print('---file deleted: ', self.file.name, '\n\n')
+            self.file.storage.delete(self.file.name)
+        super().delete()
 class Chapter(models.Model):
     content=models.ManyToManyField(ChapterContent, related_name='chapters',related_query_name='chapter')
     course=models.ForeignKey(Course, on_delete=models.CASCADE, related_name='chapters',related_query_name='chapter', null=True)
