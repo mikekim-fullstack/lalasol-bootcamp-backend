@@ -98,10 +98,22 @@ X_CONTENT_TYPE_OPTIONS='NOSNIFF'
 #  Content Security Policy
 
 
+# CSP_DEFAULT_SRC=("'self'", 'http://localhost:3000')
+# CSP_DEFAULT_SRC=("'self'", 'https://lalasol-bootcamp.web.app')
+# CSP_DEFAULT_SRC = ["'none'"]
+# CSP_SCRIPT_SRC = ["'self'",
+#     "https://lalasol-bootcamp.web.app/js","http://localhost:3000"
+# ]
+# CSP_STYLE_SRC = ["'self'","https://lalasol-bootcamp.web.app","http://localhost:3000"]
+# CSP_IMG_SRC = ["'self'","https://lalasol-bootcamp.web.app","http://localhost:3000"]
 
-
-
-
+# Keep our policy as strict as possible
+CSP_DEFAULT_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co")
+CSP_STYLE_SRC = ("'self'","'unsafe-eval'", "'unsafe-inline'", 'fonts.googleapis.com', "https://lalasol-bootcamp.web.app","http://127.0.0.1:3000")
+CSP_SCRIPT_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co")
+CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
+CSP_IMG_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co")
+CSP_FRAME_SRC=("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co")
 # Access-Control-Allow-Origin= "https://lalasol-bootcamp.web.app"
 
 # Application definition
@@ -131,6 +143,7 @@ MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
 
     "whitenoise.middleware.WhiteNoiseMiddleware",#Whitenoise for collecting all static files
+    'csp.middleware.CSPMiddleware', #Content-Security-Policy
 
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
