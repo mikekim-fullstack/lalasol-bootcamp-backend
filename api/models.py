@@ -224,8 +224,9 @@ class ChapterContent(models.Model):
     chapter_category=models.ForeignKey(ChapterCategory, on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
     creater = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
     # chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
-    title = models.CharField(max_length=150, null=True, blank=True)
+    title = models.CharField(max_length=300, null=True, blank=True)
     file=models.FileField(upload_to=hash_upload, null=True, blank=True)
+    img=models.ImageField(upload_to='content_imgs/', null=True, blank=True)
     url=models.URLField(max_length=200, null=True, blank=True)
     text=models.TextField(null=True, blank=True)
     
