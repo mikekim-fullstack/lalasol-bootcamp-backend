@@ -40,6 +40,11 @@ class CourseCategoryListsView(generics.ListCreateAPIView):
     queryset = CourseCategory.objects.all()
     # permission_classes=[permissions.IsAuthenticated]
 
+class CourseCategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = CourseCategorySerializer
+    queryset = CourseCategory.objects.all()
+    # permission_classes=[permissions.IsAuthenticated]
+
 class CourseCreateView(generics.CreateAPIView):
     queryset = Course.objects.all()
     serializer_class = CourseSerializer

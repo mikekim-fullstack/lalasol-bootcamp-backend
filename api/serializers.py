@@ -16,17 +16,17 @@ class TeacherSerializer(serializers.ModelSerializer):
 class CourseCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model=CourseCategory
-        fields=['id', 'title','description','order']
+        fields=['id', 'title','description','order','course_list_sequence']
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Course
-        fields=['id','category','teacher', 'title','description','course_image', 'course_views' ,'taken','created_date','updated_date']
+        fields=['id','category','teacher', 'title','description','course_image', 'course_views' ,'course_no' ,'created_date','updated_date']
         
 class AllCourseEnrolledSerializer(serializers.ModelSerializer):
     enrolled = serializers.SerializerMethodField(method_name='get_enrolled')
     class Meta:
         model=Course
-        fields=['id','category','enrolled','teacher', 'title','description','course_image', 'course_views' ,'taken','created_date','updated_date']
+        fields=['id','category','enrolled','teacher', 'title','description','course_image', 'course_views' ,'course_no','created_date','updated_date']
     def get_enrolled(self, coursesObj):
         print(self.context.get('student_id'))
         student_id = self.context['student_id']
@@ -38,7 +38,7 @@ class AllCourseEnrolledSerializer(serializers.ModelSerializer):
 class AllCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Course
-        fields=['id','category','teacher', 'title','description','course_image','course_views' ,'taken','created_date','updated_date']
+        fields=['id','category','teacher', 'title','description','course_image','course_views' ,'course_no' ,'created_date','updated_date']
         depth=1
 
 

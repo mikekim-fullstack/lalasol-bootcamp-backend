@@ -11,7 +11,10 @@ urlpatterns = [
     
     # Courses
     path('course-category/', CourseCategoryListsView.as_view()),
+    path('course-category-detail/<int:pk>', CourseCategoryDetailView.as_view()),
     path('courses-create/', CourseCreateView.as_view()),
+    path('course-delete/<int:pk>', CourseDeleteView.as_view()),
+    path('course-update/<int:pk>', CourseUpdateView.as_view()),
     path('courses/', AllCourseListsView.as_view()),# depth=1
     path('courses-enrolled-status/<int:student_id>', fetch_courses_with_enrolled_student_id),
     path('courses-search/<str:search>', AllCourseListsView.as_view()),

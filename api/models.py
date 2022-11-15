@@ -31,11 +31,15 @@ class CourseCategory(MPTTModel):
     title=models.CharField(max_length=150)
     description=models.TextField()
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
-    slug = models.SlugField(max_length = 100, unique=True)
-    popularity = models.SmallIntegerField(default=0)
-    image_max_number = models.SmallIntegerField(default=10)
-    post_validity_in_day = models.SmallIntegerField(default=30)
+    # slug = models.SlugField(max_length = 100, unique=True)
+    # popularity = models.SmallIntegerField(default=0)
+    # image_max_number = models.SmallIntegerField(default=10)
+    # post_validity_in_day = models.SmallIntegerField(default=30)
     order = models.PositiveSmallIntegerField(null=True,unique=True) # category order to display
+    course_list_sequence=models.JSONField(null=True,blank=True)
+    # course_list_sequence={ 
+    # key(course_id): value(order)
+    # }
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
 
@@ -169,6 +173,12 @@ class Course(models.Model):
         verbose_name_plural = '4. Courses'
     def __str__(self):
         return (self.category.title +':'+self.title)
+    def delete(self, using=None, keep_parents=False):
+        print('---course file deleted: ',self.course_image.name)
+        if(self.course_image.name):
+            # print('---file deleted: ', self.file.name, '\n\n')
+            self.course_image.storage.delete(self.course_image.name)
+        super().delete()
     def related_video(self):
         search = self.techs.split() 
         # print('Course: techs:', self.techs, search)
