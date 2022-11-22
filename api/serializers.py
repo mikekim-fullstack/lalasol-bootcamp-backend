@@ -20,13 +20,13 @@ class CourseCategorySerializer(serializers.ModelSerializer):
 class CourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Course
-        fields=['id','category','teacher', 'title','description','course_image', 'course_views' ,'course_no' ,'created_date','updated_date']
+        fields=['id','category','teacher', 'title','description','chapter_list_sequence','course_image', 'course_views' ,'course_no' ,'created_date','updated_date']
         
 class AllCourseEnrolledSerializer(serializers.ModelSerializer):
     enrolled = serializers.SerializerMethodField(method_name='get_enrolled')
     class Meta:
         model=Course
-        fields=['id','category','enrolled','teacher', 'title','description','course_image', 'course_views' ,'course_no','created_date','updated_date']
+        fields=['id','category','enrolled','teacher', 'title','description','chapter_list_sequence','course_image', 'course_views' ,'course_no','created_date','updated_date']
     def get_enrolled(self, coursesObj):
         print(self.context.get('student_id'))
         student_id = self.context['student_id']
@@ -82,7 +82,7 @@ class ChapterSerializer(serializers.ModelSerializer):#'file','url', 'text',
     content = ChapterContentSerializer(read_only = True, many = True)
     class Meta:
         model=Chapter
-        fields=['id','content','course', 'title','sub_title','description','chapter_no','created_date','updated_date']
+        fields=['id','content','course', 'name','description','content_list_sequence','chapter_no','created_date','updated_date']
         # depth=1
     def create(self, validated_data):
         print('-----validated_data:' , validated_data)
@@ -108,7 +108,7 @@ class ChapterViewedSerializer(serializers.ModelSerializer):#'file','url', 'text'
     viewed = serializers.SerializerMethodField(method_name='get_viewed')
     class Meta:
         model=Chapter
-        fields=['id','content','viewed','course', 'title','sub_title','description','chapter_no','created_date','updated_date']
+        fields=['id','content','viewed','course', 'name','description','content_list_sequence','chapter_no','created_date','updated_date']
         # depth=1
     def create(self, validated_data):
         try:
@@ -131,7 +131,7 @@ class ChapterViewedSerializer(serializers.ModelSerializer):#'file','url', 'text'
                     student_chapter_contentViewed__chapter__id=chapterObj.id,
                     student_chapter_contentViewed__viewed=True
                     ).count()
-            print('--get_viewed: userid', user_id,', chapterid', ', chapter_title',chapterObj.title, chapterObj.id, 'viewed-count: ', viewed_count)
+            print('--get_viewed: userid', user_id,', chapterid', ', chapter_name',chapterObj.name, chapterObj.id, 'viewed-count: ', viewed_count)
             return viewed_count
         except:
             return 0

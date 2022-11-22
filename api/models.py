@@ -67,6 +67,7 @@ class CourseCategory(MPTTModel):
 
 class ChapterCategory(models.Model):
     title=models.CharField(max_length=150)
+    seq_no = models.PositiveSmallIntegerField(null=True, default=0)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
     class Meta:
         verbose_name_plural = '3-1. Chapter Categories'
@@ -163,7 +164,8 @@ class Course(models.Model):
     title=models.CharField(max_length=150)
     description=models.TextField()
     course_image=models.ImageField(upload_to='course_imgs/', null=True)
-    taken = models.BooleanField(default=False, null=True)
+    chapter_list_sequence=models.JSONField(null=True,blank=True)
+    # taken = models.BooleanField(default=False, null=True)
     course_no = models.PositiveSmallIntegerField(null=True, default=1)
     course_views = models.IntegerField(default=0, null=True)
     created_date = models.DateTimeField(auto_now_add=True, null=True)
@@ -259,10 +261,11 @@ class ChapterContent(models.Model):
 class Chapter(models.Model):
     content=models.ManyToManyField(ChapterContent, related_name='chapters',related_query_name='chapter')
     course=models.ForeignKey(Course, on_delete=models.CASCADE, related_name='chapters',related_query_name='chapter', null=True)
-    title=models.CharField(max_length=150, null=True, blank=True)
-    sub_title=models.CharField(max_length=150, null=True, blank=True)
-    chapter_no=models.PositiveSmallIntegerField(null=True, default=1)
+    name=models.CharField(max_length=150, null=True, blank=True)
+    # sub_title=models.CharField(max_length=150, null=True, blank=True)
     description=models.TextField(null=True, blank=True)
+    content_list_sequence=models.JSONField(null=True,blank=True)
+    chapter_no=models.PositiveSmallIntegerField(null=True, default=1)
     # video=models.FileField(upload_to='chapter_videos/', null=True)
     # file=models.FileField(upload_to=hash_upload, null=True, blank=True)
     # url=models.URLField(max_length=200, null=True, blank=True)
@@ -273,7 +276,7 @@ class Chapter(models.Model):
     class Meta:
         verbose_name_plural = '6. Chapter'
     def __str__(self):
-        return self.title
+        return self.name
     
     # def chapter_duration(self):
     #     cap = cv2.VideoCapture(self.video.path)

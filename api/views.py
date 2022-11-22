@@ -173,21 +173,20 @@ class ChapterConentListsView(generics.ListCreateAPIView):
 class ChapterListsView(generics.ListCreateAPIView):
     serializer_class = ChapterSerializer
     queryset = Chapter.objects.all()
+    '''
     def post(self, request, *args, **kwargs):
         course_id = request.data.get('course')
-        title = request.data.get('title')
-        sub_title = request.data.get('sub_title')
-        chapter_no = request.data.get('chapter_no')
+        name = request.data.get('name')
+        # chapter_no = request.data.get('chapter_no')
         description = request.data.get('description')
         chapterObject=None
-        if(course_id and title and sub_title and chapter_no and description):
+        if(course_id and name   and description):
             try:
                 course = Course.objects.get(id=course_id)
                 chapterObject = Chapter.objects.create(
                     course=course,
-                    title=title,
-                    sub_title=sub_title,
-                    chapter_no=int(chapter_no),
+                    name=name,
+                    # chapter_no=int(chapter_no),
                     description=description
                     )
             except:
@@ -195,17 +194,16 @@ class ChapterListsView(generics.ListCreateAPIView):
             pass
         else :
             return JsonResponse({'bool':False, 'error':'one of input missing'}, status=HTTPStatus.BAD_REQUEST)
-        '''
-        Parsing reqest dat for the nested content data and store in cotent array like this.
-        e.g. Input: content[0].chapter_category
-                    content[0].creater
-                    content[0].content_no
-             Output in cotent array
-            [
-                {'file': <InMemoryUploadedFile: html-css-homework-1.html (text/html)>, 'chapter_category': 1, 'creater': 1, 'content_no': 2}, 
-                {'file': <InMemoryUploadedFile: html-css-practice-1.html (text/html)>, 'chapter_category': 1, 'creater': 1, 'content_no': 3}
-            ]
-        '''
+        
+        # Parsing reqest dat for the nested content data and store in cotent array like this.
+        # e.g. Input: content[0].chapter_category
+        #             content[0].creater
+        #             content[0].content_no
+        #      Output in cotent array
+        #     [
+        #         {'file': <InMemoryUploadedFile: html-css-homework-1.html (text/html)>, 'chapter_category': 1, 'creater': 1, 'content_no': 2}, 
+        #         {'file': <InMemoryUploadedFile: html-css-practice-1.html (text/html)>, 'chapter_category': 1, 'creater': 1, 'content_no': 3}
+        #     ]
         
         content=[]
         for key in request.data:
@@ -285,6 +283,8 @@ class ChapterListsView(generics.ListCreateAPIView):
 
        
         return JsonResponse({'bool':True}, status=HTTPStatus.CREATED)
+    '''
+   
     # def post(self, request, format=None):
     #     print('---------ChapterListsView: ', request.data)
     #     query = request.data.get('query')
@@ -301,14 +301,13 @@ class ChapterUpdateView(generics.UpdateAPIView):
     def put(self, request, *args, **kwargs):
         print(request.data)
         chapter_id = request.data.get('chapter_id')
-        title = request.data.get('title')
-        sub_title = request.data.get('sub_title')
-        chapter_no = request.data.get('chapter_no')
+        name = request.data.get('name')
+        # chapter_no = request.data.get('chapter_no')
         description = request.data.get('description')
 
         
 
-        if(not chapter_id or not title or not sub_title or not chapter_no or not description):
+        if(not chapter_id or not name  or not description):
             return JsonResponse({'bool':False, 'error':'input is missing'}, status=HTTPStatus.NOT_FOUND)
         # -- Get Content data. --
         content=[]
@@ -350,9 +349,9 @@ class ChapterUpdateView(generics.UpdateAPIView):
             chapter = Chapter.objects.get(id=chapter_id)
 
             
-            chapter.title = title
-            chapter.sub_title = sub_title
-            chapter.chapter_no = chapter_no
+            chapter.name = name
+            # chapter.sub_title = sub_title
+            # chapter.chapter_no = chapter_no
             chapter.description = description
             chapter.save()
 
