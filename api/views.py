@@ -167,6 +167,10 @@ class CourseDeleteView(generics.DestroyAPIView):
 class ChapterConentListsView(generics.ListCreateAPIView):
     serializer_class = ChapterContentSerializer 
     queryset = ChapterContent.objects.all()
+class ChapterConentDetailView(generics.RetrieveUpdateDestroyAPIView):
+    serializer_class = ChapterContentSerializer
+    queryset = ChapterContent.objects.all()
+    # permission_classes=[permissions.IsAuthenticated]
 
 
 
@@ -295,9 +299,29 @@ class ChapterListsView(generics.ListCreateAPIView):
     #     return Chapter.objects.all()
 
 
+class ChapterAddContentView(generics.UpdateAPIView):
+    serializer_class = ChapterSerializer
+    queryset = Chapter.objects.all()
+    def put(self, request, *args, **kwargs):
+        chapter_id = request.data.get('chapter_id')
+        content_id = request.data.get('content_id')
+        if(chapter_id and content_id):
+            try:
+                chapter = Chapter.objects.get(id=chapter_id)
+                content = ChapterContent.objects.get(id=content_id)
+                chapter.content.add(content)
+                chapter.save()
+            except:
+                return JsonResponse({'bool':False, 'error':'Faied to Add content to chapter'}, status=HTTPStatus.BAD_REQUEST)
+            return JsonResponse({'bool':True}, status=HTTPStatus.OK)
+        else:
+            return JsonResponse({'bool':False, 'error':'chapter_id or content_id missing'}, status=HTTPStatus.NOT_FOUND)
+
+     
 class ChapterUpdateView(generics.UpdateAPIView):
     serializer_class = ChapterSerializer
     queryset = Chapter.objects.all()
+
     def put(self, request, *args, **kwargs):
         print(request.data)
         chapter_id = request.data.get('chapter_id')
@@ -428,7 +452,7 @@ class ChapterUpdateView(generics.UpdateAPIView):
             return JsonResponse({'bool':False, 'error':'Faied to find chapter'}, status=HTTPStatus.BAD_REQUEST)
 
         return JsonResponse({'bool':True}, status=HTTPStatus.OK)
-        pass
+        
 
 @csrf_exempt
 def create_chapter_content(request):

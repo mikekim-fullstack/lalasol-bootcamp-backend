@@ -14,7 +14,7 @@ class ChapterAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'name']
 
 class ChapterContentAdmin(admin.ModelAdmin):
-    list_display = ['id', 'chapter_category','title','content_no', 'creater', 'file', 'url', 'text']
+    list_display = ['id', 'chapter_category','title','content_no', 'creater', 'img','file', 'url', 'text']
     list_display_links = ['id','title',]
 
 class CourseCategoryAdmin(admin.ModelAdmin):
