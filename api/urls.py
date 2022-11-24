@@ -29,6 +29,7 @@ urlpatterns = [
     path('chapter-content/', ChapterConentListsView.as_view()),
     path('chapter-content/<int:pk>', ChapterConentDetailView.as_view()),
     path('chapter-content-add/', ChapterAddContentView.as_view()),
+    path('chapter-content-delete/', ChapterDeleteContentView.as_view()),
     # path('chapter-content-update/', ChapterUpdateView.as_view()),
     path('chapters-content-viewed/', set_chapter_content_viewed),
     path('chapters-viewed/', get_chapter_viewed),

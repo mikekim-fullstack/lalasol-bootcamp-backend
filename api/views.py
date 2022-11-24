@@ -299,6 +299,38 @@ class ChapterListsView(generics.ListCreateAPIView):
     #     return Chapter.objects.all()
 
 
+class ChapterDeleteContentView(generics.DestroyAPIView):
+    serializer_class = ChapterSerializer
+    queryset = Chapter.objects.all()
+    def delete(self, request, *args, **kwargs):
+        chapter_id = request.data.get('chapter_id')
+        content_id = request.data.get('content_id')
+        if(chapter_id and content_id):
+            try:
+                chapter = Chapter.objects.get(id=chapter_id)
+                content = ChapterContent.objects.get(id=content_id)
+                if(content): chapter.content.remove(content)
+                # -- Insert Content sequence into chapter.content_list_sequence .--
+                if (chapter.content_list_sequence and content):
+                    
+                    seq = (chapter.content_list_sequence)
+                    new_seq={}
+                    for key in seq:
+                        if int(key)!=content_id: new_seq[key]=seq[key]
+                   
+                    # print('---- seq: ', chapter.content_list_sequence, type(seq),', content.id: ', content.id)
+                    if(len(new_seq)):  chapter.content_list_sequence=None
+                    else: chapter.content_list_sequence = new_seq
+                    ChapterContent.objects.filter(id=content_id).delete()
+                # print('chapter.content_list_sequence: ',chapter.content_list_sequence)
+                chapter.save()
+
+            except:
+                return JsonResponse({'bool':False, 'error':'Faied to Add content to chapter'}, status=HTTPStatus.BAD_REQUEST)
+            return JsonResponse({'bool':True}, status=HTTPStatus.OK)
+        else:
+            return JsonResponse({'bool':False, 'error':'chapter_id or content_id missing'}, status=HTTPStatus.NOT_FOUND)
+
 class ChapterAddContentView(generics.UpdateAPIView):
     serializer_class = ChapterSerializer
     queryset = Chapter.objects.all()
@@ -310,12 +342,45 @@ class ChapterAddContentView(generics.UpdateAPIView):
                 chapter = Chapter.objects.get(id=chapter_id)
                 content = ChapterContent.objects.get(id=content_id)
                 chapter.content.add(content)
+                # -- Insert Content sequence into chapter.content_list_sequence .--
+                if (chapter.content_list_sequence):
+                    
+                    seq = (chapter.content_list_sequence)
+                    max=-1
+                    for key in seq:
+                        if seq[key]>max: max=seq[key]
+                    seq[str(content.id)]=max+1
+                    # print('---- seq: ', chapter.content_list_sequence, type(seq),', content.id: ', content.id)
+                    chapter.content_list_sequence = seq
+                else:
+                    seq={}
+                    seq[str(content.id)]=1
+                    chapter.content_list_sequence = seq
+                # print('chapter.content_list_sequence: ',chapter.content_list_sequence)
                 chapter.save()
             except:
                 return JsonResponse({'bool':False, 'error':'Faied to Add content to chapter'}, status=HTTPStatus.BAD_REQUEST)
             return JsonResponse({'bool':True}, status=HTTPStatus.OK)
         else:
             return JsonResponse({'bool':False, 'error':'chapter_id or content_id missing'}, status=HTTPStatus.NOT_FOUND)
+
+class ChapterUpdateContentView(generics.UpdateAPIView):
+    serializer_class = ChapterSerializer
+    queryset = Chapter.objects.all()
+    def patch(self, request, *args, **kwargs):
+        chapter_id = request.data.get('chapter_id')
+        content_list_sequence = request.data.get('content_list_sequence')
+        if(chapter_id and content_list_sequence):
+            try:
+                chapter = Chapter.objects.get(id=chapter_id)
+                
+                chapter.content_list_sequence=content_list_sequence
+                chapter.save()
+            except:
+                return JsonResponse({'bool':False, 'error':'Faied to Update content to chapter'}, status=HTTPStatus.BAD_REQUEST)
+            return JsonResponse({'bool':True}, status=HTTPStatus.OK)
+        else:
+            return JsonResponse({'bool':False, 'error':'chapter_id or content_list_sequence missing'}, status=HTTPStatus.NOT_FOUND)
 
      
 class ChapterUpdateView(generics.UpdateAPIView):
