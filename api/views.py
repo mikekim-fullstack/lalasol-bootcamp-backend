@@ -321,7 +321,8 @@ class ChapterDeleteContentView(generics.DestroyAPIView):
                     # print('---- seq: ', chapter.content_list_sequence, type(seq),', content.id: ', content.id)
                     if(len(new_seq)):  chapter.content_list_sequence=None
                     else: chapter.content_list_sequence = new_seq
-                    ChapterContent.objects.filter(id=content_id).delete()
+
+                ChapterContent.objects.filter(id=content_id).delete()
                 # print('chapter.content_list_sequence: ',chapter.content_list_sequence)
                 chapter.save()
 

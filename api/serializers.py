@@ -76,7 +76,7 @@ class ChapterCategorySerializer(serializers.ModelSerializer):
 class ChapterContentSerializer(serializers.ModelSerializer):
     class Meta:
         model=ChapterContent
-        fields=['id', 'chapter_category','title','creater','file', 'img','url','text','content_no','created_date']
+        fields=['id', 'chapter_category','title','creater','file', 'image','url','text','content_no','created_date']
 
 class ChapterSerializer(serializers.ModelSerializer):#'file','url', 'text',
     content = ChapterContentSerializer(read_only = True, many = True)

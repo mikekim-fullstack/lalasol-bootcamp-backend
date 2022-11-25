@@ -233,17 +233,16 @@ def hash_upload(instance, filename):
         # print('---- upload file: ',"chapter_files/{0}_{1}{2}".format(fname, hash(contents), ext))
         return "chapter_files/{0}_{1}{2}".format(fname, hash(contents), ext) # assemble the filename
 # TRIGGER FUNCTION
-def hash_upload_image(ext):
-    def _return_function(instance, filename):
-        fname, extension = os.path.splitext(filename)
-        print('---- upload image file:',extension,instance, ext, filename )
-        filename = '{0}_{1}{2}'.format(fname,uuid.uuid4().hex, extension)
-        return os.path.join('image_files/', filename)
-    # fname, extension = os.path.splitext(filename)
-    # # print('---- upload image file:',extension, self.created_date, filename )
-    # filename = 'content_imgs_{0}_{1}{2}'.format(fname,uuid.uuid4().hex, extension)
-    # _return_function
-    # return os.path.join('image_files/', filename)
+def hash_upload_image(self,filename):
+    # def _return_function(instance, filename):
+    #     fname, extension = os.path.splitext(filename)
+    #     print('---- upload image file:',extension,instance, filename )
+    #     filename = '{0}_{1}{2}'.format(fname,uuid.uuid4().hex, extension)
+    #     return os.path.join('image_files/', filename)
+    fname, extension = os.path.splitext(filename)
+    # print('---- upload image file:',extension, self.created_date, filename )
+    filename = 'content_imgs_{0}_{1}{2}'.format(fname,uuid.uuid4().hex, extension)
+    return os.path.join('image_files/', filename)
 
     
     return _return_function
@@ -269,7 +268,7 @@ class ChapterContent(models.Model):
     # chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
     title = models.CharField(max_length=300, null=True, blank=True)
     file=models.FileField(upload_to=hash_upload, null=True, blank=True)
-    img=models.ImageField(upload_to=hash_upload_image('content_img'), null=True, blank=True)
+    image=models.ImageField(upload_to=hash_upload_image, null=True, blank=True)
     url=models.URLField(max_length=200, null=True, blank=True)
     text=models.TextField(null=True, blank=True)
     
