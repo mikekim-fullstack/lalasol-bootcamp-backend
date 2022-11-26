@@ -389,7 +389,7 @@ class ChapterUpdateView(generics.UpdateAPIView):
     queryset = Chapter.objects.all()
 
     def put(self, request, *args, **kwargs):
-        print(request.data)
+        # print(request.data)
         chapter_id = request.data.get('chapter_id')
         name = request.data.get('name')
         # chapter_no = request.data.get('chapter_no')
@@ -433,7 +433,7 @@ class ChapterUpdateView(generics.UpdateAPIView):
                 else :
                     print('--- raise error ---')
                     pass
-        print('/n ------ content: ', content,'\n\n')
+        # print('/n ------ content: ', content,'\n\n')
         #------------------------------------------------------------
         try:
             chapter = Chapter.objects.get(id=chapter_id)
@@ -449,7 +449,7 @@ class ChapterUpdateView(generics.UpdateAPIView):
                 # contentObj = ChapterContent.objects.filter(chapter__id=chapter_id).order_by('id')
                 try:
                     contentObj = ChapterContent.objects.filter(id=itemConent['id'])
-                    print('chapter', chapter, contentObj,', file: ',itemConent['file'], itemConent['id'])
+                    # print('chapter', chapter, contentObj,', file: ',itemConent['file'], itemConent['id'])
                     if(len(contentObj)>0 and contentObj[0]):
                         contentObj = contentObj[0]
                         contentObj.delete()
@@ -467,7 +467,7 @@ class ChapterUpdateView(generics.UpdateAPIView):
                             chapter.content.add(new_content)
                             chapter.save()
 
-                            print('created_content: ', new_content)
+                            # print('created_content: ', new_content)
                         except:
                             return JsonResponse({'bool':False, 'error':'Faied to update content'}, status=HTTPStatus.BAD_REQUEST)
                             # print('**failed to create content**', itemConent['chapter_category'],
@@ -533,11 +533,11 @@ def set_chapter_content_viewed(request):
         student_id = request.POST.get('student_id')
         chapter_id = request.POST.get('chapter_id')
         content_id = request.POST.get('content_id')
-        print('set_chapter_content_viewed: ', student_id,chapter_id,content_id  )
+        # print('set_chapter_content_viewed: ', student_id,chapter_id,content_id  )
         if(content_id and chapter_id and student_id):
             try:
                 qs = StudentChapterContentViewed.objects.get(student=student_id,chapter=chapter_id, content=content_id)
-                print('set_chapter_content_viewed---updated', qs)
+                # print('set_chapter_content_viewed---updated', qs)
                 if not qs.viewed:
                     qs.viewed=True
                 qs.viewed_date=timezone.now()
@@ -552,7 +552,7 @@ def set_chapter_content_viewed(request):
                     chapter = Chapter.objects.get(id=chapter_id)
                     content = ChapterContent.objects.get(id=content_id)
                     StudentChapterContentViewed.objects.create(student=student, chapter=chapter, content=content, viewed=True)
-                    print('set_chapter_content_viewed---created')
+                    # print('set_chapter_content_viewed---created')
                     return JsonResponse({'bool':True,'message':'successfully created' })
                 except (Student.DoesNotExist, Chapter.DoesNotExist,ChapterContent.DoesNotExist ) as e:
                     return JsonResponse({'bool':False, 'error':str(e)}, status=HTTPStatus.NOT_FOUND)
@@ -576,7 +576,7 @@ def get_chapter_viewed(request):
 
                 chapter_total_content = Chapter.objects.get(id=chapter_id).content.count()
                 
-                print('get_chapter_viewed: ', qs_content_viewed, qs_content_viewed.count(),', chapter_total_content: ',chapter_total_content)
+                # print('get_chapter_viewed: ', qs_content_viewed, qs_content_viewed.count(),', chapter_total_content: ',chapter_total_content)
                 return JsonResponse({'bool':True,'chapter_total_content':str(chapter_total_content),'viewed_count':str(qs_content_viewed.count()) })
             except (Student.DoesNotExist, 
                     Chapter.DoesNotExist,
@@ -607,7 +607,7 @@ class CourseChapterListsView(generics.ListAPIView):
     # permission_classes=[permissions.IsAuthenticated]
     def get_queryset(self):
         course_id = self.kwargs['course_id']
-        print('course_id: ', course_id)
+        # print('course_id: ', course_id)
         # course = Course.objects.get(id=course_id)
         # chapter = Chapter.objects.filter(course=course)
         chapter = Chapter.objects.filter(course=course_id)
@@ -639,7 +639,7 @@ def StudentLogin(request):
         email = data['email']
         password = data['password']
         if(email and password):
-            print('studen email password: ', email, password)
+            # print('studen email password: ', email, password)
             # return JsonResponse({'bool':True,'email':email, 'password':password}) #test
             try:
                 # -- Get Student RoleType: 0. --
@@ -654,7 +654,7 @@ def StudentLogin(request):
                 # if not isStudent: return JsonResponse({'bool':False,'error':'Your aren\'t a student!'})
                 try:
                     student = Student.objects.get(user=user)
-                    print('user: ', user.role.all(), str(user.email), student.team , student.profile_img)
+                    # print('user: ', user.role.all(), str(user.email), student.team , student.profile_img)
                 except(Student.DoesNotExist, Student.MultipleObjectsReturned) as e:
                     return JsonResponse({'bool':False, 'error':str(e)}, status=HTTPStatus.BAD_REQUEST)
             except(UserAccount.DoesNotExist, UserAccount.MultipleObjectsReturned) as e:
@@ -663,6 +663,7 @@ def StudentLogin(request):
                 return JsonResponse({'bool':False, 'error':str(e)},status=HTTPStatus.BAD_REQUEST)
             finally:
                 print('final student login----')
+                pass
             if student:
                 return JsonResponse({'bool':True,'id':student.id,'email': user.email, 'first_name':user.first_name, 'last_name':user.last_name, 'role':'student'})
                 # serializer = StudentSerializer(student)
@@ -773,13 +774,13 @@ def manage_student_enroll_course(request, student_id, cat_id):
     try:
         student = Student.objects.get(id = student_id)
         allCourse = Course.objects.filter(category_id = cat_id)
-        print('student: ', student, ' ,allCourse: ',allCourse)
+        # print('student: ', student, ' ,allCourse: ',allCourse)
         # StudentEnrolledCourse.objects.create(student=1,course=5)
         if allCourse.exists():
             for course in allCourse.iterator():
                 
                 if(not StudentEnrolledCourse.objects.filter(student__id=student.id,course__id=course.id).exists()):
-                    print('StudentEnrolledCourse is created: ', student, course, course.id)
+                    # print('StudentEnrolledCourse is created: ', student, course, course.id)
                     StudentEnrolledCourse.objects.create(student=student,course=course)
                     
             return JsonResponse({'bool':'true'})
@@ -825,7 +826,7 @@ def fetch_enroll_status(request, course_id, student_id):
 def fetch_enrolled_courses_by_student_id(request, student_id):
     if(request.method=='GET'):
         course = Course.objects.filter(course_enrolled_course__student=student_id)
-        print('course: ', student_id, course)
+        # print('course: ', student_id, course)
         if course:
             serializer  = CourseSerializer(course, many=True)
             # serializer  = CourseSerializer(course, many=True, context={'user_id':1})
@@ -850,7 +851,7 @@ def fetch_courses_with_enrolled_student_id(request, student_id):
 
 @csrf_exempt
 def fetch_enrolled_courses_by_student_id_n_cat_id(request, student_id, category_id):
-    print('fetch_enrolled_courses_by_student_id_n_cat_id: ', student_id, category_id)
+    # print('fetch_enrolled_courses_by_student_id_n_cat_id: ', student_id, category_id)
     if(request.method=='GET'):
         try: #
             course = Course.objects.filter(course_enrolled_course__student=student_id,category__id=category_id)
@@ -867,7 +868,7 @@ def fetch_enrolled_courses_by_student_id_n_cat_id(request, student_id, category_
 class EnrolledStudentLists(generics.ListAPIView):
     serializer_class=StudentEnrolledCourseSerializer
     def get_queryset(self):
-        print('-----',self.kwargs,', data:', self.request.GET.get('course_id'),self.request.GET.get('teacer_id'))
+        # print('-----',self.kwargs,', data:', self.request.GET.get('course_id'),self.request.GET.get('teacer_id'))
         course_id = self.request.GET.get('course_id')
         teacher_id = self.request.GET.get('teacher_id')
         if course_id:#'course_id' in self.kwargs:
@@ -880,7 +881,7 @@ class EnrolledStudentLists(generics.ListAPIView):
         elif teacher_id:#'teacher_id' in self.kwargs:
             # teacher_id = self.kwargs['teacher_id']
             teacher=StudentEnrolledCourse.objects.filter(course__teacher=teacher_id)
-            print('teacher_id: ', teacher)
+            # print('teacher_id: ', teacher)
             
             if(teacher):
                 return teacher

@@ -248,9 +248,12 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
 
+#  https://lalasol-bootcamp-backend-production.up.railway.app/m…nt-server-architecture_a85a0e1a3eb349058be813bccd38bae4.webp 
 
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+# not working! MEDIA_ROOT=os.path.join('https://lalasol-bootcamp-backend-production.up.railway.app/','media')
+print('BASE_DIR-',BASE_DIR, MEDIA_ROOT,', ',os.path.join(BASE_DIR,'media'))
 
 
 # Default primary key field type

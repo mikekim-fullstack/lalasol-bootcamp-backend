@@ -82,7 +82,7 @@ class UserAccount(PermissionsMixin, AbstractBaseUser):
     def __str__(self):
         return self.email
     def getRole(self):
-        print(self.role)
+        # print(self.role)
         return self.role
     # def has_perm(self, perm, obj=None):
     #     "Does the user have a specific permission?"

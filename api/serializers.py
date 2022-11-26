@@ -28,7 +28,7 @@ class AllCourseEnrolledSerializer(serializers.ModelSerializer):
         model=Course
         fields=['id','category','enrolled','teacher', 'title','description','chapter_list_sequence','course_image', 'course_views' ,'course_no','created_date','updated_date']
     def get_enrolled(self, coursesObj):
-        print(self.context.get('student_id'))
+        # print(self.context.get('student_id'))
         student_id = self.context['student_id']
         # course_exist = Course.objects.filter(id=coursesObj.id,course_enrolled_course__student=student_id).exists()
         return Course.objects.filter(id=coursesObj.id,course_enrolled_course__student=student_id).exists()
@@ -131,7 +131,7 @@ class ChapterViewedSerializer(serializers.ModelSerializer):#'file','url', 'text'
                     student_chapter_contentViewed__chapter__id=chapterObj.id,
                     student_chapter_contentViewed__viewed=True
                     ).count()
-            print('--get_viewed: userid', user_id,', chapterid', ', chapter_name',chapterObj.name, chapterObj.id, 'viewed-count: ', viewed_count)
+            # print('--get_viewed: userid', user_id,', chapterid', ', chapter_name',chapterObj.name, chapterObj.id, 'viewed-count: ', viewed_count)
             return viewed_count
         except:
             return 0
