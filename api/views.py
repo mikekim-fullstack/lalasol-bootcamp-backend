@@ -23,6 +23,59 @@ from django.views.decorators.clickjacking import xframe_options_exempt
 
 
 
+#---------------- Teacher Login -------------------------
+@csrf_exempt # stop Cross-Site Reqeust Forgery  protection
+def TeacherLogin(request):
+    # print('student login request: ', request.body, request.method)
+    if request.method=='POST':
+        try:
+            print('request.body): ',request.body, request.body.decode('utf-8'))
+            # print('request.body.decode): ', request.body.decode('utf-8'))
+            data = json.loads(request.body.decode('utf-8'))#Json object to python object
+        except:
+            return JsonResponse({'bool':False, 'error':'No input'}, status=HTTPStatus.BAD_REQUEST)
+        # data = request.body.decode('utf-8')#Json object to python object
+        # print('student email: ', data['email'])
+        email = data['email']
+        password = data['password']
+        if(email and password):
+            # print('studen email password: ', email, password)
+            # return JsonResponse({'bool':True,'email':email, 'password':password}) #test
+            try:
+                # -- Get Teacher RoleType: 0. --
+                role = UserRole.objects.get(role_type=1)
+                user=UserAccount.objects.get(email=email, password=password, role=role)
+                user.last_login=timezone.now()
+                user.save()
+                # # -- check if user is a student. --
+                # isStudent = False
+                # for i in user.role.all():
+                #     if i.get_mytype()=='STUDENT':isStudent=True
+                # if not isStudent: return JsonResponse({'bool':False,'error':'Your aren\'t a student!'})
+                try:
+                    teacher = Teacher.objects.get(user=user)
+                    # print('user: ', user.role.all(), str(user.email), student.team , student.profile_img)
+                except(Teacher.DoesNotExist, Teacher.MultipleObjectsReturned) as e:
+                    return JsonResponse({'bool':False, 'error':str(e)}, status=HTTPStatus.BAD_REQUEST)
+            except(UserAccount.DoesNotExist, UserAccount.MultipleObjectsReturned) as e:
+            # except :
+                print('error----', e)
+                return JsonResponse({'bool':False, 'error':str(e)},status=HTTPStatus.BAD_REQUEST)
+            finally:
+                print('final student login----')
+                pass
+            if teacher:
+                return JsonResponse({'bool':True,'id':teacher.id,'email': user.email, 'first_name':user.first_name, 'last_name':user.last_name, 'role':'teacher'})
+                # serializer = StudentSerializer(student)
+                # print('---output----' , student, json.dumps(serializer.data))
+                # return JsonResponse(serializer.data)
+            else:
+                return JsonResponse({'bool':False,'error':'User does not exist'}, status=HTTPStatus.BAD_REQUEST)
+        else:
+            return JsonResponse({'bool':False, 'error':'email or password is missing'}, status=HTTPStatus.BAD_REQUEST)
+    else:
+        return JsonResponse({'boo':'fasle','error': 'wrong request'}, status=HTTPStatus.BAD_REQUEST)
+
 class TeacherListsView(generics.ListCreateAPIView):
     queryset = Teacher.objects.all()
     serializer_class = TeacherSerializer
@@ -50,7 +103,7 @@ class CourseCreateView(generics.CreateAPIView):
     serializer_class = CourseSerializer
     # permission_classes=[permissions.IsAuthenticated]
 
-class AllCourseListsView(generics.ListAPIView):
+class AllCourseDepth1ListsView(generics.ListAPIView):
     serializer_class = AllCourseSerializer
     queryset = Course.objects.all().order_by('-id')
     print('---- CourseListsView----')
@@ -145,7 +198,39 @@ class AllCourseListsView(generics.ListAPIView):
     #     return qs
         
 
+# @csrf_exempt
+# def fetch_enrolled_courses_by_student_id(request, student_id):
+#     if(request.method=='GET'):
+#         course = Course.objects.filter(course_enrolled_course__student=student_id)
+#         # print('course: ', student_id, course)
+#         if course:
+#             serializer  = CourseSerializer(course, many=True)
+#             # serializer  = CourseSerializer(course, many=True, context={'user_id':1})
+#             return JsonResponse(serializer.data, safe=False)
+        
+#         return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
+#     else:
+#         return JsonResponse({'bool':'false'}, status=HTTPStatus.BAD_REQUEST)
 
+class CoursListsByTeacherAndCat(generics.ListAPIView):
+    serializer_class = AllCourseSerializer
+    # queryset = Course.objects.all().order_by('-id')
+    def get_queryset(self):
+        cat_id = self.kwargs['cat_id']
+        teacher_id = self.kwargs['teacher_id']
+        
+        course = Course.objects.filter(teacher=teacher_id, category=cat_id)
+        return course
+class CourseListsByTeacher(generics.ListAPIView):
+    serializer_class = AllCourseSerializer
+    # queryset = Course.objects.all().order_by('-id')
+    def get_queryset(self):
+        teacher_id = self.kwargs['teacher_id']
+        # print('course_id: ', course_id)
+        # course = Course.objects.get(id=course_id)
+        # chapter = Chapter.objects.filter(course=course)
+        course = Course.objects.filter(teacher=teacher_id)
+        return course
 
 class CourseDetailView(generics.RetrieveAPIView):
     queryset = Course.objects.all()
@@ -172,7 +257,16 @@ class ChapterConentDetailView(generics.RetrieveUpdateDestroyAPIView):
     queryset = ChapterContent.objects.all()
     # permission_classes=[permissions.IsAuthenticated]
 
-
+class ChapterListsByCourseView(generics.ListCreateAPIView):
+    serializer_class = ChapterSerializer
+    # queryset = Chapter.objects.all()
+    def get_queryset(self):
+        course_id = self.kwargs['course_id']
+        # print('course_id: ', course_id)
+        # course = Course.objects.get(id=course_id)
+        # chapter = Chapter.objects.filter(course=course)
+        chapter = Chapter.objects.filter(course=course_id)
+        return chapter
 
 class ChapterListsView(generics.ListCreateAPIView):
     serializer_class = ChapterSerializer
@@ -305,23 +399,24 @@ class ChapterDeleteContentView(generics.DestroyAPIView):
     def delete(self, request, *args, **kwargs):
         chapter_id = request.data.get('chapter_id')
         content_id = request.data.get('content_id')
+        print("ChapterDeleteContentView: ", request.data)
         if(chapter_id and content_id):
             try:
                 chapter = Chapter.objects.get(id=chapter_id)
                 content = ChapterContent.objects.get(id=content_id)
                 if(content): chapter.content.remove(content)
-                # -- Insert Content sequence into chapter.content_list_sequence .--
+                # -- Remove Content sequence into chapter.content_list_sequence .--
                 if (chapter.content_list_sequence and content):
                     
                     seq = (chapter.content_list_sequence)
                     new_seq={}
                     for key in seq:
-                        if int(key)!=content_id: new_seq[key]=seq[key]
+                        if int(key)!=int(content_id): new_seq[key]=seq[key]
                    
-                    # print('---- seq: ', chapter.content_list_sequence, type(seq),', content.id: ', content.id)
-                    if(len(new_seq)):  chapter.content_list_sequence=None
+                    print('---- seq: ', chapter.content_list_sequence, type(seq),', content.id: ', content.id,', new_seq:',new_seq)
+                    if(len(new_seq)==0):  chapter.content_list_sequence=None
                     else: chapter.content_list_sequence = new_seq
-
+                # -- Remove content object. --
                 ChapterContent.objects.filter(id=content_id).delete()
                 # print('chapter.content_list_sequence: ',chapter.content_list_sequence)
                 chapter.save()
@@ -365,7 +460,7 @@ class ChapterAddContentView(generics.UpdateAPIView):
         else:
             return JsonResponse({'bool':False, 'error':'chapter_id or content_id missing'}, status=HTTPStatus.NOT_FOUND)
 
-class ChapterUpdateContentView(generics.UpdateAPIView):
+class ChapterUpdateContentSequenceView(generics.UpdateAPIView):
     serializer_class = ChapterSerializer
     queryset = Chapter.objects.all()
     def patch(self, request, *args, **kwargs):
@@ -607,7 +702,7 @@ class CourseChapterListsView(generics.ListAPIView):
     # permission_classes=[permissions.IsAuthenticated]
     def get_queryset(self):
         course_id = self.kwargs['course_id']
-        # print('course_id: ', course_id)
+        print('CourseChapterListsView-course_id: ', course_id)
         # course = Course.objects.get(id=course_id)
         # chapter = Chapter.objects.filter(course=course)
         chapter = Chapter.objects.filter(course=course_id)
@@ -852,6 +947,8 @@ def fetch_courses_with_enrolled_student_id(request, student_id):
 @csrf_exempt
 def fetch_enrolled_courses_by_student_id_n_cat_id(request, student_id, category_id):
     # print('fetch_enrolled_courses_by_student_id_n_cat_id: ', student_id, category_id)
+    if student_id==None or category_id==None: 
+        return JsonResponse({'bool':'false'},status = HTTPStatus.NOT_FOUND) 
     if(request.method=='GET'):
         try: #
             course = Course.objects.filter(course_enrolled_course__student=student_id,category__id=category_id)

@@ -4,7 +4,7 @@ urlpatterns = [
     # Teachers
     path('teacher/', TeacherListsView.as_view()),
     path('teacher/<int:pk>/', TeacherDetailView.as_view()),
-    # path('teacher-login/', TeacherLogin),
+    path('teacher-login/', TeacherLogin),
     path('teacher-courses/<int:teacher_id>', TeacherCourseListsView.as_view()),
     path('teacher-course-detail/<int:pk>', CourseDetailView.as_view()),
     path('teacher-course-update/<int:pk>', CourseUpdateView.as_view()),
@@ -12,12 +12,29 @@ urlpatterns = [
     # Courses
     path('course-category/', CourseCategoryListsView.as_view()),
     path('course-category-detail/<int:pk>', CourseCategoryDetailView.as_view()),
-    path('courses-create/', CourseCreateView.as_view()),
-    path('course-delete/<int:pk>', CourseDeleteView.as_view()),
-    path('course-update/<int:pk>', CourseUpdateView.as_view()),
-    path('courses/', AllCourseListsView.as_view()),# depth=1
+    
+    
+    path('courses-depth1/', AllCourseDepth1ListsView.as_view()),# depth=1
+
+
+
+    # -- Fetch all courses by teacherID and catID --
+    path('courses-all-by-teacher-cat/<int:teacher_id>/<int:cat_id>', CoursListsByTeacherAndCat.as_view()),
+    # -- Fetch all courses by teacher ID --
+    path('courses-all-by-teacher/<int:teacher_id>', CourseListsByTeacher.as_view()),
+
+    # -- Fetch all courses with enrollment status with student ID --
     path('courses-enrolled-status/<int:student_id>', fetch_courses_with_enrolled_student_id),
-    path('courses-search/<str:search>', AllCourseListsView.as_view()),
+
+    # -- Delete course with course ID. It can be deleted by any one so later it should be restricecd by teacher. ---
+    path('course-delete/<int:pk>', CourseDeleteView.as_view()),
+
+    # -- Update Course with course ID. ---
+    path('course-update/<int:pk>', CourseUpdateView.as_view()),
+    # -- Create Course by Teacher ID
+    path('courses-create/', CourseCreateView.as_view()),
+
+    # path('courses-search/<str:search>', AllCourseListsView.as_view()),
     path('course/<int:pk>', CourseDetailView.as_view()),#all
 
     # Chapters
@@ -27,7 +44,7 @@ urlpatterns = [
 
     # Content
     path('chapter-content/', ChapterConentListsView.as_view()),
-    path('chapter-content/<int:pk>', ChapterConentDetailView.as_view()),
+    path('chapter-content/<int:pk>', ChapterConentDetailView.as_view()),#for retrive and update content...
     path('chapter-content-add/', ChapterAddContentView.as_view()),
     path('chapter-content-delete/', ChapterDeleteContentView.as_view()),
     # path('chapter-content-update/', ChapterUpdateView.as_view()),

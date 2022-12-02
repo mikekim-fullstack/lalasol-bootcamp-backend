@@ -38,7 +38,12 @@ class AllCourseEnrolledSerializer(serializers.ModelSerializer):
 class AllCourseSerializer(serializers.ModelSerializer):
     class Meta:
         model=Course
-        fields=['id','category','teacher', 'title','description','course_image','course_views' ,'course_no' ,'created_date','updated_date']
+        fields=['id','category','teacher','chapter_list_sequence', 'title','description','course_image','course_views' ,'course_no' ,'created_date','updated_date']
+
+class AllCourseDepth1Serializer(serializers.ModelSerializer):
+    class Meta:
+        model=Course
+        fields=['id','category','teacher','chapter_list_sequence' ,'title','description','course_image','course_views' ,'course_no' ,'created_date','updated_date']
         depth=1
 
 
