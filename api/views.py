@@ -249,10 +249,11 @@ class CourseDeleteView(generics.DestroyAPIView):
     queryset = Course.objects.all()
     # permission_classes=[permissions.IsAuthenticated]
 
-class ChapterConentListsView(generics.ListCreateAPIView):
+class ChapterContentListsView(generics.ListCreateAPIView):
     serializer_class = ChapterContentSerializer 
     queryset = ChapterContent.objects.all()
-class ChapterConentDetailView(generics.RetrieveUpdateDestroyAPIView):
+
+class ChapterContentDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ChapterContentSerializer
     queryset = ChapterContent.objects.all()
     # permission_classes=[permissions.IsAuthenticated]
@@ -377,7 +378,7 @@ class ChapterListsView(generics.ListCreateAPIView):
             try:
                 chapterObject.content.add(contentId)
             except:
-                return JsonResponse({'bool':False, 'error':'adding conent failed'}, status=HTTPStatus.NO_CONTENT)
+                return JsonResponse({'bool':False, 'error':'adding Content failed'}, status=HTTPStatus.NO_CONTENT)
 
        
         return JsonResponse({'bool':True}, status=HTTPStatus.CREATED)
@@ -456,6 +457,7 @@ class ChapterAddContentView(generics.UpdateAPIView):
                 chapter.save()
             except:
                 return JsonResponse({'bool':False, 'error':'Faied to Add content to chapter'}, status=HTTPStatus.BAD_REQUEST)
+            
             return JsonResponse({'bool':True}, status=HTTPStatus.OK)
         else:
             return JsonResponse({'bool':False, 'error':'chapter_id or content_id missing'}, status=HTTPStatus.NOT_FOUND)
@@ -540,24 +542,24 @@ class ChapterUpdateView(generics.UpdateAPIView):
             chapter.description = description
             chapter.save()
 
-            for itemConent in content:
+            for itemContent in content:
                 # contentObj = ChapterContent.objects.filter(chapter__id=chapter_id).order_by('id')
                 try:
-                    contentObj = ChapterContent.objects.filter(id=itemConent['id'])
-                    # print('chapter', chapter, contentObj,', file: ',itemConent['file'], itemConent['id'])
+                    contentObj = ChapterContent.objects.filter(id=itemContent['id'])
+                    # print('chapter', chapter, contentObj,', file: ',itemContent['file'], itemContent['id'])
                     if(len(contentObj)>0 and contentObj[0]):
                         contentObj = contentObj[0]
                         contentObj.delete()
                         try:
-                            chapter_category = ChapterCategory.objects.get(id=itemConent['chapter_category'])
-                            creater = Teacher.objects.get(id=itemConent['creater'])
+                            chapter_category = ChapterCategory.objects.get(id=itemContent['chapter_category'])
+                            creater = Teacher.objects.get(id=itemContent['creater'])
                             new_content = ChapterContent.objects.create(
                                 chapter_category=chapter_category,
                                 creater=creater,
-                                content_no=itemConent['content_no'],
-                                file=itemConent['file'],
-                                url=itemConent['url'],
-                                text=itemConent['text']
+                                content_no=itemContent['content_no'],
+                                file=itemContent['file'],
+                                url=itemContent['url'],
+                                text=itemContent['text']
                                 )
                             chapter.content.add(new_content)
                             chapter.save()
@@ -565,26 +567,26 @@ class ChapterUpdateView(generics.UpdateAPIView):
                             # print('created_content: ', new_content)
                         except:
                             return JsonResponse({'bool':False, 'error':'Faied to update content'}, status=HTTPStatus.BAD_REQUEST)
-                            # print('**failed to create content**', itemConent['chapter_category'],
-                            # itemConent['creater'],
-                            # itemConent['content_no'],
-                            # itemConent['file'],
-                            # itemConent['url'],
-                            # itemConent['text']
+                            # print('**failed to create content**', itemContent['chapter_category'],
+                            # itemContent['creater'],
+                            # itemContent['content_no'],
+                            # itemContent['file'],
+                            # itemContent['url'],
+                            # itemContent['text']
                             # )
  
-                    #     if( (itemConent['url']!='' or itemConent['text']!='' or itemConent['file']!='' ) and contentObj.file !='' ):
+                    #     if( (itemContent['url']!='' or itemContent['text']!='' or itemContent['file']!='' ) and contentObj.file !='' ):
                     #         contentObj.delete()
                     #         try:
-                    #             chapter_category = ChapterCategory.objects.get(id=itemConent['chapter_category'])
-                    #             creater = Teacher.objects.get(id=itemConent['creater'])
+                    #             chapter_category = ChapterCategory.objects.get(id=itemContent['chapter_category'])
+                    #             creater = Teacher.objects.get(id=itemContent['creater'])
                     #             new_content = ChapterContent.objects.create(
                     #                 chapter_category=chapter_category,
                     #                 creater=creater,
-                    #                 content_no=itemConent['content_no'],
-                    #                 file=itemConent['file'],
-                    #                 url=itemConent['url'],
-                    #                 text=itemConent['text']
+                    #                 content_no=itemContent['content_no'],
+                    #                 file=itemContent['file'],
+                    #                 url=itemContent['url'],
+                    #                 text=itemContent['text']
                     #                 )
                     #             chapter.content.add(new_content)
                     #             chapter.save()
@@ -592,20 +594,20 @@ class ChapterUpdateView(generics.UpdateAPIView):
                     #             print('created_content: ', new_content)
                     #         except:
                     #             return JsonResponse({'bool':False, 'error':'Faied to update content'}, status=HTTPStatus.BAD_REQUEST)
-                    #             # print('**failed to create content**', itemConent['chapter_category'],
-                    #             # itemConent['creater'],
-                    #             # itemConent['content_no'],
-                    #             # itemConent['file'],
-                    #             # itemConent['url'],
-                    #             # itemConent['text']
+                    #             # print('**failed to create content**', itemContent['chapter_category'],
+                    #             # itemContent['creater'],
+                    #             # itemContent['content_no'],
+                    #             # itemContent['file'],
+                    #             # itemContent['url'],
+                    #             # itemContent['text']
                     #             # )
                             
                     # else:
-                    #     contentObj.update(chapter_category = itemConent['chapter_category'])
-                    #     contentObj.update(content_no = itemConent['content_no'])
-                    #     contentObj.update(creater = itemConent['creater'])
-                    #     contentObj.update(url = itemConent['url'])
-                    #     contentObj.update(text = itemConent['text'])  
+                    #     contentObj.update(chapter_category = itemContent['chapter_category'])
+                    #     contentObj.update(content_no = itemContent['content_no'])
+                    #     contentObj.update(creater = itemContent['creater'])
+                    #     contentObj.update(url = itemContent['url'])
+                    #     contentObj.update(text = itemContent['text'])  
                 except:
                     return JsonResponse({'bool':False, 'error':'Faied to update content'}, status=HTTPStatus.BAD_REQUEST)
             # print('chapter.content: ', chapter.objects.filter(content__id=29))

@@ -43,8 +43,8 @@ urlpatterns = [
     path('course-chapter/<int:course_id>', CourseChapterListsView.as_view()),
 
     # Content
-    path('chapter-content/', ChapterConentListsView.as_view()),
-    path('chapter-content/<int:pk>', ChapterConentDetailView.as_view()),#for retrive and update content...
+    path('chapter-content/', ChapterContentListsView.as_view()),
+    path('chapter-content/<int:pk>', ChapterContentDetailView.as_view()),#for retrive and update content...
     path('chapter-content-add/', ChapterAddContentView.as_view()),
     path('chapter-content-delete/', ChapterDeleteContentView.as_view()),
     # path('chapter-content-update/', ChapterUpdateView.as_view()),
