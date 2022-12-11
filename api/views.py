@@ -434,6 +434,8 @@ class ChapterAddContentView(generics.UpdateAPIView):
     def put(self, request, *args, **kwargs):
         chapter_id = request.data.get('chapter_id')
         content_id = request.data.get('content_id')
+        content_insert_id = request.data.get('content_insert_id')
+        print('content_insert_id', content_insert_id, ', ',content_id)
         if(chapter_id and content_id):
             try:
                 chapter = Chapter.objects.get(id=chapter_id)
@@ -441,17 +443,38 @@ class ChapterAddContentView(generics.UpdateAPIView):
                 chapter.content.add(content)
                 # -- Insert Content sequence into chapter.content_list_sequence .--
                 if (chapter.content_list_sequence):
+                    sorted_seq  = sorted(chapter.content_list_sequence.items(), key=lambda x:x[1])
                     
-                    seq = (chapter.content_list_sequence)
+                    # seq = (chapter.content_list_sequence)
+                    seq={}
+
                     max=-1
-                    for key in seq:
-                        if seq[key]>max: max=seq[key]
-                    seq[str(content.id)]=max+1
+                    index=0
+                    if(not content_insert_id):
+                        if(sorted_seq):
+                            for item in sorted_seq:
+                                seq[str(item[0])]=index
+                                index+=1
+                            seq[str(content.id)]=index
+                        else:
+                             seq[str(content.id)]=index
+                        
+                    else:
+                        for item in sorted_seq:
+                            key = item[0]
+                            seq[str(key)]=index
+                            if(int(content_insert_id)-int(key)==0):
+                                index+=1
+                                seq[str(content.id)]=index
+                                pass
+                            index+=1
+                        # if seq[item]>max: max=seq[item]
+                    # seq[str(content.id)]=max+1
                     # print('---- seq: ', chapter.content_list_sequence, type(seq),', content.id: ', content.id)
                     chapter.content_list_sequence = seq
                 else:
                     seq={}
-                    seq[str(content.id)]=1
+                    seq[str(content.id)]=0
                     chapter.content_list_sequence = seq
                 # print('chapter.content_list_sequence: ',chapter.content_list_sequence)
                 chapter.save()

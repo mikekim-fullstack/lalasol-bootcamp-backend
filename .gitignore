@@ -15,8 +15,10 @@ build/
 
 /account/__pycache__/
 /account/migrations/
+*.dump
+# media/ ! don't do it because when you deployed it it will remove all static files.
 # git rm -r --cached account/__pycache__/
 # git rm -r --cached account/migrations/
 
-# /media/
+
 
