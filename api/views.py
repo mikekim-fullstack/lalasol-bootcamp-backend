@@ -744,6 +744,53 @@ class TeacherCourseListsView(generics.ListAPIView):
 
 
 #---------------- Student -------------------------
+
+class JavaScriptCodeByStudentView(generics.ListAPIView):
+    serializer_class = JavaScriptCodeSerializer
+    # queryset = Course.objects.all().order_by('-id')
+    def get_queryset(self):
+        student_id = self.kwargs['student_id']
+        # print('course_id: ', course_id)
+        # course = Course.objects.get(id=course_id)
+        # chapter = Chapter.objects.filter(course=course)
+        jsCode = JavaScriptCode.objects.filter(student=student_id)
+        return jsCode
+
+class JavaScriptCodeCreate(generics.ListCreateAPIView):
+    serializer_class = JavaScriptCodeSerializer
+    queryset = JavaScriptCode.objects.all()
+    def post(self, request, *args, **kwargs):
+        print('request:', request.data['title'],    request.data['student'])
+        title = request.data['title']
+        student_id = request.data['student']
+        js_code = request.data['js_code']
+
+        if(student_id and title and js_code):
+            try:
+                student = Student.objects.get(id=student_id)
+                JSCodeObject = JavaScriptCode.objects.create(
+                    title=title,
+                    student=student,
+                    js_code=js_code
+                    )
+                JavaScriptCodeSerializer(JSCodeObject)
+                serializer  = JavaScriptCodeSerializer(JSCodeObject, many=False)#, context={'user_id': user_id})
+                    # print('chapter: ', serializer_c,(serializer.data))
+                return JsonResponse(serializer.data, safe=False)
+                # return JsonResponse({'bool':True, 'error':'one of input missing'}, status=HTTPStatus.CREATED)
+            except:
+                return JsonResponse({'bool':False, 'error':'bad request'}, status=HTTPStatus.BAD_REQUEST)
+        else:
+            return JsonResponse({'bool':False, 'error':'one of input missing'}, status=HTTPStatus.BAD_REQUEST)
+
+class JavaScriptCodeDelete(generics.DestroyAPIView):
+    serializer_class = JavaScriptCodeSerializer
+    queryset = JavaScriptCode.objects.all()
+
+class JavaScriptCodeUpdate(generics.UpdateAPIView):
+    serializer_class = JavaScriptCodeSerializer
+    queryset = JavaScriptCode.objects.all()
+
 @csrf_exempt # stop Cross-Site Reqeust Forgery  protection
 def StudentLogin(request):
     # print('student login request: ', request.body, request.method)
@@ -858,7 +905,7 @@ def StudentSignUp(request):
         else:
             return JsonResponse({'bool':False, 'message':'One of information missing!'})
 
-        
+
 class StudentListsView(generics.ListCreateAPIView):
     queryset = Student.objects.all()
     serializer_class = StudentSerializer

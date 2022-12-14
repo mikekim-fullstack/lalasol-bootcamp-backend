@@ -364,6 +364,16 @@ class StudentChapterContentViewed(models.Model):
     def __str__(self):
         return 'viewed: '+str(self.viewed)
 
+# ---------- Javascript Code -----------------
+
+class JavaScriptCode(models.Model):
+    student = models.ForeignKey(Student,on_delete=models.CASCADE, related_name='java_script_codes', related_query_name='java_script_code', null=True)
+    title = models.CharField(max_length=100)
+    js_code = models.TextField()
+    class Meta:
+        verbose_name_plural='30. JavaScriptCode'
+    def __str__(self):
+        return self.title
 
 # ---------- Quiz -----------------
 

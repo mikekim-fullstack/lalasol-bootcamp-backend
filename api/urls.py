@@ -70,6 +70,12 @@ urlpatterns = [
     # path('fetch-enrolled-teacher-with/<int:teacher_id>/',EnrolledStudentLists.as_view()),
     path('course-rating/', CourseRatingLists.as_view()), 
     path('course-rating/<int:course_id>/', CourseRatingLists.as_view()), 
-    path('fetch-rating-status/<int:student_id>/<int:course_id>/', fetch_rating_status)
+    path('fetch-rating-status/<int:student_id>/<int:course_id>/', fetch_rating_status),
+
+    #Student Javascript code
+    path('student-js-create/',JavaScriptCodeCreate.as_view()),
+    path('student-js-update/<int:pk>',JavaScriptCodeUpdate.as_view()),
+    path('student-js-delete/<int:pk>',JavaScriptCodeDelete.as_view()),
+    path('student-js-view/<int:student_id>',JavaScriptCodeByStudentView.as_view())
 
 ]
