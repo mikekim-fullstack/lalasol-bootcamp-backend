@@ -37,6 +37,10 @@ class JavaScriptCodeAdmin(admin.ModelAdmin):
     list_display = ('id', 'student', 'title', 'js_code')
     list_display_links=('id', 'title')
 
+class HtmlCodeAdmin(admin.ModelAdmin):
+    list_display = ('id', 'student','teacher', 'title', 'js_code')
+    list_display_links=('id', 'title')
+
 admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(CourseCategory, CourseCategoryAdmin)
 admin.site.register(Chapter, ChapterAdmin)
@@ -52,6 +56,7 @@ admin.site.register(StudentAssignment)
 admin.site.register(Team)
 admin.site.register(ClassRoom)
 admin.site.register(JavaScriptCode, JavaScriptCodeAdmin)
+admin.site.register(HtmlCode, HtmlCodeAdmin)
 # class NotificationAdmin(admin.ModelAdmin):
 #     list_display = ['id', 'notif_subject', 'notif_for', 'notifread_status']
 # admin.site.register(Notification, NotificationAdmin)

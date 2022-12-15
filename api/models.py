@@ -374,6 +374,19 @@ class JavaScriptCode(models.Model):
         verbose_name_plural='30. JavaScriptCode'
     def __str__(self):
         return self.title
+# ---------- HTML(html, css, js) Code -----------------
+
+class HtmlCode(models.Model):
+    student = models.ForeignKey(Student,on_delete=models.CASCADE, related_name='student_html_script_codes', related_query_name='student_html_script_code', null=True)
+    teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='teacher_html_script_codes', related_query_name='teacher_html_script_code', null=True)
+    title = models.CharField(max_length=100)
+    html_code = models.TextField(null=True)
+    css_code = models.TextField(null=True)
+    js_code = models.TextField(null=True)
+    class Meta:
+        verbose_name_plural='30. HtmlCode'
+    def __str__(self):
+        return self.title
 
 # ---------- Quiz -----------------
 

@@ -790,7 +790,76 @@ class JavaScriptCodeDelete(generics.DestroyAPIView):
 class JavaScriptCodeUpdate(generics.UpdateAPIView):
     serializer_class = JavaScriptCodeSerializer
     queryset = JavaScriptCode.objects.all()
+# -------------------------------- HTML Code (html, css, js) ----------------------
+class HtmlCodeByUserView(generics.ListAPIView):
+    serializer_class = HtmlCodeSerializer
+    # queryset = Course.objects.all().order_by('-id')
+    def get_queryset(self):
+        user_role = self.kwargs['user_role']
+        user_id = self.kwargs['user_id']
+        if(user_role==1):
+        
+            htmlCode = HtmlCode.objects.filter(student=user_id)
+            return htmlCode
+        elif(user_role==2):
+            htmlCode = HtmlCode.objects.filter(teacher=user_id)
+            return htmlCode
+class HtmlCodeCreate(generics.ListCreateAPIView):
+    serializer_class = HtmlCodeSerializer
+    queryset = HtmlCode.objects.all()
+    def post(self, request, *args, **kwargs):
+        print('request:', request.data['title'],    request.data['student'])
+        title = request.data['title']
+        student_id = request.data['student']
+        teacher_id = request.data['teacher']
+        html_code = request.data['html_code']
+        css_code = request.data['css_code']
+        js_code = request.data['js_code']
 
+        if(title ):
+            try:
+                if(student_id):
+                    student = Student.objects.get(id=student_id)
+                    JSCodeObject = HtmlCode.objects.create(
+                        title=title,
+                        student=student,
+                        html_code=html_code,
+                        css_code=css_code,
+                        js_code=js_code
+                        )
+                    HtmlCodeSerializer(JSCodeObject)
+                    serializer  = HtmlCodeSerializer(JSCodeObject, many=False)#, context={'user_id': user_id})
+                        # print('chapter: ', serializer_c,(serializer.data))
+                    return JsonResponse(serializer.data, safe=False)
+                if(teacher_id):
+                    teacher = Teacher.objects.get(id=teacher_id)
+                    JSCodeObject = HtmlCode.objects.create(
+                        title=title,
+                        teacher=teacher,
+                        html_code=html_code,
+                        css_code=css_code,
+                        js_code=js_code
+                        )
+                    HtmlCodeSerializer(JSCodeObject)
+                    serializer  = HtmlCodeSerializer(JSCodeObject, many=False)#, context={'user_id': user_id})
+                        # print('chapter: ', serializer_c,(serializer.data))
+                    return JsonResponse(serializer.data, safe=False)
+                
+                # return JsonResponse({'bool':True, 'error':'one of input missing'}, status=HTTPStatus.CREATED)
+            except:
+                return JsonResponse({'bool':False, 'error':'bad request'}, status=HTTPStatus.BAD_REQUEST)
+        else:
+            return JsonResponse({'bool':False, 'error':'one of input missing'}, status=HTTPStatus.BAD_REQUEST)
+class HtmlCodeDelete(generics.DestroyAPIView):
+    serializer_class = HtmlCodeSerializer
+    queryset = HtmlCode.objects.all()
+
+class HtmlCodeUpdate(generics.UpdateAPIView):
+    serializer_class = HtmlCodeSerializer
+    queryset = HtmlCode.objects.all()
+
+
+    
 @csrf_exempt # stop Cross-Site Reqeust Forgery  protection
 def StudentLogin(request):
     # print('student login request: ', request.body, request.method)

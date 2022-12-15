@@ -76,6 +76,11 @@ urlpatterns = [
     path('student-js-create/',JavaScriptCodeCreate.as_view()),
     path('student-js-update/<int:pk>',JavaScriptCodeUpdate.as_view()),
     path('student-js-delete/<int:pk>',JavaScriptCodeDelete.as_view()),
-    path('student-js-view/<int:student_id>',JavaScriptCodeByStudentView.as_view())
+    path('student-js-view/<int:student_id>',JavaScriptCodeByStudentView.as_view()),
 
+    #Student/Teacher Html code
+    path('user-html-create/',HtmlCodeCreate.as_view()),
+    path('user-html-update/<int:pk>',HtmlCodeUpdate.as_view()),
+    path('user-html-delete/<int:pk>',HtmlCodeDelete.as_view()),
+    path('user-html-view/<int:user_role>/<int:user_id>',HtmlCodeByUserView.as_view()),
 ]

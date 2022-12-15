@@ -60,6 +60,10 @@ class StudentEnrolledCourseSerializer(serializers.ModelSerializer):
         model=StudentEnrolledCourse
         fields=['id', 'student', 'course','enrolled_date']
 
+class HtmlCodeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=HtmlCode
+        fields=['id', 'student','teacher', 'title','html_code','css_code','js_code']
 class JavaScriptCodeSerializer(serializers.ModelSerializer):
     class Meta:
         model=JavaScriptCode
