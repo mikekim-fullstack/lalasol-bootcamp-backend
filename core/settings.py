@@ -67,23 +67,23 @@ def addHttp (a):
 # CORS_ALLOWED_ORIGINS +=["http://127.0.0.1:3000"]
 
 CSRF_TRUSTED_ORIGINS=[
+    "https://lalasol-bootcamp.web.app",
     "http://0.0.0.0:$PORT",
      "http://127.0.0.1:3000",
      "http://localhost:3000", 
      "http://127.0.0.1:8000",
     "http://localhost:8000", 
-    "https://lalasol-bootcamp.web.app",
     "https://lalasol-bootcamp-backend-production.up.railway.app",
     "https://github.com",
     "https://youtube.com",
 ]
 CORS_ALLOWED_ORIGINS = [
+    "https://lalasol-bootcamp.web.app",
     "http://0.0.0.0:$PORT",
     "http://127.0.0.1:3000",
     "http://localhost:3000", 
     "http://127.0.0.1:8000",
     "http://localhost:8000", 
-    "https://lalasol-bootcamp.web.app",
     "https://lalasol-bootcamp-backend-production.up.railway.app",
     "https://github.com",
     "https://youtube.com",
