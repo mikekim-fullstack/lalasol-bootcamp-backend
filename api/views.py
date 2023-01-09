@@ -18,10 +18,35 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.core import serializers
 from django.views.decorators.clickjacking import xframe_options_exempt
+from django.http import HttpResponse
+import os
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+import io
+from zipfile import ZipFile
 
+@csrf_exempt
+def download_media_zip_file(request):
+    media_path = settings.MEDIA_ROOT
+    
+    fs = FileSystemStorage()
+    media_dir_list = fs.listdir(media_path)[0]
 
-
-
+    byte_data = io.BytesIO()
+    zip_name = "media.zip" 
+    zip_file = ZipFile(byte_data, 'w')
+    for dir in media_dir_list:
+        file_path = os.path.join(settings.MEDIA_ROOT, dir)
+        filelist = fs.listdir(file_path)[1]
+        for file in filelist:
+            filename = os.path.join(file_path,file)
+            zip_file.write(filename, os.path.join(dir, file))
+        
+    zip_file.close()
+    response = HttpResponse(byte_data.getvalue(), content_type='application/zip')
+    response['Content-Disposition'] = 'attachment; filename=%s' %zip_name
+    return response
+    # return JsonResponse({'bool':True})
 
 #---------------- Teacher Login -------------------------
 @csrf_exempt # stop Cross-Site Reqeust Forgery  protection

@@ -1,6 +1,7 @@
 from django.urls import path, include
 from api.views import *
 urlpatterns = [
+    
     # Teachers
     path('teacher/', TeacherListsView.as_view()),
     path('teacher/<int:pk>/', TeacherDetailView.as_view()),
@@ -9,6 +10,8 @@ urlpatterns = [
     path('teacher-course-detail/<int:pk>', CourseDetailView.as_view()),
     path('teacher-course-update/<int:pk>', CourseUpdateView.as_view()),
     
+    # download all media files
+    path('download/', download_media_zip_file),
     # Courses
     path('course-category/', CourseCategoryListsView.as_view()),
     path('course-category-detail/<int:pk>', CourseCategoryDetailView.as_view()),
