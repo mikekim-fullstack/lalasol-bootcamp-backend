@@ -778,7 +778,7 @@ class JavaScriptCodeByStudentView(generics.ListAPIView):
         # print('course_id: ', course_id)
         # course = Course.objects.get(id=course_id)
         # chapter = Chapter.objects.filter(course=course)
-        jsCode = JavaScriptCode.objects.filter(student=student_id)
+        jsCode = JavaScriptCode.objects.filter(student=student_id).order_by('title')
         return jsCode
 
 class JavaScriptCodeCreate(generics.ListCreateAPIView):
@@ -824,10 +824,10 @@ class HtmlCodeByUserView(generics.ListAPIView):
         user_id = self.kwargs['user_id']
         if(user_role==1):
         
-            htmlCode = HtmlCode.objects.filter(student=user_id)
+            htmlCode = HtmlCode.objects.filter(student=user_id).order_by('title')
             return htmlCode
         elif(user_role==2):
-            htmlCode = HtmlCode.objects.filter(teacher=user_id)
+            htmlCode = HtmlCode.objects.filter(teacher=user_id).order_by('title')
             return htmlCode
 class HtmlCodeCreate(generics.ListCreateAPIView):
     serializer_class = HtmlCodeSerializer
