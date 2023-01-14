@@ -83,7 +83,7 @@ class CourseRatingSerializer(serializers.ModelSerializer):
 class ChapterCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model=ChapterCategory
-        fields=['id', 'title', 'created_date']
+        fields=['id', 'title','seq_no','created_date']
 
 class ChapterContentSerializer(serializers.ModelSerializer):
     class Meta:
