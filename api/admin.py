@@ -14,8 +14,12 @@ class ChapterAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'name']
 
 class ChapterContentAdmin(admin.ModelAdmin):
-    list_display = ['id', 'chapter_category','title','content_no', 'creater', 'image','file', 'url', 'text']
+    list_display = ['id', 'chapter_category','title','content_no', 'creator', 'image','file', 'url', 'text']
     list_display_links = ['id','title',]
+
+class ChapterContentCommentAdmin(admin.ModelAdmin):
+    list_display = ['id', 'chapter_content','user','comment','created_date','updated_date']
+    list_display_links = ['id','chapter_content','user',]
 
 class CourseCategoryAdmin(admin.ModelAdmin):
     list_display = ('id','title', 'description')
@@ -34,7 +38,7 @@ class StudentChapterContentViewedAdmin(admin.ModelAdmin):
     list_display_links = ['id', 'content']
 
 class JavaScriptCodeAdmin(admin.ModelAdmin):
-    list_display = ('id', 'student', 'title', 'js_code')
+    list_display = ('id', 'student','teacher', 'title', 'js_code')
     list_display_links=('id', 'title')
 
 class HtmlCodeAdmin(admin.ModelAdmin):
@@ -45,6 +49,7 @@ admin.site.register(Teacher, TeacherAdmin)
 admin.site.register(CourseCategory, CourseCategoryAdmin)
 admin.site.register(Chapter, ChapterAdmin)
 admin.site.register(ChapterContent, ChapterContentAdmin)
+admin.site.register(ChapterContentComment, ChapterContentCommentAdmin)
 admin.site.register(StudentChapterContentViewed, StudentChapterContentViewedAdmin)
 admin.site.register(ChapterCategory, ChapterCategoryAdmin)
 admin.site.register(Course, CourseAdmin)

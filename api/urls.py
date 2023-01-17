@@ -6,6 +6,7 @@ urlpatterns = [
     path('teacher/', TeacherListsView.as_view()),
     path('teacher/<int:pk>/', TeacherDetailView.as_view()),
     path('teacher-login/', TeacherLogin),
+    path('teacher-signup/', TeacherSignUp),
     path('teacher-courses/<int:teacher_id>', TeacherCourseListsView.as_view()),
     path('teacher-course-detail/<int:pk>', CourseDetailView.as_view()),
     path('teacher-course-update/<int:pk>', CourseUpdateView.as_view()),
@@ -79,7 +80,7 @@ urlpatterns = [
     path('student-js-create/',JavaScriptCodeCreate.as_view()),
     path('student-js-update/<int:pk>',JavaScriptCodeUpdate.as_view()),
     path('student-js-delete/<int:pk>',JavaScriptCodeDelete.as_view()),
-    path('student-js-view/<int:student_id>',JavaScriptCodeByStudentView.as_view()),
+    path('student-js-view/<int:user_role>/<int:user_id>',JavaScriptCodeByStudentView.as_view()),
 
     #Student/Teacher Html code
     path('user-html-create/',HtmlCodeCreate.as_view()),

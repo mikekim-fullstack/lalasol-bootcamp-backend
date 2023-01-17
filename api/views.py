@@ -48,6 +48,71 @@ def download_media_zip_file(request):
     return response
     # return JsonResponse({'bool':True})
 
+
+# ---------- TeacherSignUp ----------
+#  --- reqest: form-data input so use request.POST and request.FILES. ---
+@csrf_exempt # stop Cross-Site Reqeust Forgery  protection
+def TeacherSignUp(request):
+    if request.method=='POST':
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        firstName = request.POST.get('first_name')
+        lastName = request.POST.get('last_name')
+        imageUrl = request.FILES.get('image')
+        myteam = request.POST.get('team')
+        # print('---',email, password, firstName, lastName, imageUrl, myteam)
+        if email and password and firstName and lastName :
+            # --- Get Role Object for Student. ---
+            try:
+                role = UserRole.objects.get(role_type=1)
+            except:
+                return JsonResponse({'bool':False, 'error': 'Teacher Role does not exist!'})
+
+            # --- Check if UserAccount Object exists or not. ---
+            user_email_role = email.replace('@','__1@')# email__roleType
+            user = UserAccount.objects.filter(email=user_email_role, 
+                    role=role, 
+                    ).exists()
+            if(user):
+                return JsonResponse({'bool':False, 'error': 'User '+email+' already exist!'})
+                
+            # --- Get team object. ---
+            if(myteam):
+                try:
+                    team = Team.objects.get(name=myteam)
+                except(Team.DoesNotExist) as e:
+                    team=None
+            
+            print(team, imageUrl)
+
+            # --- Create new UserAccount object. ---
+            try:
+                newUser = UserAccount.objects.create(email=user_email_role, 
+                    password=password, 
+                    first_name=firstName,
+                    last_name=lastName,
+                    
+                    )
+                newUser.role.add(role)
+                newUser.save()
+                # --- Create new Student object. ---
+                try:
+                   newTeacher = Teacher.objects.create(user=newUser)
+                   if(team): newTeacher.team = team
+                   if(imageUrl): newTeacher.photo = imageUrl
+                   newTeacher.save()
+                except:
+                    newUser.delete()
+                    # print('error-newUser Creation')
+                    return JsonResponse({'bool':False, 'error':'Fail to create Teacher'})
+            except:
+                # print('---error---')
+                return JsonResponse({'bool':False, 'error':'Fail to create Teacher'})
+            return JsonResponse({'bool':True, 'message':'Teacher successfully created!'})
+        else:
+            return JsonResponse({'bool':False, 'message':'One of information missing!'})
+
+
 #---------------- Teacher Login -------------------------
 @csrf_exempt # stop Cross-Site Reqeust Forgery  protection
 def TeacherLogin(request):
@@ -69,7 +134,8 @@ def TeacherLogin(request):
             try:
                 # -- Get Teacher RoleType: 0. --
                 role = UserRole.objects.get(role_type=1)
-                user=UserAccount.objects.get(email=email, password=password, role=role)
+                user_email_role = email.replace('@','__1@')# email__roleType
+                user=UserAccount.objects.get(email=user_email_role, password=password, role=role)
                 user.last_login=timezone.now()
                 user.save()
                 # # -- check if user is a student. --
@@ -274,6 +340,20 @@ class CourseDeleteView(generics.DestroyAPIView):
     queryset = Course.objects.all()
     # permission_classes=[permissions.IsAuthenticated]
 
+class ChapterContentCommentListsView(generics.ListCreateAPIView):
+    serializer_class = ChapterContentCommentSerializer 
+    queryset = ChapterContentComment.objects.all()
+    # def get_queryset(self):
+    #     content_id = self.kwargs['content_id']
+    #     email = self.kwargs['email']
+    #     # print('course_id: ', course_id)
+    #     # course = Course.objects.get(id=course_id)
+    #     # chapter = Chapter.objects.filter(course=course)
+    #     chapter_content = ChapterContent.objects.get(id=content_id)
+    #     user = UserAccount.objects.get(email=email)
+    #     chapter = ChapterContentComment.objects.filter(course=course_id)
+    #     return chapter
+
 class ChapterContentListsView(generics.ListCreateAPIView):
     serializer_class = ChapterContentSerializer 
     queryset = ChapterContent.objects.all()
@@ -321,12 +401,12 @@ class ChapterListsView(generics.ListCreateAPIView):
         
         # Parsing reqest dat for the nested content data and store in cotent array like this.
         # e.g. Input: content[0].chapter_category
-        #             content[0].creater
+        #             content[0].creator
         #             content[0].content_no
         #      Output in cotent array
         #     [
-        #         {'file': <InMemoryUploadedFile: html-css-homework-1.html (text/html)>, 'chapter_category': 1, 'creater': 1, 'content_no': 2}, 
-        #         {'file': <InMemoryUploadedFile: html-css-practice-1.html (text/html)>, 'chapter_category': 1, 'creater': 1, 'content_no': 3}
+        #         {'file': <InMemoryUploadedFile: html-css-homework-1.html (text/html)>, 'chapter_category': 1, 'creator': 1, 'content_no': 2}, 
+        #         {'file': <InMemoryUploadedFile: html-css-practice-1.html (text/html)>, 'chapter_category': 1, 'creator': 1, 'content_no': 3}
         #     ]
         
         content=[]
@@ -343,7 +423,7 @@ class ChapterListsView(generics.ListCreateAPIView):
                 if(size>0):
                     for i in range(size):
                         # print('i: ', i)
-                        content.append({'type':'','file':'', 'url':'','text':'','chapter_category':0, 'creater':0, 'content_no':0})
+                        content.append({'type':'','file':'', 'url':'','text':'','chapter_category':0, 'creator':0, 'content_no':0})
                 if has=='file':
                     content[m]['file'] = request.data.get(key)
                     content[m]['type'] = 'file'
@@ -357,8 +437,8 @@ class ChapterListsView(generics.ListCreateAPIView):
                     content[m]['chapter_category'] = int(request.data.get(key))
                 elif has=='content_no':
                     content[m]['content_no'] = int(request.data.get(key))
-                elif has=='creater':
-                    content[m]['creater'] = int(request.data.get(key))
+                elif has=='creator':
+                    content[m]['creator'] = int(request.data.get(key))
                 else :
                     print('--- raise error ---')
                     pass
@@ -367,22 +447,22 @@ class ChapterListsView(generics.ListCreateAPIView):
         # print('----------------',content, len(content),'--------------/n')#,' ,',{'a':request.data.get('content[1].file')}, request.data.get('content[1].file'))
         content_id=[]
         for item in content:
-            # print(item['file'],item['chapter_category'],item['creater'],item['content_no'])
+            # print(item['file'],item['chapter_category'],item['creator'],item['content_no'])
             try:
                 chapter_category = ChapterCategory.objects.get(id=item['chapter_category'])
-                creater = Teacher.objects.get(id=item['creater'])
+                creator = Teacher.objects.get(id=item['creator'])
                 # print('chapter_category----',item['chapter_category'], chapter_category)
                 
                 # validated_data = ChapterContentSerializer(
                 #         chapter_category=chapter_category.id,
-                #     creater=creater.id,
+                #     creator=creator.id,
                 #     content_no=item['content_no'],
                 #     file=item['file']
                 # )
 
                 new_content = ChapterContent.objects.create(
                     chapter_category=chapter_category,
-                    creater=creater,
+                    creator=creator,
                     content_no=item['content_no'],
                     file=item['file'],
                     url=item['url'],
@@ -557,7 +637,7 @@ class ChapterUpdateView(generics.UpdateAPIView):
                 size = m-len(content)+1
                 # -- if necessary, create dictionary and append it into array.
                 if(size>0):
-                    content.append({'id':0,'file':'', 'url':'','text':'','chapter_category':0, 'creater':0, 'content_no':0})
+                    content.append({'id':0,'file':'', 'url':'','text':'','chapter_category':0, 'creator':0, 'content_no':0})
                 if has=='file':
                     content[m]['file'] = request.data.get(key)
                     
@@ -571,8 +651,8 @@ class ChapterUpdateView(generics.UpdateAPIView):
                     content[m]['chapter_category'] = int(request.data.get(key))
                 elif has=='content_no':
                     content[m]['content_no'] = int(request.data.get(key))
-                elif has=='creater':
-                    content[m]['creater'] = int(request.data.get(key))
+                elif has=='creator':
+                    content[m]['creator'] = int(request.data.get(key))
                 elif has=='id':
                     content[m]['id'] = int(request.data.get(key))
                 else :
@@ -600,10 +680,10 @@ class ChapterUpdateView(generics.UpdateAPIView):
                         contentObj.delete()
                         try:
                             chapter_category = ChapterCategory.objects.get(id=itemContent['chapter_category'])
-                            creater = Teacher.objects.get(id=itemContent['creater'])
+                            creator = Teacher.objects.get(id=itemContent['creator'])
                             new_content = ChapterContent.objects.create(
                                 chapter_category=chapter_category,
-                                creater=creater,
+                                creator=creator,
                                 content_no=itemContent['content_no'],
                                 file=itemContent['file'],
                                 url=itemContent['url'],
@@ -616,7 +696,7 @@ class ChapterUpdateView(generics.UpdateAPIView):
                         except:
                             return JsonResponse({'bool':False, 'error':'Faied to update content'}, status=HTTPStatus.BAD_REQUEST)
                             # print('**failed to create content**', itemContent['chapter_category'],
-                            # itemContent['creater'],
+                            # itemContent['creator'],
                             # itemContent['content_no'],
                             # itemContent['file'],
                             # itemContent['url'],
@@ -627,10 +707,10 @@ class ChapterUpdateView(generics.UpdateAPIView):
                     #         contentObj.delete()
                     #         try:
                     #             chapter_category = ChapterCategory.objects.get(id=itemContent['chapter_category'])
-                    #             creater = Teacher.objects.get(id=itemContent['creater'])
+                    #             creator = Teacher.objects.get(id=itemContent['creator'])
                     #             new_content = ChapterContent.objects.create(
                     #                 chapter_category=chapter_category,
-                    #                 creater=creater,
+                    #                 creator=creator,
                     #                 content_no=itemContent['content_no'],
                     #                 file=itemContent['file'],
                     #                 url=itemContent['url'],
@@ -643,7 +723,7 @@ class ChapterUpdateView(generics.UpdateAPIView):
                     #         except:
                     #             return JsonResponse({'bool':False, 'error':'Faied to update content'}, status=HTTPStatus.BAD_REQUEST)
                     #             # print('**failed to create content**', itemContent['chapter_category'],
-                    #             # itemContent['creater'],
+                    #             # itemContent['creator'],
                     #             # itemContent['content_no'],
                     #             # itemContent['file'],
                     #             # itemContent['url'],
@@ -653,7 +733,7 @@ class ChapterUpdateView(generics.UpdateAPIView):
                     # else:
                     #     contentObj.update(chapter_category = itemContent['chapter_category'])
                     #     contentObj.update(content_no = itemContent['content_no'])
-                    #     contentObj.update(creater = itemContent['creater'])
+                    #     contentObj.update(creator = itemContent['creator'])
                     #     contentObj.update(url = itemContent['url'])
                     #     contentObj.update(text = itemContent['text'])  
                 except:
@@ -774,12 +854,31 @@ class JavaScriptCodeByStudentView(generics.ListAPIView):
     serializer_class = JavaScriptCodeSerializer
     # queryset = Course.objects.all().order_by('-id')
     def get_queryset(self):
-        student_id = self.kwargs['student_id']
+        # student_id = self.kwargs['student_id']
+        user_role = self.kwargs['user_role']
+        user_id = self.kwargs['user_id']
+        print('user_role', user_role,'user_id',user_id )
+        if(user_role==1):
+            # htmlCode = HtmlCode.objects.filter(student=user_id).order_by('title')
+            student = Student.objects.get(id=user_id)
+            print('student: ', student)
+            try:
+                jsCode = JavaScriptCode.objects.filter(student=student).order_by('title')
+                return jsCode
+            except:
+                return 
+
+        elif(user_role==2):
+            teacher = Teacher.objects.get(id=user_id)
+            # htmlCode = HtmlCode.objects.filter(teacher=user_id).order_by('title')
+            jsCode = JavaScriptCode.objects.filter(teacher=teacher).order_by('title')
+            return jsCode
+
         # print('course_id: ', course_id)
         # course = Course.objects.get(id=course_id)
         # chapter = Chapter.objects.filter(course=course)
-        jsCode = JavaScriptCode.objects.filter(student=student_id).order_by('title')
-        return jsCode
+        # jsCode = JavaScriptCode.objects.filter(student=student_id).order_by('title')
+        # return jsCode
 
 class JavaScriptCodeCreate(generics.ListCreateAPIView):
     serializer_class = JavaScriptCodeSerializer
@@ -788,25 +887,57 @@ class JavaScriptCodeCreate(generics.ListCreateAPIView):
         print('request:', request.data['title'],    request.data['student'])
         title = request.data['title']
         student_id = request.data['student']
+        teacher_id = request.data['teacher']
         js_code = request.data['js_code']
 
-        if(student_id and title and js_code):
+        # if(student_id and title and js_code):
+        #     try:
+        #         student = Student.objects.get(id=student_id)
+        #         JSCodeObject = JavaScriptCode.objects.create(
+        #             title=title,
+        #             student=student,
+        #             js_code=js_code
+        #             )
+        #         JavaScriptCodeSerializer(JSCodeObject)
+        #         serializer  = JavaScriptCodeSerializer(JSCodeObject, many=False)#, context={'user_id': user_id})
+        #             # print('chapter: ', serializer_c,(serializer.data))
+        #         return JsonResponse(serializer.data, safe=False)
+        #         # return JsonResponse({'bool':True, 'error':'one of input missing'}, status=HTTPStatus.CREATED)
+        #     except:
+        #         return JsonResponse({'bool':False, 'error':'bad request'}, status=HTTPStatus.BAD_REQUEST)
+        # else:
+        #     return JsonResponse({'bool':False, 'error':'one of input missing'}, status=HTTPStatus.BAD_REQUEST)
+        if(title and js_code):
             try:
-                student = Student.objects.get(id=student_id)
-                JSCodeObject = JavaScriptCode.objects.create(
+                if(student_id):
+                    student = Student.objects.get(id=student_id)
+                    JSCodeObject = JavaScriptCode.objects.create(
                     title=title,
                     student=student,
                     js_code=js_code
                     )
-                JavaScriptCodeSerializer(JSCodeObject)
-                serializer  = JavaScriptCodeSerializer(JSCodeObject, many=False)#, context={'user_id': user_id})
+                    JavaScriptCodeSerializer(JSCodeObject)
+                    serializer  = JavaScriptCodeSerializer(JSCodeObject, many=False)#, context={'user_id': user_id})
                     # print('chapter: ', serializer_c,(serializer.data))
-                return JsonResponse(serializer.data, safe=False)
+                    return JsonResponse(serializer.data, safe=False)
+                if(teacher_id):
+                    teacher = Teacher.objects.get(id=teacher_id)
+                    JSCodeObject = JavaScriptCode.objects.create(
+                    title=title,
+                    teacher=teacher,
+                    js_code=js_code
+                    )
+                    JavaScriptCodeSerializer(JSCodeObject)
+                    serializer  = JavaScriptCodeSerializer(JSCodeObject, many=False)#, context={'user_id': user_id})
+                        # print('chapter: ', serializer_c,(serializer.data))
+                    return JsonResponse(serializer.data, safe=False)
+                
                 # return JsonResponse({'bool':True, 'error':'one of input missing'}, status=HTTPStatus.CREATED)
             except:
                 return JsonResponse({'bool':False, 'error':'bad request'}, status=HTTPStatus.BAD_REQUEST)
         else:
             return JsonResponse({'bool':False, 'error':'one of input missing'}, status=HTTPStatus.BAD_REQUEST)
+
 
 class JavaScriptCodeDelete(generics.DestroyAPIView):
     serializer_class = JavaScriptCodeSerializer
@@ -890,13 +1021,13 @@ def StudentLogin(request):
     # print('student login request: ', request.body, request.method)
     if request.method=='POST':
         try:
-            print('request.body): ',request.body, request.body.decode('utf-8'))
+            # print('request.body): ',request.body, request.body.decode('utf-8'))
             # print('request.body.decode): ', request.body.decode('utf-8'))
             data = json.loads(request.body.decode('utf-8'))#Json object to python object
         except:
             return JsonResponse({'bool':False, 'error':'No input'}, status=HTTPStatus.BAD_REQUEST)
         # data = request.body.decode('utf-8')#Json object to python object
-        # print('student email: ', data['email'])
+        print('student email: ', data['email'])
         email = data['email']
         password = data['password']
         if(email and password):
@@ -905,9 +1036,11 @@ def StudentLogin(request):
             try:
                 # -- Get Student RoleType: 0. --
                 role = UserRole.objects.get(role_type=0)
-                user=UserAccount.objects.get(email=email, password=password, role=role)
+                user_email_role = email.replace('@','__0@')# email__roleType
+                user=UserAccount.objects.get(email=user_email_role, password=password, role=role)
                 user.last_login=timezone.now()
                 user.save()
+                print('user: ', user, user_email_role)
                 # # -- check if user is a student. --
                 # isStudent = False
                 # for i in user.role.all():
@@ -926,7 +1059,8 @@ def StudentLogin(request):
                 print('final student login----')
                 pass
             if student:
-                return JsonResponse({'bool':True,'id':student.id,'email': user.email, 'first_name':user.first_name, 'last_name':user.last_name, 'role':'student'})
+                print(user.email.replace('__0@','@'))
+                return JsonResponse({'bool':True,'id':student.id,'email': user.email.replace('__0@','@'), 'first_name':user.first_name, 'last_name':user.last_name, 'role':'student'})
                 # serializer = StudentSerializer(student)
                 # print('---output----' , student, json.dumps(serializer.data))
                 # return JsonResponse(serializer.data)
@@ -957,7 +1091,8 @@ def StudentSignUp(request):
                 return JsonResponse({'bool':False, 'error': 'Student Role does not exist!'})
 
             # --- Check if UserAccount Object exists or not. ---
-            user = UserAccount.objects.filter(email=email, 
+            user_email_role = email.replace('@','__0@')# email__roleType
+            user = UserAccount.objects.filter(email=user_email_role, 
                     role=role, 
                     ).exists()
             if(user):
@@ -974,7 +1109,7 @@ def StudentSignUp(request):
 
             # --- Create new UserAccount object. ---
             try:
-                newUser = UserAccount.objects.create(email=email, 
+                newUser = UserAccount.objects.create(email=user_email_role, 
                     password=password, 
                     first_name=firstName,
                     last_name=lastName,
@@ -1032,6 +1167,7 @@ class StudentCourseEnrollmentLists(generics.ListCreateAPIView):
     #     return super().get_queryset()
 @csrf_exempt
 def manage_student_enroll_course(request, student_id, cat_id):
+    print('student_id',student_id, 'cat_id',cat_id)
     try:
         student = Student.objects.get(id = student_id)
         allCourse = Course.objects.filter(category_id = cat_id)
@@ -1177,3 +1313,16 @@ def fetch_rating_status(request, student_id, course_id):
     if(count>0):
         return JsonResponse({'bool':'true'})
     return JsonResponse({'bool':'false'})
+def copyJavascript():
+    queries  = JavaScriptCode.objects.all()
+    teacher = Teacher.objects.get(id=1)
+
+    for obj in queries:
+        # print( obj.title, obj.js_code)
+        javascript = JavaScriptCode()
+        javascript.title = obj.title
+        javascript.teacher = teacher
+        javascript.js_code = obj.js_code
+        javascript.save()
+    print('copy done')
+

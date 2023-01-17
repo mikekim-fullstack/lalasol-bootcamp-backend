@@ -264,7 +264,7 @@ def hash_upload_image(self,filename):
 #  ---------- ChapterContent ----------------
 class ChapterContent(models.Model):
     chapter_category=models.ForeignKey(ChapterCategory, on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
-    creater = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
+    creator = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
     # chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
     title = models.CharField(max_length=300, null=True, blank=True)
     file=models.FileField(upload_to=hash_upload, null=True, blank=True)
@@ -279,9 +279,9 @@ class ChapterContent(models.Model):
         verbose_name_plural = '6.1 ChapterContent'
     def __str__(self):
         if self.title:
-            return str(self.id) +':'+self.title+'-'+self.chapter_category.title+'-'+self.creater.user.get_full_name()+'-'+str(self.content_no)
+            return str(self.id) +':'+self.title+'-'+self.chapter_category.title+'-'+self.creator.user.get_full_name()+'-'+str(self.content_no)
         else :
-            return str(self.id) +':'+self.chapter_category.title+'-'+self.creater.user.get_full_name()+'-'+str(self.content_no)
+            return str(self.id) +':'+self.chapter_category.title+'-'+self.creator.user.get_full_name()+'-'+str(self.content_no)
     def delete(self, using=None, keep_parents=False):
         print('---file deleted: ',self.image.name)
         if(self.file.name):
@@ -290,6 +290,23 @@ class ChapterContent(models.Model):
         if(self.image.name):
             self.file.storage.delete(self.image.name)
         super().delete()
+# ---------------------------------------------
+# 
+class ChapterContentComment(models.Model):
+    chapter_content=models.ForeignKey(ChapterContent, on_delete=models.CASCADE, related_name='content_comments', related_query_name='content_comment')
+    user = models.ForeignKey(UserAccount,on_delete=models.CASCADE, related_name='content_comments', related_query_name='content_comment')
+    # teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='content_comments', related_query_name='content_comment')
+
+    comment=models.TextField(null=True, blank=True)
+    
+    # content_no=models.PositiveSmallIntegerField(null=True, default=1)
+    created_date = models.DateTimeField(auto_now_add=True, null=True)
+    updated_date = models.DateTimeField(auto_now=True, null=True)
+    class Meta:
+        verbose_name_plural = '6.2 ChapterContentComment'
+    def __str__(self):
+       return str(self.id) +':'+self.user.get_full_name()+'-'+str(self.chapter_content.id)
+# --------------------------------------
 class Chapter(models.Model):
     content=models.ManyToManyField(ChapterContent, related_name='chapters',related_query_name='chapter')
     course=models.ForeignKey(Course, on_delete=models.CASCADE, related_name='chapters',related_query_name='chapter', null=True)
@@ -368,6 +385,7 @@ class StudentChapterContentViewed(models.Model):
 
 class JavaScriptCode(models.Model):
     student = models.ForeignKey(Student,on_delete=models.CASCADE, related_name='java_script_codes', related_query_name='java_script_code', null=True)
+    teacher = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='teacher_java_script_codes', related_query_name='teacher_java_script_code', null=True)
     title = models.CharField(max_length=100)
     js_code = models.TextField()
     class Meta:
