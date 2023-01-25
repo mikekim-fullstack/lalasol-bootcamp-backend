@@ -76,6 +76,7 @@ CSRF_TRUSTED_ORIGINS=[
     "https://lalasol-bootcamp-backend-production.up.railway.app",
     "https://github.com",
     "https://youtube.com",
+    "https://images.pexels.com",
 ]
 CORS_ALLOWED_ORIGINS = [
     "https://lalasol-bootcamp.web.app",
@@ -87,6 +88,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://lalasol-bootcamp-backend-production.up.railway.app",
     "https://github.com",
     "https://youtube.com",
+    "https://images.pexels.com",
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 
