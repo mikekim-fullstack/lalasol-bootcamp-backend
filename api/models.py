@@ -232,6 +232,12 @@ def hash_upload(instance, filename):
         fname, ext = os.path.splitext(filename)
         # print('---- upload file: ',"chapter_files/{0}_{1}{2}".format(fname, hash(contents), ext))
         return "chapter_files/{0}_{1}{2}".format(fname, hash(contents), ext) # assemble the filename
+def hash_upload_content_file(instance, filename):
+        instance.file.open() # make sure we're at the beginning of the file
+        contents = instance.file.read() # get the contents
+        fname, ext = os.path.splitext(filename)
+        # print('---- upload file: ',"chapter_files/{0}_{1}{2}".format(fname, hash(contents), ext))
+        return "content_files/{0}_{1}{2}".format(fname, hash(contents), ext) # assemble the filename
 # TRIGGER FUNCTION
 def hash_upload_image(self,filename):
     # def _return_function(instance, filename):
@@ -243,6 +249,17 @@ def hash_upload_image(self,filename):
     # print('---- upload image file:',extension, self.created_date, filename )
     filename = 'content_imgs_{0}_{1}{2}'.format(fname,uuid.uuid4().hex, extension)
     return os.path.join('image_files/', filename)
+
+def hash_upload_content_image(self,filename):
+    # def _return_function(instance, filename):
+    #     fname, extension = os.path.splitext(filename)
+    #     print('---- upload image file:',extension,instance, filename )
+    #     filename = '{0}_{1}{2}'.format(fname,uuid.uuid4().hex, extension)
+    #     return os.path.join('image_files/', filename)
+    fname, extension = os.path.splitext(filename)
+    # print('---- upload image file:',extension, self.created_date, filename )
+    filename = 'content_imgs_{0}_{1}{2}'.format(fname,uuid.uuid4().hex, extension)
+    return os.path.join('content_imgs/', filename)
 
     
     return _return_function
@@ -267,8 +284,8 @@ class ChapterContent(models.Model):
     creator = models.ForeignKey(Teacher,on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
     # chapter = models.ForeignKey(Chapter, on_delete=models.CASCADE, related_name='chapterContents', related_query_name='chapterContent')
     title = models.CharField(max_length=300, null=True, blank=True)
-    file=models.FileField(upload_to=hash_upload, null=True, blank=True)
-    image=models.ImageField(upload_to=hash_upload_image, null=True, blank=True)
+    file=models.FileField(upload_to=hash_upload_content_file, null=True, blank=True)
+    image=models.ImageField(upload_to=hash_upload_content_image, null=True, blank=True)
     url=models.URLField(max_length=200, null=True, blank=True)
     text=models.TextField(null=True, blank=True)
     
@@ -290,6 +307,14 @@ class ChapterContent(models.Model):
         if(self.image.name):
             self.file.storage.delete(self.image.name)
         super().delete()
+    # def patch(self, using=None, keep_parents=False):
+    #     print('---file deleted: ',self.image.name)
+    #     if(self.file.name):
+    #         # print('---file deleted: ', self.file.name, '\n\n')
+    #         self.file.storage.delete(self.file.name)
+    #     if(self.image.name):
+    #         self.file.storage.delete(self.image.name)
+    #     super().patch()
 # ---------------------------------------------
 # 
 class ChapterContentComment(models.Model):

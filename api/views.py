@@ -363,11 +363,28 @@ class ChapterContentListsView(generics.ListCreateAPIView):
     serializer_class = ChapterContentSerializer 
     queryset = ChapterContent.objects.all()
 
-class ChapterContentDetailView(generics.RetrieveUpdateDestroyAPIView):
+class ChapterContentDetailView(generics.RetrieveUpdateAPIView):
     serializer_class = ChapterContentSerializer
     queryset = ChapterContent.objects.all()
-    # permission_classes=[permissions.IsAuthenticated]
+    def patch(self, request, *args, **kwargs):
+        content_id = self.kwargs.get('pk')
+        contentObj = ChapterContent.objects.get(id=content_id)
+        # print('patch-id',content_id,request, request.data, ', obj:', contentObj, contentObj.file, contentObj.image)
+        
+        # ++ Remove previous file before update ++
+        if(contentObj.file.name): contentObj.file.storage.delete(contentObj.file.name)
+        if(contentObj.image.name): contentObj.file.storage.delete(contentObj.image.name)
+        #------------------------------------
 
+        # ++ Pass request data to serializer +++
+        serializer = ChapterContentSerializer(contentObj, data=request.data, partial=True) # set partial=True to update a data partially
+        if serializer.is_valid():
+            serializer.save()
+            # print('serializer.data: ',serializer.data)
+            return JsonResponse({'bool':True, 'data':serializer.data}, status=HTTPStatus.OK)
+        return JsonResponse({'bool':False, 'error':serializer.data}, status=HTTPStatus.BAD_REQUEST)
+        
+# permission_classes=[permissions.IsAuthenticated]
 class ChapterListsByCourseView(generics.ListCreateAPIView):
     serializer_class = ChapterSerializer
     # queryset = Chapter.objects.all()
@@ -507,6 +524,7 @@ class ChapterListsView(generics.ListCreateAPIView):
 class ChapterDeleteContentView(generics.DestroyAPIView):
     serializer_class = ChapterSerializer
     queryset = Chapter.objects.all()
+    
     def delete(self, request, *args, **kwargs):
         chapter_id = request.data.get('chapter_id')
         content_id = request.data.get('content_id')
@@ -515,7 +533,9 @@ class ChapterDeleteContentView(generics.DestroyAPIView):
             try:
                 chapter = Chapter.objects.get(id=chapter_id)
                 content = ChapterContent.objects.get(id=content_id)
+                print('content: ', content)
                 if(content): chapter.content.remove(content)
+                if(content): content.delete()
                 # -- Remove Content sequence into chapter.content_list_sequence .--
                 if (chapter.content_list_sequence and content):
                     
@@ -524,10 +544,11 @@ class ChapterDeleteContentView(generics.DestroyAPIView):
                     for key in seq:
                         if int(key)!=int(content_id): new_seq[key]=seq[key]
                    
-                    print('---- seq: ', chapter.content_list_sequence, type(seq),', content.id: ', content.id,', new_seq:',new_seq)
+                    # print('---- seq: ', chapter.content_list_sequence, type(seq),', content.id: ', content.id,', new_seq:',new_seq)
                     if(len(new_seq)==0):  chapter.content_list_sequence=None
                     else: chapter.content_list_sequence = new_seq
                 # -- Remove content object. --
+                # ChapterContent.objects.filter(id=content_id).delete()
                 ChapterContent.objects.filter(id=content_id).delete()
                 # print('chapter.content_list_sequence: ',chapter.content_list_sequence)
                 chapter.save()

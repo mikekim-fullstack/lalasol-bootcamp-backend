@@ -52,7 +52,6 @@ ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',') #['lalasol.herokuapp.com', '127.
 print('ALLOWED_HOSTS:',ALLOWED_HOSTS)
 print('CORS_ALLOWED_ORIGINS:',env('CORS_ALLOWED_ORIGINS').split(','))
 
-
 def addHttp (a):
     if 'localhost' in a:
         return 'http://'+a
@@ -76,7 +75,7 @@ CSRF_TRUSTED_ORIGINS=[
     "https://lalasol-bootcamp-backend-production.up.railway.app",
     "https://github.com",
     "https://youtube.com",
-    "https://images.pexels.com",
+   
 ]
 CORS_ALLOWED_ORIGINS = [
     "https://lalasol-bootcamp.web.app",
@@ -88,7 +87,7 @@ CORS_ALLOWED_ORIGINS = [
     "https://lalasol-bootcamp-backend-production.up.railway.app",
     "https://github.com",
     "https://youtube.com",
-    "https://images.pexels.com",
+   
 ]
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -116,8 +115,8 @@ CSP_DEFAULT_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1
 CSP_STYLE_SRC = ("'self'","'unsafe-eval'", "'unsafe-inline'", 'fonts.googleapis.com', "https://lalasol-bootcamp.web.app","http://127.0.0.1:3000")
 CSP_SCRIPT_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co")
 CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
-CSP_IMG_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co")
-CSP_FRAME_SRC=("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co")
+CSP_IMG_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co",'https://images.pexels.com','https://youtube.com')
+CSP_FRAME_SRC=("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co",'https://youtube.com')
 # Access-Control-Allow-Origin= "https://lalasol-bootcamp.web.app"
 
 # Application definition

@@ -89,6 +89,14 @@ class ChapterContentSerializer(serializers.ModelSerializer):
     class Meta:
         model=ChapterContent
         fields=['id', 'chapter_category','title','creator','file', 'image','url','text','content_no','created_date']
+    # def update(self, instance, validated_data):
+    #     instance = self.instance or self.Meta.model(**validated_data)
+    #     instance.file = validated_data['file']
+    #     instance.image = validated_data['image']
+    #     print('Content Update----',instance.file,', ' ,instance.image )
+    #     instance.save()
+    #     instance.config.save()
+    #     return instance
 
 class ChapterContentCommentSerializer(serializers.ModelSerializer):
     class Meta:
