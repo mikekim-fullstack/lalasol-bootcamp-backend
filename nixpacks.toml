@@ -5,11 +5,11 @@
 [phases.setup]
   nixPkgs = ["...", "ffmpeg"] # Install the ffmpeg package from Nix
   aptPkgs = ["...", "wget"]   # Install the wget package with apt-get
-[phase.name]
 
+[phase.name]
+  cmds = ['python -m venv /opt/venv', 'source /opt/venv/bin/activate', pip install -r requirements.txt]
 [phases.install]
- cmd = 'python -m venv /opt/venv && .opt/venv/bin/activate && pip install -r requirements.txt'
-  aptPkgs = ['...',]
+   aptPkgs = ['...',]
 
     
  
