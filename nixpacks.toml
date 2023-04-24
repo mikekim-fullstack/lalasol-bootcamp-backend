@@ -3,14 +3,14 @@
   #runImage = 'python:3.10.6-slim'
 
 [phases.setup]
-  nixPkgs = ["...", "ffmpeg"] # Install the ffmpeg package from Nix
-  aptPkgs = ["...", "wget"]   # Install the wget package with apt-get
+  #nixPkgs = ["...", "ffmpeg"] # Install the ffmpeg package from Nix
+  #aptPkgs = ["...", "wget"]   # Install the wget package with apt-get
 
 [phase.name]
-  cmds = ['python -m venv /opt/venv', 'source /opt/venv/bin/activate', 'pip install -r requirements.txt']
+  # cmds = ['python -m venv /opt/venv', 'source /opt/venv/bin/activate', 'pip install -r requirements.txt']
 [phases.install]
    aptPkgs = ['...',]
-   nixPkgs = ['...',]
+   #nixPkgs = ['...',]
 
     
  
