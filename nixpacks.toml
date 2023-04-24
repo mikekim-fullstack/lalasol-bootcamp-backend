@@ -1,16 +1,16 @@
 [start]
   
-  #runImage = 'python:3.10.6-slim'
+  runImage = 'python:3.10.2-slim'
 
 [phases.setup]
-  #nixPkgs = ["...", "ffmpeg"] # Install the ffmpeg package from Nix
-  #aptPkgs = ["...", "wget"]   # Install the wget package with apt-get
+  nixPkgs = ["...", "ffmpeg"] # Install the ffmpeg package from Nix
+  aptPkgs = ["...", "wget"]   # Install the wget package with apt-get
 
 [phase.name]
   # cmds = ['python -m venv /opt/venv', 'source /opt/venv/bin/activate', 'pip install -r requirements.txt']
 [phases.install]
    aptPkgs = ['...',]
-   #nixPkgs = ['...',]
+   nixPkgs = ['...',]
 
     # release:  python manage.py migrate —log-file -
 # python manage.py runserver 0.0.0.0:8000
