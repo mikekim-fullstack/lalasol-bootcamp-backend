@@ -10,5 +10,6 @@ import os
 download_media = 'curl https://lalasol-bootcamp-backend-production.up.railway.app/api/download/ --output media.zip'
 update_media = 'unzip -o media.zip -d media'
 backup_db ='pg_dump -h containers-us-west-25.railway.app  -d railway -U postgres -p 6144 -W -F t > lalasol-postgres-db.dump'
-railway_up = 'railway up'
-os.system(backup_db+'; ' +download_media + ' && ' +update_media + ' && ' + railway_up)
+# railway_up = 'railway up'
+# os.system(backup_db+'; ' +download_media + ' && ' +update_media + ' && ' + railway_up)
+os.system(backup_db+'; ' +download_media + ' && ' +update_media )
