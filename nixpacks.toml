@@ -1,5 +1,5 @@
 [start]
-  #runImage = 'python:3.10.6-slim'
+  runImage = 'python:3.10.6-slim'
 
 [phases.setup]
 # nixPkgs = ["...", "ffmpeg"] # Install the ffmpeg package from Nix
