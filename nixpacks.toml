@@ -1,6 +1,7 @@
 [start]
   
   runImage = 'python:3.10.2-slim'
+  cmds = ['python -m venv /opt/venv', 'source /opt/venv/bin/activate', 'pip install -r requirements.txt']
 
 [phases.setup]
   nixPkgs = ["...", "ffmpeg"] # Install the ffmpeg package from Nix
