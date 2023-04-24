@@ -10,6 +10,7 @@
   cmds = ['python -m venv /opt/venv', 'source /opt/venv/bin/activate', 'pip install -r requirements.txt']
 [phases.install]
    aptPkgs = ['...',]
+   nixPkgs = ['...',]
 
     
  
