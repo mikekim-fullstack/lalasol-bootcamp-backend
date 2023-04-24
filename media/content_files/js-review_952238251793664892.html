@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        .reveal section img.noborder {
+            border-width: 0;
+            box-shadow: none;
+        }
+
+        .reveal section img {
+            max-height: 400px;
+            max-width: 80%;
+        }
+
+        div.halfblock {
+            float: left;
+            width: 39%;
+            text-align: left;
+            /* margin-right: 5%; */
+            margin-left: 60px;
+        }
+
+        div.left-align {
+            text-align: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .reveal h1 {
+            font-size: 2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+
+        /*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+        .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        /*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+        .visuallyhidden.focusable:active,
+        .visuallyhidden.focusable:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+        section.present {
+            transform: scale(1.1);
+            padding: 0 !important;
+        }
+
+        h1 {
+            color: #0d99a5 !important;
+        }
+
+        .present>p {
+            padding: 0 30px;
+        }
+
+
+        .reveal pre code {
+            padding: 5px;
+            overflow: auto;
+            max-height: 400px;
+            word-wrap: normal;
+        }
+
+        .reveal code {
+            font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+            background: #333;
+            color: #fff;
+            padding: 2px 5px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .reveal li {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reveal table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media screen and (min-width:400px) {
+            .reveal li {
+                margin-left: 100px;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h2>CONTROL FLOW</h2>
+            </section>
+
+            <section>
+                <h2>What we will cover today ?</h2>
+                <h5 style="color: green; margin: 1rem 0">" Most used ones "</h5>
+                <ul class="fragment">
+                    <li>Loops (for, while), switchcase</li>
+                    <li>Functions</li>
+                    <li>Scope</li>
+                    <li>Hoisting</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Repl</h3>
+                <p>Before going further create a new Repl</p>
+                <p>Where we will be practicing these methods</p>
+            </section>
+
+            <section>
+                <h1>Loops</h1>
+                <ul>
+                    <li><code>for</code> - loops through a block of code a number of times</li>
+                    <li><code>for/in</code> - loops through the properties of an object</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>The For Loop</h3>
+                <pre><code>
+for (statement 1; statement 2; statement 3) {
+// code block to be executed
+}
+
+</code></pre>
+                <ul>
+                    <li><code>Statement 1</code> is executed (one time) before the execution of the code block.</li>
+                    <li><code>Statement 2</code> defines the condition for executing the code block.</li>
+                    <li>
+                        <code>Statement 3</code> is executed (every time) after the code block has been executed.
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>The For Loop</h3>
+                <img src="../images/js-review-forloop.png" alt="js numbers" />
+            </section>
+
+            <section>
+                <h3>The For Loop Example</h3>
+                <pre><code>
+for (i = 0; i < 5; i++) {
+console.log(i)
+}
+
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Looping in Reverse</h3>
+                <pre><code>
+for (i = 10; i >= 0; i--) {
+console.log(i)
+}
+
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Nested Loops</h3>
+                <p>When we have a loop running inside another loop, we call that a nested loop.</p>
+                <pre><code>
+var arr1 = [1,2,3];
+var arr2 = [4,5,6];
+for (var i = 0; i < arr1.length; i++) {
+for (var j = 0; j < arr2.length; j++) {
+console.log( arr[i] + arr[i] )
+}
+};
+
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Break</h3>
+                <p>Terminates the loop immediately and passes control over the next statement after the loop</p>
+                <pre><code>
+for (var i = 1; i < 10; i++) {
+  if (i % 3 == 0) {
+      break;
+  }
+}
+console.log(i); // 3
+
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <p>Create functions for these:</p>
+                <ul>
+                    <li>Log all values of a given array. (using for)</li>
+                    <li>
+                        Create a random number between 0 and 10 for each loop, keep adding to previous values until
+                        it's bigger than 100, then return the value
+                    </li>
+                    <li>Multiply all array values with themselves and return. [2,3,4] => [4,9,16]</li>
+                    <li>
+                        Given 2 arrays. Return a new array which combines values exist in both arrays. [1,2,3],
+                        [5,4,2] => [2]
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Switch Case</h3>
+                <p>The switch statement is a flow-control statement that is similar to the if else statement.</p>
+                <pre><code>
+switch (expression) {
+case value_1:
+    statement_1;
+    break;
+case value_2:
+    statement_2;
+    break;
+case value_3:
+    statement_3;
+    break;
+default:
+    default_statement;
+}
+
+</code></pre>
+            </section>
+
+            <section>
+                <h3>The Switch Case</h3>
+                <img src="../images/js-review-switchcase.png" alt="js numbers" />
+            </section>
+
+            <section>
+                <h3>Switch Case</h3>
+                <p>The switch statement is a flow-control statement that is similar to the if else statement.</p>
+                <pre><code>
+var day = 3;
+var dayName;
+switch (day) {
+  case 1:
+      dayName = 'Sunday';
+      break;
+  case 2:
+      dayName = 'Monday';
+      break;
+  case 3:
+      dayName = 'Tuesday';
+      break;
+  case 4:
+      dayName = 'Wednesday';
+      break;
+  case 5:
+      dayName = 'Thursday';
+      break;
+  case 6:
+      dayName = 'Friday';
+      break;
+  case 7:
+      dayName = 'Saturday';
+      break;
+  default:
+      dayName = 'Invalid day';
+}
+console.log(dayName); // Tuesday
+</code></pre>
+            </section>
+
+            <section>
+                <h1>Scope</h1>
+                <ul>
+                    <li>A scope in JavaScript defines what variables you have access to.</li>
+                    <li>There are two kinds of scope – global scope and local scope</li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>Global scope</h1>
+                <p>
+                    If a variable is declared outside all functions, it is said to be defined in the
+                    <code>global scope</code>.
+                </p>
+            </section>
+
+            <section>
+                <h1>Local scope</h1>
+                <p>
+                    Variables that are usable only in a specific part of your code are considered to be in a local
+                    scope. These variables are also called local variables.
+                </p>
+            </section>
+
+            <section>
+                <h3>Scope</h3>
+                <pre><code>
+var name = 'Seytech'
+
+function sayHello () {
+var loc = 'Seattle';
+console.log(hello, loc) // Seytech Seattle
+}
+
+console.log(name) // 'Seytech'
+sayHello();
+console.log(loc) // loc is not defined
+
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Scope</h3>
+                <pre><code>
+var message = 'Hi';
+
+function say() {
+  var message = 'Hello';
+  console.log('message');
+}
+
+say();
+console.log(message);
+
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Scope</h3>
+                <pre><code>
+var message = 'Hi';
+
+function say() {
+  data = 'Seytech';
+}
+
+say();
+console.log(data) // ?
+
+</code></pre>
+            </section>
+
+            <section>
+                <h4>Functions do not have access to each other's scopes</h4>
+                <pre><code>
+function first () {
+const firstFunctionVariable = `I'm part of first`
+}
+
+function second () {
+first()
+console.log(firstFunctionVariable) // Error, firstFunctionVariable is not defined
+}
+
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Scope</h3>
+                <pre><code>
+var y = 20;
+
+function bar() {
+  var y = 200;
+
+  function baz() {
+      console.log(y);
+  }
+
+  baz();
+}
+
+bar(); // ?
+
+</code></pre>
+            </section>
+
+            <section>
+                <h4>Functions do not have access to each other's scopes</h4>
+                <pre><code>
+function outerFunction () {
+var outer = `I'm the outer function!`
+
+function innerFunction() {
+  var inner = `I'm the inner function!`
+  innerWithoutVar = `I'm the inner without var!`
+  console.log(outer) // I'm the outer function!
+}
+innerFunction()
+
+console.log(innerWithoutVar) // ?
+console.log(inner) // ?
+}
+outerFunction()
+
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Function</h3>
+            </section>
+
+            <section>
+                <h3>Function Arguments</h3>
+                <pre><code>
+console.log(add(1, 2)); // 3
+console.log(add(1, 2, 3, 4, 5)); // 15
+
+      </code></pre>
+            </section>
+
+            <section>
+                <h4>The arguments object behaves like an array though it is not an instance of Array.</h4>
+                <pre><code>
+function add() {
+var sum = 0;
+for (var i = 0; i < arguments.length; i++) {
+    sum += arguments[i];
+}
+return sum;
+}
+      </code></pre>
+            </section>
+
+            <section>
+                <h4>Passing by a value.</h4>
+                <pre><code>
+function add(a) {
+return 10 + a;
+}
+function addMe(fn){
+return fn(5)
+}
+addMe(add) // ?
+      </code></pre>
+            </section>
+
+            <section>
+                <h4>Passing by a value.</h4>
+                <pre><code>
+function callMe() {
+//
+}
+document.querySelector('#name').addEventLsitener('click',callMe)
+
+      </code></pre>
+            </section>
+
+            <section>
+                <h4>Passing by a value.</h4>
+                <pre><code>
+function turnOn(machine) {
+machine.isOn = true;
+}
+
+var computer = {
+isOn: false
+};
+
+turnOn(computer);
+
+console.log(computer.isOn); // ?;
+
+      </code></pre>
+            </section>
+
+            <section>
+                <h3>IIFE</h3>
+                <p>JavaScript Immediately Invoked Function Expression</p>
+                <pre><code>
+(function(){
+//...
+})()
+        </code></pre>
+            </section>
+
+            <section>
+                <h3>Why IIFEs?</h3>
+                <pre><code>
+function add(a,b) {
+return a + b;
+}
+var counter = 10;
+
+console.log(window.add); // ?
+console.log(window.counter); // ?
+        </code></pre>
+            </section>
+
+            <section>
+                <h3>We don't want to add to the global object!</h3>
+                <pre><code>
+function add(a,b) {
+return a + b;
+}
+
+(function(a,b){
+    return a + b;
+})(10,20);
+        </code></pre>
+            </section>
+
+            <section>
+                <h3>Hoisting</h3>
+                <ul>
+                    <li>
+                        In the compilation phase, the JavaScript engine moves all the function declarations (and
+                        also variable declarations) to the top of its current context. We say those function
+                        declarations are hoisted.
+                    </li>
+                    <li>In the execution phase, the JavaScript engine just executes the code.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>JavaScript function hoisting</h3>
+                <pre><code>
+showMe(); // an hoisting example
+
+function showMe(){
+console.log('an hoisting example');
+}
+      </code></pre>
+            </section>
+
+            <section>
+                <h3>JavaScript variable hoisting</h3>
+                <pre><code>
+console.log( x ); // ?
+
+var x = 10
+      </code></pre>
+            </section>
+
+            <section>
+                <h3>JavaScript function expression hoisting</h3>
+                <pre><code>
+console.log( callMe ); // ?
+
+var callMe = function(){
+console.log('yoooo')
+}
+      </code></pre>
+            </section>
+
+            <!-- Final slides-->
+            <section>
+                <h3>You did it!</h3>
+                <p>Please practice these methods for tomorrows project!</p>
+            </section>
+
+            <section>
+                <h3>Resources</h3>
+                <ul>
+                    <li><a href="https://developer.mozilla.org/en-US/" target="_blank">MDN </a></li>
+                    <li><a href="http://www.daks.me/index.php" target="_blank">Tutorials </a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+    <!-- Closes Reveal -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize(
+            {
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                // Optional reveal.js plugins
+                dependencies: [
+                    // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                    // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                    // { src: 'dist/js/zoom.js', async: true },
+                    // { src: 'dist/js/notes.js', async: true },
+                    // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                ]
+            }
+        );
+    </script>
+</body>
+
+</html>

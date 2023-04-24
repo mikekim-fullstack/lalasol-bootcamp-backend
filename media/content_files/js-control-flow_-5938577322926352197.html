@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        .reveal section img.noborder {
+            border-width: 0;
+            box-shadow: none;
+        }
+
+        .reveal section img {
+            max-height: 400px;
+            max-width: 80%;
+        }
+
+        div.halfblock {
+            float: left;
+            width: 39%;
+            text-align: left;
+            /* margin-right: 5%; */
+            margin-left: 60px;
+        }
+
+        div.left-align {
+            text-align: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .reveal h1 {
+            font-size: 2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+
+        /*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+        .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        /*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+        .visuallyhidden.focusable:active,
+        .visuallyhidden.focusable:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+        section.present {
+            transform: scale(1.1);
+            padding: 0 !important;
+        }
+
+        h1 {
+            color: #0d99a5 !important;
+        }
+
+        .present>p {
+            padding: 0 30px;
+        }
+
+
+        .reveal pre code {
+            padding: 5px;
+            overflow: auto;
+            max-height: 400px;
+            word-wrap: normal;
+        }
+
+        .reveal code {
+            font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+            background: #333;
+            color: #fff;
+            padding: 2px 5px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .reveal li {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reveal table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media screen and (min-width:400px) {
+            .reveal li {
+                margin-left: 100px;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Control Flow</h1>
+            </section>
+
+
+            <!-- Boolean -->
+            <section>
+                <h3>Boolean Variables</h3>
+                <img src="../images/js-controlflow-kitten-switch.jpg" alt="Kitten with light switch" />
+                <p class="credit">Photo credit: <a href="http://www.flickr.com/photos/elycefeliz/5726163170/"
+                        target="_blank">elycefeliz</a> <a href="http://creativecommons.org/licenses/by-nc/2.0/"
+                        target="_blank">cc</a></p>
+            </section>
+
+            <section>
+                <h3>Boolean Variables</h3>
+                <p>Boolean variables represent the logical values <code>true</code> and <code>false</code></p>
+                <pre><code class="javascript">
+  const catsAreBest = true;
+  const dogsRule = false;
+  </code></pre>
+            </section>
+            <section>
+                <h3>Boolean Variables</h3>
+                <p>
+                    There are 7 falsy values in JavaScript<br>
+                    This means that when JavaScript is expecting a boolean and it is given one of the values below, it
+                    will always evaluate to “falsy”.
+                </p>
+                <img src="../images/js-controlflow-falsy.png" alt="falsy values">
+                <p>Everything else evaluates as <code>true</code>.</p>
+            </section>
+
+            <!--If/Then-->
+            <section>
+                <h3>Control Flow</h3>
+                <img src="../images/js-controlflow-fork-path.jpg" alt="Forked path" />
+                <p class="credit">Photo credit: <a href="http://www.flickr.com/photos/dennism2/1504087870/"
+                        target="_blank">DennisM2</a> <a href="http://creativecommons.org/licenses/by-nc/2.0/"
+                        target="_blank">cc</a></p>
+            </section>
+
+            <section>
+                <h3>The if statement</h3>
+                <p>Use <code>if</code> statements to decide which lines of code to execute, based on a condition.</p>
+                <pre><code class="javascript">
+  if (condition) {
+    // statements to execute
+  }
+  </code></pre>
+                <pre><code class="javascript">
+    const age = 30;
+  
+    if (age &gt; 18) {
+      console.log('You are an adult');
+    }</code></pre>
+            </section>
+
+            <section>
+                <h3>Comparison Operators</h3>
+                <table class="smalltext">
+                    <thead>
+                        <tr>
+                            <th>Example</th>
+                            <th>Name</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size: 16px;">
+                        <tr>
+                            <td><code>a == b</code></td>
+                            <td>Equal</td>
+                            <td><strong><code>TRUE</code></strong> if <code>a</code> is equal to <code>b</code> (can be
+                                different types).</td>
+                        </tr>
+                        <tr>
+                            <td><code>a === b</code></td>
+                            <td>Identical</td>
+                            <td>
+                                <strong><code>TRUE</code></strong> if <code>a</code> is equal to <code>b</code>, and the
+                                same type.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>a != b</code></td>
+                            <td>Not equal</td>
+                            <td><strong><code>TRUE</code></strong> if <code>a</code> is not equal to <code>b</code> (can
+                                be different types).</td>
+                        </tr>
+                        <tr>
+                            <td><code>a !== b</code></td>
+                            <td>Not identical</td>
+                            <td><strong><code>TRUE</code></strong> if <code>a</code> is not equal to <code>b</code>, or
+                                they are not the same type.</td>
+                        </tr>
+                        <tr>
+                            <td><code>a &lt; b</code></td>
+                            <td>Less than</td>
+                            <td><strong><code>TRUE</code></strong> if <code>a</code> is strictly less than
+                                <code>b</code>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>a &gt; b</code></td>
+                            <td>Greater than</td>
+                            <td><strong><code>TRUE</code></strong> if <code>a</code> is strictly greater than
+                                <code>b</code>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>a &lt;= b</code></td>
+                            <td>Less than or equal to </td>
+                            <td><strong><code>TRUE</code></strong> if <code>a</code> is less than or equal to
+                                <code>b</code>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>a &gt;= b</code></td>
+                            <td>Greater than or equal to </td>
+                            <td><strong><code>TRUE</code></strong> if <code>a</code> is greater than or equal to
+                                <code>b</code>.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h3>Watch out!</h3>
+                <p>Don't mix up <code>=</code> and <code>==</code> and <code>===</code></p>
+                <img src="../images/js-controlflow-caution.jpg" alt="Caution Tape" />
+                <p class="credit">Photo credit: <a href="http://www.flickr.com/photos/pictureperfectpose/76138988/"
+                        target="_blank">Eugene Zemlyanskiy</a> <a href="http://creativecommons.org/licenses/by-nc/2.0/"
+                        target="_blank">cc</a></p>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <p>Make a variable called "temperature". Write some code that tells you to put on a coat if it is below
+                    50 degrees.</p>
+            </section>
+
+            <!--If/else -->
+            <section>
+                <h3>Even more control flow</h3>
+                <img src="../images/js-controlflow-toomanysigns.jpg" alt="Sign post with multiple signs" />
+                <p class="credit">Photo credit: <a href="http://www.flickr.com/photos/thomashawk/2402598275/"
+                        target="_blank">Thomas Hawk</a> <a href="http://creativecommons.org/licenses/by-nc/2.0/"
+                        target="_blank">cc</a></p>
+            </section>
+
+            <section>
+                <h3>The if/else statement</h3>
+                <p>Use <code>else</code> to provide an alternate set of instructions.</p>
+                <pre><code class="javascript">
+  const age = 30;
+  
+  if (age &gt;= 16) {
+    console.log('Yay, you can drive!');
+  } else {
+    console.log('Sorry, you have ' + (16 - age) + ' years until you can drive.');
+  }
+            </code></pre>
+            </section>
+
+            <section>
+                <h3>The if/else statement</h3>
+                <p>If you have multiple conditions, you can use <code>else if</code>.</p>
+                <pre><code class="javascript">
+  const age = 30;
+  
+  if (age &gt;= 35) {
+    console.log('You can vote AND run for President!');
+  } else if (age &gt;= 30) {
+    console.log('You can vote AND run for the Senate!');
+  } else if (age &gt;= 18) {
+    console.log('You can vote!');
+  } else {
+    console.log('You can\'t vote, but you can write your representatives.');
+  }
+            </code></pre>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <p>Modify your "wear a coat" code for these conditions:</p>
+                <ol>
+                    <li>If it's less than 50 degrees, wear a coat.</li>
+                    <li>If it's less than 30 degrees, wear a coat and a hat.</li>
+                    <li>If it's less than 0 degrees, stay inside.</li>
+                    <li>Otherwise, wear whatever you want.</li>
+                </ol>
+            </section>
+
+            <!-- Logical Operators -->
+            <section>
+                <h3>Logical Operators</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Example</th>
+                            <th>Name</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody style="font-size: 16px;">
+                        <tr>
+                            <td><code>a &amp;&amp; b</code></td>
+                            <td>And</td>
+                            <td><strong><code>TRUE</code></strong> if both <code>a</code> and <code>b</code> are
+                                <strong><code>TRUE</code></strong>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>a || b</code></td>
+                            <td>Or</td>
+                            <td><strong><code>TRUE</code></strong> if either <code>a</code> or <code>b</code> is
+                                <strong><code>TRUE</code></strong>.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><code>!a</code></td>
+                            <td>Not</td>
+                            <td><strong><code>TRUE</code></strong> if <code>a</code> is not
+                                <strong><code>TRUE</code></strong>.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h3>Using logical operators</h3>
+                <p>You can use these operators to combine conditions.</p>
+                <pre><code class="javascript">
+  const age = 30;
+  const yearsAsCitizen = 20;
+  
+  if (age &gt;=30 &amp;&amp; yearsAsCitizen &gt; 9) {
+    console.log('You can run for the Senate!');
+  } else {
+    console.log('You are not eligible to run for the Senate');
+  }</code></pre>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <p>Solve your first leetcode problem: <a target="_blank"
+                        href="https://leetcode.com/problems/fizz-buzz/">Fizzbuzz</a></p>
+            </section>
+
+            <!-- Final slides-->
+            <section>
+                <h3>You did it!</h3>
+                <img src="../images/js-controlflow-kitten-yay.jpg" alt="Happy cat" />
+                <p class="credit">Photo credit: <a href="http://www.flickr.com/photos/laura-kali/7399310732/"
+                        target="_blank">OnceAndFutureLaura</a> <a href="http://creativecommons.org/licenses/by-sa/2.0/"
+                        target="_blank">cc</a></p>
+            </section>
+
+            <section>
+                <h2>Questions?</h2>
+            </section>
+        </div>
+        <footer>
+            <div class="copyright">
+                Intro to JavaScript &mdash; LaLaSol &mdash;
+
+            </div>
+        </footer>
+    </div>
+    <!-- Closes Reveal -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize(
+            {
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                // Optional reveal.js plugins
+                dependencies: [
+                    // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                    // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                    // { src: 'dist/js/zoom.js', async: true },
+                    // { src: 'dist/js/notes.js', async: true },
+                    // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                ]
+            }
+        );
+    </script>
+</body>
+
+</html>

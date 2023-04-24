@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        .reveal section img.noborder {
+            border-width: 0;
+            box-shadow: none;
+        }
+
+        .reveal section img {
+            max-height: 400px;
+            max-width: 80%;
+        }
+
+        div.halfblock {
+            float: left;
+            width: 39%;
+            text-align: left;
+            /* margin-right: 5%; */
+            margin-left: 60px;
+        }
+
+        div.left-align {
+            text-align: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .reveal h1 {
+            font-size: 2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+
+        /*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+        .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        /*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+        .visuallyhidden.focusable:active,
+        .visuallyhidden.focusable:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+        section.present {
+            transform: scale(1.1);
+            padding: 0 !important;
+        }
+
+        h1 {
+            color: #0d99a5 !important;
+        }
+
+        .present>p {
+            padding: 0 30px;
+        }
+
+
+        .reveal pre code {
+            padding: 5px;
+            overflow: auto;
+            max-height: 400px;
+            word-wrap: normal;
+        }
+
+        .reveal code {
+            font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+            background: #333;
+            color: #fff;
+            padding: 2px 5px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .reveal li {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reveal table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media screen and (min-width:400px) {
+            .reveal li {
+                margin-left: 100px;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Introduction</h1>
+            </section>
+
+            <section>
+                <h3>What is React.js?</h3>
+                <ul>
+                    <li>Developed by Facebook</li>
+                    <li>Official <a href="https://reactjs.org/" target="_blank">website</a></li>
+                </ul>
+            </section>
+            <section>
+                <h3>Why was React developed?</h3>
+                <ul>
+                    <li>A lot of data on a page changing over time</li>
+                    <li>Complexity of Facebook's UI architecture</li>
+                </ul>
+            </section>
+            <section>
+                <h1>Why React?</h1>
+            </section>
+            <section>
+                <h3>Declarative</h3>
+                <ul>
+                    <li>Predictable code</li>
+                    <li>Easy to understand what a component will render</li>
+                </ul>
+            </section>
+            <!-- 	<section>
+                <h4>No complex two-way data flow</h4>
+                <ul>
+                    <li>Uses simple one-way reactive data flow</li>
+                    <li>Easier to understand than two-way binding</li>
+                    <li>Uses less code</li>
+                </ul>
+            </section> -->
+            <section>
+                <h3>React is fast!</h3>
+                <ul>
+                    <li>Real DOM is slow</li>
+                    <li>JavaScript is fast</li>
+                    <li>Using virtual DOM React is faster</li>
+                </ul>
+            </section>
+            <section>
+                <h3>React dev tools</h3>
+                <ul>
+                    <li>
+                        <a target="_blank" href="https://github.com/facebook/react-devtools">React Chrome extension</a>
+                        makes debugging so much easier
+                    </li>
+                    <li>This tool will help us track changes in our React application</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Trying Out React</h3>
+                <ul>
+                    <li>
+                        Locally Coding
+                        <a target="_blank" href="https://github.com/facebookincubator/create-react-app">Create React
+                            App</a>
+                        (recommended)
+                    </li>
+                    <li>
+                        Online code on
+                        <a target="_blank" href="https://codepen.io/marattig/pen/VwLOaVB?editors=1010">CodePen</a>
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>React & ReactDOM</h3>
+                <p>For simple start we've two libraries: React and ReactDOM</p>
+            </section>
+
+            <!-- <section>
+                <h3>Import React, React-Dom</h3>
+                <pre><code class ="js">
+<script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script>
+console.log(React);
+console.log(ReactDOM);
+</script>
+</code></pre>
+            </section> -->
+
+            <section>
+                <h3>React</h3>
+                <ul>
+                    <li>
+                        The React object is what's going to allow us to create objects that'll eventually become
+                        <code>DOM nodes</code>.
+                    </li>
+                    <li>React automatically re-renders UI as our <code>application state</code> changes</li>
+                </ul>
+            </section>
+            <!-- <section>
+                <h3>What is a state?</h3>
+            </section>
+            <section>
+                <h5>Ex: State of <code>Water</code></h5>
+                <h3>Ice -> Liquid -> Vapour</h3>
+            </section>
+            <section>
+                <h3>Application State</h3>
+                <p>
+                    State is the piece of information that keep track of the element present in your web
+                    application.
+                </p>
+            </section> -->
+            <section>
+                <h3>React uses JSX</h3>
+                <ul>
+                    <li>XML-like syntax for generating component's HTML</li>
+                    <li>Easier to read and understand large DOM trees</li>
+                    <li>Translates to plain JavaScript</li>
+                </ul>
+            </section>
+
+            <section>
+                HTML
+                <pre><code class ="js"><h1 class="greeting">
+Hello World!
+</h1>
+</code></pre>
+                HTML in JS
+                <pre><code class ="js">const el = document.createElement('h1');
+el.className = 'greeting';
+var content = document.createTextNode('Hello World!');
+el.append(content);
+</code></pre>
+                React JSX
+                <pre><code class ="js">const element = (
+<h1 className="greeting">
+Hello, world!
+</h1>
+);
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Let's install together</h3>
+                <ul>
+                    <li>
+                        Install Node if you haven't already.
+                        <a target="_blank" href="https://nodejs.org/en/">Node.js</a>
+                    </li>
+                    <li>
+                        Create a react project
+                        <a target="_blank" href="https://github.com/facebook/create-react-app">create-react-app</a>
+                    </li>
+                </ul>
+
+                <pre><code>
+npx create-react-app my-app
+cd my-app
+npm start
+</code></pre>
+                <ul>
+                    <li>React folder structure.</li>
+                    <li>Practice</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Task</h2>
+                <ul>
+                    <li>
+                        Prepare react necessary tools: npm,
+                        <a target="_blank" href="https://nodejs.org/en/">node</a>
+                    </li>
+                    <li>
+                        Create a react project using
+                        <a target="_blank"
+                            href="https://reactjs.org/docs/create-a-new-react-app.html">create-react-app</a>
+                    </li>
+                    <li>Make sure that it runs locally</li>
+                    <li>Change title to "Hello Seytech"</li>
+                </ul>
+            </section>
+        </div>
+        <!-- Close slides -->
+    </div>
+    <!-- Closes Reveal -->
+    <!-- Closes Reveal -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize(
+            {
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                // Optional reveal.js plugins
+                dependencies: [
+                    // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                    // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                    // { src: 'dist/js/zoom.js', async: true },
+                    // { src: 'dist/js/notes.js', async: true },
+                    // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                ]
+            }
+        );
+    </script>
+</body>
+
+</html>

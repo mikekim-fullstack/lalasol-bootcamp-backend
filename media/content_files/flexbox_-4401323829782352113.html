@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        .reveal section img.noborder {
+            border-width: 0;
+            box-shadow: none;
+        }
+
+        .reveal section img {
+            max-height: 400px;
+            max-width: 80%;
+        }
+
+        div.halfblock {
+            float: left;
+            width: 39%;
+            text-align: left;
+            /* margin-right: 5%; */
+            margin-left: 60px;
+        }
+
+        div.left-align {
+            text-align: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .reveal h1 {
+            font-size: 2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+
+        /*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+        .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        /*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+        .visuallyhidden.focusable:active,
+        .visuallyhidden.focusable:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+        section.present {
+            transform: scale(1.1);
+            padding: 0 !important;
+        }
+
+        h1 {
+            color: #0d99a5 !important;
+        }
+
+        .present>p {
+            padding: 0 30px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <!-- Opening slide -->
+            <section>
+                <h1>Flexbox</h1>
+            </section>
+
+            <section>
+                <h2>What is Flexbox?</h2>
+                <p>
+                    <strong>Flexbox</strong> provides a more efficient way to lay out,<br />
+                    align and distribute space among items in a container, <br />
+                    even when their size is unknown/dynamic
+                </p>
+            </section>
+
+            <section>
+                <h2>Overview</h2>
+                <p>
+                    The job of a flex container is to group a bunch of flex items together and define how they’re
+                    positioned
+                </p>
+                <img src="../images/flexbox.png" alt="flexbox-image" />
+            </section>
+            <section>
+                <h2>History and Basics</h2>
+                <ul>
+                    <li class="fragment">
+                        Developed alternative to <strong>Floats</strong> to break out its limitations
+                    </li>
+                    <li class="fragment">Well designed for small sized applications</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Floats vs Flexbox</h2>
+                <img src="../images/floats-vs-flexbox.png" alt="floats vs flexbox" />
+            </section>
+
+            <section>
+                <h2>How to start using it?</h2>
+                <p>
+                    <strong> Simple. </strong> <br />
+                    By turning any of our HTML elements into a flex container
+                </p>
+                <p>Then, all children of the container become flex items.</p>
+                <pre><code class="html" contenteditable> display: flex </code></pre>
+            </section>
+
+            <section>
+                <h2>Layout</h2>
+                <p>
+                    The CSS flexbox has two axes: <strong class="green">the main</strong> and
+                    <strong class="green">the cross</strong>
+                </p>
+                <img src="../images/flexbox-direction.png" alt="flex direction" />
+            </section>
+
+            <section>
+                <h2>flex-direction</h2>
+                <p>You define main axis with <code> flex direction </code> property</p>
+                <pre><code class="html" contenteditable> flex-direction: row | row-reverse | column | column-reverse; </code></pre>
+                <img src="../images/flexbox-direction2.png" alt="flex direction 2" />
+            </section>
+
+            <section>
+                <h2>flex-wrap</h2>
+                <p>By default, flex items will all try to fit onto one line</p>
+                <p>It determines whether overflow should be wrapped or not</p>
+                <pre><code class="html" contenteditable> flex-wrap: nowrap | wrap | wrap-reverse; </code></pre>
+                <img src="../images/flex-wrap.png" alt="flex wrap" />
+            </section>
+
+            <section>
+                <h2>justify-content</h2>
+                <p>
+                    justify-content property sets how browsers handle space surrounding and between elements along
+                    the main axis
+                </p>
+                <pre><code class="html" contenteditable> justify-contet: flex-start | flex-end | center | space-between | space-around | space-evenly | start | end | left | right </code></pre>
+                <img src="../images/justify-content.png" alt="jc" />
+            </section>
+
+            <section>
+                <h2>align-items</h2>
+                <p>
+                    This defines the default behavior for how flex items are laid out along the cross axis on the
+                    current line
+                </p>
+                <p>
+                    Think of it as the justify-content version for the cross axis (perpendicular to the main-axis)
+                </p>
+                <pre><code class="html" contenteditable> align-items: stretch | flex-start | flex-end | center | baseline | first baseline | last baseline | start | end | self-start | self-end </code></pre>
+            </section>
+
+            <section>
+                <h2>align-items</h2>
+                <img src="../images/align-items.png" alt="align items" />
+            </section>
+
+            <section>
+                <h2>align-content</h2>
+                <p>
+                    It is similar to align-items, but it aligns lines of items within a container. It works along
+                    the cross axis
+                </p>
+                <pre><code class="html" contenteditable> align-content: flex-start | flex-end | center | space-between | space-around | space-evenly | stretch | start | end | baseline | first baseline | last baseline </code></pre>
+                <img src="../images/align-content.png" alt="align content" />
+            </section>
+
+            <section>
+                <h2>flex-grow</h2>
+                <p>
+                    It defines how much a flex item expands in relation to other items (if there is available space
+                    for that)
+                </p>
+                <p>Negative numbers don’t work for this property</p>
+                <pre><code class="html" contenteditable>
+        .item {
+            flex-grow: number; /* default 0 */
+          }
+     </code></pre>
+                <img src="../images/flex-grow.png" alt="flex grow" />
+            </section>
+
+            <section>
+                <h2>Note</h2>
+                <ul>
+                    <li class="fragment">float</li>
+                    <li class="fragment">vertical-align</li>
+                    <li class="fragment">clear</li>
+                </ul>
+                <p>have no effect on a flex item</p>
+            </section>
+
+            <section>
+                <h2>Thanks!</h2>
+            </section>
+        </div>
+        <!-- <footer style="margin-left: 1rem;">
+     Seytech Slides
+  </footer> -->
+    </div>
+    <!-- Closes Reveal -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize(
+            {
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                // Optional reveal.js plugins
+                dependencies: [
+                    // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                    // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                    // { src: 'dist/js/zoom.js', async: true },
+                    // { src: 'dist/js/notes.js', async: true },
+                    // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                ]
+            }
+        );
+    </script>
+</body>
+
+</html>

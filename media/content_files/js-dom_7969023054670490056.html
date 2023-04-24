@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        .reveal section img.noborder {
+            border-width: 0;
+            box-shadow: none;
+        }
+
+        .reveal section img {
+            max-height: 400px;
+            max-width: 80%;
+        }
+
+        div.halfblock {
+            float: left;
+            width: 39%;
+            text-align: left;
+            /* margin-right: 5%; */
+            margin-left: 60px;
+        }
+
+        div.left-align {
+            text-align: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .reveal h1 {
+            font-size: 2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+
+        /*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+        .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        /*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+        .visuallyhidden.focusable:active,
+        .visuallyhidden.focusable:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+        section.present {
+            transform: scale(1.1);
+            padding: 0 !important;
+        }
+
+        h1 {
+            color: #0d99a5 !important;
+        }
+
+        .present>p {
+            padding: 0 30px;
+        }
+
+
+        .reveal pre code {
+            padding: 5px;
+            overflow: auto;
+            max-height: 400px;
+            word-wrap: normal;
+        }
+
+        .reveal code {
+            font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+            background: #333;
+            color: #fff;
+            padding: 2px 5px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .reveal li {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reveal table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media screen and (min-width:400px) {
+            .reveal li {
+                margin-left: 100px;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Introduction to JavaScript</h1>
+                <h2>Class 4</h2>
+            </section>
+
+            <!-- Review: Role of HTML v. CSS-->
+            <section>
+                <h3>Let's Review</h3>
+                <img src="../images/js-dom-elephants.jpg" alt="Two elephants interacting" />
+                <p class="credit">
+                    Photo credit: <a href="http://www.flickr.com/photos/ginable/325235488/">Ginable</a>
+                    <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/">cc</a>
+                </p>
+            </section>
+
+            <section>
+                <h3>Anatomy of a Website</h3>
+                <p>
+                    <strong>Your Content</strong><br />
+                    <strong>+ HTML</strong>: Structure<br />
+                    <strong>+ CSS</strong>: Presentation<br />
+                    <strong>= Your Website</strong>
+                </p>
+                <p>
+                    A website is a way to present your content to the world, using HTML and CSS to present that
+                    content &amp; make it look good.
+                </p>
+            </section>
+
+            <section>
+                <h3>HTML is Markup</h3>
+                <img src="../images/js-dom-markup.jpg" alt="Printed document covered in ink marks" />
+                <p class="credit">
+                    Photo credit: <a href="http://www.flickr.com/photos/nics_events/2349630241/">Nic's events</a>
+                    <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/">cc</a>
+                </p>
+            </section>
+
+            <section>
+                <h3>CSS is Style</h3>
+                <img src="../images/js-dom-fingernails.jpg" alt="Fingernails with polka-dot paint job" />
+                <p class="credit">
+                    Photo credit:
+                    <a href="http://www.flickr.com/photos/pumpkincat210/4778025555/">pumpkincat210</a>
+                    <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/">cc</a>
+                </p>
+            </section>
+
+            <section>
+                <h3>IDs vs Classes</h3>
+                <p>
+                    <strong>ID</strong> - Should only apply to one element on a webpage, i.e., you might have an id
+                    of <code>banner</code> on your webpage's banner.<br />
+                    The <code>#</code> is how you find ids in CSS.
+                </p>
+                <br />
+                <p>
+                    <strong>Class</strong> - Lots of elements can have the same class, i.e., There can be many
+                    elements with a <code>warning</code> class on one webpage.<br />
+                    The <code>.</code> is how you find classes in CSS.
+                </p>
+            </section>
+
+            <!--The DOM-->
+            <section>
+                <h3>Nesting</h3>
+                <p>HTML elements "nest" inside one another</p>
+                <img src="../images/js-dom-nesting-dolls.jpg" alt="Russian nesting dolls" />
+                <p class="credit">
+                    Photo credit: <a href="http://www.flickr.com/photos/johnkay/3539939004/">John K</a>
+                    <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/">cc</a>
+                </p>
+            </section>
+
+            <section>
+                <h3>The DOM Tree: Sample Code</h3>
+                <p>
+                    Oftentimes, people think of HTML as something flat -- a bunch of text with tags in the middle.
+                </p>
+                <pre><code class="html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Test Page&lt;/title&gt;
+&lt;style&gt;
+  h1 {
+    color: red;
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;My Page&lt;/h1&gt;
+&lt;p&gt;Hello World!&lt;/p&gt;
+&lt;img src="http://placekitten.com/g/200/300" alt="cat"/&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+            </section>
+
+            <section>
+                <h3>The DOM Tree: Sample Model</h3>
+                <p>
+                    However, it is something much more than that. Any HTML document is a tree structure defined by
+                    the
+                    <strong><a
+                            href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Introduction">DOM
+                            (Document Object Model)</a></strong>.
+                </p>
+                <img src="../images/js-dom-dom-tree.png" alt="Simple DOM Tree" />
+            </section>
+
+            <!--Accessing the DOM-->
+            <section>
+                <h3>DOM Access</h3>
+                <p>
+                    Your browser automatically loads the content of a webpage into a <code>Document</code> object
+                    which serves as the entry point into a web page's content.
+                </p>
+                <br />
+                <p>
+                    <strong>Using the <code>document</code> you can:</strong>
+                </p>
+                <ol>
+                    <li>Change the content tree any way you want.</li>
+                    <li>Build an HTML document from scratch.</li>
+                    <li>Access or replace any existing DOM nodes (HTML elements in the DOM).</li>
+                </ol>
+            </section>
+
+            <section>
+                <h3>Finding Nodes</h3>
+                <img src="../images/js-dom-search.jpg" alt="A magnifying glass" />
+                <p class="credit">
+                    Photo credit: <a href="https://flic.kr/p/4UokrH">Jeffery Beall</a>
+                    <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/">cc</a>
+                </p>
+            </section>
+
+            <section>
+                <h3>DOM Access: By Id</h3>
+                <p>You can find nodes by <code>id</code> using the method:</p>
+                <pre><code class="javascript">document.getElementById(id);
+</code></pre>
+                <p>For example, to find:</p>
+                <pre><code class="html">&lt;img id="kittenPic" src="http://placekitten.com/g/200/300" alt="cat"/&gt;
+</code></pre>
+                <p>We would use:</p>
+                <pre><code class="javascript">var imgKitten = document.getElementById('kittenPic');
+</code></pre>
+            </section>
+
+            <section>
+                <h3>DOM Access</h3>
+                <p>
+                    <code><a
+                            target="_blank"
+                            href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector"
+                            >querySelector</a
+                        > </code>,
+                    <code><a
+                            target="_blank"
+                            href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll"
+                            >querySelectorAll</a
+                        ></code>.
+                </p>
+                <br />
+                <pre><code class="javascript">document.querySelector(cssQuery); // returns a single node
+document.querySelectorAll(cssQuery); // returns multiple nodes
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <ol>
+                    <li>Get all p elements from dom</li>
+                    <li>Get .name classname element from dom</li>
+                    <li>Get all spans with ".red" classname</li>
+                </ol>
+            </section>
+
+            <!--Manipulating the DOM-->
+            <section>
+                <h3>Changing Nodes</h3>
+                <img src="../images/js-dom-two-color.jpg" alt="Red and yellow tulip" />
+                <p class="credit">
+                    Photo credit: <a href="https://flic.kr/p/bCYp2S">Darryl Kenyon</a>
+                    <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/">cc</a>
+                </p>
+            </section>
+
+            <section>
+                <h3>DOM Nodes: Attributes</h3>
+                <p>You can access and change attributes of DOM nodes using dot notation.</p>
+                <br />
+                <p>To change this element:</p>
+                <pre><code class="html">&lt;img id="kittenPic" src="http://placekitten.com/g/200/300" alt="cat"/&gt;
+</code></pre>
+                <p>We could change the src attribute this way:</p>
+                <pre><code class="javascript">var imgKitten = document.getElementById('kittenPic');
+
+// will return src attribute on image
+imgKitten.src
+
+// will set our src to a new src
+imgKitten.src = 'http://placekitten.com/g/600/500';</code></pre>
+            </section>
+
+            <!-- 	<section>
+                <h3>DOM Nodes: Getting and Setting Attributes</h3>
+                <p>
+                    You can also use
+                    <code
+                        ><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute"
+                            >getAttribute</a
+                        ></code
+                    >
+                    or
+                    <code
+                        ><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute"
+                            >setAttribute</a
+                        ></code
+                    >
+                </p>
+                <pre><code class="html">&lt;img id="kittenPic" src="http://placekitten.com/g/200/300" alt="cat"/&gt;
+</code></pre>
+                <p>We could change the src attribute this way:</p>
+                <pre><code class="javascript">var imgKitten = document.getElementById('kittenPic');
+
+// will return src attribute on image
+imgKitten.getAttribute('src');
+
+// will set our src to a new src
+imgKitten.setAttribute('src', 'http://placekitten.com/g/600/500');</code></pre>
+            </section> -->
+
+            <section>
+                <h3>DOM Nodes: Styles</h3>
+                <p>You can change page css using <code>style</code></p>
+                <br />
+                <p>To make this CSS:</p>
+                <pre><code class="css">body {
+color: red;
+}
+</code></pre>
+                <p>Use this JavaScript:</p>
+                <pre><code class="javascript">var pageBody = document.body;
+
+pageBody.style.color = 'red';</code></pre>
+            </section>
+
+            <section>
+                <h3>DOM Nodes: More Styles</h3>
+                <p>
+                    The rule of thumb in JavaScript is to change CSS styles with a "<code>-</code>" to
+                    <a href="https://en.wikipedia.org/wiki/CamelCase">camelCase</a>.
+                </p>
+                <br />
+                <p>To make this CSS:</p>
+                <pre><code class="css">body {
+background-color: pink;
+padding-top: 10px;
+}
+</code></pre>
+                <p>Use this JavaScript:</p>
+                <pre><code class="javascript">var pageBody = document.body
+
+pageBody.style.backgroundColor = 'pink';
+
+pageBody.style.paddingTop = '10px';
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <p><img src="../images/js-dom-2.png" /></p>
+                <p>Create html of this UI and build css using JS https://codepen.io/marattig/pen/ExjVJVp</p>
+                <div>Height of all divs - 100px;</div>
+                <div>Width of Top 3 divs - 200px;</div>
+                <div>Font size - 30px;</div>
+                <div>BG Color - #888</div>
+                <div>Border width of all div - 15px</div>
+                <div>Border color of all div - rgb(54, 52, 52)</div>
+            </section>
+
+            <!--Manipulating the DOM-->
+            <section>
+                <h3>DOM innerHTML</h3>
+                <p>
+                    Each DOM node has an
+                    <code><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML"
+                            >innerHTML</a
+                        ></code>
+                    property with the HTML and content of its children. You can use the property to view or change
+                    the HTML of a node.
+                </p>
+                <br />
+                <p>For example, you can overwrite the entire body:</p>
+                <pre><code class="javascript">var pageBody = document.body;
+
+pageBody.innerHTML = '&lt;h1&gt;Oh Noes!&lt;/h1&gt;&lt;p&gt;I changed the whole page!&lt;/p&gt;'</code></pre>
+                <br />
+                <p>Or just add some new content to the end</p>
+                <pre><code class="javascript">pageBody.innerHTML += '...just adding this at the end of the page.';</code></pre>
+            </section>
+
+            <section>
+                <h3>DOM innerHTML continued</h3>
+                <p>You can also target one specific element's content</p>
+                <br />
+                <p>To put content in this paragraph element:</p>
+                <pre><code class="html">&lt;p id="warning"&gt;&lt;/p&gt;</code></pre>
+                <p>We can select the node and modify it</p>
+                <pre><code class="javascript">var warningParagraph = document.getElementById('warning');
+
+warningParagraph.innerHTML = 'Danger!';</code></pre>
+            </section>
+
+            <!-- <section>
+                <h3>Let's Develop It</h3>
+                <p>Create a new paragraph element and add it to a <code>div</code> on your page.</p>
+            </section>
+-->
+            <!-- Events -->
+            <section>
+                <h3>Events</h3>
+                <img src="../images/js-dom-magician.jpg" alt="Lego Magician" class="noborder" />
+                <p class="credit">
+                    Photo credit: <a href="https://flic.kr/p/9hBrtv" target="_blank">Eva Peris</a>
+                    <a href="http://creativecommons.org/licenses/by-nc/2.0/" target="_blank">cc</a>
+                </p>
+            </section>
+
+            <section>
+                <h3>Events</h3>
+                <p>
+                    An <strong><a href="https://developer.mozilla.org/en-US/docs/Web/Events">event</a></strong> is
+                    an object that is sent when actions take place on your webpage, most often when a user interacts
+                    with your webpage.
+                </p>
+                <br />
+                <p>For example, JavaScript creates an event when a user clicks an element.</p>
+                <pre><code class="javascript">element.addEventListener('click', function(event) {
+// code to be executed when user clicks
+});
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Types of Events</h3>
+                <p>
+                    There are a <a href="https://developer.mozilla.org/en-US/docs/Web/Events">variety of events</a>.
+                    Some of the more common events are:
+                </p>
+                <ul>
+                    <li>
+                        <strong><a href="https://developer.mozilla.org/en-US/docs/Web/Events/click">click</a>:</strong>
+                        Occurs when the user clicks on an element
+                    </li>
+                    <li>
+                        <strong><a
+                                href="https://developer.mozilla.org/en-US/docs/Web/Events/mouseover">mouseover</a>:</strong>
+                        Occurs when the pointer is moved onto an element
+                    </li>
+                    <li>
+                        <strong><a
+                                href="https://developer.mozilla.org/en-US/docs/Web/Events/mouseout">mouseout</a>:</strong>
+                        Occurs when the pointer is moved off an element
+                    </li>
+                    <li>
+                        <strong><a href="https://developer.mozilla.org/en-US/docs/Web/Events/keyup">keyup</a>:</strong>
+                        Occurs when the user releases a key
+                    </li>
+                    <li>
+                        <strong><a
+                                href="https://developer.mozilla.org/en-US/docs/Web/Events/load_(ProgressEvent)">load</a>:</strong>
+                        Occurs when a document has been loaded
+                    </li>
+                    <li>
+                        <strong><a href="https://developer.mozilla.org/en-US/docs/Web/Events/focus">focus</a>:</strong>
+                        Occurs when an element gets focus
+                    </li>
+                    <li>
+                        <strong><a href="https://developer.mozilla.org/en-US/docs/Web/Events/blur">blur</a>:</strong>
+                        Occurs when an element loses focus
+                    </li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Calling Functions from HTML</h3>
+                <p>You can call a function directly from your HTML code:</p>
+                <pre><code class="html">&lt;button id="myBtn" onclick="sayHi()"&gt;Click Me!&lt;/button&gt;
+</code></pre>
+                <pre><code class="javascript">function sayHi (event) {
+alert('Hi!');
+};</code></pre>
+            </section>
+
+            <section>
+                <h3>Calling Functions from JavaScript</h3>
+                <p>You can call a function from the addEventListener:</p>
+                <pre><code class="html">&lt;button id="myBtn"&gt;Click Me!&lt;/button&gt;
+</code></pre>
+                <pre><code class="javascript">var button = document.getElementById("myBtn");
+
+button.addEventListener("click", function (event) {
+alert("Hi!");
+});</code></pre>
+                <p>or</p>
+                <pre><code class="javascript">var button = document.getElementById("myBtn");
+
+var sayHi = function (event) {
+alert("Hi!");
+};
+
+button.addEventListener("click", sayHi);</code></pre>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <p>Same file: https://codepen.io/marattig/pen/ExjVJVp</p>
+                <p>Change bg color after <code>mouseover</code> event.</p>
+            </section>
+            <!-- 	<section>
+                <h3>Let's Develop It</h3>
+                <p>Convert UI to a graph, add events to elements to understand how it works</p>
+                <img src="./assets/dom.png" alt="Dom" />
+            </section> -->
+
+            <!-- More Events -->
+            <!-- 	<section>
+                <h3>Preventing Defaults</h3>
+                <img src="../images/js-dom-donotwant.jpg" alt="A cat resisting a bath" />
+            </section>
+
+            <section>
+                <h3>Preventing Defaults</h3>
+                <p>
+                    Elements like links and checkboxes have default behaviors determined by the browser. However,
+                    the <code>event</code> object has a built-in method to
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault"
+                        >prevent the default behavior</a
+                    >
+                </p>
+                <p>Our anchor link in HTML</p>
+                <pre><code class="html">&lt;a id="myLink" href="http://seytech.co"&gt;Seytech&lt;/a&gt;
+</code></pre>
+                <p>Code to prevent going to link's href on click</p>
+                <pre><code class="javascript">var link = document.getElementById("myLink");
+
+link.addEventListener("click", function(event) {
+event.preventDefault();
+});
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <p>Write code that targets this link:</p>
+                <pre><code class="html">&lt;a href="http://seytech.co/" id="link"&gt;Seytech&lt;/a&gt;
+      </code></pre>
+                <p>
+                    When a user clicks the link, the page should display an error message instead of going to the
+                    Seytech homepage.
+                </p>
+            </section> -->
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <p>
+                    Create 2 inputs on the page. Add "sum" button to the page. Using a function multiply numbers and
+                    show result on the page.
+                </p>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+
+                <p>
+                    <img src="../images/js-dom-JavaScript-Lightswitch-Project.png" width="60%" />
+                </p>
+                <p>
+                    Use these images<br />
+                    <img src="../images/js-dom-lighton.png" width="80" style="margin-right:20px" />
+                    <img src="../images/js-dom-lightoff.png" width="80" />
+                </p>
+            </section>
+
+            <!-- Final slides-->
+            <section>
+                <h3>You did it!</h3>
+                <img src="../images/js-dom-jumping-man.jpg" alt="Man jumping in air" />
+                <p class="credit">
+                    Photo credit:
+                    <a href="http://www.flickr.com/photos/sunface13/988453859/" target="_blank">sunface13</a>
+                    <a href="http://creativecommons.org/licenses/by-nc/2.0/" target="_blank">cc</a>
+                </p>
+            </section>
+
+            <section>
+                <h2>Questions?</h2>
+            </section>
+        </div>
+    </div>
+    <!-- Closes Reveal -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize(
+            {
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                // Optional reveal.js plugins
+                dependencies: [
+                    // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                    // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                    // { src: 'dist/js/zoom.js', async: true },
+                    // { src: 'dist/js/notes.js', async: true },
+                    // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                ]
+            }
+        );
+    </script>
+</body>
+
+</html>

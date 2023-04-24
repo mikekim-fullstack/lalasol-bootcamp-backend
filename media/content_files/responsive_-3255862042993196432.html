@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        .reveal section img.noborder {
+            border-width: 0;
+            box-shadow: none;
+        }
+
+        .reveal section img {
+            max-height: 400px;
+            max-width: 80%;
+        }
+
+        div.halfblock {
+            float: left;
+            width: 39%;
+            text-align: left;
+            /* margin-right: 5%; */
+            margin-left: 60px;
+        }
+
+        div.left-align {
+            text-align: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .reveal h1 {
+            font-size: 2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+
+        /*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+        .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        /*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+        .visuallyhidden.focusable:active,
+        .visuallyhidden.focusable:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+        section.present {
+            transform: scale(1.1);
+            padding: 0 !important;
+        }
+
+        section.present>img {
+            max-height: 400px;
+        }
+
+        h1 {
+            color: #0d99a5 !important;
+        }
+
+        .present>p {
+            padding: 0 30px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section class="interstitial">
+                <h2>Responsive Web Design (RWD)</h2>
+            </section>
+
+            <section>
+                <h2>What is it!?</h2>
+                <p>
+                    RWD is a design approach that suggests that the design &amp; development of a site shoud respond
+                    to the user's behavior and environment.
+                </p>
+                <p><img src="../images/responsive-design.png" alt="responsive design" /></p>
+            </section>
+
+            <section>
+                <h2>Wait, people really care?</h2>
+                <ul>
+                    <li>64% of American adults own a smartphone.</li>
+                    <li>Smartphone users check their phones 150x every day.</li>
+                    <li>
+                        Some smartphone owners — particularly younger adults, minorities and lower-income Americans
+                        — depend on their smartphone for internet access.
+                    </li>
+                </ul>
+                <p><a href="http://www.pewinternet.org/fact-sheets/mobile-technology-fact-sheet/">Reference</a></p>
+            </section>
+
+            <section>
+                <h2>Why it's awesome</h2>
+                <p>
+                    RWD modifies the presentation of a site, without modifying the content of the page. So no matter
+                    what, every user has access to the same information.
+                </p>
+                <img src="../images/responsive-example.png" alt="responsive example" />
+            </section>
+
+            <section>
+                <h2>The Ingredients of RWD</h2>
+                <ul>
+                    <li>Fluid grids</li>
+                    <li>Flexible images</li>
+                    <li>Magical CSS Media Queries to make the magic happen</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Fluid Grids</h2>
+                <p>With fixed width sites we have to adjust the height and with of elements manually.</p>
+                <p>With fluid grids the height a width of elements is dependent upon the device resolution.</p>
+            </section>
+
+            <section>
+                <h2>How they work</h2>
+                <ul>
+                    <li>First we define a maximum width for the container.</li>
+                    <li>Then we divide the content up into a set of columns, usually 12.</li>
+                    <li>
+                        Then we design elements with proportional widths and heights, instead of being stuck with
+                        specific pixel dimensions.
+                    </li>
+                    <li>Whenever the device width changes, the grids change in width to scale with the device.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Flexible images</h2>
+                <p>Text scales easily on smaller devices, but images are a bit tricky.</p>
+                <p>Images will overflow their container elements if they're too big for them.</p>
+                <p>That's annoying.</p>
+            </section>
+
+            <section>
+                <h2>Enter Max-width</h2>
+                <p>By using <code>max-width</code> on images, they will only expand to the size of their parent.</p>
+                <p>
+                    If their parent has no width (which it probably does), it will just expand to the width of the
+                    viewport.
+                </p>
+                <pre><code>
+img {
+max-width: 100%;
+}
+    </code></pre>
+            </section>
+
+            <section>
+                <h2>Media Queries</h2>
+                <p>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Media_queries">Media queries</a>
+                    apply certain CSS in certain situations.
+                </p>
+                <ul>
+                    <li>Print Media</li>
+                    <li>iPhone</li>
+                    <li>iPad</li>
+                    <li>Even larger screens</li>
+                    <li>Grayscale</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Include Media Queries Last</h3>
+                <p>They will overwrite previous styles because they are last in the cascade.</p>
+                <div>Here's the CSS for <code>#header-image</code></div>
+
+                <p><img src="../images/mq-normal-style.png" style="width: 380px" /></p>
+                <div>
+                    And here are the media queries that call for the larger image to be used for screens over 1200px
+                    wide, and to turn off the header image if the site is printed.
+                </div>
+                <p>
+                    <img src="../images/mq-larger-img.png" alt="" style="height: 120px" /><img
+                        src="../images/mq-print.png" alt="" style="height: 120px" />
+                </p>
+            </section>
+
+            <section>
+                <h2>Standard MQs</h2>
+                <p>For devices that have dimensions no smaller than 320px and are not larger than 480px</p>
+                <pre><code>
+/* Smartphones (portrait and landscape) */
+@media only screen and (min-device-width : 320px)
+and (max-device-width : 600px) {
+/* Styles */
+}
+    </code></pre>
+                <p>iPad dimensions with the orientation in landscape.</p>
+                <pre><code>
+/* iPads (landscape)      */
+@media only screen and (min-device-width : 768px)
+and (max-device-width : 1024px) and (orientation : landscape) {
+/* Styles */
+}
+  </code></pre>
+            </section>
+
+            <section>
+                <h2>How they work</h2>
+                <p>
+                    Rather than looking for a type of device, they look at the capability of the device. You can use
+                    them to check for all sorts of things.
+                </p>
+                <ul>
+                    <li>Width &amp; Height (of the viewport)</li>
+                    <li>Device height &amp; width</li>
+                    <li>Orientation - is the device in landscape or portrait mode.</li>
+                    <li>Resolution - Retina or normal.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Mobile First</h2>
+                <p>By designing sites with mobile first in mind, it makes scaling them down a lot easier.</p>
+                <p>
+                    Mobile first allows us to simplify the userflow to it's basic elements and then enhance it as
+                    the screen size increases.
+                </p>
+            </section>
+
+            <section>
+                <h2>iPhone</h2>
+                <img src="../images/media-queries-phone.png" alt="" style="max-height: 500px" />
+            </section>
+
+            <section>
+                <h2>Tablet</h2>
+                <img src="../images/media-queries-tablet.png" alt="" style="max-height: 500px" />
+            </section>
+
+            <section>
+                <h2>Desktop</h2>
+                <img src="../images/media-queries-desktop.png" alt="" style="max-height: 500px" />
+            </section>
+
+            <section>
+                <h2>Viewport Meta</h2>
+                <p>Use this to control the size of the viewport on touch devices.</p>
+                <pre><code>
+&lt;meta name="viewport" content="width=device-width,
+user-scalable=true"&gt;
+    </code></pre>
+                <p><code>width=device-width</code> makes the viewport the size of the device.</p>
+                <p><code>user-scalable=true</code> allows the user to pinch and zoom on your site.</p>
+            </section>
+
+            <section>
+                <h2>Chrome Device Emulator</h2>
+                <a href="https://developer.chrome.com/devtools/docs/device-mode#enable-device-mode"><img
+                        src="../images/chrome-devtools-emulator.png" alt="Chrome Device Mode"
+                        style="max-height: 500px" /></a>
+            </section>
+
+            <section>
+                <h2>Let's develop it!</h2>
+                <p>
+                    Let's take a look at our site now on a smartphone (you can resize your browser), and find ways
+                    to improve it.
+                </p>
+                <p>Add the viewport meta tag to the html</p>
+                <p>Use media queries to shift elements around on the page and to increase legibilty</p>
+            </section>
+
+            <section>
+                <h2>Responsive frameworks</h2>
+                <p>Download a pre-built framework that has basic styles already set up.</p>
+                <ul>
+                    <li>Fluid Grids</li>
+                    <li>Flexible Images</li>
+                    <li>Responsive media queries</li>
+                    <li>Styles for buttons and forms, because they're a pain!</li>
+                    <li>Lots of base styles like .pull-right, .btn, etc.</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Twitter's Bootstrap</h2>
+                <p>By far the most popular front-end framework out there.</p>
+                <img src="../images/bootstrap.png" style="height: 400px" alt="" />
+                <p><a target="_blank" href="http://getbootstrap.com/">Check</a></p>
+            </section>
+
+            <section>
+                <h2>Material UI</h2>
+                <p>Another very popular framework for react - most used at work right now</p>
+                <img src="../images/materialui.png" style="height: 400px" alt="" />
+                <p><a target="_blank" href="https://material-ui.com/">Check</a></p>
+            </section>
+
+            <section>
+                <h2>What they include:</h2>
+                <ul>
+                    <li>Fully responsive out of the box</li>
+                    <li>Embraces Mobile First standards</li>
+                    <li>Compiled CSS for all sorts of components</li>
+                    <li>
+                        <a href="http://lesscss.org/">Less</a> or
+                        <a href="http://sass-lang.com/">Sass</a> preprocessor stylesheets for rapid updates
+                    </li>
+                    <li>Javascript for popular components</li>
+                    <li>Pre-set styles for icons and buttons</li>
+                    <li>Includes Glyphic icon set (awesome!)</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>What are the cons?</h2>
+                <ul>
+                    <li>Default styles are&hellip;default and not very exciting</li>
+                    <li>Requires a fair amount of customization to make a unique looking site</li>
+                    <li>The documentation is daunting and can be very indimidating</li>
+                    <li>Remembering all the class names can be overwhelming</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Questions</h2>
+                <h3 style="font-size: 1000%; color: #03acff">?</h3>
+            </section>
+        </div>
+        <!-- Close slides -->
+    </div>
+    <!-- Closes Reveal -->
+    <!-- Closes Reveal -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize(
+            {
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                // Optional reveal.js plugins
+                dependencies: [
+                    // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                    // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                    // { src: 'dist/js/zoom.js', async: true },
+                    // { src: 'dist/js/notes.js', async: true },
+                    // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                ]
+            }
+        );
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        .reveal section img.noborder {
+            border-width: 0;
+            box-shadow: none;
+        }
+
+        .reveal section img {
+            max-height: 400px;
+            max-width: 80%;
+        }
+
+        div.halfblock {
+            float: left;
+            width: 39%;
+            text-align: left;
+            /* margin-right: 5%; */
+            margin-left: 60px;
+        }
+
+        div.left-align {
+            text-align: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .reveal h1 {
+            font-size: 2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+
+        /*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+        .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        /*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+        .visuallyhidden.focusable:active,
+        .visuallyhidden.focusable:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+        section.present {
+            transform: scale(1.1);
+            padding: 0 !important;
+        }
+
+        h1 {
+            color: #0d99a5 !important;
+        }
+
+        .present>p {
+            padding: 0 30px;
+        }
+
+
+        .reveal pre code {
+            padding: 5px;
+            overflow: auto;
+            max-height: 400px;
+            word-wrap: normal;
+        }
+
+        .reveal code {
+            font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+            background: #333;
+            color: #fff;
+            padding: 2px 5px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .reveal li {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reveal table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media screen and (min-width:400px) {
+            .reveal li {
+                margin-left: 100px;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <section>
+                <h2>Intro to JavaScript</h2>
+                <h2>Class 6</h2>
+            </section>
+
+            <!-- What is JavaScript-->
+            <section>
+                <img src="../images/js-methods-methods.jpeg" alt="methods" />
+            </section>
+
+            <section>
+                <h2>What we will cover today ?</h2>
+                <h5 style="color: green; margin: 1rem 0;">" Most used ones "</h5>
+                <ul class="fragment">
+                    <li>Number methods</li>
+                    <li>String methods</li>
+                    <li>Array methods</li>
+                    <li>Object class methods</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Repl</h3>
+                <p>Before going further create a new Repl</p>
+                <p>Where we will be practicing these methods</p>
+            </section>
+
+            <section>
+                <h1>Numbers</h1>
+                <img src="../images/js-methods-numbers.jpg" alt="js numbers" />
+            </section>
+
+            <section>
+                <h3>Number methods: </h3>
+                <ul>
+                    <li>toString()</li>
+                    <li>toFixed()</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>3 JavaScript methods that can be used to convert variables to numbers</h3>
+                <ul>
+                    <li>Number()</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Number Properties</h3>
+                <ul>
+                    <li>INFINITY</li>
+                    <li>NaN</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <ul>
+                    <li>Crate a variable called "num" and assign a value of 4 </li>
+                    <li>Crate a variable called "dec" and assign a value of 4.46731 </li>
+                    <li>Crate another variable called "str" and assign a value of "4" </li>
+                    <li>Convert "str" to a number 4</li>
+                    <li>Convert "num" to a string "4"</li>
+                    <li>Reduce number of length after point in "dec" to 1</li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>Strings</h1>
+                <img src="../images/js-methods-strings.jpg" alt="js str" />
+            </section>
+
+            <section>
+                <h3>String methods: </h3>
+                <ul>
+                    <li>length</li>
+                    <li>indexOf() and lastIndexOf()</li>
+                    <li>replace()</li>
+                    <li>toUpperCase() and toLowerCase()</li>
+                    <li>concat()</li>
+                    <li>charAt()</li>
+                    <li>split()</li>
+                    <li>slice()</li>
+                    <!-- <li>BONUS: regex</li> -->
+                </ul>
+            </section>
+
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <ul>
+                    <li>Crate a variable called "sentence" that contains word "seytech" </li>
+                    <li>Then get the index of that word</li>
+                    <li>Replace word "seytech" with "Seytech"</li>
+                    <li>Add word "the end" to end of your sentence variable</li>
+                    <li>Slice out the last word (end) from your sentence</li>
+                    <li>Finally store your sentence each word into one array</li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>Arrays</h1>
+                <img src="../images/js-methods-arrays.png" alt="js arrays" />
+            </section>
+
+            <section>
+                <h3>Array methods: </h3>
+                <div>
+                    <ul style="display: inline-block;">
+                        <li>isArray()</li>
+                        <li>length</li>
+                        <li>join()</li>
+                        <li>pop()</li>
+                        <li>push()</li>
+                        <li>shift()</li>
+                        <li>unshift()</li>
+                        <li>splice()</li>
+                        <li>concat()</li>
+                        <li>slice()</li>
+                        <li>indexOf() and lastIndexOf()</li>
+                    </ul>
+                    <ul style="display: inline-block;">
+                        <li style="color: green;">More complicated ones:</li>
+                        <li>forEach()</li>
+                        <li>reverse()</li>
+                        <li>map()</li>
+                        <li>filter()</li>
+                        <li>reduce()</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <ul>
+                    <ul>
+                        <li>Crate an array called "trash" that contains 1, "bag", "bottle", "paper", true </li>
+                        <li>Remove last element and put it back as a first element</li>
+                        <li>From same array store "bag", and "bottle" in a new array called "filteredTrash"</li>
+                        <li>Then join your 2 array together and name it "totallyTrash"</li>
+                    </ul>
+            </section>
+
+            <section>
+                <h1>Objects</h1>
+                <img src="../images/js-methods-objecrs.png" alt="js objects" />
+            </section>
+
+            <section>
+                <h3>Object class methods: </h3>
+                <ul>
+                    <li>Object.keys()</li>
+                    <li>Object.values()</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <ul>
+                    <li>Crate an object called "fruit" that has keys of color, type, expirationDate, isFresh and assign
+                        any value to them</li>
+                    <li>Output keys and values of an object by using methods. Result can be an array no need for looping
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Final slides-->
+            <section>
+                <h3>You did it!</h3>
+
+            </section>
+
+        </div>
+
+        <!-- Closes Reveal -->
+        <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+        <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+        <script>
+            Reveal.initialize(
+                {
+                    controls: true,
+                    progress: true,
+                    history: true,
+                    center: true,
+                    // Optional reveal.js plugins
+                    dependencies: [
+                        // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                        // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                        // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                        // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                        // { src: 'dist/js/zoom.js', async: true },
+                        // { src: 'dist/js/notes.js', async: true },
+                        // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                    ]
+                }
+            );
+        </script>
+</body>
+
+</html>

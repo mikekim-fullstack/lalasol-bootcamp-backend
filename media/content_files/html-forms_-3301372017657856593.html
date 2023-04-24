@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        .reveal section img.noborder {
+            border-width: 0;
+            box-shadow: none;
+        }
+
+        .reveal section img {
+            max-height: 400px;
+            max-width: 80%;
+        }
+
+        div.halfblock {
+            float: left;
+            width: 39%;
+            text-align: left;
+            /* margin-right: 5%; */
+            margin-left: 60px;
+        }
+
+        div.left-align {
+            text-align: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .reveal h1 {
+            font-size: 2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+
+        /*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+        .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        /*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+        .visuallyhidden.focusable:active,
+        .visuallyhidden.focusable:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+        section.present {
+            transform: scale(1.1);
+            padding: 0 !important;
+        }
+
+        h1 {
+            color: #0d99a5 !important;
+        }
+
+        .present>p {
+            padding: 0 30px;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="reveal">
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <!-- Opening slide -->
+            <section>
+                <h1>Html Forms</h1>
+            </section>
+
+            <section>
+                <h2>What are Forms?</h2>
+                <p>
+                    <strong>HTML Forms</strong> are required when you want to collect some data from the site
+                    visitor. For example registration information: name, email address, credit card, etc
+                </p>
+            </section>
+
+            <section>
+                <h2>Form element</h2>
+                <p>
+                    The <strong>HTML &lt;form> element</strong> represents a document section containing interactive
+                    controls for submitting information.
+                </p>
+            </section>
+
+            <section>
+                <h2>Quick Note</h2>
+                <p>
+                    The HTML forms submittion is handled with some backend language and JavaScript. In this course
+                    we will learn HTML side of it.
+                </p>
+            </section>
+
+            <section>
+                <h2>Form Elements</h2>
+                <p><strong>Form</strong> contain elements like:</p>
+                <ul>
+                    <li>&lt;input&gt; text type inputs</li>
+                    <li>textarea - multiline inputs</li>
+                    <li>&lt;select&gt;, &lt;option&gt; drop-down menus</li>
+                    <li>button</li>
+                    <li>button</li>
+                    <li>etc...</li>
+                </ul>
+                <br />
+                <p>and they are used to take information from the user.</p>
+            </section>
+
+            <section>
+                <h2>Input Attributes</h2>
+                <p><strong>Input</strong> elements might contain attributes like:</p>
+                <ul>
+                    <li>&lt;input type="text"&gt;</li>
+                    <li>&lt;input type="checkbox"&gt;</li>
+                    <li>&lt;input type="color"&gt;</li>
+                    <li>&lt;input type="date"&gt;</li>
+                    <li>&lt;input type="email"&gt;</li>
+                    <li>&lt;input type="file"&gt;</li>
+                    <li>&lt;input type="number"&gt;</li>
+                    <li>&lt;input type="password"&gt;</li>
+                    <li>&lt;input type="radio"&gt;</li>
+                    <li>&lt;input type="range"&gt;</li>
+                    <li>&lt;input type="submit"&gt;</li>
+
+                    <li>&lt;input type="time"&gt;</li>
+                    <li>etc...</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Form submission</h2>
+                <p>
+                    Form is a container element like a &lt;section> or &lt;footer> element, but specifically for
+                    containing forms; it also supports some specific attributes to configure the way the form
+                    behaves
+                </p>
+
+                <p>
+                    The <strong>action</strong> attribute defines the location (URL) where the form's collected data
+                    should be sent when it is submitted.
+                </p>
+                <p>
+                    The <strong>method</strong> attribute defines which HTTP method to send the data with (usually
+                    get or post).
+                </p>
+            </section>
+
+            <section>
+                <h2>Button Element</h2>
+                <p>In order to sumbit the data we have to add button of type submit</p>
+                <p>Or input type of submit</p>
+                <ul>
+                    <li>&lt;button type="submit">Send your information &lt;/button></li>
+                    or
+                    <li>&lt;input type="submit" value="Send your information"></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>Label Element</h2>
+                <p>Text labels can serve as a purpose to both sighted and blind users.</p>
+                <p>It also links label with single input by using "for" attribute</p>
+            </section>
+
+            <section>
+                <h2>Required Attribute</h2>
+                <p>
+                    HTML5 introduces client-side form validation without the need for JavaScript. When you attempt
+                    to submit a form, your browser will validate all of the fields and return an error if any of the
+                    fields is incorrect.
+                </p>
+                <img src="../images/required.jpg" alt="required attr" />
+            </section>
+
+            <section>
+                <h2>Textarea</h2>
+                <p>The input field for the message is a &lt;textarea>; a multiline text field.</p>
+            </section>
+
+            <section>
+                <h2>Checkboxes</h2>
+                <p>The checkbox is shown as a square box that is ticked (checked) when activated.</p>
+                <p>Checkboxes are used to let a user select one or more options of a limited number of choices</p>
+                <p>Use label tag for best accessibility</p>
+            </section>
+
+            <section>
+                <h2>Radio Buttons</h2>
+                <p>
+                    Radio buttons are similar to checkboxes, but with an important distinction — radio buttons are
+                    grouped into a set in which only one radio button can be selected at a time, whereas checkboxes
+                    allow you to turn single values on and off.
+                </p>
+            </section>
+
+            <section>
+                <h2>Fieldset and Legend</h2>
+                <p>
+                    The <strong>HTML &lt;fieldset> element</strong> is used to group several controls as well as
+                    labels (&lt;label>) within a web form.
+                </p>
+            </section>
+
+            <section>
+                <h2>Phone in Inputs</h2>
+                <p>
+                    &lt;input> elements of type tel are used to let the user enter and edit a telephone number.
+                    Because its not formatted automatically, we use patterns Ex:
+                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                </p>
+            </section>
+
+            <section>
+                <h2>Color Picker</h2>
+                <p>Input type "color" lets us a color picker</p>
+            </section>
+
+            <section>
+                <h2>Thanks!</h2>
+            </section>
+        </div>
+        <footer style="margin-left: 1rem">Seytech Slides</footer>
+    </div>
+    <!-- Closes Reveal -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize(
+            {
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                // Optional reveal.js plugins
+                dependencies: [
+                    // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                    // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                    // { src: 'dist/js/zoom.js', async: true },
+                    // { src: 'dist/js/notes.js', async: true },
+                    // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                ]
+            }
+        );
+    </script>
+</body>
+
+</html>

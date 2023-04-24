@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        .reveal section img.noborder {
+            border-width: 0;
+            box-shadow: none;
+        }
+
+        .reveal section img {
+            max-height: 400px;
+            max-width: 80%;
+        }
+
+        div.halfblock {
+            float: left;
+            width: 39%;
+            text-align: left;
+            /* margin-right: 5%; */
+            margin-left: 60px;
+        }
+
+        div.left-align {
+            text-align: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .reveal h1 {
+            font-size: 2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+
+        /*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+        .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        /*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+        .visuallyhidden.focusable:active,
+        .visuallyhidden.focusable:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+        section.present {
+            transform: scale(1.1);
+            padding: 0 !important;
+        }
+
+        h1 {
+            color: #0d99a5 !important;
+        }
+
+        .present>p {
+            padding: 0 30px;
+        }
+
+
+        .reveal pre code {
+            padding: 5px;
+            overflow: auto;
+            max-height: 400px;
+            word-wrap: normal;
+        }
+
+        .reveal code {
+            font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+            background: #333;
+            color: #fff;
+            padding: 2px 5px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .reveal li {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reveal table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media screen and (min-width:400px) {
+            .reveal li {
+                margin-left: 100px;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h2>JSX & React Components</h2>
+                <pre><code class="js">
+function App() {
+return (
+<div className="App">
+  <h1>Hello, world!</h1>
+</div>
+);
+}
+
+export default App;
+
+</code></pre>
+                <p>You will feel that you are writing HTML inside javascript.</p>
+            </section>
+
+            <section>
+                <h2>JS Expression in JSX</h2>
+                <p>You can put any valid JavaScript expression inside the curly braces in JSX.</p>
+                <pre><code class="js">
+function App() {
+
+const name = "LaLaSol";
+const lastName = "Bootcamp";
+
+return (
+<div className="App">
+  <h1>Hello, {name} { lastName }!</h1>
+</div>
+);
+}
+
+export default App;
+
+</code></pre>
+            </section>
+            <section>
+                <h2>Let's create 2 components and connect to each other</h2>
+                <p>Think about we have 2 functions and first function calls the second one</p>
+            </section>
+            <section>
+                <h2>First component</h2>
+                <pre><code class="js">
+function App() {
+
+return (
+<div className="App">
+  // we import second component here 
+</div>
+);
+}
+
+export default App;
+
+
+</code></pre>
+            </section>
+
+            <section>
+                <h2>Second component</h2>
+                <pre><code class="js">
+function Greeting() {
+return (
+<div>
+  <h1>Hello, LaLaSol!</h1>
+</div>
+);
+}
+
+export default Greeting;
+
+</code></pre>
+            </section>
+            <section>
+                <h2>Import</h2>
+                <ul>
+                    <li>We can import other components</li>
+                    <li>We use imported components similar to "self closing tags in html"</li>
+                </ul>
+                <img src="../images/react-components-greeting.png" />
+            </section>
+
+            <section>
+                <h2>Pass params(props)</h2>
+                <ul>
+                    <li>We can send params(props) to other components</li>
+                </ul>
+                <img src="../images/react-components-greeting_props.png" />
+            </section>
+            <section>
+                <h2>How to use props</h2>
+                <ul>
+                    <li>Props is an object with key and values</li>
+                </ul>
+                <img src="../images/react-components-greeting_props_passed.png" />
+            </section>
+            <section>
+                <h3>You can use more than 1 time</h3>
+                <pre><code class="js">
+
+function App() {
+return (
+  <div>
+    &lt;Greeting name="Aibek" lastName="A" />
+    &lt;Greeting name="Aizat" lastName="B"/>
+    &lt;Greeting name="Aynura" lastName="C"/>
+  </div>
+);
+}
+
+</code></pre>
+            </section>
+            <section>
+                <h3>React has 2 different ways of creating components</h3>
+                <ul>
+                    <li>Function Components</li>
+                    <li>Class components</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Function Components</h3>
+                <p>The simplest way to define a component is js function:</p>
+                <pre><code class="js">
+function Welcome() {
+return <h1>Hello, World</h1>;
+}
+</code></pre>
+                <ul>
+                    <li>
+                        We call such components “function components” because they are literally JavaScript
+                        functions.
+                    </li>
+                    <li>Components start with capital case.</li>
+                </ul>
+            </section>
+            <section>
+                <h3>2 - Class Components</h3>
+                <p>These two components are equal</p>
+                <pre><code class="js">
+class Welcome extends React.Component {
+render() {
+  return <h1>Hello, World</h1>;
+}
+}
+</code></pre>
+            </section>
+
+            <section>
+                <p>Let's do same thing with class components what we did with functional components.</p>
+                <p>This time you lead i only write.</p>
+            </section>
+
+            <section>
+                <h3>NOTE:</h3>
+                <ul>
+                    <li>Always start component names with a capital letter</li>
+                    <li>
+                        <code> &lt;div /> </code>
+                        represents an HTML div tag
+                    </li>
+                    <li><code>&lt;Welcome /></code> represents a component and requires Welcome to be in scope</li>
+                </ul>
+            </section>
+
+            <section>
+                <h3>Practice with team</h3>
+            </section>
+
+            <section>
+                <h3>1 - Build a Box Component</h3>
+                <p>each with a different text color and background color.</p>
+                <p>dont' worry too much about styling.</p>
+                <img src="../images/react-components-react-practice-1.png" alt="react" />
+            </section>
+
+            <section>
+                <h5>2 - Build a Student Component & and pass each props individually</h5>
+                <pre><code class="js">
+const student = {
+name: 'Nurseit',
+info: 'Lives in Seattle, WA',
+imgPath: '/assets/images/avatars/nurseit_kalbaev.jpg'
+}
+</code></pre>
+            </section>
+        </div>
+        <!-- Close slides -->
+    </div>
+    <!-- Closes Reveal -->
+    <!-- Closes Reveal -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize(
+            {
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                // Optional reveal.js plugins
+                dependencies: [
+                    // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                    // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                    // { src: 'dist/js/zoom.js', async: true },
+                    // { src: 'dist/js/notes.js', async: true },
+                    // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                ]
+            }
+        );
+    </script>
+</body>
+
+</html>

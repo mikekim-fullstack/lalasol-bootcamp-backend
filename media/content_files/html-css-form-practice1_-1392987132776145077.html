@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        label {
+            width: 130px;
+            display: inline-block;
+        }
+
+        input,
+        textarea {
+            width: calc(80% - 100px);
+            padding: 5px;
+        }
+
+        div {
+            margin: 10px 0;
+        }
+
+        .rounded {
+            border-radius: 20px;
+        }
+
+        .icon {
+            background-image: url(./images/icon.png);
+            background-size: 27px;
+            background-repeat: no-repeat;
+            padding-left: 25px;
+        }
+
+        .color {
+            color: white;
+            background-color: cadetblue;
+            border: solid 1px red
+        }
+
+        .group {
+            width: 150px;
+        }
+    </style>
+
+
+    <title>Practice</title>
+</head>
+
+<body>
+
+    <div class="container" style="max-width: 1200px; margin:0 auto">
+        Basic Inputs
+        <hr />
+        <form>
+            <div><label>Text input</label><input type="text"></div>
+            <div><label>Number input</label><input type="number"></div>
+            <div><label>Rounded input</label><input class="rounded" type="text"></div>
+            <div><label>Color input</label><input class="color" type="text"></div>
+            <div><label>Password</label><input type="password"></div>
+            <div><label>Placeholder</label><input type="text" placeholder="Enter Your Name..."></div>
+            <div><label>Read Only</label><input type="text" value="Seytech" readonly></div>
+            <div><label>Disabled</label><input type="text" value="Seattle" disabled></div>
+            <div><label>Predefined</label><input type="text" value="http://"></div>
+            <div><label>Textarea</label><textarea type="textarea"></textarea></div>
+            <div>
+                <label>Dropdown</label>
+                <select>
+                    <option value='Los Angeles'>Los Angeles</option>
+                    <option value='Chicago'>Chicago</option>
+                    <option value='New York'>New York</option>
+                    <option value='Bay Area'>Bay Area</option>
+                    <option value='Canada'>Canada</option>
+                </select>
+            </div>
+            <div><label>Upload</label><input type="file" /></div>
+            <div><label>Icon</label><input class="icon" type="text" /></div>
+            <div><label>Date</label><input type="date" /></div>
+            <div><label>Required Text</label><input required type="text" /></div>
+            <div><label>Required Email</label><input required type="email" /></div>
+            <div><label>Range</label><input type="range" /></div>
+            <div><label>Button</label><input type="submit" /></div>
+        </form>
+        <hr>
+        Radio Button
+        <hr>
+        <form class="group">
+            <input type="radio" name="gender" value="male" checked> Male<br>
+            <input type="radio" name="gender" value="female"> Female<br>
+            <input type="radio" name="gender" value="other"> Other
+        </form>
+        <hr>
+        Checkbox
+        <hr>
+        <form class="group">
+            <input type="checkbox" name="gender" value="male" checked> Male<br>
+            <input type="checkbox" name="gender" value="female"> Female<br>
+            <input type="checkbox" name="gender" value="other"> Other
+        </form>
+    </div>
+
+
+</body>
+
+</html>

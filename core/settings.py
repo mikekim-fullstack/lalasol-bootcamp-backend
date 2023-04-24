@@ -49,78 +49,6 @@ DEBUG = env('DEBUG')
 ALLOWED_HOSTS = env('ALLOWED_HOSTS').split(',') #['lalasol.herokuapp.com', '127.0.0.1']
 
 
-print('ALLOWED_HOSTS:',ALLOWED_HOSTS)
-print('CORS_ALLOWED_ORIGINS:',env('CORS_ALLOWED_ORIGINS').split(','))
-
-def addHttp (a):
-    if 'localhost' in a:
-        return 'http://'+a
-    if '127' in a:
-        return 'http://'+a
-    return 'https://'+a
-# print(list_csrf)
-# CSRF_TRUSTED_ORIGINS = list(map(addHttp,ALLOWED_HOSTS))
-# Where is your frontend code? (CORS: Cross-Origin Resource Sharing)
-# CORS_ALLOWED_ORIGINS = list(map(addHttp,env('CORS_ALLOWED_ORIGINS').split(',')))
-# print('CORS_ALLOWED_ORIGINS: ', CORS_ALLOWED_ORIGINS, env('CORS_ALLOWED_ORIGINS'))
-# CORS_ALLOWED_ORIGINS +=["http://127.0.0.1:3000"]
-
-CSRF_TRUSTED_ORIGINS=[
-    "https://lalasol-bootcamp.web.app",
-    "http://0.0.0.0:$PORT",
-     "http://127.0.0.1:3000",
-     "http://localhost:3000", 
-     "http://127.0.0.1:8000",
-    "http://localhost:8000", 
-    "https://lalasol-bootcamp-backend-production.up.railway.app",
-    "https://github.com",
-    "https://youtube.com",
-   
-]
-CORS_ALLOWED_ORIGINS = [
-    "https://lalasol-bootcamp.web.app",
-    "http://0.0.0.0:$PORT",
-    "http://127.0.0.1:3000",
-    "http://localhost:3000", 
-    "http://127.0.0.1:8000",
-    "http://localhost:8000", 
-    "https://lalasol-bootcamp-backend-production.up.railway.app",
-    "https://github.com",
-    "https://youtube.com",
-   
-]
-CORS_ORIGIN_ALLOW_ALL = True
-
-X_FRAME_OPTIONS = 'ALLOWALL'
-# X_FRAME_OPTIONS = 'ALLOW-FROM=https://lalasol-bootcamp.web.app'
-# X_FRAME_OPTIONS = 'SAMEORIGIN'
-X_CONTENT_TYPE_OPTIONS='NOSNIFF'
-# X_XSS_PROTECTION= "1; mode=block"
-# CONTENT_SECURITY_POLICY="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'  https://lalasol-bootcamp.web.app https://lalasol-bootcamp-backend-production.up.railway.app; object-src 'none'"; 
-# X-Content-Type-Options nosniff
-#  Content Security Policy
-
-
-# CSP_DEFAULT_SRC=("'self'", 'http://localhost:3000')
-# CSP_DEFAULT_SRC=("'self'", 'https://lalasol-bootcamp.web.app')
-# CSP_DEFAULT_SRC = ["'none'"]
-# CSP_SCRIPT_SRC = ["'self'",
-#     "https://lalasol-bootcamp.web.app/js","http://localhost:3000"
-# ]
-# CSP_STYLE_SRC = ["'self'","https://lalasol-bootcamp.web.app","http://localhost:3000"]
-# CSP_IMG_SRC = ["'self'","https://lalasol-bootcamp.web.app","http://localhost:3000"]
-
-# Keep our policy as strict as possible
-CSP_DEFAULT_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co")
-CSP_STYLE_SRC = ("'self'","'unsafe-eval'", "'unsafe-inline'", 'fonts.googleapis.com', "https://lalasol-bootcamp.web.app","http://127.0.0.1:3000")
-CSP_SCRIPT_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co")
-CSP_FONT_SRC = ("'self'", 'fonts.gstatic.com')
-CSP_IMG_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co",'https://images.pexels.com','https://youtube.com')
-CSP_FRAME_SRC=("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co",'https://youtube.com')
-# Access-Control-Allow-Origin= "https://lalasol-bootcamp.web.app"
-
-# Application definition
-
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -163,6 +91,88 @@ MIDDLEWARE = [
 # CSP_SCRIPT_SRC = [
 #     "'self'","https://lalasol-bootcamp.web.app",
 # ]
+
+
+
+print('ALLOWED_HOSTS:',ALLOWED_HOSTS)
+print('CORS_ALLOWED_ORIGINS:',env('CORS_ALLOWED_ORIGINS').split(','))
+
+def addHttp (a):
+    if 'localhost' in a:
+        return 'http://'+a
+    if '127' in a:
+        return 'http://'+a
+    return 'https://'+a
+# print(list_csrf)
+# CSRF_TRUSTED_ORIGINS = list(map(addHttp,ALLOWED_HOSTS))
+# Where is your frontend code? (CORS: Cross-Origin Resource Sharing)
+# CORS_ALLOWED_ORIGINS = list(map(addHttp,env('CORS_ALLOWED_ORIGINS').split(',')))
+# print('CORS_ALLOWED_ORIGINS: ', CORS_ALLOWED_ORIGINS, env('CORS_ALLOWED_ORIGINS'))
+# CORS_ALLOWED_ORIGINS +=["http://127.0.0.1:3000"]
+
+CSRF_TRUSTED_ORIGINS=[
+    "https://lalasol-bootcamp.web.app",
+    "http://0.0.0.0:$PORT",
+     "http://127.0.0.1:3000",
+     "http://localhost:3000", 
+     "http://127.0.0.1:8000",
+    "http://localhost:8000", 
+    "https://lalasol-bootcamp-backend-production.up.railway.app",
+    "https://github.com",
+    "https://youtube.com",
+   
+]
+CORS_ALLOWED_ORIGINS = [
+    "https://lalasol-bootcamp.web.app",
+    "http://0.0.0.0:$PORT",
+    "http://127.0.0.1:3000",
+    "http://localhost:3000", 
+    "http://127.0.0.1:8000",
+    "http://localhost:8000", 
+    "https://lalasol-bootcamp-backend-production.up.railway.app",
+    "https://github.com",
+    "https://youtube.com",
+   
+]
+CORS_ORIGIN_ALLOW_ALL = True
+
+
+CSRF_TRUSTED_ORIGINS = [
+         "https://lalasol-bootcamp.web.app",
+    ]
+
+
+X_FRAME_OPTIONS = 'ALLOWALL'
+# X_FRAME_OPTIONS = 'ALLOW-FROM=https://lalasol-bootcamp.web.app'
+# X_FRAME_OPTIONS = 'SAMEORIGIN'
+X_CONTENT_TYPE_OPTIONS='NOSNIFF'
+# X_XSS_PROTECTION= "1; mode=block"
+# CONTENT_SECURITY_POLICY="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'  https://lalasol-bootcamp.web.app https://lalasol-bootcamp-backend-production.up.railway.app; object-src 'none'"; 
+# X-Content-Type-Options nosniff
+#  Content Security Policy
+
+
+# CSP_DEFAULT_SRC=("'self'", 'http://localhost:3000')
+# CSP_DEFAULT_SRC=("'self'", 'https://lalasol-bootcamp.web.app')
+# CSP_DEFAULT_SRC = ["'none'"]
+# CSP_SCRIPT_SRC = ["'self'",
+#     "https://lalasol-bootcamp.web.app/js","http://localhost:3000"
+# ]
+# CSP_STYLE_SRC = ["'self'","https://lalasol-bootcamp.web.app","http://localhost:3000"]
+# CSP_IMG_SRC = ["'self'","https://lalasol-bootcamp.web.app","http://localhost:3000"]
+
+# Keep our policy as strict as possible
+CSP_DEFAULT_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co")
+CSP_STYLE_SRC = ("'self'","'unsafe-eval'", "'unsafe-inline'", 'fonts.googleapis.com', "https://lalasol-bootcamp.web.app","http://127.0.0.1:3000")
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co")
+CSP_FONT_SRC = ("'self'",'fonts.gstatic.com','https://lalasol-bootcamp.web.app/','https://lalasol-bootcamp-backend-production.up.railway.app','https://fonts.googleapis.com',"http://localhost:3000","http://127.0.0.1:3000",)
+CSP_IMG_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co",'https://images.pexels.com','https://youtube.com')
+CSP_FRAME_SRC=("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co",'https://youtube.com')
+# Access_Control_Allow_Origin= "https://lalasol-bootcamp.web.app"
+ACCESS_CONTROL_ALLOW_ORIGIN =  "https://lalasol-bootcamp.web.app"
+# Application definition
+
+
 ROOT_URLCONF = "core.urls"
 
 TEMPLATES = [
@@ -241,13 +251,15 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-# STATIC_URL = '/static/'
-# STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
-# STATICFILES_DIRS = (os.path.join(BASE_DIR,  'static'),)
-
+# ++ Local Static Folder ++
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
+STATICFILES_DIRS = (os.path.join(BASE_DIR,  'static'),)
+
+# ++ Remote Static folder ++
+# STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATICFILES_STORAGE="whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 #  https://lalasol-bootcamp-backend-production.up.railway.app/m…nt-server-architecture_a85a0e1a3eb349058be813bccd38bae4.webp 
 

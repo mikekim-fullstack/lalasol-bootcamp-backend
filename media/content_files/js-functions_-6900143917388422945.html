@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        .reveal section img.noborder {
+            border-width: 0;
+            box-shadow: none;
+        }
+
+        .reveal section img {
+            max-height: 400px;
+            max-width: 80%;
+        }
+
+        div.halfblock {
+            float: left;
+            width: 39%;
+            text-align: left;
+            /* margin-right: 5%; */
+            margin-left: 60px;
+        }
+
+        div.left-align {
+            text-align: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .reveal h1 {
+            font-size: 2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+
+        /*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+        .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        /*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+        .visuallyhidden.focusable:active,
+        .visuallyhidden.focusable:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+        section.present {
+            transform: scale(1.1);
+            padding: 0 !important;
+        }
+
+        h1 {
+            color: #0d99a5 !important;
+        }
+
+        .present>p {
+            padding: 0 30px;
+        }
+
+
+        .reveal pre code {
+            padding: 5px;
+            overflow: auto;
+            max-height: 400px;
+            word-wrap: normal;
+        }
+
+        .reveal code {
+            font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+            background: #333;
+            color: #fff;
+            padding: 2px 5px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .reveal li {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reveal table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media screen and (min-width:400px) {
+            .reveal li {
+                margin-left: 100px;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h1>Functions</h1>
+            </section>
+
+            <!-- Functions -->
+            <section>
+                <h3>Functions</h3>
+                <p>Functions are separable, reusable pieces of code</p>
+                <p>You declare it once and use it anywhere in you code</p>
+                <img src="../images/js-functions-legos.jpg" alt="Pile of legos" />
+                <p class="credit">Photo credit: <a href="http://www.flickr.com/photos/catzrule/9940388305/">Rick
+                        Payette</a> <a href="http://creativecommons.org/licenses/by-nc-sa/2.0/">cc</a></p>
+            </section>
+
+            <section>
+                <h3>Functions in Math</h3>
+                <p>A function relates an input to an output</p>
+                <pre><code class="javascript">
+    f(x) = x2
+            </code></pre>
+                shows us that function "f" takes "x" and squares it <br>
+                <pre><code class="javascript">
+  Example: with  f(x) = x2:
+  an input of 4 becomes an output of 16.
+  In fact we can write f(4) = 16.
+        </code></pre>
+            </section>
+
+            <section>
+                <p>Visual representation of functions in Math</p>
+                <img src="../images/js-functions-function-tree.png" alt="Function tree" /><br>
+                <em>We will talk about parameters in a bit</em>
+            </section>
+
+            <section>
+                <h3>Function Declaration</h3>
+                <p>To declare (create) a function, you can give it a name, then include all the code for the function
+                    inside curly brackets <code>{}</code></p>
+                <pre><code class="javascript">function parrotFacts() {
+    console.log('Some parrot species can live for over 80 years');
+    console.log('Kakapos are a critically endangered flightless parrot');
+  }
+  </code></pre>
+                <p>Functions can have multiple lines.</p>
+            </section>
+
+            <section>
+                <h3>Function Expression </h3>
+                <p>A function expression is very similar to and has almost the same syntax as a function declaration.
+                    The main difference is the function name, which can be omitted in function expressions to create
+                    anonymous functions</p>
+                <pre><code class="javascript">
+  const parrotFacts = function() {
+    console.log('Some parrot species can live for over 80 years');
+    console.log('Kakapos are a critically endangered flightless parrot');
+  }
+            </code></pre>
+            </section>
+
+            <section>
+                <h3>More Differences</h3>
+                <p>
+                    There are more differences than just a name<br>
+                    Like <strong>hoisting</strong>, <strong>scope</strong> etc.<br>
+                    We will cover them in depth when we teach ES6 and topics separately<br>
+                </p>
+            </section>
+
+            <section>
+                <h3>Using Functions</h3>
+                <p>To invoke (use) a function, you type its name, followed by parenthesis <code>()</code></p>
+                <pre><code class="javascript"> parrotFacts();</code></pre>
+                <p>We'll talk about what can go inside those parenthesis in a minute! For now, leave them empty.</p>
+            </section>
+
+            <section>
+                <h3>What's going on here?</h3>
+                <p>A function is a group of code you can reuse many times. Whenever you invoke a function by using it's
+                    name, you tell the browser to run the code inside the function.</p>
+                <p>NOTE: You must declare a function before you can use it.</p>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <p>Write a function that outputs a sentence. Then invoke that function later in your code.</p>
+            </section>
+
+            <section>
+                <h3>Arguments</h3>
+                <p>Functions can accept input values, called <code>arguments</code>.</p>
+                <pre><code class="javascript">
+  function callKitten(kittenName){
+    console.log('Come here, ' + kittenName + '!');
+  }
+  callKitten('Fluffy'); // outputs 'Come here, Fluffy!'
+  
+  function addNumbers(a, b){
+    console.log(a + b);
+  }
+  addNumbers(5, 7);  // outputs 12
+  addNumbers(9, 12); // outputs 21
+            </code></pre>
+            </section>
+
+            <section>
+                <img src="../images/js-functions-args-par-diff.png" alt="arguments and parameters difference">
+                <p>This is the difference- the three <strong>parameters</strong> are non-negotiable. Water. Pasta. Pot.
+                    But the volume of water? The type of pasta? The size of the pot? You can change those. Those are the
+                    arguments</p>
+            </section>
+            <section>
+                <h3>Arguments</h3>
+                <p>You can also pass <code>variables</code> into functions. These variables do not need to have the same
+                    name as the function arguments.</p>
+                <pre><code class="javascript">
+  function addOne(num){
+    const newNumber = num + 1;
+    console.log('You now have ' + newNumber);
+  }
+  
+  // Declare variables
+  const numberOfKittens = 5;
+  const numberOfPuppies = 4;
+  
+  // Use them in functions
+  addOne(numberOfKittens);
+  addOne(numberOfPuppies);
+            </code></pre>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <p>Write a simple program to combine a first name and a last name inside a function. Then update the
+                    function to accept a first and last name as arguments.</p>
+            </section>
+
+            <!-- returning values -->
+            <section>
+                <h3>Returning Values</h3>
+                <p>You can have a function give you back a value, to use later.</p>
+                <pre><code class="javascript">
+  function square(num) {
+    return num * num;
+  }
+  
+  console.log(square(4));       // outputs '16'
+  
+  const squareOfFive = square(5); // squareOfFive equals '25'
+          </code></pre>
+                <p><code>return</code> will immediately end a function.</p>
+            </section>
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <p>Add a return statement to your 'name' function. Use that function to set the value of a variable.</p>
+            </section>
+
+            <!-- Variable Scope -->
+            <section>
+                <h3>Variable Scope</h3>
+                <p>The scope of a variable determines where it's value is accessible throughout your program.</p>
+                <img src="../images/js-functions-footprints.jpg" alt="Footprints being washed away" />
+                <p class="credit">Photo credit: <a href="http://www.flickr.com/photos/heyvikram/187950111/"
+                        target="_blank">_vikram</a> <a href="http://creativecommons.org/licenses/by-nc/2.0/"
+                        target="_blank">cc</a></p>
+            </section>
+
+            <section>
+                <h3>Global Scope</h3>
+                <p>A variable declared outside of a function has a <code>global scope</code> and can be accessed
+                    anywhere, even inside of functions.</p>
+                <pre><code class="javascript">
+  const awesomeGroup = 'LaLaSol'; // Global scope
+  
+  function whatIsAwesome() {
+    console.log(awesomeGroup + ' is pretty awesome.'); // LaLaSol is pretty awesome.
+  }
+  
+  whatIsAwesome();
+            </code></pre>
+            </section>
+
+            <section>
+                <h3>Local Scope</h3>
+                <p>A variable declared inside a function has a <code>local scope</code> and can only be accessed within
+                    that function.</p>
+                <pre><code class="javascript">
+  function whatIsAwesome() {
+    const awesomeGroup = 'LaLaSol'; // Local scope
+    console.log(awesomeGroup + ' is pretty awesome.'); // LaLaSol is pretty awesome.
+  }
+  
+  whatIsAwesome();
+  
+  console.log(awesomeGroup + ' is pretty awesome.'); // ReferenceError: awesomeGroup is not defined
+            </code></pre>
+            </section>
+            <section>
+                <img src="../images/js-functions-glocal.png" alt="global local scope illustration">
+                <p>Illustration of global, local and block scopes in terms of government!</p>
+            </section>
+            <!-- Boolean -->
+
+
+            <section>
+                <h3>Let's Develop It</h3>
+                <ul>
+                    <li>Write a JavaScript function to print the “Hello World” message.</li>
+                    <li>Write a function that returns the square of a number. console.log(findSquare(2)) //4</li>
+                    <li>Write a function to convert Celsius to Fahrenheit</li>
+                    <li>Write a function to generate a random number</li>
+                </ul>
+
+            </section>
+
+            <!-- Final slides-->
+            <section>
+                <h3>You did it!</h3>
+                <img src="../images/js-functions-kitten-yay.jpg" alt="Happy cat" />
+                <p class="credit">Photo credit: <a href="http://www.flickr.com/photos/laura-kali/7399310732/"
+                        target="_blank">OnceAndFutureLaura</a> <a href="http://creativecommons.org/licenses/by-sa/2.0/"
+                        target="_blank">cc</a></p>
+            </section>
+
+            <section>
+                <h2>Questions?</h2>
+            </section>
+        </div>
+        <footer>
+            <div class="copyright">
+                Intro to JavaScript &mdash; LaLaSol &mdash;
+
+            </div>
+        </footer>
+    </div>
+    <!-- Closes Reveal -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize(
+            {
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                // Optional reveal.js plugins
+                dependencies: [
+                    // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                    // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                    // { src: 'dist/js/zoom.js', async: true },
+                    // { src: 'dist/js/notes.js', async: true },
+                    // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                ]
+            }
+        );
+    </script>
+</body>
+
+</html>
