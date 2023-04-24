@@ -2,8 +2,13 @@
 ARG EnvironmentVariable
 FROM python:3.10.6-slim
 
-ENTRYPOINT command param1 param2
+# ENTRYPOINT command param1 param2
 
+# setup environment variable  
+# ENV DockerHOME=/home/app/webapp  
+
+# set work directory  
+# RUN mkdir -p $DockerHOME  
 
 COPY requirements.txt /app/requirements.txt
 # COPY requirements.txt /requirements.txt
@@ -43,5 +48,6 @@ WORKDIR /app
 
 ADD . .
 
-EXPOSE 6226
-# EXPOSE 8000
+# EXPOSE 6226
+EXPOSE 8000
+CMD python manage.py runserver 0.0.0.0:8000
