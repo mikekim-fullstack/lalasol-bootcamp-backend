@@ -18,6 +18,7 @@ build/
 *.dump
 /media_bk/
 media.zip
+/node_modules/
 lalasol-railway-variables.txt
 # media/ ! don't do it because when you deployed it it will remove all static files.
 # git rm -r --cached account/__pycache__/
