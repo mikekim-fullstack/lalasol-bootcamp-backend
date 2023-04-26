@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript <span>Switch...Case</span> Statements</h1>
+            <p class="summary">In this tutorial you will learn how to use the switch...case statement to test or
+                evaluate an expression with different values in JavaScript.</p>
+            <h2>Using the Switch...Case Statement</h2>
+            <p class="space">The <em>switch..case</em> statement is an alternative to the <em>if...else if...else</em>
+                statement, which does almost the same thing. The <em>switch...case</em> statement tests a variable or
+                expression against a series of values until it finds a match, and then executes the block of code
+                corresponding to that match. It's syntax is:</p>
+            <div class="syntax">
+                <span class="keyword">switch</span>(x){<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">case</span> value1:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Code to be executed if x === value1<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">case</span> value2:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Code to be executed if x === value2<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;...<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">default</span>:<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Code to be executed if x is different from all
+                values<br>
+                }
+            </div>
+            <p>Consider the following example, which display the name of the day of the week.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+					<code class="language-js">
+                        var d = new Date();
+
+                        switch(d.getDay()) {
+                        case 0:
+                            alert("Today is Sunday.");
+                            break;
+                        case 1:
+                            alert("Today is Monday.");
+                            break;
+                        case 2:
+                            alert("Today is Tuesday.");
+                            break;
+                        case 3:
+                            alert("Today is Wednesday.");
+                            break;
+                        case 4:
+                            alert("Today is Thursday.");
+                            break;
+                        case 5:
+                            alert("Today is Friday.");
+                            break;
+                        case 6:
+                            alert("Today is Saturday.");
+                            break;   
+                        default:
+                            alert("No information available for that day.");
+                            break;
+                        }
+					</code>
+				</pre>
+            </div>
+            <!--End:Code box-->
+            <p>The <code>getDay()</code> method returns the weekday as a number from 0 and 6, where 0 represents Sunday.
+                See the <a href="javascript-date-and-time.php">JavaScript date and time</a> chapter to learn more about
+                date methods.</p>
+            <!--Note box-->
+            <div class="color-box break">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> In a <em>switch...case</em> statement, the value of the expression or
+                            variable is compared against the case value using the strict equality operator
+                            (<code>===</code>). That means if <code>x = "0"</code>, it doesn't match
+                            <code>case 0:</code>, because their <a href="javascript-data-types.php">data types</a> are
+                            not equal.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <p>The <em>switch...case</em> statement differs from the <em>if...else</em> statement in one important way.
+                The switch statement executes line by line (i.e. statement by statement) and once JavaScript finds a
+                <code>case</code> clause that evaluates to true, it's not only executes the code corresponding to that
+                case clause, but also executes all the subsequent <code>case</code> clauses till the end of the
+                <code>switch</code> block automatically.</p>
+            <p>To prevent this you must include a <code>break</code> statement after each <code>case</code> (as you can
+                see in the above example). The <code>break</code> statement tells the JavaScript interpreter to break
+                out of the <em>switch...case</em> statement block once it executes the code associated with the first
+                true case.</p>
+            <p>The <code>break</code> statement is however not required for the <code>case</code> or
+                <code>default</code> clause, when it appears at last in a switch statement. Although, it a good
+                programming practice to terminate the last <code>case</code>, or <code>default</code> clause in a switch
+                statement with a <code>break</code>. It prevents a possible programming error later if another case
+                statement is added to the switch statement.</p>
+            <p>The <code>default</code> clause is optional, which specify the actions to be performed if no
+                <code>case</code> matches the switch expression. The <code>default</code> clause does not have to be the
+                last clause to appear in a switch statement. Here's an example, where <code>default</code> is not the
+                last clause.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+					<code class="language-js">
+                        var d = new Date();
+
+                        switch(d.getDay()) {
+                        default: 
+                            alert("Looking forward to the weekend.");
+                            break;
+                        case 6:
+                            alert("Today is Saturday.");
+                            break; 
+                        case 0:
+                            alert("Today is Sunday.");
+                        }
+					</code>
+				</pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Multiple Cases Sharing Same Action</h2>
+            <p>Each case value must be unique within a switch statement. However, different cases don't need to have a
+                unique action. Several cases can share the same action, as shown here:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+					<code class="language-js">
+                        var d = new Date();
+
+                        switch(d.getDay()) {
+                        default: 
+                            alert("Looking forward to the weekend.");
+                            break;
+                        case 6:
+                            alert("Today is Saturday.");
+                            break; 
+                        case 0:
+                            alert("Today is Sunday.");
+                        }
+					</code>
+				</pre>
+            </div>
+            <!--End:Code box-->
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        .reveal section img.noborder {
+            border-width: 0;
+            box-shadow: none;
+        }
+
+        .reveal section img {
+            max-height: 400px;
+            max-width: 80%;
+        }
+
+        div.halfblock {
+            float: left;
+            width: 39%;
+            text-align: left;
+            /* margin-right: 5%; */
+            margin-left: 60px;
+        }
+
+        div.left-align {
+            text-align: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .reveal h1 {
+            font-size: 2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+
+        /*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+        .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        /*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+        .visuallyhidden.focusable:active,
+        .visuallyhidden.focusable:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+        section.present {
+            transform: scale(1.1);
+            padding: 0 !important;
+        }
+
+        h1 {
+            color: #0d99a5 !important;
+        }
+
+        .present>p {
+            padding: 0 30px;
+        }
+
+
+        .reveal pre code {
+            padding: 5px;
+            overflow: auto;
+            max-height: 400px;
+            word-wrap: normal;
+        }
+
+        .reveal code {
+            font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+            background: #333;
+            color: #fff;
+            padding: 2px 5px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .reveal li {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reveal table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media screen and (min-width:400px) {
+            .reveal li {
+                margin-left: 100px;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- Slide Code Here -->
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h3>Conditional Rendering</h3>
+            </section>
+            <section>
+                <h3>What to learn</h3>
+                <ul>
+                    <li>How render conditionally</li>
+                    <li>How to change parent's state - using callbacks</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Rendering 2 components based on prop</h3>
+                <img height="100px" src="../images/conditional-rendering-signin.png" />
+                <img height="100px" src="../images/conditional-rendering-logout.png" />
+            </section>
+            <section>
+                <h3>Creating 2 different components</h3>
+
+                <pre><code class="js">
+function UserGreeting(props) {
+return <h1>Welcome back!</h1>;
+}
+export default UserGreeting;
+
+-----------------------------------------------
+
+function GuestGreeting(props) {
+return <h1>Please sign up.</h1>;
+}
+export default GuestGreeting;
+
+</code></pre>
+            </section>
+            <section>
+                <h3>Create Greeting component & import other 2 components</h3>
+
+                <pre><code class="js">
+function Greeting(props) {
+const isLoggedIn = props.isLoggedIn;
+if (isLoggedIn) {
+return &lt;UserGreeting />;
+}
+return &lt;GuestGreeting />;
+}
+
+</code></pre>
+            </section>
+            <section>
+                <h6>Now pass to Greeting component true of false for isLoggedIn prop</h6>
+
+                <pre><code class="js">
+function App() {
+return &lt;Greeting isLoggedIn={true} />;
+}
+
+</code></pre>
+            </section>
+
+            <section>
+                <h5>Let's use state</h5>
+                <pre><code class="js">
+class App extends React.Component {
+constructor() {
+super();
+this.state = {isLoggedIn: false};
+}
+
+render() {
+return (
+  <div>
+    &lt;Greeting isLoggedIn={this.state.isLoggedIn} />
+  </div>
+);
+}
+}
+
+</code></pre>
+            </section>
+            <section>
+                <h5>Let's add button components</h5>
+                <pre><code class="js">
+function LoginButton() {
+return (
+<button>Login</button>
+);
+}
+export default LoginButton
+
+function LogoutButton() {
+return (
+<button>Logout</button>
+);
+}
+export default LogoutButton
+
+</code></pre>
+            </section>
+            <section>
+                <h5>Connect logout/login components</h5>
+                <pre><code class="js">
+class App extends React.Component {
+constructor() {
+super();
+this.state = {isLoggedIn: false};
+}
+
+render() {
+const {isLoggedIn} = this.state;
+let button;
+if (isLoggedIn) {
+  button = &lt;LogoutButton />;
+} else {
+  button = &lt;LoginButton />;
+}
+return (
+  <div>
+    &lt;Greeting isLoggedIn={isLoggedIn} />
+    {button}
+  </div>
+);
+}
+}
+
+</code></pre>
+            </section>
+
+            <section>
+                <h5>Create functions to update state</h5>
+                <pre><code class="js">
+class App extends React.Component {
+constructor() {
+super();
+this.state = {isLoggedIn: false};
+}
+
+handleLoginClick = () => {
+this.setState({isLoggedIn: true});
+}
+
+handleLogoutClick = () => {
+this.setState({isLoggedIn: false});
+}
+
+render() {
+const {isLoggedIn} = this.state;
+let button;
+if (isLoggedIn) {
+  button = &lt;LogoutButton onClick={this.handleLogoutClick} />;
+} else {
+  button = &lt;LoginButton onClick={handleLoginClick} />;
+}
+return (
+  <div>
+    &lt;Greeting isLoggedIn={isLoggedIn} />
+    {button}
+  </div>
+);
+}
+}
+
+</code></pre>
+            </section>
+            <section>
+                <h5>Callback function is called from child component</h5>
+                <pre><code class="js">
+function LoginButton(props) {
+return (
+&lt;button onClick={props.onClick}>
+  Login
+&lt;/button>
+);
+}
+
+function LogoutButton(props) {
+return (
+&lt;button onClick={props.onClick}>
+  Logout
+&lt;/button>
+);
+}
+
+</code></pre>
+            </section>
+            <section>
+                <h5>Inline If with Logical && Operator</h5>
+            </section>
+            <section>
+                <pre><code class="js">
+function Mailbox(props) {
+const unreadMessages = ['Seytech', 'React', 'Developer'];
+return (
+<div>
+  <h1>Hello!</h1>
+  {unreadMessages.length > 0 &&
+    <h2>
+      You have {unreadMessages.length} unread messages.
+    </h2>
+  }
+</div>
+);
+}
+
+</code></pre>
+                <h5>What happens if unreadMessages is empty array?</h5>
+            </section>
+            <section>
+                <h5>What it renders?</h5>
+                <pre><code class="js">
+render() {
+const count = 0;
+return (
+<div>
+  { count && <h1>Messages: {count}</h1>}
+</div>
+);
+}
+
+</code></pre>
+            </section>
+            <section>
+                <h5>We can do inline conditional renders</h5>
+                <pre><code class="js">
+render() {
+const isLoggedIn = this.state.isLoggedIn;
+return (
+<div>
+  The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
+</div>
+);
+}
+
+</code></pre>
+            </section>
+            <section>
+                <h5>We can do inline conditional renders</h5>
+                <pre><code class="js">
+render() {
+const isLoggedIn = this.state.isLoggedIn;
+return (
+<div>
+  {isLoggedIn
+    ? &lt;LogoutButton onClick={this.handleLogoutClick} />
+    : &lt;LoginButton onClick={this.handleLoginClick} />
+  }
+</div>
+);
+}
+
+</code></pre>
+            </section>
+            <section>
+                <h3>Render lists - array of data</h3>
+                <p>We use <code>map()</code> to render list.</p>
+                <pre><code class="js">
+const numbers = [1, 2, 3, 4, 5];
+const listItems = numbers.map((number) => {
+return <li>{number}</li>
+});
+
+</code></pre>
+            </section>
+            <section>
+                <h3>Render lists - array of data</h3>
+                <p>We use <code>map()</code> to render list.</p>
+                <pre><code class="js">
+function Car(props) {
+return <li>I am a { props.brand }</li>;
+}
+
+function Garage() {
+const cars = ['Ford', 'BMW', 'Audi'];
+return (
+<div>
+  <h1>Who lives in my garage?</h1>
+  <ul>
+    {cars.map((car) => &lt;Car brand={car} />)}
+  </ul>
+</div>
+);
+}
+
+</code></pre>
+            </section>
+            <section>
+                <h3>Keys</h3>
+                <smal>
+                    <ul>
+                        <li><small>Keys allow React to keep track of elements. This way, if an item is updated or
+                                removed, only
+                                that item will be re-rendered instead of the entire list.</small>
+
+                        </li>
+                        <li><small>Keys need to be unique to each sibling. But they can be duplicated globally.</small>
+                        </li>
+                        <li>
+                            <small>Generally, the key should be a unique ID assigned to each item. As a last resort, you
+                                can
+                                use the array index as a key.</small>
+                        </li>
+                    </ul>
+                    <pre><code class="js">
+function Car(props) {
+return <li>I am a { props.brand }</li>;
+}
+
+function Garage() {
+const cars = [
+{id: 1, brand: 'Ford'},
+{id: 2, brand: 'BMW'},
+{id: 2, brand: 'Audi'}
+];
+return (
+<div>
+  <h1>Who lives in my garage?</h1>
+  <ul>
+    {cars.map((car) => &lt;Car key={car.id} brand={car.brand} />)}
+  </ul>
+</div>
+);
+} 
+
+</code></pre>
+            </section>
+
+            <section>
+                <h3>Team Practice</h3>
+                <ul>
+                    <li>Let's build a sign up form</li>
+                    <li>We need to store data in state</li>
+                    <li>For inputs you can use OnChange event</li>
+                    <li>When submitted just console.log whole data</li>
+                </ul>
+                <img src="../images/signup.png" />
+            </section>
+            <section>
+                <h3>Team Practice</h3>
+                <ul>
+                    <li>Let's implement a counter</li>
+                </ul>
+                <p><img src="../images/counter.png" /></p>
+            </section>
+        </div>
+        <!-- Close slides -->
+    </div>
+    <!-- Closes Reveal -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize(
+            {
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                // Optional reveal.js plugins
+                dependencies: [
+                    // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                    // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                    // { src: 'dist/js/zoom.js', async: true },
+                    // { src: 'dist/js/notes.js', async: true },
+                    // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                ]
+            }
+        );
+    </script>
+    <!-- +++ show the html code +++ -->
+    <script>
+
+        let jss = document.querySelectorAll(".js");
+
+        console.log('jss: ', jss)
+        jss.forEach((js) => {
+            let a = js.innerHTML;
+            console.log('innerHTML: ', js)
+            let b = a.split('>');
+            js.textContent = ''
+
+            for (var i = 0; i < b.length; i++) {
+                let replaceBracket = i == b.length - 1 ? "" : ">";
+                js.textContent += b[i] + replaceBracket;
+            }
+        })
+    </script>
+</body>
+
+</html>

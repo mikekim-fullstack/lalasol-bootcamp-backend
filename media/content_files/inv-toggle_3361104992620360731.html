@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css">
+    <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script>
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <!-- <link href="../style.css" rel="stylesheet" /> -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body style="margin-left: 50px;">
+    <main role="main">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h4 class="display-5">Extra Links</h4>
+            </div>
+        </div>
+        <p><a href="https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-6fa6bdf5ad95"
+                target="_blank">https://medium.com/javascript-scene/10-interview-questions-every-javascript-developer-should-know-6fa6bdf5ad95</a>
+        </p>
+        <p><a href='https://www.freecodecamp.org/news/cracking-the-front-end-interview-9a34cd46237/'
+                target="_blank">https://www.freecodecamp.org/news/cracking-the-front-end-interview-9a34cd46237/</a></p>
+        <p><a href='http://thatjsdude.com/interview/js2.html'
+                target="_blank">http://thatjsdude.com/interview/js2.html</a></p>
+        <p><a href='http://thatjsdude.com/interview/dom.html'
+                target="_blank">http://thatjsdude.com/interview/dom.html</a></p>
+        <p><a href='http://thatjsdude.com/interview/js1.html'
+                target="_blank">http://thatjsdude.com/interview/js1.html</a></p>
+        <p><a href='https://tsh.io/blog/frontend-interview-questions/'
+                target="_blank">https://tsh.io/blog/frontend-interview-questions/</a></p>
+        <p><a href='https://insights.dice.com/2020/04/03/front-end-developer-interview-questions-5-big-things-know/'
+                target="_blank">https://insights.dice.com/2020/04/03/front-end-developer-interview-questions-5-big-things-know/</a>
+        </p>
+        <p><a href='https://www.fullstack.cafe/blog/front-end-developer-interview-questions'
+                target="_blank">https://www.fullstack.cafe/blog/front-end-developer-interview-questions</a></p>
+        <p><a href='https://github.com/Jobeir/front-end-interview-preparation-guide'
+                target="_blank">https://github.com/Jobeir/front-end-interview-preparation-guide</a></p>
+        <p><a href='https://blog.pramp.com/how-to-succeed-in-a-frontend-interview-d748cb073823'
+                target="_blank">https://blog.pramp.com/how-to-succeed-in-a-frontend-interview-d748cb073823</a></p>
+        <p><a href='https://github.com/h5bp/Front-end-Developer-Interview-Questions/blob/master/src/questions/coding-questions.md'
+                target="_blank">https://github.com/h5bp/Front-end-Developer-Interview-Questions/blob/master/src/questions/coding-questions.md
+            </a>
+        </p>
+
+        <div class="question"><a
+                href="https://codeburst.io/de-coding-the-front-end-development-interview-process-9601bc4c71e5">Cultural</a>
+        </div>
+        <div class="question"><a href="https://www.fullstack.cafe/blog/front-end-developer-interview-questions">Front
+                End</a></div>
+        <div class="question"><a
+                href="https://medium.com/front-end-developers/how-to-interview-a-front-end-developer-5f9e3de4e6a5">Front
+                End</a></div>
+        <div class="question"><a href="https://www.indeed.com/hire/interview-questions/front-end-developer">Front
+                End</a></div>
+
+    </main>
+
+
+    <script>
+        function toggle(e) {
+            if (e.currentTarget.querySelector('.pre').style.display === 'none') {
+                e.currentTarget.querySelector('.pre').style.display = 'block'
+            } else {
+                e.currentTarget.querySelector('.pre').style.display = 'none'
+            }
+        }
+        const boxes = document.getElementsByClassName('box');
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].addEventListener('click', toggle);
+            boxes[i].querySelector('.pre').style.display = 'none';
+            boxes[i].querySelector('.pre').style.display = 'none'
+        }
+    </script>
+</body>
+
+</html>

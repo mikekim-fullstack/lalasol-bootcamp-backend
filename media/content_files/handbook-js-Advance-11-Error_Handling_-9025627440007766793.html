@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript <span>Error Handling</span></h1>
+            <p class="summary">In this tutorial you will learn how to deal with errors gracefully in JavaScript.</p>
+            <h2>Handling Errors</h2>
+            <p>Sometimes your JavaScript code does not run as smooth as expected, resulting in an error. There are a
+                number of reasons that may cause errors, for instance:</p>
+            <ul>
+                <li>A problem with network connection</li>
+                <li>A user might have entered an invalid value in a form field</li>
+                <li>Referncing objects or functions that do not exist</li>
+                <li>Incorrect data being sent to or received from the web server</li>
+                <li>A service that the application needs to access might be temporarily unavailable</li>
+            </ul>
+            <p class="space">These types of errors are known as runtime errors, because they occur at the time the
+                script runs. A professional application must have the capabilities to handle such runtime error
+                gracefully. Usually this means informing the user about the problem more clearly and precisely.</p>
+            <h2>The try...catch Statement</h2>
+            <p>JavaScript provides the <code>try-catch</code> statement to trap the runtime errors, and handle them
+                gracefully.</p>
+            <p>Any code that might possibly throw an error should be placed in the <code>try</code> block of the
+                statement, and the code to handle the error is placed in the <code>catch</code> block, as shown here:
+            </p>
+            <div class="shadow break">
+                <div class="syntax">
+                    <span class="keyword">try</span> {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><em>// Code that may cause an error</em></span><br>
+                    } <span class="keyword">catch</span>(error) {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><em>// Action to be performed when an error
+                            occurs</em></span><br>
+                    }
+                </div>
+            </div>
+            <p>If an error occurs at any point in the <code>try</code> block, code execution immediately transferred
+                from the <code>try</code> block to the <code>catch</code> block. If no error occurs in the
+                <code>try</code> block, the <code>catch</code> block will be ignored, and the program will continue
+                executing after the <code>try-catch</code> statement.</p>
+            <p>The following example demonstrates how the <code>try-catch</code> statement actually works:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">try</span> <span class="token punctuation">{</span>
+<span class="token keyword">var</span> greet <span class="token operator">=</span> <span class="token string">"Hi, there!"</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>greet<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Trying to access a non-existent variable</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>welcome<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// If error occurred following line won't execute</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"All statements are executed successfully."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">// Handle the error</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Caught error: "</span> <span class="token operator">+</span> error<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Continue execution</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;p&gt;Hello World!&lt;/p&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>The above script will generate an error that is displayed in an alert dialog box, instead of printing it
+                to browser console. Besides that, the program didn't stop abruptly even though an error has occurred.
+            </p>
+            <p>Also, note that the <code>catch</code> keyword is followed by an identifier in parentheses. This
+                identifier is act like a function parameter. When an error occurs, the JavaScript interpreter generates
+                an object containing the details about it. This error object is then passed as an argument to
+                <code>catch</code> for handling.</p>
+            <!--Tip Box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab tip-icon" title="Useful Tips"><i></i></div>
+                    <div class="tip-box">
+                        <p><strong>Tip:</strong> The <code>try-catch</code> statement is an exception handling
+                            mechanism. An exception is signal that indicates that some sort of exceptional condition or
+                            error has occurred during the execution of a program. The terms "exception" and "error" are
+                            often used interchangeably.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Tip Box-->
+            <hr>
+            <h2>The try...catch...finally Statement</h2>
+            <p>The <code>try-catch</code> statement can also have a <code>finally</code> clause. The code inside the
+                <code>finally</code> block will always execute, regardless of whether an error has occurred in the
+                <code>try</code> block or not.</p>
+            <p>The following example will always display the total time taken to complete the execution of the code.</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token comment">// Assigning the value returned by the prompt dialog box to a variable</span>
+<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"Enter a positive integer between 0 to 100"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Storing the time when execution start</span>
+<span class="token keyword">var</span> start <span class="token operator">=</span> Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>num <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">&amp;&amp;</span> num <span class="token operator">&lt;=</span> <span class="token number">100</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span>num<span class="token punctuation">,</span> num<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// the base to the exponent power</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"An invalid value is entered!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+<span class="token comment">// Displaying the time taken to execute the code</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Execution took: "</span> <span class="token operator">+</span> <span class="token punctuation">(</span>Date<span class="token punctuation">.</span><span class="token function">now</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-</span> start<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">"ms"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Throwing Errors</h2>
+            <p>So far we've seen the errors that are automatically thrown by JavaScript parser when an error occurs.
+                However, it is also possible to throw an error manually by using the <code>throw</code> statement.</p>
+            <p>The general form (or syntax) of the <code>throw</code> statement is:
+                <code>throw <em>expression</em>;</code></p>
+            <p>The <code><em>expression</em></code> can be a object or a value of any data type. However, it's better to
+                use the objects, preferably with <code>name</code> and <code>message</code> properties. The JavaScript
+                built-in <code>Error()</code> constructor provides a convenient way create an error object. Let's look
+                at some examples:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">throw</span> <span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token keyword">throw</span> <span class="token string">"Missing values!"</span><span class="token punctuation">;</span>
+<span class="token keyword">throw</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token keyword">throw</span> <span class="token punctuation">{</span> name<span class="token punctuation">:</span> <span class="token string">"InvalidParameter"</span><span class="token punctuation">,</span> message<span class="token punctuation">:</span> <span class="token string">"Parameter is not a number!"</span> <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Something went wrong!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box break">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> If you're using the JavaScript built-in error constructor functions
+                            (e.g. <code>Error()</code>, <code>TypeError()</code>, etc.) for creating error objects, then
+                            the <code>name</code> property is same as the name of the constructor, and the
+                            <code>message</code> is equal to the argument passed to the constructor function.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <p>Now we're going to create a function <code>squareRoot()</code> to find the square root of a number. This
+                can be done simply by using the JavaScript built-in function <code>Math.sqrt()</code>, but the problem
+                here is, it returns <code>NaN</code> for negative numbers, without providing any hint on what has gone
+                wrong.</p>
+            <p>We're going to fix this problem by throwing a custom error if a negative number is supplied.</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">function</span> <span class="token function">squareRoot</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">// Throw error if number is negative</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>number <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">Error</span><span class="token punctuation">(</span><span class="token string">"Sorry, can't calculate square root of a negative number."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span>number<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+<span class="token function">squareRoot</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">squareRoot</span><span class="token punctuation">(</span><span class="token number">625</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">squareRoot</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">squareRoot</span><span class="token punctuation">(</span><span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// If error is thrown following line won't execute</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"All calculations are performed successfully."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">// Handle the error</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <!--Tip Box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab tip-icon" title="Useful Tips"><i></i></div>
+                    <div class="tip-box">
+                        <p><strong>Tip:</strong> Theoretically it is possible to calculate the square root of negative
+                            number by using the imaginary number <code><i>i</i></code>, where
+                            <code><i>i</i><sup>2</sup> = -1</code>. Therefore square root of <code>-4</code> is
+                            <code>2i</code>, square root of <code>-9</code> is <code>3i</code>, and so on. But imaginary
+                            numbers are not supported in JavaScript.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Tip Box-->
+            <hr>
+            <h2 class="section-title"><span>Error Types</span></h2>
+            <p>The <code>Error</code> object is the base type of all errors and it has two main properties — a
+                <code>name</code> property that specifies the <em>type of error</em>, and a <code>message</code>
+                property that holds a message describing the error in more detail. Any error thrown will be an instance
+                of the <code>Error</code> object. </p>
+            <p>There are several different types of error that can occur during the execution of a JavaScript program,
+                such as <code>RangeError</code>, <code>ReferenceError</code>, <code>SyntaxError</code>,
+                <code>TypeError</code>, and <code>URIError</code>.</p>
+            <p>The following section describes each one of these error type in more detail:</p>
+            <h2>RangeError</h2>
+            <p>A <code>RangeError</code> is thrown when you use a number that is outside the range of allowable values.
+                For example, creating an array with a negative length will throw <code>RangeError</code>.</p>
+            <!--Code box-->
+            <div class="example space">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">12.735</span><span class="token punctuation">;</span>
+num<span class="token punctuation">.</span><span class="token function">toFixed</span><span class="token punctuation">(</span><span class="token number">200</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a range error (allowable range from 0 to 100)</span>
+
+<span class="token keyword">var</span> array <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Array</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a range error</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <h2>ReferenceError</h2>
+            <p>A <code>ReferenceError</code> is typically thrown when you try to reference or access a variable or
+                object that doesn't exist. The following example shows how the <code>ReferenceError</code> occurs.</p>
+            <!--Code box-->
+            <div class="example space">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> firstName <span class="token operator">=</span> <span class="token string">"Harry"</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>firstname<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a reference error (variable names are case-sensitive)</span>
+
+undefinedObj<span class="token punctuation">.</span><span class="token function">getValues</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a reference error</span>
+
+nonexistentArray<span class="token punctuation">.</span>length<span class="token punctuation">;</span> <span class="token comment">// throws a reference error</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <h2>SyntaxError</h2>
+            <p>A <code>SyntaxError</code> is thrown at runtime if there is any syntax problem in your JavaScript code.
+                For example, if closing bracket is missing, loops are not structured properly, and so on.</p>
+            <!--Code box-->
+            <div class="example space">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> array <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"a"</span><span class="token punctuation">,</span> <span class="token string">"b"</span><span class="token punctuation">,</span> <span class="token string">"c"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>array<span class="token punctuation">.</span><span class="token function">slice</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a syntax error (missing bracket)</span>
+
+<span class="token function">alert</span><span class="token punctuation">(</span>"Hello World<span class="token operator">!</span>'<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// throws a syntax error (quote mismatch)</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <h2>TypeError</h2>
+            <p>A <code>TypeError</code> is thrown when a value is not of the expected type. For example, calling a
+                string method on number, calling an array method on string, and so on.</p>
+            <!--Code box-->
+            <div class="example space">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span>
+num<span class="token punctuation">.</span><span class="token function">toLowerCase</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">/* throws a type error (since toLowerCase() is a string method, a number can't be converted to lowercase) */</span>
+
+<span class="token keyword">var</span> greet <span class="token operator">=</span> <span class="token string">"Hello World!"</span>
+greet<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token comment">// throws a type error (since join() is an array method)</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <h2>URIError</h2>
+            <p>A <code>URIError</code> is thrown when you specified an invalid URI (<i>stands for</i> Uniform Resource
+                Identifier) to the URI-related functions such as <code>encodeURI()</code> or <code>decodeURI()</code>,
+                as shown here:</p>
+            <!--Code box-->
+            <div class="example space">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token string">"%E6%A2%B"</span><span class="token punctuation">;</span>
+<span class="token function">decodeURI</span><span class="token punctuation">(</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// throws a URI error</span>
+
+<span class="token keyword">var</span> b <span class="token operator">=</span> <span class="token string">"\uD800"</span><span class="token punctuation">;</span>
+<span class="token function">encodeURI</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span>   <span class="token comment">// throws a URI error</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box break">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> There is one more error type <code>EvalError</code> which is thrown
+                            when an error occurs during the execution of code via <code>eval()</code> function. But,
+                            this error is not thrown by JavaScript anymore, however this object still remains for
+                            backward compatibility.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <p>The specific error type can also be thrown manually using their respective constructor and the
+                <code>throw</code> statement, e.g., to throw a <code>TypeError</code> you can use the
+                <code>TypeError()</code> constructor, like this:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token function">prompt</span><span class="token punctuation">(</span><span class="token string">"Please enter a number"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>num <span class="token operator">!=</span> <span class="token string">""</span> <span class="token operator">&amp;&amp;</span> num <span class="token operator">!==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token function">isFinite</span><span class="token punctuation">(</span><span class="token operator">+</span>num<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">exp</span><span class="token punctuation">(</span>num<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">TypeError</span><span class="token punctuation">(</span><span class="token string">"You have not entered a number."</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span class="token keyword">catch</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>message<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>stack<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// non-standard property</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box break">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> The <code>Error</code> object also supports some non-standard
+                            properties. One of the most widely used such property is: <code>stack</code>, which returns
+                            the <em>stack trace</em> for that error. You can use it for debugging purposes, but don't
+                            use it on production sites.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+
+        </div>
+</body>
+
+</html>

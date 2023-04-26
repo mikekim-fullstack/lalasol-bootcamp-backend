@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript <span>Event Propagation</span></h1>
+            <p class="summary">In this tutorial you will learn how events propagate in the DOM tree in JavaScript.</p>
+            <h2>Understanding the Event Propagation</h2>
+            <p>Event propagation is a mechanism that defines how events propagate or travel through the DOM tree to
+                arrives at its target and what happens to it afterward.</p>
+            <p>Let's understand this with the help of an example, suppose you have assigned a click <a
+                    href="javascript-events.php">event handler</a> on a hyperlink (i.e. <a
+                    href="../html-reference/html-a-tag.php"><code>&lt;a&gt;</code></a> element) which is nested inside a
+                paragraph (i.e. <a href="../html-reference/html-p-tag.php"><code>&lt;p&gt;</code></a> element). Now if
+                you click on that link, the handler will be executed. But, instead of link, if you assign the click
+                event handler to the paragraph containing the link, then even in this case, clicking the link will still
+                trigger the handler. That's because events don't just affect the target element that generated the
+                event—they travel up and down through the DOM tree to reach their target. This is known as event
+                propagation</p>
+            <p>In modern browser event propagation proceeds in two phases: <strong><em>capturing</em></strong>, and
+                <strong><em>bubbling</em></strong> phase. Before we proceed further, take a look at the following
+                illustration:</p>
+
+            <p>Above image demonstrates how event travels in the DOM tree during different phases of the event
+                propagation when an event is fired on an element that has parent elements.</p>
+            <p>The concept of event propagation was introduced to deal with the situations in which multiple elements in
+                the DOM hierarchy with a parent-child relationship have event handlers for the same event, such as a
+                mouse click. Now, the question is which element's click event will be handled first when the user clicks
+                on the inner element—the click event of the outer element, or the inner element.</p>
+            <p>In the following sections of this chapter we will discuss each phases of the event propagation in greater
+                detail and find out the answer of this question.</p>
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> Formally there are 3 phases, <em>capture</em>, <em>target</em> and
+                            <em>bubble</em> phase. But, the 2nd phase i.e. the target phase (occurs when the event
+                            arrives at the target element that has generated the event) is not handled separately in
+                            modern browsers, handlers registered for both <em>capturing</em> and <em>bubbling</em>
+                            phases are executed in this phase.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <p class="space"></p>
+            <h2>The Capturing Phase</h2>
+            <p>In the capturing phase, events propagate from the <a href="javascript-window.php">Window</a> down through
+                the DOM tree to the target node. For example, if the user clicks a hyperlink, that click event would
+                pass through the <a href="../html-reference/html-html-tag.php"><code>&lt;html&gt;</code></a> element,
+                the <a href="../html-reference/html-body-tag.php"><code>&lt;body&gt;</code></a> element, and the <a
+                    href="../html-reference/html-p-tag.php"><code>&lt;p&gt;</code></a> element containing the link.</p>
+            <p>Also if any ancestor (i.e. parent, grandparent, etc.) of the target element and the target itself has a
+                specially registered <strong>capturing event listener</strong> for that type of event, those listeners
+                are executed during this phase. Let's check out the following example:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers scroll large language-markup"><code class=" language-markup"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Event Capturing Demo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token style language-css">
+<span class="token selector">div, p, a</span><span class="token punctuation">{</span>
+<span class="token property">padding</span><span class="token punctuation">:</span> 15px 30px<span class="token punctuation">;</span>
+<span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+<span class="token property">border</span><span class="token punctuation">:</span> 2px solid #000<span class="token punctuation">;</span>
+<span class="token property">background</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrap<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>DIV
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hint<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>P
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>A<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+<span class="token keyword">function</span> <span class="token function">showTagName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Capturing: "</span><span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tagName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> elems <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">"div, p, a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> elem <span class="token keyword">of</span> elems<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+elem<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> showTagName<span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p class="break">Here is a simple demonstration that we've created utilizing the above example to show you
+                how event capturing works. Click on any element and observe in which order alert pop-ups appears.</p>
+            <div class="event-demo" id="captureDemo">
+                <div>&lt;div id="wrap"&gt;
+                    <p>&lt;p class="hint"&gt;
+                        <a>&lt;a href="#"&gt;Click Me&lt;/a&gt;</a>
+                        &lt;/p&gt;
+                    </p>
+                    &lt;/div&gt;
+                </div>
+            </div>
+            <script>
+                function showTagName() {
+                    alert("Capturing: " + this.tagName);
+                }
+
+                var elems = document.querySelectorAll("#captureDemo *");
+                for (let elem of elems) {
+                    elem.addEventListener("click", showTagName, true);
+                }
+            </script>
+            <p>Event capturing is not supported in all browsers and rarely used. For instance, Internet Explorer prior
+                to version 9.0 does not support event capturing.</p>
+            <p>Also, event capturing only works with event handlers registered with the <code>addEventListener()</code>
+                method when the third argument is set to <code>true</code>. The traditional method of assigning event
+                handlers, like using <code>onclick</code>, <code>onmouseover</code>, etc. won't work here. Please check
+                out the <a href="javascript-event-listeners.php">JavaScript event listeners</a> chapter to learn more
+                about event listeners.</p>
+            <hr>
+            <h2>The Bubbling Phase</h2>
+            <p>In the bubbling phase, the exact opposite occurs. In this phase event propagates or bubbles back up the
+                DOM tree, from the target element up to the <a href="javascript-window.php">Window</a>, visiting all of
+                the ancestors of the target element one by one. For example, if the user clicks a hyperlink, that click
+                event would pass through the <code>&lt;p&gt;</code> element containing the link, the
+                <code>&lt;body&gt;</code> element, the <code>&lt;html&gt;</code> element, and the <code>document</code>
+                node.</p>
+            <p>Also, if any ancestor of the target element and the target itself has event handlers assigned for that
+                type of event, those handlers are executed during this phase. In modern browsers, all event handlers are
+                registered in the bubbling phase, by default. Let's check out an example:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers scroll large language-markup"><code class=" language-markup"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Event Bubbling Demo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token style language-css">
+<span class="token selector">div, p, a</span><span class="token punctuation">{</span>
+<span class="token property">padding</span><span class="token punctuation">:</span> 15px 30px<span class="token punctuation">;</span>
+<span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+<span class="token property">border</span><span class="token punctuation">:</span> 2px solid #000<span class="token punctuation">;</span>
+<span class="token property">background</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(<span class="token punctuation">'</span>Bubbling: <span class="token punctuation">'</span> + this.tagName)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>DIV
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(<span class="token punctuation">'</span>Bubbling: <span class="token punctuation">'</span> + this.tagName)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>P
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(<span class="token punctuation">'</span>Bubbling: <span class="token punctuation">'</span> + this.tagName)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>A<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>Here is a simple demonstration that we've created utilizing the above example to show you how event
+                bubbling works. Click on any element and observe in which order alert pop-ups appears.</p>
+            <div class="event-demo">
+                <div onclick="alert('Bubbling: ' + this.tagName)">&lt;div id="wrap"&gt;
+                    <p onclick="alert('Bubbling: ' + this.tagName)">&lt;p class="hint"&gt;
+                        <a onclick="alert('Bubbling: ' + this.tagName)">&lt;a href="#"&gt;Click Me&lt;/a&gt;</a>
+                        &lt;/p&gt;
+                    </p>
+                    &lt;/div&gt;
+                </div>
+            </div>
+            <p>Event bubbling is supported in all browsers, and it works for all handlers, regardless of how they are
+                registered e.g. using <code>onclick</code> or <code>addEventListener()</code> (unless they are
+                registered as <a href="javascript-event-listeners.php">capturing event listener</a>). That's why the
+                term event propagation is often used as a synonym of event bubbling.</p>
+            <hr>
+            <h2>Accessing the Target Element</h2>
+            <p>The target element is the <a href="javascript-dom-nodes.php">DOM node</a> that has generated the event.
+                For example, if the user clicks a hyperlink, the target element is the hyperlink.</p>
+            <p>The target element is accessible as <code>event.target</code>, it doesn't change through the event
+                propagation phases. Additionally, the <code>this</code> keyword represents the current element (i.e. the
+                element that has a currently running handler attached to it). Let's check out an example:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers scroll large language-markup"><code class=" language-markup"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Event Target Demo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token style language-css">
+<span class="token selector">div, p, a</span><span class="token punctuation">{</span>
+<span class="token property">padding</span><span class="token punctuation">:</span> 15px 30px<span class="token punctuation">;</span>			
+<span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+<span class="token property">border</span><span class="token punctuation">:</span> 2px solid #000<span class="token punctuation">;</span>
+<span class="token property">background</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrap<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>DIV
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hint<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>P
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>A<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+<span class="token comment">// Selecting the div element</span>
+<span class="token keyword">var</span> div <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"wrap"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Attaching an onclick event handler</span>
+div<span class="token punctuation">.</span><span class="token function-variable function">onclick</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token string">"lightblue"</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Let the browser finish rendering of background color before showing alert</span>
+<span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+    <span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"target = "</span> <span class="token operator">+</span> event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>tagName <span class="token operator">+</span> <span class="token string">", this = "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tagName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    event<span class="token punctuation">.</span>target<span class="token punctuation">.</span>style<span class="token punctuation">.</span>backgroundColor <span class="token operator">=</span> <span class="token string">''</span>
+<span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p class="break">Here is a simple demonstration that we've created utilizing the above example. Click on any
+                element and it will show you the tag name of the target element and the current element.</p>
+            <div class="event-demo">
+                <div id="wrap">&lt;div id="wrap"&gt;
+                    <p>&lt;p class="hint"&gt;
+                        <a>&lt;a href="#"&gt;Click Me&lt;/a&gt;</a>
+                        &lt;/p&gt;
+                    </p>
+                    &lt;/div&gt;
+                </div>
+            </div>
+            <script>
+                // Selecting the div element
+                var div = document.getElementById("wrap");
+
+                // Attaching an onclick event handler
+                div.onclick = function (event) {
+                    event.target.style.backgroundColor = "lightblue";
+
+                    // Let the browser finish rendering of background color before showing alert
+                    setTimeout(() => {
+                        alert("target = " + event.target.tagName + ", this = " + this.tagName);
+                        event.target.style.backgroundColor = ''
+                    }, 0);
+                }
+            </script>
+            <p>The fat arrow (<code>=&gt;</code>) sign we've used in the example above is an arrow function expression.
+                It has a shorter syntax than a function expression, and it would make the <code>this</code> keyword
+                behave properly. Please check out the tutorial on <a href="javascript-es6-features.php">ES6 features</a>
+                to learn more about arrow function.</p>
+            <p>
+            </p>
+            <hr>
+            <h2>Stopping the Event Propagation</h2>
+            <p>You can also stop event propagation in the middle if you want to prevent any ancestor element's event
+                handlers from being notified about the event.</p>
+            <p>For example, suppose you have nested elements and each element has <code>onclick</code> event handler
+                that displays an alert dialog box. Normally, when you click on the inner element all handlers will be
+                executed at once, since event bubble up to the DOM tree.</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers scroll large language-markup"><code class=" language-markup"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Event Propagation Demo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token style language-css">
+<span class="token selector">div, p, a</span><span class="token punctuation">{</span>
+<span class="token property">padding</span><span class="token punctuation">:</span> 15px 30px<span class="token punctuation">;</span>
+<span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+<span class="token property">border</span><span class="token punctuation">:</span> 2px solid #000<span class="token punctuation">;</span>
+<span class="token property">background</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrap<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>DIV
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hint<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>P
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>A<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+<span class="token keyword">function</span> <span class="token function">showAlert</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"You clicked: "</span><span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tagName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> elems <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">"div, p, a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> elem <span class="token keyword">of</span> elems<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+elem<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> showAlert<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p class="break">Here's a simple demonstration that we've created utilizing the above example. If you click
+                on any child element, event handler on parent elements are also executed and you may see multiple alert
+                boxes.</p>
+            <div class="event-demo" id="eventPropagation">
+                <div>&lt;div id="wrap"&gt;
+                    <p>&lt;p class="hint"&gt;
+                        <a>&lt;a href="#"&gt;Click Me&lt;/a&gt;</a>
+                        &lt;/p&gt;
+                    </p>
+                    &lt;/div&gt;
+                </div>
+            </div>
+            <script>
+                function showAlert(event) {
+                    alert("You clicked: " + this.tagName);
+                }
+
+                var elems = document.querySelectorAll("#eventPropagation *");
+                for (var elem of elems) {
+                    elem.addEventListener("click", showAlert);
+                }
+            </script>
+            <p>To prevent this situation you can stop event from bubbling up the DOM tree using the
+                <code>event.stopPropagation()</code> method. In the following example click event listener on the parent
+                elements will not execute if you click on the child elements.</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers scroll large language-markup"><code class=" language-markup"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Stop Event Propagation Demo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token style language-css">
+<span class="token selector">div, p, a</span><span class="token punctuation">{</span>
+<span class="token property">padding</span><span class="token punctuation">:</span> 15px 30px<span class="token punctuation">;</span>
+<span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+<span class="token property">border</span><span class="token punctuation">:</span> 2px solid #000<span class="token punctuation">;</span>
+<span class="token property">background</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>wrap<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>DIV
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hint<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>P
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>A<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+<span class="token keyword">function</span> <span class="token function">showAlert</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"You clicked: "</span><span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>tagName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+event<span class="token punctuation">.</span><span class="token function">stopPropagation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">var</span> elems <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelectorAll</span><span class="token punctuation">(</span><span class="token string">"div, p, a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">let</span> elem <span class="token keyword">of</span> elems<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+elem<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> showAlert<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>Here's is the updated demonstration. Now if you click on any child element only one alert will appear.
+            </p>
+            <div class="event-demo" id="stopPropagation">
+                <div>&lt;div id="wrap"&gt;
+                    <p>&lt;p class="hint"&gt;
+                        <a>&lt;a href="#"&gt;Click Me&lt;/a&gt;</a>
+                        &lt;/p&gt;
+                    </p>
+                    &lt;/div&gt;
+                </div>
+            </div>
+            <script>
+                function showNewAlert(event) {
+                    alert("You clicked: " + event.target.tagName);
+                    event.stopPropagation();
+                }
+
+                var elems = document.querySelectorAll("#stopPropagation *");
+                for (let elem of elems) {
+                    elem.addEventListener("click", showNewAlert);
+                }
+            </script>
+            <p>Additionally, you can even prevent any other listeners attached to the same element for the same event
+                type from being executed using the <code>stopImmediatePropagation()</code> method.</p>
+            <p>In the following example we've attached multiple listeners to the hyperlink, but only one listener for
+                the hyperlink will execute when you click the link, and you will see only one alert.</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers scroll large language-markup"><code class=" language-markup"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Stop Immediate Propagation Demo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>style</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text/css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token style language-css">
+<span class="token selector">div, p, a</span><span class="token punctuation">{</span>
+<span class="token property">padding</span><span class="token punctuation">:</span> 15px 30px<span class="token punctuation">;</span>
+<span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+<span class="token property">border</span><span class="token punctuation">:</span> 2px solid #000<span class="token punctuation">;</span>
+<span class="token property">background</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>style</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(<span class="token punctuation">'</span>You clicked: <span class="token punctuation">'</span> + this.tagName)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>DIV
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>alert(<span class="token punctuation">'</span>You clicked: <span class="token punctuation">'</span> + this.tagName)<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>P
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>#<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>link<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>A<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+<span class="token keyword">function</span> <span class="token function">sayHi</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hi, there!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+event<span class="token punctuation">.</span><span class="token function">stopImmediatePropagation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">function</span> <span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Attaching multiple event handlers to hyperlink</span>
+<span class="token keyword">var</span> link <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"link"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+link<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> sayHi<span class="token punctuation">)</span><span class="token punctuation">;</span>  
+link<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> sayHello<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> If several listeners are attached to the same element for the same
+                            event type, they are executed in order in which they have been added. But, if any listener
+                            calls the <code>event.stopImmediatePropagation()</code> method, no remaining listeners will
+                            be executed.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <hr>
+            <h2>Preventing the Default Action</h2>
+            <p>Some events have a default action associated with them. For example, if you click on a link browser takes
+                you to the link's target, when you click on a form submit button browser submit the form, etc. You can
+                prevent such default actions with the <code>preventDefault()</code> method of the event object.</p>
+            <p>However, preventing the default actions does not stop event propagation; the event continues to propagate
+                to the DOM tree as usual. Here's is an example:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers scroll large language-markup"><code class=" language-markup"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Prevent Default Demo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/examples/html/action.php<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>users<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>First Name:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>first-name<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>firstName<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Submit<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submitBtn<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span>
+
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+<span class="token keyword">var</span> btn <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"submitBtn"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+btn<span class="token punctuation">.</span><span class="token function">addEventListener</span><span class="token punctuation">(</span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>event<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">var</span> name <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"firstName"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Sorry, "</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">". The preventDefault() won't let you submit this form!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+event<span class="token punctuation">.</span><span class="token function">preventDefault</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Prevent form submission</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+
+        </div>
+</body>
+
+</html>

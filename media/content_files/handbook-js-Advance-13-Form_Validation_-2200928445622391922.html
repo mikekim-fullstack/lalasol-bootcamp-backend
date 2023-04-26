@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript <span>Form Validation</span></h1>
+            <p class="summary">In this tutorial you will learn how to validate an HTML form using JavaScript.</p>
+            <h2>Understanding Client-Side Validation</h2>
+            <p>Web forms have become an essential part of web applications. It is often used to collect user's
+                information such as name, email address, location, age, and so on. But it is quite possible that some
+                user might not enter the data what you've expected. So to save bandwidth and avoid unnecessary strain on
+                your server resources you can validate the form data on client-side (i.e. user's system) using
+                JavaScript before passing it onto the web server for further processing.</p>
+            <p>Client-side validation is also helpful in creating better user experience, since it is faster because
+                validation occurs within the user's web browser, whereas server-side validation occurs on the server,
+                which require user's input to be first submitted and sent to the server before validation occurs, also
+                user has to wait for server response to know what exactly went wrong.</p>
+            <p>In the following section we will take a closer look at how to perform JavaScript form validation and
+                handle any input errors found appropriately and gracefully.</p>
+            <!--Note box-->
+            <div class="color-box space">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> Client-side validation is not a substitute or alternative for
+                            server-side validation. You should always validate form data on the server-side even if they
+                            are already validated on the client-side, because user can disable JavaScript in their
+                            browser.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <h2>Form Validation with JavaScript</h2>
+            <p>The form validation process typically consists of two parts— the <em>required fields validation</em>
+                which is performed to make sure that all the mandatory fields are filled in, and the <em>data format
+                    validation</em> which is performed to ensure that the type and format of the data entered in the
+                form is valid.</p>
+            <p class="space">Well, let's get straight to it and see how this actually works.</p>
+            <h2>Creating the HTML Form</h2>
+            <p>Let's first create a simple HTML form that we will validate on client-side using JavaScript when the user
+                clicks on the submit button. Well, let's create an HTML file named "application-form.html" and place the
+                following code in it, then save it somewhere on your system.</p>
+            <!--Code box-->
+            <div class="example space">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers scroll xxlarge language-markup"><code class=" language-markup"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>UTF-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>Simple HTML Form<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>link</span> <span class="token attr-name">rel</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>stylesheet<span class="token punctuation">"</span></span> <span class="token attr-name">href</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>style.css<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>validator.js<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript"></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>contactForm<span class="token punctuation">"</span></span> <span class="token attr-name">onsubmit</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>return validateForm()<span class="token punctuation">"</span></span> <span class="token attr-name">action</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>confirmation.php<span class="token punctuation">"</span></span> <span class="token attr-name">method</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>post<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h2</span><span class="token punctuation">&gt;</span></span>Application Form<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h2</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>Full Name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>error<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>nameErr<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>Email Address<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>email<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>error<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>emailErr<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>Mobile Number<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mobile<span class="token punctuation">"</span></span> <span class="token attr-name">maxlength</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>10<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>error<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>mobileErr<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>Country<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>select</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>country<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span><span class="token punctuation">&gt;</span></span>Select<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span><span class="token punctuation">&gt;</span></span>Australia<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span><span class="token punctuation">&gt;</span></span>India<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span><span class="token punctuation">&gt;</span></span>United States<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>option</span><span class="token punctuation">&gt;</span></span>United Kingdom<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>option</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>select</span><span class="token punctuation">&gt;</span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>error<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>countryErr<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>Gender<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-inline<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gender<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>male<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> Male<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>radio<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>gender<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>female<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> Female<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span> 
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>error<span class="token punctuation">"</span></span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>genderErr<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>Hobbies <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>i</span><span class="token punctuation">&gt;</span></span>(Optional)<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>i</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>form-inline<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hobbies[]<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>sports<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> Sports<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hobbies[]<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>movies<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> Movies<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+    <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>checkbox<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>hobbies[]<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>music<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span> Music<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>  
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>        
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>row<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>submit<span class="token punctuation">"</span></span> <span class="token attr-name">value</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>Submit<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 48px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <h2>Building the Form Validation Script</h2>
+            <p>Now we're going to create a JavaScript file that holds our complete validation script.</p>
+            <p>Well, let's create a JavaScript file named "validator.js" and place the following code inside it, then
+                save it at the same location where you've saved the previous HTML file. Go through each line of the
+                following example code to understand how JavaScript validation works:</p>
+            <!--Code box-->
+            <div class="example space">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers scroll xxlarge language-javascript"><code class=" language-javascript"><span class="token comment">// Defining a function to display error message</span>
+<span class="token keyword">function</span> <span class="token function">printError</span><span class="token punctuation">(</span>elemId<span class="token punctuation">,</span> hintMsg<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span>elemId<span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> hintMsg<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Defining a function to validate form </span>
+<span class="token keyword">function</span> <span class="token function">validateForm</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">// Retrieving the values of form elements </span>
+<span class="token keyword">var</span> name <span class="token operator">=</span> document<span class="token punctuation">.</span>contactForm<span class="token punctuation">.</span>name<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+<span class="token keyword">var</span> email <span class="token operator">=</span> document<span class="token punctuation">.</span>contactForm<span class="token punctuation">.</span>email<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+<span class="token keyword">var</span> mobile <span class="token operator">=</span> document<span class="token punctuation">.</span>contactForm<span class="token punctuation">.</span>mobile<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+<span class="token keyword">var</span> country <span class="token operator">=</span> document<span class="token punctuation">.</span>contactForm<span class="token punctuation">.</span>country<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+<span class="token keyword">var</span> gender <span class="token operator">=</span> document<span class="token punctuation">.</span>contactForm<span class="token punctuation">.</span>gender<span class="token punctuation">.</span>value<span class="token punctuation">;</span>
+<span class="token keyword">var</span> hobbies <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> checkboxes <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementsByName</span><span class="token punctuation">(</span><span class="token string">"hobbies[]"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> i<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> checkboxes<span class="token punctuation">.</span>length<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>checkboxes<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>checked<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Populate hobbies array with selected values</span>
+    hobbies<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span>checkboxes<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Defining error variables with a default value</span>
+<span class="token keyword">var</span> nameErr <span class="token operator">=</span> emailErr <span class="token operator">=</span> mobileErr <span class="token operator">=</span> countryErr <span class="token operator">=</span> genderErr <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Validate name</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>name <span class="token operator">==</span> <span class="token string">""</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">printError</span><span class="token punctuation">(</span><span class="token string">"nameErr"</span><span class="token punctuation">,</span> <span class="token string">"Please enter your name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token keyword">var</span> regex <span class="token operator">=</span> <span class="token regex">/^[a-zA-Z\s]+$/</span><span class="token punctuation">;</span>                
+<span class="token keyword">if</span><span class="token punctuation">(</span>regex<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>name<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printError</span><span class="token punctuation">(</span><span class="token string">"nameErr"</span><span class="token punctuation">,</span> <span class="token string">"Please enter a valid name"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    <span class="token function">printError</span><span class="token punctuation">(</span><span class="token string">"nameErr"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    nameErr <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Validate email address</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>email <span class="token operator">==</span> <span class="token string">""</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">printError</span><span class="token punctuation">(</span><span class="token string">"emailErr"</span><span class="token punctuation">,</span> <span class="token string">"Please enter your email address"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token comment">// Regular expression for basic email validation</span>
+<span class="token keyword">var</span> regex <span class="token operator">=</span> <span class="token regex">/^\S+@\S+\.\S+$/</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>regex<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>email<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printError</span><span class="token punctuation">(</span><span class="token string">"emailErr"</span><span class="token punctuation">,</span> <span class="token string">"Please enter a valid email address"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span><span class="token punctuation">{</span>
+    <span class="token function">printError</span><span class="token punctuation">(</span><span class="token string">"emailErr"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    emailErr <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Validate mobile number</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>mobile <span class="token operator">==</span> <span class="token string">""</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">printError</span><span class="token punctuation">(</span><span class="token string">"mobileErr"</span><span class="token punctuation">,</span> <span class="token string">"Please enter your mobile number"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token keyword">var</span> regex <span class="token operator">=</span> <span class="token regex">/^[1-9]\d{9}$/</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>regex<span class="token punctuation">.</span><span class="token function">test</span><span class="token punctuation">(</span>mobile<span class="token punctuation">)</span> <span class="token operator">===</span> <span class="token boolean">false</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printError</span><span class="token punctuation">(</span><span class="token string">"mobileErr"</span><span class="token punctuation">,</span> <span class="token string">"Please enter a valid 10 digit mobile number"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span><span class="token punctuation">{</span>
+    <span class="token function">printError</span><span class="token punctuation">(</span><span class="token string">"mobileErr"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    mobileErr <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Validate country</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>country <span class="token operator">==</span> <span class="token string">"Select"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">printError</span><span class="token punctuation">(</span><span class="token string">"countryErr"</span><span class="token punctuation">,</span> <span class="token string">"Please select your country"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token function">printError</span><span class="token punctuation">(</span><span class="token string">"countryErr"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+countryErr <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Validate gender</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>gender <span class="token operator">==</span> <span class="token string">""</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">printError</span><span class="token punctuation">(</span><span class="token string">"genderErr"</span><span class="token punctuation">,</span> <span class="token string">"Please select your gender"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token function">printError</span><span class="token punctuation">(</span><span class="token string">"genderErr"</span><span class="token punctuation">,</span> <span class="token string">""</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+genderErr <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Prevent the form from being submitted if there are any errors</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token punctuation">(</span>nameErr <span class="token operator">||</span> emailErr <span class="token operator">||</span> mobileErr <span class="token operator">||</span> countryErr <span class="token operator">||</span> genderErr<span class="token punctuation">)</span> <span class="token operator">==</span> <span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token comment">// Creating a string from input data for preview</span>
+<span class="token keyword">var</span> dataPreview <span class="token operator">=</span> <span class="token string">"You've entered the following details: \n"</span> <span class="token operator">+</span>
+                  <span class="token string">"Full Name: "</span> <span class="token operator">+</span> name <span class="token operator">+</span> <span class="token string">"\n"</span> <span class="token operator">+</span>
+                  <span class="token string">"Email Address: "</span> <span class="token operator">+</span> email <span class="token operator">+</span> <span class="token string">"\n"</span> <span class="token operator">+</span>
+                  <span class="token string">"Mobile Number: "</span> <span class="token operator">+</span> mobile <span class="token operator">+</span> <span class="token string">"\n"</span> <span class="token operator">+</span>
+                  <span class="token string">"Country: "</span> <span class="token operator">+</span> country <span class="token operator">+</span> <span class="token string">"\n"</span> <span class="token operator">+</span>
+                  <span class="token string">"Gender: "</span> <span class="token operator">+</span> gender <span class="token operator">+</span> <span class="token string">"\n"</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>hobbies<span class="token punctuation">.</span>length<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    dataPreview <span class="token operator">+=</span> <span class="token string">"Hobbies: "</span> <span class="token operator">+</span> hobbies<span class="token punctuation">.</span><span class="token function">join</span><span class="token punctuation">(</span><span class="token string">", "</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token comment">// Display input data in a dialog box before submitting the form</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>dataPreview<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>The value of an individual form field can be accessed and retrieved using the syntax
+                <code>document.formName.fieldName.value</code> or
+                <code>document.getElementsByName(<em>name</em>).value</code>. But, to get the values from a form field
+                that supports multiple selections, like a group of checkboxes, you need to utilize the <a
+                    href="javascript-loops.php">loop statement</a> as shown in the example above (<i>line no-14 to
+                    21</i>).</p>
+            <p>
+            </p>
+            <p>Also, to check whether the format of input data is correct or not we've used the <a
+                    href="javascript-regular-expressions.php"><em>regular expressions</em></a>. It is one of the most
+                effective techniques for validating the user inputs.</p>
+            <p>Furthermore, the above script will also display the data entered by the user in an alert dialog box for
+                preview purpose before submitting the form to the web server.</p>
+            <!--Tip Box-->
+            <div class="color-box space">
+                <div class="shadow">
+                    <div class="info-tab tip-icon" title="Useful Tips"><i></i></div>
+                    <div class="tip-box">
+                        <p><strong>Tip:</strong> However, you can validate email format using regular expression. But a
+                            user might enter an email that is correctly formatted but does not exist. So for authentic
+                            email validation, <a href="/php-tutorial/php-send-email.php">send confirmation email</a> to
+                            the user and verify whether the email really exists or not.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Tip Box-->
+            <h2>Adding Style Sheet to Beautify the Form</h2>
+            <p>Finally, create the file named "style.css" and place the following code in it, then save it also at the
+                same location where you've saved the previous two files. These are the style rules to beautify our form.
+            </p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers scroll xxlarge language-css"><code class=" language-css"><span class="token selector">body</span> <span class="token punctuation">{</span>
+<span class="token property">font-size</span><span class="token punctuation">:</span> 16px<span class="token punctuation">;</span>
+<span class="token property">background</span><span class="token punctuation">:</span> #f9f9f9<span class="token punctuation">;</span>
+<span class="token property">font-family</span><span class="token punctuation">:</span> <span class="token string">"Segoe UI"</span>, <span class="token string">"Helvetica Neue"</span>, Arial, sans-serif<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">h2</span> <span class="token punctuation">{</span>
+<span class="token property">text-align</span><span class="token punctuation">:</span> center<span class="token punctuation">;</span>
+<span class="token property">text-decoration</span><span class="token punctuation">:</span> underline<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">form</span> <span class="token punctuation">{</span>
+<span class="token property">width</span><span class="token punctuation">:</span> 300px<span class="token punctuation">;</span>
+<span class="token property">background</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+<span class="token property">padding</span><span class="token punctuation">:</span> 15px 40px 40px<span class="token punctuation">;</span>
+<span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ccc<span class="token punctuation">;</span>
+<span class="token property">margin</span><span class="token punctuation">:</span> 50px auto 0<span class="token punctuation">;</span>
+<span class="token property">border-radius</span><span class="token punctuation">:</span> 5px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">label</span> <span class="token punctuation">{</span>
+<span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+<span class="token property">margin-bottom</span><span class="token punctuation">:</span> 5px
+<span class="token punctuation">}</span>
+<span class="token selector">label i</span> <span class="token punctuation">{</span>
+<span class="token property">color</span><span class="token punctuation">:</span> #999<span class="token punctuation">;</span>
+<span class="token property">font-size</span><span class="token punctuation">:</span> 80%<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">input, select</span> <span class="token punctuation">{</span>
+<span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ccc<span class="token punctuation">;</span>
+<span class="token property">padding</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
+<span class="token property">display</span><span class="token punctuation">:</span> block<span class="token punctuation">;</span>
+<span class="token property">width</span><span class="token punctuation">:</span> 100%<span class="token punctuation">;</span>
+<span class="token property">box-sizing</span><span class="token punctuation">:</span> border-box<span class="token punctuation">;</span>
+<span class="token property">border-radius</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.row</span> <span class="token punctuation">{</span>
+<span class="token property">padding-bottom</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.form-inline</span> <span class="token punctuation">{</span>
+<span class="token property">border</span><span class="token punctuation">:</span> 1px solid #ccc<span class="token punctuation">;</span>
+<span class="token property">padding</span><span class="token punctuation">:</span> 8px 10px 4px<span class="token punctuation">;</span>
+<span class="token property">border-radius</span><span class="token punctuation">:</span> 2px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.form-inline label, .form-inline input</span> <span class="token punctuation">{</span>
+<span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
+<span class="token property">width</span><span class="token punctuation">:</span> auto<span class="token punctuation">;</span>
+<span class="token property">padding-right</span><span class="token punctuation">:</span> 15px<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">.error</span> <span class="token punctuation">{</span>
+<span class="token property">color</span><span class="token punctuation">:</span> red<span class="token punctuation">;</span>
+<span class="token property">font-size</span><span class="token punctuation">:</span> 90%<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">input[type="submit"]</span> <span class="token punctuation">{</span>
+<span class="token property">font-size</span><span class="token punctuation">:</span> 110%<span class="token punctuation">;</span>
+<span class="token property">font-weight</span><span class="token punctuation">:</span> 100<span class="token punctuation">;</span>
+<span class="token property">background</span><span class="token punctuation">:</span> #006dcc<span class="token punctuation">;</span>
+<span class="token property">border-color</span><span class="token punctuation">:</span> #016BC1<span class="token punctuation">;</span>
+<span class="token property">box-shadow</span><span class="token punctuation">:</span> 0 3px 0 #0165b6<span class="token punctuation">;</span>
+<span class="token property">color</span><span class="token punctuation">:</span> #fff<span class="token punctuation">;</span>
+<span class="token property">margin-top</span><span class="token punctuation">:</span> 10px<span class="token punctuation">;</span>
+<span class="token property">cursor</span><span class="token punctuation">:</span> pointer<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token selector">input[type="submit"]:hover</span> <span class="token punctuation">{</span>
+<span class="token property">background</span><span class="token punctuation">:</span> #0165b6<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>That's all, now open the "application-form.html" file in a web browser and try to fill some data and see
+                how the script respond when an invalid data is entered in a form field.</p>
+
+
+        </div>
+</body>
+
+</html>

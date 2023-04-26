@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <h1>JavaScript <span>JSON Parsing</span></h1>
+            <p class="summary">In this tutorial you will learn how to encode and decode JSON data in JavaScript.</p>
+            <h2>What is JSON</h2>
+            <p>JSON stands for <b>J</b>ava<b>S</b>cript <b>O</b>bject <b>N</b>otation. JSON is extremely lightweight
+                data-interchange format for data exchange between server and client which is quick and easy to parse and
+                generate.</p>
+            <p>Like XML, JSON is also a text-based format that's easy to write and easy to understand for both humans
+                and computers, but unlike XML, JSON data structures occupy less bandwidth than their XML versions. JSON
+                is based on two basic structures:</p>
+            <ul>
+                <li><strong>Object:</strong> This is defined as an unordered collection of key/value pairs (i.e.
+                    <code>key:value</code>). Each object begins with a left curly bracket <code>{</code> and ends with a
+                    right curly bracket <code>}</code>. Multiple key/value pairs are separated by a comma
+                    <code>,</code>.</li>
+                <li><strong>Array:</strong> This is defined as an ordered list of values. An array begins with a left
+                    bracket <code>[</code> and ends with a right bracket <code>]</code>. Values are separated by a comma
+                    <code>,</code>.</li>
+            </ul>
+            <p>In JSON, property names or keys are always strings, while the value can be a <code
+                    class="plain"><b>string</b></code>, <code class="plain"><b>number</b></code>, <code
+                    class="plain"><b>true</b></code> or <code class="plain"><b>false</b></code>, <code
+                    class="plain"><b>null</b></code> or even an <code class="plain"><b>object</b></code> or an <code
+                    class="plain"><b>array</b></code>. Strings must be enclosed in double quotes <code>"</code> and can
+                contain escape characters such as <code>\n</code>, <code>\t</code> and <code>\</code>. A JSON object may
+                look like this:</p>
+            <!--Code box-->
+
+
+            <div class="example">
+                <div class="codebox">
+
+                    <div class="codebox-title">
+                        <h4>Example</h4>
+                    </div>
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token punctuation">{</span>
+<span class="token string">"book"</span><span class="token punctuation">:</span> <span class="token punctuation">{</span>
+<span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"Harry Potter and the Goblet of Fire"</span><span class="token punctuation">,</span>
+<span class="token string">"author"</span><span class="token punctuation">:</span> <span class="token string">"J. K. Rowling"</span><span class="token punctuation">,</span>
+<span class="token string">"year"</span><span class="token punctuation">:</span> <span class="token number">2000</span><span class="token punctuation">,</span>
+<span class="token string">"genre"</span><span class="token punctuation">:</span> <span class="token string">"Fantasy Fiction"</span><span class="token punctuation">,</span>
+<span class="token string">"bestseller"</span><span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>Whereas an example of JSON array would look something like this:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+                    <div class="codebox-title">
+                        <h4>Example</h4><a href="../codelab.php?topic=javascript&amp;file=json-array" target="_blank"
+                            class="try-btn" title="Try this code using online Editor">Try this code <span>»</span></a>
+                    </div>
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token punctuation">{</span>
+<span class="token string">"fruits"</span><span class="token punctuation">:</span> <span class="token punctuation">[</span>
+<span class="token string">"Apple"</span><span class="token punctuation">,</span>
+<span class="token string">"Banana"</span><span class="token punctuation">,</span>
+<span class="token string">"Strawberry"</span><span class="token punctuation">,</span>
+<span class="token string">"Mango"</span>
+<span class="token punctuation">]</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <!--Tip Box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab tip-icon" title="Useful Tips"><i></i></div>
+                    <div class="tip-box">
+                        <p><strong>Tip:</strong> A data-interchange format is a text format which is used to interchange
+                            or exchange data between different platforms and operating systems. JSON is the most popular
+                            and lightweight data-interchange format for web applications.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Tip Box-->
+            <hr>
+            <h2>Parsing JSON Data in JavaScript</h2>
+            <p>In JavaScript, you can easily parse JSON data received from the web server using the
+                <code>JSON.parse()</code> method. This method parses a JSON string and constructs the JavaScript value
+                or object described by the string. If the given string is not valid JSON, you will get a syntax error.
+            </p>
+            <p>Let's suppose we've received the following JSON-encoded string from a web server:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+                    <div class="codebox-title">
+                        <h4>Example</h4><a href="../codelab.php?topic=javascript&amp;file=json-string" target="_blank"
+                            class="try-btn" title="Try this code using online Editor">Try this code <span>»</span></a>
+                    </div>
+                    <pre
+                        class=" line-numbers language-javascript"><code class=" language-javascript"><span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"Peter"</span><span class="token punctuation">,</span> <span class="token string">"age"</span><span class="token punctuation">:</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token string">"country"</span><span class="token punctuation">:</span> <span class="token string">"United States"</span><span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>Now, we can simply use the JavaScript <code>JSON.parse()</code> method to convert this JSON string into a
+                JavaScript object and access individual values using the dot notation (<code>.</code>), like this:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+                    <div class="codebox-title">
+                        <h4>Example</h4><a
+                            href="../codelab.php?topic=javascript&amp;file=convert-json-string-to-js-object-and-access-individual-values"
+                            target="_blank" class="try-btn" title="Try this code using online Editor">Try this code
+                            <span>»</span></a>
+                    </div>
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token comment">// Store JSON data in a JS variable</span>
+<span class="token keyword">var</span> json <span class="token operator">=</span> <span class="token string">'{"name": "Peter", "age": 22, "country": "United States"}'</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Converting JSON-encoded string to JS object</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Accessing individual value from JS object</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: Peter</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>age<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: 22</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>obj<span class="token punctuation">.</span>country<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: United States</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>Please check out the tutorial on <a href="/php-tutorial/php-json-parsing.php">PHP JSON parsing</a> to
+                learn, how to return JSON data from a web server in response, as well as, how to encode/decode JSON data
+                on server side using PHP.</p>
+            <hr>
+            <h2>Parsing Nested JSON Data in JavaScript</h2>
+            <p>JSON objects and arrays can also be nested. A JSON object can arbitrarily contains other JSON objects,
+                arrays, nested arrays, arrays of JSON objects, and so on. The following example will show you how to
+                parse a nested JSON object and extract all the values in JavaScript.</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+                    <div class="codebox-title">
+                        <h4>Example</h4><a href="../codelab.php?topic=javascript&amp;file=parse-nested-json-data"
+                            target="_blank" class="try-btn" title="Try this code using online Editor">Try this code
+                            <span>»</span></a>
+                    </div>
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-js"><span class="token comment">/* Storing multi-line JSON string in a JS variable
+using the new ES6 template literals */</span>
+<span class="token keyword">var</span> json <span class="token operator">=</span> <span class="token template-string"><span class="token string">`{
+"book": {
+"name": "Harry Potter and the Goblet of Fire",
+"author": "J. K. Rowling",
+"year": 2000,
+"characters": ["Harry Potter", "Hermione Granger", "Ron Weasley"],
+"genre": "Fantasy Fiction",
+"price": {
+    "paperback": "$10.40", "hardcover": "$20.32", "kindle": "$4.11"
+}
+}
+}`</span></span><span class="token punctuation">;</span>
+
+<span class="token comment">// Converting JSON object to JS object</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">parse</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Define recursive function to print nested values</span>
+<span class="token keyword">function</span> <span class="token function">printValues</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">var</span> k <span class="token keyword">in</span> obj<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>obj<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token keyword">instanceof</span> <span class="token class-name">Object</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printValues</span><span class="token punctuation">(</span>obj<span class="token punctuation">[</span>k<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+    document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>obj<span class="token punctuation">[</span>k<span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Printing all the values from the resulting object</span>
+<span class="token function">printValues</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token string">"&lt;hr&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Printing a single value</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>obj<span class="token punctuation">[</span><span class="token string">"book"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"author"</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: J. K. Rowling</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>obj<span class="token punctuation">[</span><span class="token string">"book"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"characters"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span> <span class="token operator">+</span> <span class="token string">"&lt;br&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: Harry Potter</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>obj<span class="token punctuation">[</span><span class="token string">"book"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"price"</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token string">"hardcover"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: $20.32</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Encoding Data as JSON in JavaScript</h2>
+            <p>Sometimes JavaScript object or value from your code need to be transferred to the server during an Ajax
+                communication. JavaScript provides <code>JSON.stringify()</code> method for this purpose which converts
+                a JavaScript value to a JSON string, as shown below:</p>
+            <h3>Stringify a JavaScript Object</h3>
+            <p>The following example will show you how to convert a JavaScript object to JSON string:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+                    <div class="codebox-title">
+                        <h4>Example</h4><a
+                            href="../codelab.php?topic=javascript&amp;file=convert-js-object-to-json-string"
+                            target="_blank" class="try-btn" title="Try this code using online Editor">Try this code
+                            <span>»</span></a>
+                    </div>
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token comment">// Sample JS object</span>
+<span class="token keyword">var</span> obj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token string">"name"</span><span class="token punctuation">:</span> <span class="token string">"Peter"</span><span class="token punctuation">,</span> <span class="token string">"age"</span><span class="token punctuation">:</span> <span class="token number">22</span><span class="token punctuation">,</span> <span class="token string">"country"</span><span class="token punctuation">:</span> <span class="token string">"United States"</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Converting JS object to JSON string</span>
+<span class="token keyword">var</span> json <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>obj<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>The output of the above example will look something like this:</p>
+            <div class="output-box">
+                {"name":"Peter","age":22,"country":"United States"}
+            </div>
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> Although, JavaScript and JSON objects look quite similar, but they are
+                            not exactly the same. For example, in JavaScript, object property names can be enclosed in
+                            single quotes (<code>'...'</code>)
+                            or double quotes (<code>"..."</code>), or you can omit the quotes altogether. But, in JSON,
+                            all property names must be enclosed in double quotes.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <h3>Stringify a JavaScript Array</h3>
+            <p>Similarly, you can convert the JavaScript arrays to JSON strings, like this:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+                    <div class="codebox-title">
+                        <h4>Example</h4><a
+                            href="../codelab.php?topic=javascript&amp;file=convert-js-array-to-json-string"
+                            target="_blank" class="try-btn" title="Try this code using online Editor">Try this code
+                            <span>»</span></a>
+                    </div>
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token comment">// Sample JS array</span>
+<span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">"Apple"</span><span class="token punctuation">,</span> <span class="token string">"Banana"</span><span class="token punctuation">,</span> <span class="token string">"Mango"</span><span class="token punctuation">,</span> <span class="token string">"Orange"</span><span class="token punctuation">,</span> <span class="token string">"Papaya"</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Converting JS array to JSON string</span>
+<span class="token keyword">var</span> json <span class="token operator">=</span> <span class="token constant">JSON</span><span class="token punctuation">.</span><span class="token function">stringify</span><span class="token punctuation">(</span>arr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>json<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>The output of the above example will look something like this:</p>
+            <div class="output-box">
+                ["Apple","Banana","Mango","Orange","Papaya"]
+            </div>
+            <!--Note box-->
+            <!--Warning box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab warning-icon" title="Warning"><i></i></div>
+                    <div class="warning-box">
+                        <p><strong>Warning:</strong> Do not use <code>eval()</code> function to evaluate JSON data
+                            (e.g., including function definitions in JSON string and converting them back into
+                            executable functions with <code>eval()</code> method), as it allows attacker to inject
+                            malicious JavaScript code into your application.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+</body>
+
+</html>

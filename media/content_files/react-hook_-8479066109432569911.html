@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        .reveal section img.noborder {
+            border-width: 0;
+            box-shadow: none;
+        }
+
+        .reveal section img {
+            max-height: 400px;
+            max-width: 80%;
+        }
+
+        div.halfblock {
+            float: left;
+            width: 39%;
+            text-align: left;
+            /* margin-right: 5%; */
+            margin-left: 60px;
+        }
+
+        div.left-align {
+            text-align: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .reveal h1 {
+            font-size: 2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+
+        /*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+        .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        /*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+        .visuallyhidden.focusable:active,
+        .visuallyhidden.focusable:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+        section.present {
+            transform: scale(1.1);
+            padding: 0 !important;
+        }
+
+        h1 {
+            color: #0d99a5 !important;
+        }
+
+        .present>p {
+            padding: 0 30px;
+        }
+
+
+        .reveal pre code {
+            padding: 5px;
+            overflow: auto;
+            max-height: 400px;
+            word-wrap: normal;
+        }
+
+        .reveal code {
+            font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+            background: #333;
+            color: #fff;
+            padding: 2px 5px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .reveal li {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reveal table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media screen and (min-width:400px) {
+            .reveal li {
+                margin-left: 100px;
+                margin-right: auto;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+    <!-- Slide Code Here -->
+    <div class="reveal">
+        <div class="slides">
+            <section>
+                <h3>Introduction to React Hooks</h3>
+            </section>
+            <section>
+                <h3>What we will learn:</h3>
+                <ul>
+                    <li>State hooks</li>
+                    <li>Effect hooks</li>
+                    <li>Rules of hooks</li>
+                    <li>Maybe touch other hooks</li>
+                </ul>
+            </section>
+            <section>
+                <h3>What are Hooks</h3>
+                <ul>
+                    <li>
+                        A Hook is a special function that lets you “hook into” React
+                        features.
+                    </li>
+                    <li>Hooks are a new addition in React 16.8.</li>
+                    <li>
+                        They let you use state and other React features without writing a
+                        class.
+                    </li>
+                    <li>Reuse stateful logic between components</li>
+                    <li>Shorter, simpler way to write a react code</li>
+                    <li>
+                        Hooks doesn't brake your old version react code. Meaning it is
+                        stricktly additive.
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h3>What are the problems hooks is trying to solve?</h3>
+                <ul>
+                    <li>Giant components</li>
+                    <li>Confusing components</li>
+                    <li>Wrapper hell</li>
+                    <li>and more...</li>
+                </ul>
+            </section>
+            <section>
+                <h3>Does hooks eliminate classes?</h3>
+                <ul>
+                    <li>TLDR: No</li>
+                    <li>
+                        Classes can be a large barrier to learning React. Because people
+                        need to know <i>this</i> in javascript.
+                    </li>
+                    <li>
+                        Classes make code reuse and code organization more difficult
+                    </li>
+                    <li>
+                        Classes don’t minify very well, and they make hot reloading flaky
+                        and unreliable
+                    </li>
+                    <li>
+                        To solve these problems, Hooks let you use more of React’s
+                        features without classes.
+                    </li>
+                </ul>
+            </section>
+            <section>
+                <h1>Important: Rules of Hooks</h1>
+                <p>You can use hooks and classes together (mix them in your code)</p>
+                <p>They work side by side</p>
+                <p>
+                    Lastly, use hooks only inside functional component or at the top
+                    level.
+                </p>
+            </section>
+            <section>
+                <h1>State Hook</h1>
+                <p>
+                    useState is a Hook that lets you add React state to function
+                    components.
+                </p>
+                <p>
+                    <i>useState</i> - It’s similar to this.setState in a class, except
+                    it doesn’t merge the old and new state together.
+                </p>
+                <p>The only argument to useState is the initial state.</p>
+                <p>
+                    The first item is the current value, and the second is a function
+                    that lets us update it.
+                </p>
+                <p>Example:</p>
+                <pre><code class="js">
+              const [counter, setCounter] = useState(0); // inital argument can be any type
+            </code></pre>
+                <p>It uses array destructuring...</p>
+            </section>
+            <section>
+                <h1>Effect Hook</h1>
+                <p>
+                    <i>useState</i> - It serves the same purpose as
+                    <i>componentDidMount</i>, <i>componentDidUpdate</i>, and
+                    <i>componentWillUnmount</i> in React classes, but unified into a
+                    single API.
+                </p>
+                <p>You can do side effects here</p>
+                <p>
+                    Data fetching, setting up a subscription, and manually changing the
+                    DOM in React components are all examples of side effects
+                </p>
+                <p>
+                    Just like with useState, you can use more than a single effect in a
+                    component
+                </p>
+            </section>
+            <section>
+                <p>Example:</p>
+                <pre><code class="js">
+              useEffect(() => {
+                // your code
+                // clenaup
+              }); // dependencies
+              useEffect(() => {
+                // your code
+                // clenaup
+              }); // dependencies
+            </code></pre>
+            </section>
+            <section>
+                <h2>Other hooks to check out:</h2>
+                <ul>
+                    <li>useContext</li>
+                    <li>useCallback</li>
+                    <li>useReducer</li>
+                </ul>
+            </section>
+            <section>
+                <h2>Questions?</h2>
+            </section>
+
+            <section>
+                <h2>Homework</h2>
+                <ul>
+                    <li>Start gradually changing <i>Customers</i> project to hooks.</li>
+                    <li>Adivse with Marat regarding project problems</li>
+                    <li>Adivse me regarding hooks problems</li>
+                </ul>
+            </section>
+        </div>
+        <!-- Close slides -->
+    </div>
+    <!-- Closes Reveal -->
+    <!-- Closes Reveal -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize(
+            {
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                // Optional reveal.js plugins
+                dependencies: [
+                    // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                    // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                    // { src: 'dist/js/zoom.js', async: true },
+                    // { src: 'dist/js/notes.js', async: true },
+                    // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                ]
+            }
+        );
+    </script>
+    <!-- +++ show the html code +++ -->
+    <script>
+
+        let jss = document.querySelectorAll(".js");
+
+        console.log('jss: ', jss)
+        jss.forEach((js) => {
+            let a = js.innerHTML;
+            console.log('innerHTML: ', js)
+            let b = a.split('>');
+            js.textContent = ''
+
+            for (var i = 0; i < b.length; i++) {
+                let replaceBracket = i == b.length - 1 ? "" : ">";
+                js.textContent += b[i] + replaceBracket;
+            }
+        })
+    </script>
+</body>
+
+</html>

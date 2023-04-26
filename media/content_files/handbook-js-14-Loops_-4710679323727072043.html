@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript <span>Loops</span></h1>
+            <p class="summary">In this tutorial you will learn how to repeat a series of actions using loops in
+                JavaScript.</p>
+            <h2>Different Types of Loops in JavaScript</h2>
+            <p>Loops are used to execute the same block of code again and again, as long as a certain condition is met.
+                The basic idea behind a loop is to automate the repetitive tasks within a program to save the time and
+                effort. JavaScript now supports five different types of loops:</p>
+            <ul>
+                <li><strong>while</strong> — loops through a block of code as long as the condition specified evaluates
+                    to true.</li>
+                <li><strong>do…while</strong> — loops through a block of code once; then the condition is evaluated. If
+                    the condition is true, the statement is repeated as long as the specified condition is true.</li>
+                <li><strong>for</strong> — loops through a block of code until the counter reaches a specified number.
+                </li>
+                <li><strong>for…in</strong> — loops through the properties of an object.</li>
+                <li><strong>for…of</strong> — loops over iterable objects such as arrays, strings, etc.</li>
+            </ul>
+            <p>In the following sections, we will discuss each of these loop statements in detail.</p>
+            <hr>
+            <h2 id="while">The while Loop</h2>
+            <p>This is the simplest looping statement provided by JavaScript.</p>
+            <p>The <code>while</code> loop loops through a block of code as long as the specified condition evaluates to
+                true. As soon as the condition fails, the loop is stopped. The generic syntax of the while loop is:</p>
+            <div class="syntax">
+                <span class="keyword">while</span>(<em>condition</em>) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<em>// Code to be executed</em><br>
+                }
+            </div>
+            <p>The following example defines a loop that will continue to run as long as the variable <code>i</code> is
+                less than or equal to 5. The variable <code>i</code> will increase by 1 each time the loop runs:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                    <code class="language-js">
+                        var i = 1;
+                        while(i <= 5) {    
+                            document.write("&lt;p>The number is " + i + "&lt;/p>");
+                            i++;
+                        }
+                
+                    </code>
+                </pre>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> Make sure that the condition specified in your loop eventually goes
+                            false. Otherwise, the loop will never stop iterating which is known as infinite loop. A
+                            common mistake is to forget to increment the counter variable (variable <code>i</code> in
+                            our case). </p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <hr>
+            <h2 id="do-while">The do...while Loop</h2>
+            <p>The <code>do-while</code> loop is a variant of the <code>while</code> loop, which evaluates the condition
+                at the end of each loop iteration. With a <code>do-while</code> loop the block of code executed once,
+                and then the condition is evaluated, if the condition is true, the statement is repeated as long as the
+                specified condition evaluated to is true. The generic syntax of the do-while loop is:</p>
+            <div class="syntax">
+                <span class="keyword">do</span> {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<em>// Code to be executed</em><br>
+                }<br>
+                <span class="keyword">while</span>(<em>condition</em>);
+            </div>
+            <p>The JavaScript code in the following example defines a loop that starts with <code>i=1</code>. It will
+                then print the output and increase the value of variable <code>i</code> by 1. After that the condition
+                is evaluated, and the loop will continue to run as long as the variable <code>i</code> is less than, or
+                equal to 5.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                    <code class="language-js">
+                        var i = 1;
+                        do {
+                            document.write("&lt;p>The number is " + i + "&lt;/p>");
+                            i++;
+                        }
+                        while(i <= 5);
+                    </code>
+                </pre>
+            </div>
+            <!--End:Code box-->
+            <h2>Difference Between while and do...while Loop</h2>
+            <p>The <code>while</code> loop differs from the <code>do-while</code> loop in one important way — with a
+                <code>while</code> loop, the condition to be evaluated is tested at the beginning of each loop
+                iteration, so if the conditional expression evaluates to false, the loop will never be executed.</p>
+            <p>With a <code>do-while</code> loop, on the other hand, the loop will always be executed once even if the
+                conditional expression evaluates to false, because unlike the <code>while</code> loop, the condition is
+                evaluated at the end of the loop iteration rather than the beginning.</p>
+            <hr>
+            <h2 id="for">The for Loop</h2>
+            <p>The <code>for</code> loop repeats a block of code as long as a certain condition is met. It is typically
+                used to execute a block of code for certain number of times. Its syntax is:</p>
+            <div class="syntax">
+                <span class="keyword">for</span>(<em>initialization</em>; <em>condition</em>; <em>increment</em>) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<em>// Code to be executed</em><br>
+                }
+            </div>
+            <p>The parameters of the <code>for</code> loop statement have following meanings:</p>
+            <ul>
+                <li><strong><em>initialization</em></strong> — it is used to initialize the counter variables, and
+                    evaluated once unconditionally before the first execution of the body of the loop.</li>
+                <li><strong><em>condition</em></strong> — it is evaluated at the beginning of each iteration. If it
+                    evaluates to <code>true</code>, the loop statements execute. If it evaluates to <code>false</code>,
+                    the execution of the loop ends.</li>
+                <li><strong><em>increment</em></strong> — it updates the loop counter with a new value each time the
+                    loop runs.</li>
+            </ul>
+            <p>The following example defines a loop that starts with <code>i=1</code>. The loop will continued until the
+                value of variable <code>i</code> is less than or equal to 5. The variable <code>i</code> will increase
+                by 1 each time the loop runs:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                    <code class="language-js">
+                        for(var i=1; i<=5; i++) {
+                            document.write("&lt;p>The number is " + i + "&lt;/p>");
+                        }
+                    </code>
+                </pre>
+            </div>
+            <!--End:Code box-->
+            <p>The <code>for</code> loop is particularly useful for iterating over an array. The following example will
+                show you how to print each item or element of the <a href="javascript-arrays.php">JavaScript array</a>.
+            </p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                    <code class="language-js">
+                        // An array with some elements
+                        var fruits = ["Apple", "Banana", "Mango", "Orange", "Papaya"];
+                            
+                        // Loop through all the elements in the array 
+                        for(var i=0; i < fruits.length; i++) {
+                            document.write("&lt;p>" + fruits[i] + "&lt;/p>");
+                        }
+                
+                    </code>
+                </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2 id="for-in">The for...in Loop</h2>
+            <p>The <code>for-in</code> loop is a special type of a loop that iterates over the properties of an <a
+                    href="javascript-objects.php">object</a>, or the elements of an array. The generic syntax of the
+                <code>for-in</code> loop is:</p>
+            <div class="syntax">
+                <span class="keyword">for</span>(<em>variable</em> <span class="keyword">in</span> <em>object</em>)
+                {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<em>// Code to be executed</em><br>
+                }
+            </div>
+            <p>The loop counter i.e. <em>variable</em> in the <code>for-in</code> loop is a string, not a number. It
+                contains the name of current property or the index of the current array element.</p>
+            <p>The following example will show you how to loop through all properties of a JavaScript object.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                    <code class="language-js">
+                        // An object with some properties 
+                        var person = {"name": "Clark", "surname": "Kent", "age": "36"};
+                            
+                        // Loop through all the properties in the object  
+                        for(var prop in person) {  
+                            document.write("&lt;p>" + prop + " = " + person[prop] + "&lt;/p>"); 
+                        }
+                    </code>
+                </pre>
+            </div>
+            <!--End:Code box-->
+            <p>Similarly, you can loop through the elements of an array, like this:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                    <code class="language-js">
+                        // An array with some elements
+                        var fruits = ["Apple", "Banana", "Mango", "Orange", "Papaya"];
+                            
+                        // Loop through all the elements in the array 
+                        for(var i in fruits) {  
+                            document.write("&lt;p>" + fruits[i] + "&lt;/p>");
+                        }                        
+                    </code>
+                </pre>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> The <code>for-in</code> loop should not be used to iterate over an
+                            array where the index order is important. You should better use a <code>for</code> loop with
+                            a numeric index.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <hr>
+            <h2>The for...of Loop <span class="badge js" title="New in ES6">ES6</span></h2>
+            <p>ES6 introduces a new <code>for-of</code> loop which allows us to iterate over <a
+                    href="javascript-arrays.php">arrays</a> or other iterable objects (e.g. <a
+                    href="javascript-strings.php">strings</a>) very easily. Also, the code inside the loop is executed
+                for each element of the iterable object.</p>
+            <p>The following example will show you how to loop through arrays and strings using this loop.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                    <code class="language-js">
+                        // Iterating over array
+                        let letters = ["a", "b", "c", "d", "e", "f"];
+                        
+                        for(let letter of letters) {
+                            console.log(letter); // a,b,c,d,e,f
+                        }
+                        
+                        // Iterating over string
+                        let greet = "Hello World!";
+                        
+                        for(let character of greet) {
+                            console.log(character); // H,e,l,l,o, ,W,o,r,l,d,!
+                        }                                            
+                    </code>
+                </pre>
+            </div>
+            <!--End:Code box-->
+            <p>To learn about other ES6 features, please check out the <a href="javascript-es6-features.php">JavaScript
+                    ES6 features</a> chapter.</p>
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div title="Important Notes" class="info-tab note-icon">&nbsp;</div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> The <code>for...of</code> loop doesn't work with objects because they
+                            are not iterable. If you want to iterate over the properties of an object you can use the <a
+                                href="javascript-loops.php#for-in"><code>for-in</code></a> loop.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

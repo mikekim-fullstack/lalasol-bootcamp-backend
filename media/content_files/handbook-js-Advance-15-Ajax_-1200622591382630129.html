@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    div class="wrapper">
+    <div class="content">
+        <h1>JavaScript <span>Ajax</span></h1>
+        <p class="summary">In this tutorial you will learn what Ajax is and how to implement it in JavaScript.</p>
+        <h2>What is Ajax?</h2>
+        <p>Ajax stands for <b>A</b>synchronous <b>J</b>avascript <b>A</b>nd <b>X</b>ml. Ajax is just a means of loading
+            data from the server and selectively updating parts of a web page without reloading the whole page.</p>
+        <p>Basically, what Ajax does is make use of the browser's built-in <code>XMLHttpRequest</code> (XHR) object to
+            send and receive information to and from a web server asynchronously, in the background, without blocking
+            the page or interfering with the user's experience.</p>
+        <p>Ajax has become so popular that you hardly find an application that doesn't use Ajax to some extent. The
+            example of some large-scale Ajax-driven online applications are: Gmail, Google Maps, Google Docs, YouTube,
+            Facebook, Flickr, and so many other applications.</p>
+        <!--Note box-->
+        <div class="color-box space">
+            <div class="shadow">
+                <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                <div class="note-box">
+                    <p><strong>Note:</strong> Ajax is not a new technology, in fact, Ajax is not even really a
+                        technology at all. Ajax is just a term to describe the process of exchanging data from a web
+                        server asynchronously through JavaScript, without refreshing the page.</p>
+                </div>
+            </div>
+        </div>
+        <!--End:Note box-->
+        <!--Tip Box-->
+        <div class="color-box space">
+            <div class="shadow">
+                <div class="info-tab tip-icon" title="Useful Tips"><i></i></div>
+                <div class="tip-box">
+                    <p><strong>Tip:</strong> Don't get confused by the term <b>X</b> (i.e. <strong>XML</strong>) in
+                        AJAX. It is only there for historical reasons. Other data exchange format such as JSON, HTML, or
+                        plain text can be used instead of XML.</p>
+                </div>
+            </div>
+        </div>
+        <!--End:Tip Box-->
+        <h2>Understanding How Ajax Works</h2>
+        <p>To perform Ajax communication JavaScript uses a special object built into the browser—an
+            <code>XMLHttpRequest</code> (XHR) object—to make HTTP requests to the server and receive data in response.
+        </p>
+        <p>All modern browsers (Chrome, Firefox, IE7+, Safari, Opera) support the <code>XMLHttpRequest</code> object.
+        </p>
+        <p>The following illustrations demonstrate how Ajax communication works:</p>
+        <p class="text-center"><img src="/lib/images/ajax-illustration.png" alt="Ajax Illustration"></p>
+        <p>Since Ajax requests are usually asynchronous, execution of the script continues as soon as the Ajax request
+            is sent, i.e. the browser will not halt the script execution until the server response comes back.</p>
+        <p>In the following section we'll discuss each step involved in this process one by one:</p>
+        <h2>Sending Request and Retrieving the Response</h2>
+        <p>Before you perform Ajax communication between client and server, the first thing you must do is to
+            instantiate an <code>XMLHttpRequest</code> object, as shown below:</p>
+        <div class="green-box break">var request = new XMLHttpRequest();</div>
+        <p>Now, the next step in sending the request to the server is to instantiating the newly-created request object
+            using the <code>open()</code> method of the XMLHttpRequest object.</p>
+        <p>The <code>open()</code> method typically accepts two parameters— the HTTP request method to use, such as
+            "GET", "POST", etc., and the URL to send the request to, like this:</p>
+        <div class="pink-box break">request.open("GET", "info.txt"); -Or- request.open("POST", "add-user.php");</div>
+        <!--Tip Box-->
+        <div class="color-box">
+            <div class="shadow">
+                <div class="info-tab tip-icon" title="Useful Tips"><i></i></div>
+                <div class="tip-box">
+                    <p><strong>Tip:</strong> The file can be of any kind, like <code>.txt</code> or <code>.xml</code>,
+                        or server-side scripting files, like <code>.php</code> or <code>.asp</code>, which can perform
+                        some actions on the server (e.g. inserting or reading data from database) before sending the
+                        response back to the client.</p>
+                </div>
+            </div>
+        </div>
+        <!--End:Tip Box-->
+        <p>And finally send the request to the server using the <code>send()</code> method of the XMLHttpRequest object.
+        </p>
+        <div class="sky-box break">request.send(); -Or- request.send(<em>body</em>);</div>
+        <!--Note box-->
+        <div class="color-box">
+            <div class="shadow">
+                <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                <div class="note-box">
+                    <p><strong>Note:</strong> The <code>send()</code> method accepts an optional
+                        <code><em>body</em></code> parameter which allow us to specify the request's body. This is
+                        primarily used for HTTP POST requests, since the HTTP GET request doesn't have a request body,
+                        just request headers.</p>
+                </div>
+            </div>
+        </div>
+        <!--End:Note box-->
+        <p>The GET method is generally used to send small amount of data to the server. Whereas, the POST method is used
+            to send large amount of data, such as form data.</p>
+        <p>In GET method, the data is sent as URL parameters. But, in POST method, the data is sent to the server as a
+            part of the HTTP request body. Data sent through POST method will not visible in the URL.</p>
+        <p>See the chapter on <a href="/php-tutorial/php-get-and-post.php">HTTP GET vs. POST</a> for a detailed
+            comparison of these two methods.</p>
+        <p class="space">In the following section we'll take a closer look at how Ajax requests actually works.</p>
+        <h2>Performing an Ajax GET Request</h2>
+        <p>The GET request is typically used to get or retrieve some kind of information from the server that doesn't
+            require any manipulation or change in database, for example, fetching search results based on a term,
+            fetching user details based on their id or name, and so on.</p>
+        <p>The following example will show you how to make an Ajax GET request in JavaScript.</p>
+        <!--Code box-->
+        <div class="example">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-markup"><code class=" language-markup"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>JavaScript Ajax GET Demo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+<span class="token keyword">function</span> <span class="token function">displayFullName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">// Creating the XMLHttpRequest object</span>
+<span class="token keyword">var</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Instantiating the request object</span>
+request<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"GET"</span><span class="token punctuation">,</span> <span class="token string">"greet.php?fname=John&amp;lname=Clark"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Defining event listener for readystatechange event</span>
+request<span class="token punctuation">.</span><span class="token function-variable function">onreadystatechange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">// Check if the request is compete and was successful</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>readyState <span class="token operator">===</span> <span class="token number">4</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">// Inserting the response from server into an HTML element</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"result"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>responseText<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Sending the request to the server</span>
+request<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>result<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Content of the result DIV box will be replaced by the server response<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>displayFullName()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Display Full Name<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <p>When the request is asynchronous, the <code>send()</code> method returns immediately after sending the
+            request. Therefore you must check where the response currently stands in its lifecycle before processing it
+            using the <code>readyState</code> property of the <code>XMLHttpRequest</code> object.</p>
+        <p>The <code>readyState</code> is an integer that specifies the status of an HTTP request. Also, the function
+            assigned to the <code>onreadystatechange</code> event handler called every time the <code>readyState</code>
+            property changes. The possible values of the <code>readyState</code> property are summarized below.</p>
+        <div class="shadow">
+            <table class="data">
+                <tbody>
+                    <tr>
+                        <th>Value</th>
+                        <th>State</th>
+                        <th>Description</th>
+                    </tr>
+                    <tr>
+                        <td><code>0</code></td>
+                        <td><code>UNSENT</code></td>
+                        <td>An <code>XMLHttpRequest</code> object has been created, but the <code>open()</code> method
+                            hasn't been called yet (i.e. request not initialized).</td>
+                    </tr>
+                    <tr>
+                        <td><code>1</code></td>
+                        <td><code>OPENED</code></td>
+                        <td>The <code>open()</code> method has been called (i.e. server connection established).</td>
+                    </tr>
+                    <tr>
+                        <td><code>2</code></td>
+                        <td><code>HEADERS_RECEIVED</code></td>
+                        <td>The <code>send()</code> method has been called (i.e. server has received the request).</td>
+                    </tr>
+                    <tr>
+                        <td><code>3</code></td>
+                        <td><code>LOADING</code></td>
+                        <td>The server is processing the request.</td>
+                    </tr>
+                    <tr>
+                        <td><code>4</code></td>
+                        <td><code>DONE</code></td>
+                        <td>The request has been processed and the response is ready.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--Note box-->
+        <div class="color-box break">
+            <div class="shadow">
+                <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                <div class="note-box">
+                    <p><strong>Note:</strong> Theoretically, the <code>readystatechange</code> event should be triggered
+                        every time the <code>readyState</code> property changes. But, most browsers do not fire this
+                        event when <code>readyState</code> changes to 0 or 1. However, all browsers fire this event when
+                        <code>readyState</code> changes to 4 .</p>
+                </div>
+            </div>
+        </div>
+        <!--End:Note box-->
+        <p>The <code>status</code> property returns the numerical HTTP status code of the XMLHttpRequest's response.
+            Some of the common HTTP status codes are listed below:</p>
+        <ul>
+            <li>200 — OK. The server successfully processed the request.</li>
+            <li>404 — Not Found. The server can't find the requested page.</li>
+            <li>503 — Service Unavailable. The server is temporarily unavailable.</li>
+        </ul>
+        <p>Please check out the <a href="/html-reference/http-status-codes.php">HTTP status codes</a> reference for a
+            complete list of response codes.</p>
+        <p>Here's the code from our "greet.php" file that simply creates the full name of a person by joining their
+            first name and last name and outputs a greeting message.</p>
+        <!--Code box-->
+        <div class="example">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-php"><code class=" language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token function">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"fname"</span><span class="token punctuation">]</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token function">isset</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"lname"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token variable">$fname</span> <span class="token operator">=</span> <span class="token function">htmlspecialchars</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"fname"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$lname</span> <span class="token operator">=</span> <span class="token function">htmlspecialchars</span><span class="token punctuation">(</span><span class="token variable">$_GET</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"lname"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Creating full name by joining first and last name</span>
+<span class="token variable">$fullname</span> <span class="token operator">=</span> <span class="token variable">$fname</span> <span class="token punctuation">.</span> <span class="token double-quoted-string string">" "</span> <span class="token punctuation">.</span> <span class="token variable">$lname</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Displaying a welcome message</span>
+<span class="token keyword">echo</span> <span class="token double-quoted-string string">"Hello, <span class="token interpolation"><span class="token variable">$fullname</span></span>! Welcome to our website."</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token keyword">echo</span> <span class="token double-quoted-string string">"Hi there! Welcome to our website."</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token delimiter important">?&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <hr>
+        <h2>Performing an Ajax POST Request</h2>
+        <p>The POST method is mainly used to submit a form data to the web server.</p>
+        <p>The following example will show you how to submit form data to the server using Ajax.</p>
+        <!--Code box-->
+        <div class="example">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-markup"><code class=" language-markup"><span class="token doctype">&lt;!DOCTYPE html&gt;</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>html</span> <span class="token attr-name">lang</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>en<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>meta</span> <span class="token attr-name">charset</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>utf-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>title</span><span class="token punctuation">&gt;</span></span>JavaScript Ajax POST Demo<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>title</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>script</span><span class="token punctuation">&gt;</span></span><span class="token script language-javascript">
+<span class="token keyword">function</span> <span class="token function">postComment</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">// Creating the XMLHttpRequest object</span>
+<span class="token keyword">var</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">XMLHttpRequest</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Instantiating the request object</span>
+request<span class="token punctuation">.</span><span class="token function">open</span><span class="token punctuation">(</span><span class="token string">"POST"</span><span class="token punctuation">,</span> <span class="token string">"confirmation.php"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Defining event listener for readystatechange event</span>
+request<span class="token punctuation">.</span><span class="token function-variable function">onreadystatechange</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">// Check if the request is compete and was successful</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>readyState <span class="token operator">===</span> <span class="token number">4</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>status <span class="token operator">===</span> <span class="token number">200</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">// Inserting the response from server into an HTML element</span>
+document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"result"</span><span class="token punctuation">)</span><span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>responseText<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Retrieving the form data</span>
+<span class="token keyword">var</span> myForm <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">getElementById</span><span class="token punctuation">(</span><span class="token string">"myForm"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> formData <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">FormData</span><span class="token punctuation">(</span>myForm<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Sending the request to the server</span>
+request<span class="token punctuation">.</span><span class="token function">send</span><span class="token punctuation">(</span>formData<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>head</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>form</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>myForm<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>Name:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>input</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>text<span class="token punctuation">"</span></span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>name<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>br</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>label</span><span class="token punctuation">&gt;</span></span>Comment:<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>label</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>textarea</span> <span class="token attr-name">name</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>comment<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>textarea</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">onclick</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>postComment()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>Post Comment<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>form</span><span class="token punctuation">&gt;</span></span>    
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">id</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>result<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span><span class="token punctuation">&gt;</span></span>Content of the result DIV box will be replaced by the server response<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>    
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>body</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>html</span><span class="token punctuation">&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <p>If you are not using the <code>FormData</code> object to send form data, for example, if you're sending the
+            form data to the server in the <em>query string</em> format, i.e.
+            <code>request.send(key1=value1&amp;key2=value2)</code> then you need to <a
+                href="../codelab.php?topic=javascript&amp;file=set-request-header" target="_blank">explicitly set the
+                request header</a> using <code>setRequestHeader()</code> method, like this:</p>
+        <div class="pink-box break">request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");</div>
+        <p>The <code>setRequestHeader()</code> method, must be called after calling <code>open()</code>, but before
+            calling <code>send()</code>.</p>
+        <p>Some common request headers are: <code>application/x-www-form-urlencoded</code>,
+            <code>multipart/form-data</code>, <code>application/json</code>, <code>application/xml</code>,
+            <code>text/plain</code>, <code>text/html</code>, and so on.</p>
+        <!--Note box-->
+        <div class="color-box space">
+            <div class="shadow">
+                <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                <div class="note-box">
+                    <p><strong>Note:</strong> The <code>FormData</code> object provides an easy way to construct a set
+                        of key/value pairs representing form fields and their values which can be sent using
+                        <code>XMLHttpRequest.send()</code> method. The transmitted data is in the same format that the
+                        form's <code>submit()</code> method would use to send the data if the form's encoding type were
+                        set to <code>multipart/form-data</code>.</p>
+                </div>
+            </div>
+        </div>
+        <!--End:Note box-->
+        <p>Here's the code of our "confirmation.php" file that simply outputs the values submitted by the user.</p>
+        <!--Code box-->
+        <div class="example">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-php"><code class=" language-php"><span class="token php language-php"><span class="token delimiter important">&lt;?php</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token variable">$_SERVER</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"REQUEST_METHOD"</span><span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token double-quoted-string string">"POST"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token variable">$name</span> <span class="token operator">=</span> <span class="token function">htmlspecialchars</span><span class="token punctuation">(</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"name"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token variable">$comment</span> <span class="token operator">=</span> <span class="token function">htmlspecialchars</span><span class="token punctuation">(</span><span class="token function">trim</span><span class="token punctuation">(</span><span class="token variable">$_POST</span><span class="token punctuation">[</span><span class="token double-quoted-string string">"comment"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Check if form fields values are empty</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token variable">$name</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token operator">!</span><span class="token function">empty</span><span class="token punctuation">(</span><span class="token variable">$comment</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">echo</span> <span class="token double-quoted-string string">"&lt;p&gt;Hi, &lt;b&gt;<span class="token interpolation"><span class="token variable">$name</span></span>&lt;/b&gt;. Your comment has been received successfully.&lt;p&gt;"</span><span class="token punctuation">;</span>
+<span class="token keyword">echo</span> <span class="token double-quoted-string string">"&lt;p&gt;Here's the comment that you've entered: &lt;b&gt;<span class="token interpolation"><span class="token variable">$comment</span></span>&lt;/b&gt;&lt;/p&gt;"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token keyword">echo</span> <span class="token double-quoted-string string">"&lt;p&gt;Please fill all the fields in the form!&lt;/p&gt;"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+<span class="token keyword">echo</span> <span class="token double-quoted-string string">"&lt;p&gt;Something went wrong. Please try again.&lt;/p&gt;"</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token delimiter important">?&gt;</span></span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <p>For security reasons, browsers do not allow you to make cross-domain Ajax requests. This means you can only
+            make Ajax requests to URLs from the same domain as the original page, for example, if your application is
+            running on the domain "mysite.com", you cannot make Ajax request to "othersite.com" or any other domain.
+            This is commonly known as <em>same origin policy</em>.</p>
+        <p>However, you can load images, style sheets, JS files, and other resources from any domain.</p>
+        <!--Tip Box-->
+        <div class="color-box space">
+            <div class="shadow">
+                <div class="info-tab tip-icon" title="Useful Tips"><i></i></div>
+                <div class="tip-box">
+                    <p><strong>Tip:</strong> Check out the <a
+                            href="/jquery-tutorial/jquery-ajax-get-and-post-requests.php">jQuery Ajax methods</a> for
+                        quick and seamless Ajax implementation. The jQuery framework provides very convenient methods to
+                        implement Ajax functionality.</p>
+                </div>
+            </div>
+        </div>
+        <!--End:Tip Box-->
+
+    </div>
+</body>
+
+</html>

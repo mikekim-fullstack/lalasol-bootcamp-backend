@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript <span>DOM Selectors</span></h1>
+            <p class="summary">In this tutorial you will learn how to select DOM elements in JavaScript.</p>
+            <h2>Selecting DOM Elements in JavaScript</h2>
+            <p>JavaScript is most commonly used to get or modify the content or value of the HTML elements on the page,
+                as well as to apply some effects like show, hide, animations etc. But, before you can perform any action
+                you need to find or select the target HTML element.</p>
+            <p class="space">In the following sections, you will see some of the common ways of selecting the elements
+                on a page and do something with them using the JavaScript.</p>
+            <h1>Selecting the Topmost Elements</h1>
+            <p>The topmost elements in an HTML document are available directly as <code>document</code> properties. For
+                example, the <a href="/html-reference/html-html-tag.php"><code>&lt;html&gt;</code></a> element can be
+                accessed with <code>document.documentElement</code> property, whereas the <a
+                    href="/html-reference/html-head-tag.php"><code>&lt;head&gt;</code></a> element can be accessed with
+                <code>document.head</code> property, and the <a
+                    href="/html-reference/html-body-tag.php"><code>&lt;body&gt;</code></a> element can be accessed with
+                <code>document.body</code> property. Here's an example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            &lt;!DOCTYPE html>
+                            &lt;html lang="en">
+                            &lt;head>
+                                &lt;meta charset="utf-8">
+                                &lt;title>JS Select Topmost Elements&lt;/title>
+                            &lt;/head>
+                            &lt;body>
+                                &lt;script>
+                                // Display lang attribute value of html element
+                                alert(document.documentElement.getAttribute("lang")); // Outputs: en
+                                
+                                // Set background color of body element
+                                document.body.style.background = "yellow";
+                                
+                                // Display tag name of the head element's first child
+                                alert(document.head.firstElementChild.nodeName); // Outputs: meta
+                                &lt;/script>
+                            &lt;/body>
+                            &lt;/html>
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <p>But, be careful. If <code>document.body</code> is used before the <code>&lt;body&gt;</code> tag (e.g.
+                inside the <code>&lt;head&gt;</code>), it will return <a
+                    href="javascript-data-types.php#null"><code>null</code></a> instead of the body element. Because the
+                point at which the script is executed, the <code>&lt;body&gt;</code> tag was not parsed by the browser,
+                so <code>document.body</code> is truly <code>null</code> at that point.</p>
+            <p>Let's take a look at the following example to better understand this:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                                &lt;!DOCTYPE html>
+                                &lt;html lang="en">
+                                &lt;head>
+                                    &lt;meta charset="utf-8">
+                                    &lt;title>JS Document.body Demo&lt;/title>
+                                    &lt;script>
+                                    alert("From HEAD: " + document.body); // Outputs: null (since &lt&lt;body> is not parsed yet)
+                                    &lt;/script>
+                                &lt;/head>
+                                &lt;body>
+                                    &lt;script>
+                                    alert("From BODY: " + document.body); // Outputs: HTMLBodyElement
+                                    &lt;/script>
+                                &lt;/body>
+                                &lt;/html>
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Selecting Elements by ID</h2>
+            <p>You can select an element based on its unique ID with the <code>getElementById()</code> method. This is
+                the easiest way to find an HTML element in the DOM tree.</p>
+            <p>The following example selects and highlight an element having the ID attribute <code>id="mark"</code>.
+            </p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            &lt;!DOCTYPE html>
+                            &lt;html lang="en">
+                            &lt;head>
+                                &lt;meta charset="utf-8">
+                                &lt;title>JS Select Element by ID&lt;/title>
+                            &lt;/head>
+                            &lt;body>
+                                &lt;p id="mark">This is a paragraph of text.&lt;/p>
+                                &lt;p>This is another paragraph of text.&lt;/p>
+                            
+                                &lt;script>
+                                // Selecting element with id mark 
+                                var match = document.getElementById("mark");
+                                    
+                                // Highlighting element's background
+                                match.style.background = "yellow";
+                                &lt;/script>
+                            &lt;/body>
+                            &lt;/html>
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <p>The <code>getElementById()</code> method will return the element as an object if the matching element was
+                found, or <code>null</code> if no matching element was found in the document.</p>
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> Any HTML element can have an <code>id</code> attribute. The value of
+                            this attribute must be unique within a page i.e. no two elements in the same page can have
+                            the same ID.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <hr>
+            <h2>Selecting Elements by Class Name</h2>
+            <p>Similarly, you can use the <code>getElementsByClassName()</code> method to select all the elements having
+                specific class names. This method returns an array-like object of all child elements which have all of
+                the given class names. Let's check out the following example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            &lt;!DOCTYPE html>
+                            &lt;html lang="en">
+                            &lt;head>
+                                &lt;meta charset="utf-8">
+                                &lt;title>JS Select Elements by Class Name&lt;/title>
+                            &lt;/head>
+                            &lt;body>
+                                &lt;p class="test">This is a paragraph of text.&lt;/p>
+                                &lt;div class="block test">This is another paragraph of text.&lt;/div>
+                                &lt;p>This is one more paragraph of text.&lt;/p>    
+                            
+                                &lt;script>
+                                // Selecting elements with class test
+                                var matches = document.getElementsByClassName("test");
+                                    
+                                // Displaying the selected elements count
+                                document.write("Number of selected elements: " + matches.length);
+                                    
+                                // Applying bold style to first element in selection
+                                matches[0].style.fontWeight = "bold";
+                                    
+                                // Applying italic style to last element in selection
+                                matches[matches.length - 1].style.fontStyle = "italic";
+                                    
+                                // Highlighting each element's background through loop
+                                for(var elem in matches) {  
+                                    matches[elem].style.background = "yellow";
+                                }
+                                &lt;/script>
+                            &lt;/body>
+                            &lt;/html>
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Selecting Elements by Tag Name</h2>
+            <p>You can also select HTML elements by tag name using the <code>getElementsByTagName()</code> method. This
+                method also returns an array-like object of all child elements with the given tag name.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            &lt;!DOCTYPE html>
+                            &lt;html lang="en">
+                            &lt;head>
+                                &lt;meta charset="utf-8">
+                                &lt;title>JS Select Elements by Tag Name&lt;/title>
+                            &lt;/head>
+                            &lt;body>
+                                &lt;p>This is a paragraph of text&lt;&lt;p>
+                                &lt;div class="test">This is another paragraph of text.&lt;/div>
+                                &lt;p>This is one more paragraph of text.&lt;/p>   
+                                
+                                &lt;script>
+                                // Selecting all paragraph elements
+                                var matches = document.getElementsByTagName("p");
+                                    
+                                // Printing the number of selected paragraphs
+                                document.write("Number of selected elements: " + matches.length);
+                                    
+                                // Highlighting each paragraph's background through loop
+                                for(var elem in matches) {  
+                                    matches[elem].style.background = "yellow";
+                                }
+                                &lt;/script>
+                            &lt;/body>
+                            &lt;/html>
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Selecting Elements with CSS Selectors</h2>
+            <p>You can use the <code>querySelectorAll()</code> method to select elements that matches the specified <a
+                    href="/css-tutorial/css-selectors.php">CSS selector</a>. CSS selectors provide a very powerful and
+                efficient way of selecting HTML elements in a document. Please check out the CSS tutorial section to
+                learn more about them.</p>
+            <p>This method returns a list of all the elements that matches the specified selectors. You can examine it
+                just like any array, as shown in the following example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            &lt;!DOCTYPE html>
+                            &lt;html lang="en">
+                            &lt;head>
+                                &lt;meta charset="utf-8">
+                                &lt;title>JS Select Elements with CSS Selectors&lt;/title>
+                            &lt;/head>
+                            &lt;body>
+                                &lt;ul>
+                                    &lt;li>Bread&lt;/li>
+                                    &lt;li class="tick">Coffee&lt;/li>
+                                    &lt;li>Pineapple Cake&lt;/li>
+                                &lt;/ul>
+                                    
+                                &lt;script>
+                                // Selecting all li elements
+                                var matches = document.querySelectorAll("ul li");
+                                    
+                                // Printing the number of selected li elements
+                                document.write("Number of selected elements: " + matches.length + "&lt;hr>")
+                                    
+                                // Printing the content of selected li elements
+                                for(var elem of matches) {  
+                                    document.write(elem.innerHTML + "&lt;br>");
+                                }
+                                    
+                                // Applying line through style to first li element with class tick
+                                matches = document.querySelectorAll("ul li.tick");
+                                matches[0].style.textDecoration = "line-through";
+                                &lt;/script>
+                            &lt;/body>
+                            &lt;/html>
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> The <code>querySelectorAll()</code> method also supports CSS
+                            pseudo-classes like <code>:first-child</code>, <code>:last-child</code>,
+                            <code>:hover</code>, etc. But, for CSS pseudo-elements such as <code>::before</code>,
+                            <code>::after</code>, <code>::first-line</code>, etc. this method always returns an empty
+                            list.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    div class="wrapper">
+    <div class="content">
+        <h1>JavaScript <span>Type Conversions</span></h1>
+        <p class="summary">In this tutorial you will learn how to convert the data type of a value in JavaScript.</p>
+        <h2>Automatic Type Conversions</h2>
+        <p>Most of the time JavaScript automatically converts values from one data type to another when used in
+            expression. For example, in mathematical operations values are automatically converted to numbers. However,
+            the end result is not always what you expected:</p>
+        <!--Code box-->
+        <div class="example break">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"3"</span> <span class="token operator">-</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Outputs: 1 </span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"3"</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Outputs: "32" (because + is also concatenation operator)</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">3</span> <span class="token operator">+</span> <span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Outputs: "32"</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"3"</span> <span class="token operator">*</span> <span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Outputs: 6</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"10"</span> <span class="token operator">/</span> <span class="token string">"2"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Outputs: 5</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">+</span> <span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Outputs: 2 (because true is converted to 1)</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">+</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Outputs: 1 (because false is converted to 0)</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">1</span> <span class="token operator">+</span> undefined<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Outputs: NaN</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token number">3</span> <span class="token operator">+</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Outputs: 3 (because null is converted to 0)</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"3"</span> <span class="token operator">+</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Outputs: "3null"</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token boolean">true</span> <span class="token operator">+</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Outputs: 1</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token boolean">true</span> <span class="token operator">+</span> undefined<span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Outputs: NaN</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <p class="space">There are situations when we need to manually convert a value from one data type to another.
+            JavaScript provides a number of different methods to perform such data type conversion task. In the
+            following sections we will discuss those methods in detail.</p>
+        <h2>Converting Values to Numbers</h2>
+        <p>The numeric conversion is usually required when we read the value from a string-based source like a text
+            input, but we expect a number to be entered, or want to treat it as a number.</p>
+        <p>In such situations, you can use the global method <code>Number()</code> to convert strings to numbers.</p>
+        <!--Code box-->
+        <div class="example break">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> str <span class="token operator">=</span> <span class="token string">"123"</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> str<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: string</span>
+
+<span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token function">Number</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Becomes a number 123</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: number</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <p>If the string is not a valid number, the result will be <code>NaN</code>. Empty strings convert to 0.</p>
+        <!--Code box-->
+        <div class="example break">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">"10.5"</span><span class="token punctuation">)</span>  <span class="token comment">// returns 10.5</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>  <span class="token comment">// returns 1</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>  <span class="token comment">// returns 0</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>  <span class="token comment">// returns 0</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">" 123 "</span><span class="token punctuation">)</span>  <span class="token comment">// returns 123</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span>  <span class="token comment">// returns 0</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span>  <span class="token comment">// returns 0</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">"123e-1"</span><span class="token punctuation">)</span>  <span class="token comment">// returns 12.3</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">"0xFF"</span><span class="token punctuation">)</span> <span class="token comment">// returns 255 (hexadecimal representation)</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">"undefined"</span><span class="token punctuation">)</span>  <span class="token comment">// returns NaN</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">"null"</span><span class="token punctuation">)</span>  <span class="token comment">// returns NaN</span>
+<span class="token function">Number</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span>  <span class="token comment">// returns NaN</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <hr>
+        <h2>Converting Values to Strings</h2>
+        <p>Similarly, you can use the <code>String()</code> method to convert a value to a string.</p>
+        <p>The following example will show you how to convert a Boolean value to a string.</p>
+        <!--Code box-->
+        <div class="example break">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> bool <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> bool<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: boolean</span>
+
+<span class="token keyword">var</span> str <span class="token operator">=</span> <span class="token function">String</span><span class="token punctuation">(</span>bool<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Becomes a string "true"</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> str<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: string</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <p>The <code>String()</code> method can be used on any type of numbers, variables, or expressions:</p>
+        <!--Code box-->
+        <div class="example break">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token function">String</span><span class="token punctuation">(</span><span class="token number">10.5</span><span class="token punctuation">)</span>  <span class="token comment">// returns "10.5"</span>
+<span class="token function">String</span><span class="token punctuation">(</span><span class="token number">123</span><span class="token punctuation">)</span>  <span class="token comment">// returns "123"</span>
+<span class="token function">String</span><span class="token punctuation">(</span><span class="token number">100</span> <span class="token operator">+</span> <span class="token number">23</span><span class="token punctuation">)</span>  <span class="token comment">// returns "123"</span>
+<span class="token function">String</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span>  <span class="token comment">// returns "true"</span>
+<span class="token function">String</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>  <span class="token comment">// returns "false"</span>
+<span class="token function">String</span><span class="token punctuation">(</span><span class="token number">123e-1</span><span class="token punctuation">)</span>  <span class="token comment">// returns "12.3"</span>
+<span class="token function">String</span><span class="token punctuation">(</span><span class="token number">0xFF</span><span class="token punctuation">)</span> <span class="token comment">// returns "255"</span>
+<span class="token function">String</span><span class="token punctuation">(</span>undefined<span class="token punctuation">)</span>  <span class="token comment">// returns "undefined"</span>
+<span class="token function">String</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>  <span class="token comment">// returns "null"</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <p>Another technique for converting numbers to strings is using the <code>toString()</code> method:</p>
+        <!--Code box-->
+        <div class="example break">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> num <span class="token operator">=</span> <span class="token number">123</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> num<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: number</span>
+
+<span class="token keyword">var</span> str <span class="token operator">=</span> num<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Becomes a string "123"</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> str<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: string</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <hr>
+        <h2>Converting Values to Boolean</h2>
+        <p>Boolean conversions are also pretty straight forward. You can use the <code>Boolean()</code> method to
+            convert any value to a Boolean value (i.e. <code>true</code> or <code>false</code>).</p>
+        <p>Values that are intuitively empty, like <code>0</code>, <code>null</code>, <code>false</code>,
+            <code>undefined</code>, <code>NaN</code> or an empty string (<code>""</code>) become <code>false</code>.
+            Other values become <code>true</code>, as shown in the example here:</p>
+        <!--Code box-->
+        <div class="example break">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span> <span class="token comment">// returns false</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span>  <span class="token comment">// returns false</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>  <span class="token comment">// returns false</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span>undefined<span class="token punctuation">)</span>  <span class="token comment">// returns false</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token number">NaN</span><span class="token punctuation">)</span>  <span class="token comment">// returns false</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token string">""</span><span class="token punctuation">)</span> <span class="token comment">// returns false</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token string">"0"</span><span class="token punctuation">)</span> <span class="token comment">// returns true</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span> <span class="token comment">// returns true</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span> <span class="token comment">// returns true</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token string">"false"</span><span class="token punctuation">)</span> <span class="token comment">// returns true</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token string">"Hello World!"</span><span class="token punctuation">)</span> <span class="token comment">// returns true</span>
+<span class="token function">Boolean</span><span class="token punctuation">(</span><span class="token string">" "</span><span class="token punctuation">)</span> <span class="token comment">// returns true</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <p>If you see the example carefully you'll find the <code>Boolean()</code> method returns <code>true</code> for
+            the string with zero "0", and string "false", whereas it returns <code>false</code> for the values 0 and
+            false.</p>
+        <!--Note box-->
+        <div class="color-box">
+            <div class="shadow">
+                <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                <div class="note-box">
+                    <p><strong>Note:</strong> In some programming languages (namely PHP) the string "0" is treated as
+                        <code>false</code>. But in JavaScript a non-empty string is always <code>true</code>.</p>
+                </div>
+            </div>
+        </div>
+        <!--End:Note box-->
+        <hr>
+        <h2>Object to Primitive Conversions</h2>
+        <p>All the conversions we've seen so far are performed on primitive types (data types that can hold only a
+            single value at a time). But what happens with complex data types such as object, let's see.</p>
+        <p>JavaScript automatically perform object-to-string conversion when we try to print out an object like
+            <code>alert(obj)</code> or <code>document.write(obj)</code>. Likewise, the object-to-number conversions are
+            automatically performed when we try to add or subtract objects or apply mathematical functions, for example,
+            adding or subtracting date objects. Here's an example:</p>
+        <!--Code box-->
+        <div class="example break">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> date1 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2018</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>date1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display date string like: Sun Jun 24 2018 00:00:00</span>
+
+<span class="token keyword">var</span> date2 <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2025</span><span class="token punctuation">,</span> <span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> time <span class="token operator">=</span> date2 <span class="token operator">-</span> date1<span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>time<span class="token punctuation">)</span> <span class="token comment">// Display time in milliseconds: 228096000000</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <p>You can also perform the object-to-string conversion manually using the <code>toString()</code> method, which
+            return a string representation of the object. Additionally, you can use the <code>valueOf()</code> method on
+            some objects such as Date to perform object-to-number conversion. Here's an example:</p>
+        <!--Code box-->
+        <div class="example break">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> arr <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+arr<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// returns "1,2,3"</span>
+
+<span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2018</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+d<span class="token punctuation">.</span><span class="token function">toDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// returns date like Sun Jun 24 2018 00:00:00</span>
+d<span class="token punctuation">.</span><span class="token function">valueOf</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// returns 1529778600000</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <!--Note box-->
+        <div class="color-box">
+            <div class="shadow">
+                <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                <div class="note-box">
+                    <p><strong>Note:</strong> Object-to-Boolean conversion are insignificant, because all objects
+                        (including arrays and functions) are true in a boolean context. So there are only string and
+                        numeric conversions.</p>
+                </div>
+            </div>
+        </div>
+        <!--End:Note box-->
+        <hr>
+        <h2>Type Conversions Using Operators</h2>
+        <p>Certain JavaScript operators, such as <code>+</code> and <code>-</code> operators, can also be used to
+            perform type conversions, as demonstrated in the following example:</p>
+        <!--Code box-->
+        <div class="example break">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token string">"10"</span><span class="token punctuation">;</span> <span class="token comment">// x is a string</span>
+<span class="token keyword">var</span> y <span class="token operator">=</span> <span class="token operator">+</span>x<span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: number</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: 10</span>
+
+<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token comment">// x is a number</span>
+<span class="token keyword">var</span> y <span class="token operator">=</span> x <span class="token operator">+</span> <span class="token string">""</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: string</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: 10</span>
+
+<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token string">"15"</span><span class="token punctuation">;</span> <span class="token comment">// x is a string</span>
+<span class="token keyword">var</span> y <span class="token operator">=</span> x <span class="token operator">-</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: number</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: 15</span>
+
+<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token string">"123"</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token operator">!</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: boolean</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token operator">!</span><span class="token operator">!</span>x<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: true</span>
+
+<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token string">"Hello World!"</span><span class="token punctuation">;</span>
+<span class="token keyword">var</span> y <span class="token operator">=</span> <span class="token operator">+</span>x<span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token keyword">typeof</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">// Outputs: number</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: NaN</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+
+
+    </div>
+</body>
+
+</html>

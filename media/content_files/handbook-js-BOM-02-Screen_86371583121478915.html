@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript Window <span>Screen</span></h1>
+            <p class="summary">In this tutorial you will learn about the JavaScript window screen object.</p>
+            <h2>The Screen Object</h2>
+            <p>The <code>window.screen</code> object contains information about the user's screen such as resolution
+                (i.e. width and height of the screen), color depth, pixel depth, etc.</p>
+            <p class="space">Since window object is at the top of the scope chain, so properties of the
+                <code>window.screen</code> object can be accessed without specifying the <code>window.</code> prefix,
+                for example <code>window.screen.width</code> can be written as <code>screen.width</code>. The following
+                section will show you how to get information of the user's display using the screen object property of
+                the window object.</p>
+            <h2>Getting Width and Height of the Screen</h2>
+            <p>You can use the <code>screen.width</code> and <code>screen.height</code> property obtains the width and
+                height of the user's screen in pixels. The following example will display your screen resolution on
+                button click:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                <code class="language-js">
+                    &lt;script>
+                        function getResolution() {
+                            alert("Your screen is: " + screen.width + "x" + screen.height);
+                        }
+                    &lt;/script>
+                        
+                    &lt;button type="button" onclick="getResolution();">Get Resolution&lt;/button>
+                </code>
+            </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Getting Available Width and Height of the Screen</h2>
+            <p>The <code>screen.availWidth</code> and <code>screen.availHeight</code> property can be used to get the
+                width and height available to the browser for its use on user's screen, in pixels.</p>
+            <p>The screen's available width and height is equal to screen's actual width and height minus width and
+                height of interface features like the taskbar in Windows. Here's an example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                <code class="language-js">
+                    &lt;script>
+                        function getAvailSize() {
+                            alert("Available Screen Width: " + screen.availWidth + ", Height: " + screen.availHeight);
+                        }
+                    &lt;/script>
+                        
+                    &lt;button type="button" onclick="getAvailSize();">Get Available Size&lt;/button>
+                </code>
+            </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Getting Screen Color Depth</h2>
+            <p>You can use the <code>screen.colorDepth</code> property to get the color depth of the user's screen.
+                Color depth is the number of bits used to represent the color of a single pixel.</p>
+            <p>Color depth indicates how many colors a device screen is capable to produce. For example, screen with
+                color depth of 8 can produce 256 colors (2<sup>8</sup>).</p>
+            <p>Currently, most devices has screen with color depth of 24 or 32. In simple words more bits produce more
+                color variations, like 24 bits can produce 2<sup>24</sup> = 16,777,216 color variations (<em>true
+                    colors</em>), whereas 32 bits can produce 2<sup>32</sup> = 4,294,967,296 color variations (<em>deep
+                    colors</em>).</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                <code class="language-js">
+                    &lt;script>
+                        function getColorDepth() {
+                            alert("Your screen color depth is: " + screen.colorDepth);
+                        }
+                    &lt;/script>
+                        
+                    &lt;button type="button" onclick="getColorDepth();">Get Color Depth&lt;/button>
+                </code>
+            </pre>
+            </div>
+            <!--End:Code box-->
+            <!--Tip Box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab tip-icon" title="Useful Tips"><i></i></div>
+                    <div class="tip-box">
+                        <p><strong>Tip:</strong> As of now virtually every computer and phone display uses 24-bit color
+                            depth. 24 bits almost always uses 8 bits of each of R, G, B. Whereas in case of 32-bit color
+                            depth, 24 bits are used for the color, and the remaining 8 bits are used for transparency.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Tip Box-->
+            <hr>
+            <h2>Getting Screen Pixel Depth</h2>
+            <p>You can get the pixel depth of the screen using the <code>screen.pixelDepth</code> property. Pixel depth
+                is the number of bits used per pixel by the system display hardware.</p>
+            <p>For modern devices, color depth and pixel depth are equal. Here's an example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                <code class="language-js">
+                    &lt;script>
+                        function getPixelDepth() {
+                            alert("Your screen pixel depth is: " + screen.pixelDepth);
+                        }
+                    &lt;/script>
+                        
+                    &lt;button type="button" onclick="getPixelDepth();">Get Pixel Depth&lt;/button>
+                </code>
+            </pre>
+            </div>
+            <!--End:Code box-->
+        </div>
+</body>
+
+</html>

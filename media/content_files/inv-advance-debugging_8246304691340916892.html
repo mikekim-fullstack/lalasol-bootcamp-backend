@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css">
+    <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script>
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <!-- <link href="../style.css" rel="stylesheet" /> -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <main role="main">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h4 class="display-5">Interview - JS Debugging questions</h4>
+            </div>
+        </div>
+        <div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 1) Consider the two functions below. Will they both return the same thing? Why or why not?</h5>
+                <pre class="pre"><code class="language-js">
+                        function foo1()
+                        {
+                          return {
+                              bar: "hello"
+                          };
+                        }
+                        
+                        function foo2()
+                        {
+                          return
+                          {
+                              bar: "hello"
+                          };
+                        }
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 2) What gets logged to the console when the user clicks on “Button 4” and why?, fix it pls.</h5>
+                <pre class="pre"><code class="language-js">
+                        for (var i = 0; i < 5; i++) {
+                            var btn = document.createElement('button');
+                            btn.appendChild(document.createTextNode('Button ' + i));
+                            btn.addEventListener('click', function(){ console.log(i); });
+                            document.body.appendChild(btn);
+                          }
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 3) What will be the output of the following code:</h5>
+                <pre class="pre"><code class="language-js">
+                        for (var i = 0; i < 5; i++) {
+                            setTimeout(function() { console.log(i); }, i * 1000 );
+                        }
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 4) What will the following code output to the console:</h5>
+                <pre class="pre"><code class="language-js">
+                        console.log((function f(n){return ((n > 1) ? n * f(n-1) : n)})(5));
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 5) What will the following code output to the console and why:</h5>
+                <pre class="pre"><code class="language-js">
+                        var hero = {
+                            _name: 'John Doe',
+                            getSecretIdentity: function (){
+                                return this._name;
+                            }
+                        };
+                        
+                        var stoleSecretIdentity = hero.getSecretIdentity;
+                        
+                        console.log(stoleSecretIdentity());
+                        console.log(hero.getSecretIdentity());
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 6) What is the output of the following code?</h5>
+                <pre class="pre"><code class="language-js">
+        var length = 10;
+        function fn() {
+            console.log(this.length);
+        }
+        
+        var obj = {
+          length: 5,
+          method: function(fn) {
+            fn();
+            arguments[0]();
+          }
+        };
+        
+        obj.method(fn, 1);
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 7) What will be the output of this code?</h5>
+                <pre class="pre"><code class="language-js">
+                        var x = 21;
+                        var seytech = function () {
+                            console.log(x);
+                            var x = 20;
+                        };
+                        seytech();
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 8) What will the output be, and why?</h5>
+                <pre class="pre"><code class="language-js">
+        console.log(1 < 2 < 3);
+        console.log(3 > 2 > 1);
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 9) What will the output be, and why?</h5>
+                <pre class="pre"><code class="language-js">
+        var b = 1;
+        function outer(){
+               var b = 2
+            function inner(){
+                b++;
+                console.log(b)
+                var b = 3;
+                console.log(b)
+            }
+            inner();
+        }
+        outer();
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 10) What will be the output of the code below?</h5>
+                <pre class="pre"><code class="language-js">
+                        console.log(0.1 + 0.2 == 0.3);
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 11) What is the outcome of the two alerts below?</h5>
+                <pre class="pre"><code class="language-js">
+        var foo = "Hello";
+        (function() {
+          var bar = " World";
+          console.log(foo + bar);
+        })();
+        console.log(foo + bar);
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 12) What is the value of foo.x?</h5>
+                <pre class="pre"><code class="language-js">
+        var foo = {n: 1};
+        var bar = foo;
+        foo.x = foo = {n: 2};
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 13) What will the code below output to the console and why?</h5>
+                <pre class="pre"><code class="language-js">
+        (function(){
+            var a = b = 3;
+        })();
+        
+        console.log("a");
+        console.log("b");
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 14) What is output?</h5>
+                <pre class="pre"><code class="language-js">
+        var myObject = {
+            foo: "bar",
+            func: function() {
+                var self = this;
+                console.log("outer func:  this.foo = " + this.foo);
+                console.log("outer func:  self.foo = " + self.foo);
+                (function() {
+                    console.log("inner func:  this.foo = " + this.foo);
+                    console.log("inner func:  self.foo = " + self.foo);
+                }());
+            }
+        };
+        myObject.func();
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 15) Consider the code snippet below. What will the console output be and why?</h5>
+                <pre class="pre"><code class="language-js">
+        (function(x) {
+            return (function(y) {
+                console.log(x);
+            })(2)
+        })(1);
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 16) What is the issue with this code and how can it be fixed.:</h5>
+                <pre class="pre"><code class="language-js">
+        var hero = {
+            _name: 'John Doe',
+            getSecretIdentity: function (){
+                return this._name;
+            }
+        };
+        
+        var stoleSecretIdentity = hero.getSecretIdentity;
+        
+        console.log(stoleSecretIdentity());
+        console.log(hero.getSecretIdentity());
+                    </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 17) How do you clone an object?</h5>
+                <pre class="pre"><code class="language-js">
+                    </code></pre>
+            </div>
+        </div>
+    </main>
+    <script>
+        function toggle(e) {
+            if (e.currentTarget.querySelector('.pre').style.display === 'none') {
+                e.currentTarget.querySelector('.pre').style.display = 'block'
+            } else {
+                e.currentTarget.querySelector('.pre').style.display = 'none'
+            }
+        }
+        const boxes = document.getElementsByClassName('box');
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].addEventListener('click', toggle);
+            boxes[i].querySelector('.pre').style.display = 'none';
+            boxes[i].querySelector('.pre').style.display = 'none'
+        }
+    </script>
+</body>
+
+</html>

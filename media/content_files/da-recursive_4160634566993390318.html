@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/normalize.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        /* .reveal section img.noborder {
+            border-width: 0;
+            box-shadow: none;
+        }
+
+        .reveal section img {
+            max-height: 400px;
+            max-width: 80%;
+        }
+
+        div.halfblock {
+            float: left;
+            width: 39%;
+            text-align: left;
+            margin-right: 5%;
+            margin-left: 60px;
+        }
+
+        div.left-align {
+            text-align: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .reveal h1 {
+            font-size: 2em;
+        }
+
+        .reveal h2 {
+            font-size: 1.8em;
+        }
+ */
+
+        /*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+        /* .visuallyhidden {
+            border: 0;
+            clip: rect(0 0 0 0);
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        } */
+
+        /*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+        /* .visuallyhidden.focusable:active,
+        .visuallyhidden.focusable:focus {
+            clip: auto;
+            height: auto;
+            margin: 0;
+            overflow: visible;
+            position: static;
+            width: auto;
+        }
+
+        section.present {
+            transform: scale(1.1);
+            padding: 0 !important;
+        }
+
+        h1 {
+            color: #0d99a5 !important;
+        }
+
+        .present>p {
+            padding: 0 30px;
+        }
+
+
+        .reveal pre code {
+            padding: 5px;
+            overflow: auto;
+            max-height: 400px;
+            word-wrap: normal;
+        }
+
+        .reveal code {
+            font-family: Courier New, Courier, Lucida Sans Typewriter, Lucida Typewriter, monospace;
+            background: #333;
+            color: #fff;
+            padding: 2px 5px;
+            font-weight: 700;
+            text-align: left;
+        }
+
+        .reveal li {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .reveal table {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media screen and (min-width:400px) {
+            .reveal li {
+                margin-left: 100px;
+                margin-right: auto;
+            }
+        } */
+    </style>
+
+</head>
+
+
+<body>
+    <!-- Slide Code Here -->
+
+    <body class="reveal-viewport theme-font-montserrat theme-color-white-blue">
+        <div class="reveal" role="main">
+            <div class="slides">
+                <section data-id="e2d0b629e9f25348b9ac55b7955264cd">
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 806px; left: 8px; top: -31px; height: auto;"
+                        data-block-id="587bd5ae71408bd8b279dad6a7909750">
+                        <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                            style="z-index: 10;">
+                            <h1 style="text-align: left;"><span style="color:#009688"><span
+                                        style="font-size:3.0em">Recursion</span></span></h1>
+                        </div>
+                    </div>
+
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 806px; left: 11px; top: 180px; height: auto;"
+                        data-block-id="5435e04d66930545ea613fd36c424335">
+                        <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                            style="z-index: 11;">
+                            <h1 style="text-align: left;"><span style="color:#4caf50"><span
+                                        style="font-size:2.5em">Recursion</span></span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 806px; left: 11px; top: 368px; height: auto;"
+                        data-block-id="4bc13e43e97ca7e8340b8cda7aa96698">
+                        <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                            style="z-index: 12;">
+                            <h1 style="text-align: left;"><span style="font-size:2.0em"><span
+                                        style="color:#8bc34a">Recursion</span></span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 806px; left: 11px; top: 517px; height: auto;"
+                        data-block-id="145fe933e83739b932a013bb20c04b56">
+                        <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                            style="z-index: 14;">
+                            <h1 style="text-align: left;"><span style="color:#cddc39"><span
+                                        style="font-size:1.8em">Recursion</span></span></h1>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="ddbb5aaf5dd61ac39424899619c3fee4">
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 806px; left: 77px; top: 106px; height: auto;"
+                        data-block-id="0ca9f8454fc423f8acfa334d8334084e">
+                        <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                            style="z-index: 10; line-height: 1.001; font-size: 93%;" dir="ui" data-has-line-height="">
+                            <h1><span style="font-size:2.5em"><span style="color:#03a9f4">ITERATION</span> &amp; <span
+                                        style="color:#cddc39">RECURSION</span></span></h1>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="b7bd1a4c030a59f77b2d0539b6f51145">
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 883px; left: 39px; top: 4px; height: auto;"
+                        data-block-id="15d8ea41e0685c374b71e4d73ac62c5e">
+                        <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                            style="z-index: 10;">
+                            <h1><span style="color:#00bcd4"><span style="font-size:2.5em">FIRST, STORY
+                                        TIME</span></span></h1>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="1171e965677349f16f70d9a3596e2ee5">
+
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 775px; left: 93px; top: 0px;"
+                        data-block-id="b622d5a0d0a05426848cd40867e7c96b">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;" data-fragment-index="0">
+                            <p><span style="font-size:3.0em">Once Upon A Time...</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: -60px; top: 429px;"
+                        data-block-id="979324f510781e2a0c1b5318ac1b763b">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;" data-fragment-index="1">
+                            <p><span style="color:#8bc34a"><span style="font-size:1.6em">Martin</span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 420px; top: 429px;"
+                        data-block-id="c096132e80699b99cc47af1b895684d8">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;" data-fragment-index="3">
+                            <p><span style="color:#ff5722"><span style="font-size:1.6em">The Dragon</span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 85px; left: 438px; top: 290px;"
+                        data-block-id="843581c05dff37143da8baa1232d71dd">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 13;" data-fragment-index="2">
+                            <p><span style="color:#607d8b"><span style="font-size:4.0em">&amp;</span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="image"
+                        style="min-width: 4px; min-height: 4px; width: 250px; height: 249px; left: 109px; top: 190px;"
+                        data-block-id="bafa9097c166518bb48e67f664646992">
+                        <div class="sl-block-content fragment" style="z-index: 14;" data-fragment-index="1"><img
+                                style="" data-natural-width="406" data-natural-height="404" data-lazy-loaded=""
+                                data-src="../images/da-martin.png">
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="image"
+                        style="min-width: 4px; min-height: 4px; width: 204px; height: 249px; left: 640px; top: 190px;"
+                        data-block-id="58d96826f821d5fa6277a872561aaac3">
+                        <div class="sl-block-content fragment" style="z-index: 16;" data-fragment-index="3"><img
+                                style="" data-natural-width="360" data-natural-height="440" data-lazy-loaded=""
+                                data-src="../images/da-dragon.png">
+                        </div>
+                    </div>
+                </section>
+                <section data-id="f5321ad5ece3a68edebbfb3a2a1cf04a">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 799px; left: 92px; top: 206px;"
+                        data-block-id="41865f260caf5e8ad05cf5ddfb468910">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;" dir="ui">
+                            <p><span style="color:#4caf50"><span style="font-size:1.8em">Excuse me Mr. Dragon,
+                                    </span></span></p>
+
+                            <p><span style="color:#4caf50"><span style="font-size:1.8em">Are any of these numbers
+                                        odd?</span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 720px; left: 120px; top: 395px;"
+                        data-block-id="c21a9eda59c73294ccd4eccdc8c9130e">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;">
+                            <p><span style="font-size:2.0em">(3142 5798 6550 5914)</span></p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="e24aed5af700b48707003d344367b969">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 180px; top: 242px;"
+                        data-block-id="72e5730df18f989175d2b9749ab95654">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;" data-fragment-index="0">
+                            <p><span style="color:#f44336"><span style="font-size:2.0em">ANGRY DRAGON!</span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 350px;"
+                        data-block-id="a1fb888654b9d33d9a2b3863034ed086">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;" data-fragment-index="1">
+                            <p><span style="color:#ff5722"><span style="font-size:1.6em">Sorry boy, I'll only tell you
+                                        if the <strong>first number</strong> in that list is odd.</span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="image"
+                        style="min-width: 4px; min-height: 4px; width: 390px; height: 210px; left: 285px; top: 32px;"
+                        data-block-id="3c20646c4ed6bf44fd09854c395bf6eb">
+                        <div class="sl-block-content fragment" style="z-index: 13;" data-fragment-index="0"><img
+                                style="" data-natural-width="642" data-natural-height="346" data-lazy-loaded=""
+                                data-src="../images/da-margin-dragon.png">
+                        </div>
+                    </div>
+                </section>
+                <section data-id="83cb247a22b1aadadd9f6985e14da91c">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 799px; left: 81px; top: 10px;"
+                        data-block-id="05f5b2447ee04bd46b09f42c593ba0ef">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;" dir="ui" data-fragment-index="0">
+                            <p><span style="font-size:2.0em"><span style="color:#8bc34a">BUT I NEED TO KNOW IF ANY OF
+                                        THE NUMBERS IN THE LIST ARE ODD!</span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 790px; left: 98px; top: 244px;"
+                        data-block-id="0602a4157d8d09eea33125ab75f77ab5">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;" data-fragment-index="1">
+                            <p><span style="color:#f44336"><span style="font-size:2.0em">SORRY BOY, I'LL ONLY TELL YOU
+                                        IF THE <strong>FIRST</strong> NUMBER IN A LIST IS ODD</span></span></p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="4740639bf96ab4ec460fe0e1374341c7">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 180px; top: 353px;"
+                        data-block-id="9b2bbf48f3d075bfc7f7f2e26ada74a6">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;" data-fragment-index="1">
+                            <p><span style="color:#8bc34a">Hmmm.....</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 180px; top: 254px;"
+                        data-block-id="91d55b24e0a65bd133382b9ead6cea39">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;" data-fragment-index="0">
+                            <p><span style="font-size:2.5em">🤔</span></p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="3b401d7ab5f3b8253721075ac2fcf51a">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 799px; left: 72px; top: 110px;"
+                        data-block-id="5cd39503165f8d510e1a88aa7435775f">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;" dir="ui" data-fragment-index="0">
+                            <p><span style="color:rgb(76, 175, 80); font-size:1.8em">Ok fine, what about the first
+                                    number in this list?</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 720px; left: 112px; top: 281px;"
+                        data-block-id="52eb960ce25d430533807f3963b5a084">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;" data-fragment-index="1">
+                            <p><span style="font-size:2.0em">(<span style="color:#cddc39">3142</span> 5798 6550
+                                    5914)</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 790px; left: 90px; top: 390px;"
+                        data-block-id="13171f960860d183a36809fe455550d7">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 13;" data-fragment-index="2">
+                            <p>
+                                <font color="#f44336" face="Oswald"><span style="font-size:60px">NOT ODD!</span></font>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="2ca87d9339d088cfaf17235087e0462f">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 799px; left: 76px; top: 110px;"
+                        data-block-id="2abfd6523c16300b2e77f582a4383156">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;" dir="ui" data-fragment-index="0">
+                            <p><span style="color:rgb(76, 175, 80); font-size:1.8em">And what about the first number in
+                                    this other list?</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 720px; left: 116px; top: 281px;"
+                        data-block-id="381761927cbac02f667ad63e56113197">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;" data-fragment-index="1">
+                            <p><span style="font-size:2.0em">(<span style="color:#cddc39">5798</span> 6550 5914)</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 790px; left: 94px; top: 390px;"
+                        data-block-id="aea023d0ee453e3befa9779290264f68">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;" data-fragment-index="2">
+                            <p>
+                                <font color="#f44336" face="Oswald"><span style="font-size:60px">NOT ODD!</span></font>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="058da107ef24497961ccb9deb34a4c7f">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 799px; left: 72px; top: 113px;"
+                        data-block-id="8e7657051430954b901e0f83f256ec5b">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;" dir="ui" data-fragment-index="0">
+                            <p><span style="color:rgb(76, 175, 80); font-size:1.8em">Ok fine, what about the first
+                                    number in this list?</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 720px; left: 112px; top: 284px;"
+                        data-block-id="02ccf221a40cea343989c23391f27f28">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;" data-fragment-index="1">
+                            <p><span style="font-size:2.0em">(<span style="color:#cddc39">6550</span> 5914)</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 790px; left: 90px; top: 393px;"
+                        data-block-id="680e0347082795717d93637b338ceff3">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;" data-fragment-index="2">
+                            <p>
+                                <font color="#f44336" face="Oswald"><span style="font-size:60px">NOT ODD!</span></font>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="ac0a86216daf33df3d6afdb8b4059499">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 799px; left: 72px; top: 122px;"
+                        data-block-id="455d70c65ace8b8127288453717e40cd">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;" dir="ui" data-fragment-index="0">
+                            <p><span style="color:rgb(76, 175, 80); font-size:1.8em">Ok fine, what about the first
+                                    number in this list?</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 720px; left: 112px; top: 293px;"
+                        data-block-id="2e39c17662b513444a9e2a4c9877774a">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;" data-fragment-index="1">
+                            <p><span style="font-size:2.0em">(<span style="color:#cddc39">5914</span>)</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 790px; left: 90px; top: 402px;"
+                        data-block-id="eb814ee0c0f0899472987afe3571ef1f">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;" data-fragment-index="2">
+                            <p>
+                                <font color="#f44336" face="Oswald"><span style="font-size:60px">NOT ODD!</span></font>
+                            </p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="75e9b20704a53ffd5ac00f7dcff24568">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 799px; left: 73px; top: 35px;"
+                        data-block-id="ffbe5db63ad9c9cb18803cca85a76e24">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;" dir="ui" data-fragment-index="0">
+                            <p><span style="color:rgb(76, 175, 80); font-size:1.8em">Ok fine, what about the first
+                                    number in this list?</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 720px; left: 113px; top: 168px;"
+                        data-block-id="67f4a3d5e583fbf491025b002748f2bc">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;" data-fragment-index="1">
+                            <p><span style="font-size:2.0em">( )</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 790px; left: 90px; top: 246px;"
+                        data-block-id="b95cd302e79e0ec560bcfcb42628bc63">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;" data-fragment-index="2" dir="ui">
+                            <p><span style="color:#f44336"><span style="font-size:60px">That's an empty list you moron!
+                                        There isn't a number in there!</span></span></p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="8e78f66c4083ab9fb11ffff95c9b5f93">
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 806px; left: 80px; top: 156px; height: auto;"
+                        data-block-id="f1d1c632bcad19963a9a82d84421394d">
+                        <div class="sl-block-content fragment" data-placeholder-tag="h1"
+                            data-placeholder-text="Title Text" style="z-index: 11;" data-fragment-index="0">
+                            <h1><span style="color:#8bc34a">AHA! So all the numbers are even in that list!</span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 806px; left: 74px; top: 405px; height: auto;"
+                        data-block-id="ead9a15fad63e5283804cdf70c965d3b">
+                        <div class="sl-block-content fragment" data-placeholder-tag="h1"
+                            data-placeholder-text="Title Text" style="z-index: 12;" data-fragment-index="1">
+                            <h1><span style="color:#ff5722">I NEVER SAID THAT!</span></h1>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="1c151f9aeadcdfc2c07230b3daeff992">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 720px; left: 160px; top: 140px;"
+                        data-block-id="39fef869cec9760a93ca85395922a9b8">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;" data-fragment-index="0">
+                            <p style="text-align:right"><span style="font-size:2.0em">(<span
+                                        style="color:#cddc39">3142</span> 5798 6550 5914)</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 720px; left: 160px; top: 241px;"
+                        data-block-id="7a00f8c8eeb340dd751fafcde9e9378b">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;" data-fragment-index="1">
+                            <p style="text-align:right"><span style="font-size:2.0em">(<span
+                                        style="color:#cddc39">5798</span> 6550 5914)</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 720px; left: 160px; top: 350px;"
+                        data-block-id="3417f53d00068f3ac4cbf1332512d24d">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;" data-fragment-index="2">
+                            <p style="text-align:right"><span style="font-size:2.0em"> (<span
+                                        style="color:#cddc39">6550</span> 5914)</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 720px; left: 160px; top: 451px;"
+                        data-block-id="cadb8bfc4de2f0137fdfb193c33acbe8">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 13;" data-fragment-index="3" dir="ui">
+                            <p style="text-align:right"><span style="font-size:2.0em"> (<span
+                                        style="color:#cddc39">5914</span>)</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 720px; left: 160px; top: 549px;"
+                        data-block-id="bc877cabb77646e9edf4f26787226b9e">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 14;" data-fragment-index="4">
+                            <p style="text-align:right"><span style="font-size:2.0em"> ()</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 185px; left: 22px; top: 152px;"
+                        data-block-id="3d037f06a36e5b19c9a08d27a8edf943">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 15;" data-fragment-index="9">
+                            <p style="text-align:right"><span style="color:#4caf50"><span style="font-size:1.4em">No
+                                        Odds</span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 185px; left: 135px; top: 253px;"
+                        data-block-id="4beaa34e8fb07dbc273fbb463f8ec07e">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 16;" data-fragment-index="8">
+                            <p style="text-align:right"><span style="color:#4caf50"><span style="font-size:1.4em">No
+                                        Odds</span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 185px; left: 268px; top: 362px;"
+                        data-block-id="e7a698ac82cb14076cdfa14faefb9545">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 17;" data-fragment-index="7">
+                            <p style="text-align:right"><span style="color:#4caf50"><span style="font-size:1.4em">No
+                                        Odds</span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 185px; left: 400px; top: 463px;"
+                        data-block-id="62dc6b4c647071f2fe784718699d3e88">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 18;" data-fragment-index="6">
+                            <p style="text-align:right"><span style="color:#4caf50"><span style="font-size:1.4em">No
+                                        Odds</span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 185px; left: 548px; top: 561px;"
+                        data-block-id="e30fd126789ad5b6dc7534e130818ab5">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 20;" data-fragment-index="5">
+                            <p style="text-align:right"><span style="color:#4caf50"><span style="font-size:1.4em">No
+                                        Odds</span></span></p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="c89e42b04fe5d0a1199b832a67db10ea">
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 871px; left: 45px; top: 172px; height: auto;"
+                        data-block-id="5fcd915b1ecfe843dd6293710f45063a">
+                        <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                            style="z-index: 10; line-height: 1.105;" data-has-line-height="">
+                            <h1><span style="font-size:3.0em"><span style="color:#8bc34a">NO ODDS!</span></span></h1>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="97b31c715c8becd9a162d057d9b417f4">
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 806px; left: 77px; top: 70px; height: auto;"
+                        data-block-id="1bc5e92b6d26a8073a95fc3cbb7a7965">
+                        <div class="sl-block-content fragment" data-placeholder-tag="h1"
+                            data-placeholder-text="Title Text" style="z-index: 10;" data-fragment-index="0">
+                            <h1><span style="color:#ff5722">Congratulations, you discovered recursion.</span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 806px; left: 92px; top: 280px; height: auto;"
+                        data-block-id="bfbcabccb9a65f01bd6e3f874a2b2805">
+                        <div class="sl-block-content fragment" data-placeholder-tag="h1"
+                            data-placeholder-text="Title Text" style="z-index: 12;" data-fragment-index="1">
+                            <h1><span style="color:#8bc34a">Wait, you knew about this the whole time?</span></h1>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="c390d05da68384c898a71b75963b325d">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 852px; left: 54px; top: 159px;"
+                        data-block-id="af90eb260c890d9fe0558a51c096959e">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <h1><span style="color:#03a9f4"><span style="font-size:1.2em">What is
+                                        recursion?</span></span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 71px; top: 290px;"
+                        data-block-id="15ddb0a6b691a3ea3a3501fa77a6c3b6">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12; font-size: 120%;" data-fragment-index="0">
+                            <p><span style="font-size:1.8em">A <strong>process</strong> (a function in our case) that
+                                    <strong>calls itself</strong></span></p>
+                        </div>
+                    </div>
+
+                </section>
+                <section data-id="5cdffe3aa1691778aeebbd41d87ac614">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 800px; left: 80px; top: 157px;"
+                        data-block-id="7748f2517f6d3623d419ab293721a900">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10; font-size: 110%;">
+                            <h1><span style="font-size:1.8em"><span style="color:#8bc34a">Why do I need to know
+                                        this?</span></span></h1>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+                </section>
+                <section data-id="125b08216ddc69f1109ac8044fc0d9f9">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 852px; left: 56px; top: 120px;"
+                        data-block-id="9a87f58bd64ae07f1b0b0a9cd74e5583">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <h1><span style="color:#f44336"><span style="font-size:90px">It's EVERYWHERE!</span></span>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text" data-block-id="7fde6d11205b99f18e7e07a71e83acdc"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 770px; left: 97px; top: 280px;">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;">
+                            <ul>
+                                <li class="fragment" data-fragment-index="0">JSON.parse / JSON.stringify</li>
+                                <li class="fragment" data-fragment-index="1">document.getElementById and DOM traversal
+                                    algorithms</li>
+                                <li class="fragment" data-fragment-index="2">Object traversal</li>
+                                <li class="fragment" data-fragment-index="3">Very common with more complex algorithms
+                                </li>
+                                <li class="fragment" data-fragment-index="4">It's sometimes a cleaner alternative to
+                                    iteration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="d080dc80b14f96a8c0c0ff6e208beac6">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 906px; left: 27px; top: 38px;"
+                        data-block-id="ce92f8461e11bc8a5133dadb3f2a015f">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <h1><span style="font-size:1.2em"><span style="color:#2196f3">How recursive functions
+                                        work</span></span></h1>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="sl-block" data-block-type="text" data-block-id="4b83b1d9baa260da4e1cb570e1c1d259"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 700px; left: 130px; top: 162px;">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;">
+                            <p><span style="font-size:2.0em">Invoke the <strong>same</strong> function with a different
+                                    input until you reach your base case!</span></p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="72fbeaa277e78cb8a0ed2c08dbf07d74">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 906px; left: 20px; top: 82px;"
+                        data-block-id="a7cf242c563b2da933f8ae6cc7b7ed73">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;">
+                            <h1><span style="font-size:1.2em"><span style="color:#2196f3">Base Case</span></span></h1>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 640px; left: 160px; top: 217px;"
+                        data-block-id="ba759a0ccd4cb0e03697a49393024d76">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <p><span style="font-size:42px">The condition when the recursion ends.</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 640px; left: 160px; top: 350px;"
+                        data-block-id="69b57ca25ba386ffdffdd368ae085234">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 13;">
+                            <p><span style="font-size:42px"><strong>This is the most important concept to
+                                        understand</strong> </span></p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="3b9da603845a7f41c831cf5591bed576">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 852px; left: 54px; top: 35px;"
+                        data-block-id="f426f3c05d886e5f857d1820fc4cdeab">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <h1><span style="color:#00bcd4"><span style="font-size:1.2em">Two essential parts of a
+                                        recursive function! </span></span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text" data-block-id="49a42420ec52962ca9c1d8c9d893c086"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 717px; left: 122px; top: 275px;">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="font-size: 44px; z-index: 12;">
+                            <ul>
+                                <li class="fragment" data-fragment-index="0"><span style="font-size:1.8em">Base
+                                        Case</span></li>
+                                <li class="fragment" data-fragment-index="1"><span style="font-size:1.8em">Different
+                                        Input</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="44b17d2aac6513fcd72d74b46bb7c8fa">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 852px; left: 54px; top: 61px;"
+                        data-block-id="aeec9a5f87ff1390056f10b091a44a68">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;">
+                            <h1><span style="font-size:1.2em"><span style="color:#2196f3">Our first recursive
+                                        function</span></span></h1>
+                        </div>
+                    </div>
+
+
+                    <div class="sl-block" data-block-type="code"
+                        style="min-width: 30px; min-height: 30px; width: 640px; height: 279px; left: 160px; top: 193px;"
+                        data-block-id="4221eb150fc6d40f83487d6a3f921b5f">
+                        <div class="sl-block-content fragment notranslate" data-highlight-theme="solarized-light"
+                            style="z-index: 13; font-size: 152%;" data-fragment-index="0">
+                            <pre class="javascript"><code>function countDown(num){
+    if(num &lt;= 0) {
+        console.log("All done!");
+        return;
+    }
+    console.log(num);
+    num--;
+    countDown(num);
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="25b8f42f386e1e8436f5f7aea98c7d56">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 932px; left: 14px; top: 33px;"
+                        data-block-id="177b4e33a403ad6d65521141e98b2f90">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <h1><span style="font-size:1.2em"><span style="color:#2196f3">Our second recursive
+                                        function</span></span></h1>
+                        </div>
+                    </div>
+
+                    <div class="sl-block" data-block-type="code"
+                        style="min-width: 30px; min-height: 30px; width: 640px; height: 140px; left: 160px; top: 178px;"
+                        data-block-id="5768fd70c44941b47b9691aec17e93d7">
+                        <div class="sl-block-content fragment notranslate" data-highlight-theme="solarized-light"
+                            style="z-index: 12; font-size: 142%;" data-fragment-index="0">
+                            <pre class="javascript"><code>function sumRange(num){
+   if(num === 1) return 1; 
+   return num + sumRange(num-1);
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text" data-block-id="b08e06aeff75cb173d3a896e0418bc9a"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 339px;">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 13;" data-fragment-index="1">
+                            <p><strong>Can you spot the base case?</strong></p>
+
+                            <p><strong>Do you notice the different input?</strong></p>
+
+                            <p><strong>What would happen if we didn't return?</strong></p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="01ea0996763d686bb3525cf9f0575683">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 852px; left: 54px; top: 30px;"
+                        data-block-id="f9fef12017f522d1665a8f14f59e6730">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <h1><span style="font-size:1.2em"><span style="color:#4caf50">The ALL important `return`
+                                        keyword</span></span></h1>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="sl-block" data-block-type="code"
+                        style="min-width: 30px; min-height: 30px; width: 640px; height: 140px; left: 161px; top: 280px;"
+                        data-block-id="3706de102b8373317d8d5ba7cc8fffea">
+                        <div class="sl-block-content fragment notranslate" data-highlight-theme="solarized-light"
+                            style="z-index: 12; font-size: 132%;" data-fragment-index="0">
+                            <pre class="javascript"><code>function sumRange(num){
+   if(num === 1) return 1; 
+   return num + sumRange(num-1);
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text" data-block-id="cdbea035bfb7cfbbb4ef1d98d4d2b953"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 639px; left: 161px; top: 451px;">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 13;">
+                            <p>Let's break this down step by step!</p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="104fb602eee73fb1b9faeb657068126a">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 908px; left: 26px; top: 42px;"
+                        data-block-id="eda2e48e66f49fb75db4cdc8455cd52c">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;">
+                            <h1><span style="font-size:1.2em"><span style="color:#4caf50">sumRange with the call
+                                        stack</span></span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="code"
+                        style="min-width: 30px; min-height: 30px; width: 473px; height: 177px; left: 40px; top: 250px;"
+                        data-block-id="e33ac60243ec4aca227287349f337dd0">
+                        <div class="sl-block-content fragment notranslate" data-highlight-theme="solarized-light"
+                            style="z-index: 11; font-size: 132%;" data-fragment-index="0">
+                            <pre class="javascript"><code>function sumRange(num){
+   if(num === 1) return 1; 
+   return num + sumRange(num-1);
+}
+
+sumRange(5)</code></pre>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="line" data-block-id="1dce3034373433903b11d1bb8d8986f9"
+                        style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 560px; top: 210px;">
+                        <div class="sl-block-content" data-line-x1="200" data-line-y1="350" data-line-x2="200"
+                            data-line-y2="0" data-line-color="#000000" data-line-start-type="none"
+                            data-line-end-type="none" style="z-index: 12;"><svg xmlns="http://www.w3.org/2000/svg"
+                                version="1.1" preserveaspectratio="xMidYMid" width="1" height="350"
+                                viewbox="200 0 1 350">
+                                <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="200" y1="350" x2="200" y2="0"></line>
+                                <line stroke="#000000" stroke-width="2" x1="200" y1="350" x2="200" y2="0"></line>
+                            </svg></div>
+                    </div>
+                    <div class="sl-block" data-block-type="line"
+                        style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 880px; top: 211px;"
+                        data-block-id="92f1783999b9c7840174915a2d5bdd96">
+                        <div class="sl-block-content" data-line-x1="200" data-line-y1="350" data-line-x2="200"
+                            data-line-y2="0" data-line-color="#000000" data-line-start-type="none"
+                            data-line-end-type="none" style="z-index: 13;"><svg xmlns="http://www.w3.org/2000/svg"
+                                version="1.1" preserveaspectratio="xMidYMid" width="1" height="350"
+                                viewbox="200 0 1 350">
+                                <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="200" y1="350" x2="200" y2="0"></line>
+                                <line stroke="#000000" stroke-width="2" x1="200" y1="350" x2="200" y2="0"></line>
+                            </svg></div>
+                    </div>
+                    <div class="sl-block" data-block-type="line"
+                        style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 560px; top: 558px;"
+                        data-block-id="e6126010a218d7a6cd86fa116371d2bd">
+                        <div class="sl-block-content" data-line-x1="120" data-line-y1="349" data-line-x2="440"
+                            data-line-y2="350" data-line-color="#000000" data-line-start-type="none"
+                            data-line-end-type="none" style="z-index: 14;"><svg xmlns="http://www.w3.org/2000/svg"
+                                version="1.1" preserveaspectratio="xMidYMid" width="320" height="1"
+                                viewbox="120 349 320 1">
+                                <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="120" y1="349" x2="440" y2="350">
+                                </line>
+                                <line stroke="#000000" stroke-width="2" x1="120" y1="349" x2="440" y2="350"></line>
+                            </svg></div>
+                    </div>
+                    <div class="sl-block" data-block-type="text" data-block-id="4b021b7b8f9237052408a5c3d47c81b7"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 269px; left: 585px; top: 502px;">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 15;" data-fragment-index="1">
+                            <p>sumRange(5)</p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 269px; left: 586px; top: 443px;"
+                        data-block-id="1a938e521251ed76cfc69c7c8e1e5209">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 17;" data-fragment-index="2">
+                            <p>sumRange(4)</p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 269px; left: 586px; top: 387px;"
+                        data-block-id="c8dd0c6e7aed9c32c30fc0681c5deaea">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 18;" data-fragment-index="3">
+                            <p>sumRange(3)</p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 269px; left: 586px; top: 329px;"
+                        data-block-id="01a8d07e5d4878f736f49611ce779ef1">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 19;" data-fragment-index="4">
+                            <p>sumRange(2)</p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 269px; left: 586px; top: 267px;"
+                        data-block-id="4fa07a889db6612d9864a55355fa8591">
+                        <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 20;" data-fragment-index="5">
+                            <p>sumRange(1)</p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="74e04e1d210d8b11dda99ca61e5b7a27">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 852px; left: 54px; top: 26px;"
+                        data-block-id="934a94b249b012fcbd2fdbe48e270271">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <h1><span style="font-size:1.2em"><span style="color:#4caf50">Another example</span></span>
+                            </h1>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+                    <div class="sl-block" data-block-type="code"
+                        style="min-width: 30px; min-height: 30px; width: 640px; height: 118px; left: 161px; top: 237px;"
+                        data-block-id="f946af75d48dc0fde7be1c1453525f64">
+                        <div class="sl-block-content fragment notranslate" data-highlight-theme="solarized-light"
+                            style="z-index: 12; font-size: 132%;" data-fragment-index="0">
+                            <pre class="javascript"><code>function factorial(num){
+    if(num === 1) return 1;
+    return num * factorial(num-1);
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text" data-block-id="502eb232dc94e15aafc2ac73e35a5211"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 169px; top: 420px;">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 13;">
+                            <p>Let's visualize the call stack!</p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="811cbd71716396bb14da2e710b7734d4">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 800px; left: 79px; top: 175px;"
+                        data-block-id="a41258a6df6930d4e152ae57b2e22060">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;" dir="ui">
+                            <h1><span style="font-size:1.2em"><span style="color:#00bcd4">Visualizing a recursive
+                                        function with the Chrome Dev Tools</span></span></h1>
+                        </div>
+                    </div>
+
+
+
+
+                </section>
+                <section data-id="e9ffe2ec660fe0133cf48fef8f723769">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 852px; left: 55px; top: 62px;"
+                        data-block-id="236ff1d0adb4cf40b03090310b04c6b9">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10; line-height: 1.04;" dir="ui" data-has-line-height="">
+                            <h1><span style="font-size:1.2em"><span style="color:#00bcd4">Where things go
+                                        wrong</span></span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text" data-block-id="cbfc5d3161fd0d1e8c15fe4fc218cd2a"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 210px;">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <ul>
+                                <li style="" class="fragment" data-fragment-index="0">No base case</li>
+                                <li style="" class="fragment" data-fragment-index="1">Forgetting to return or returning
+                                    the wrong thing!</li>
+                                <li style="" class="fragment" data-fragment-index="2">Stack overflow! </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="code"
+                        style="min-width: 30px; min-height: 30px; width: 640px; height: 118px; left: 160px; top: 391px;"
+                        data-block-id="03d750f4d07e1542b3c7243b289c398f">
+                        <div class="sl-block-content fragment notranslate" data-highlight-theme="solarized-light"
+                            style="z-index: 12; font-size: 132%;" data-fragment-index="3">
+                            <pre class="javascript"><code>function factorial(num){
+    if(num === 1) return 1;
+    return num * factorial(num);
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="code"
+                        style="min-width: 30px; min-height: 30px; width: 640px; height: 118px; left: 160px; top: 535px;"
+                        data-block-id="b8f80cfeef4d10deebf671dc1512d2c3">
+                        <div class="sl-block-content fragment notranslate" data-highlight-theme="solarized-light"
+                            style="z-index: 14; font-size: 132%;" data-fragment-index="4">
+                            <pre class="javascript"><code>function factorial(num){
+    if(num === 1) console.log(1) ;
+    return num * factorial(num-1);
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="db9095af7862ba4561b83200fd81b5d8">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 970px; left: -5px; top: 86px;"
+                        data-block-id="cd65b2ec9045fbb48b9a8aef5d837ee3">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10; line-height: 1.04;" dir="ui" data-has-line-height="">
+                            <h1>
+                                <span style="color:#00bcd4"><span style="font-size:1.2em">HELPER METHOD
+                                    </span></span><span style="color:#cddc39"><span
+                                        style="font-size:1.2em">RECURSION</span></span>
+                            </h1>
+                        </div>
+                    </div>
+
+                    <div class="sl-block" data-block-type="code"
+                        style="min-width: 30px; min-height: 30px; width: 640px; height: 419px; left: 160px; top: 210px;"
+                        data-block-id="c5e5894313a9fa3a1f9d4dafbe8af791">
+                        <div class="sl-block-content fragment notranslate" data-highlight-theme="solarized-light"
+                            style="z-index: 13; font-size: 142%;" data-fragment-index="0">
+                            <pre class="javascript"><code>function outer(input){
+    
+    var outerScopedVariable = []
+
+    function helper(helperInput){
+        // modify the outerScopedVariable
+        helper(helperInput--)
+    }
+    
+    helper(input)
+
+    return outerScopedVariable;
+
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="2dc207ce6fd4e05b1be9b1c94fdb6f89">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 852px; left: 64px; top: 31px;"
+                        data-block-id="2027b8a300908044e93d4447dc2c547c">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10; line-height: 1.04;" dir="ui" data-has-line-height="">
+                            <h1><span style="color:#9c27b0"><span style="font-size:1.2em">ANOTHER EXAMPLE</span></span>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text" data-block-id="43bdd1e3e90477d561f91a3ffcb6b93a"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 700px; left: 130px; top: 140px;">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <p>Let's try to collect all of the odd values in an array!</p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="code"
+                        style="min-width: 30px; min-height: 30px; width: 640px; height: 454px; left: 160px; top: 199px;"
+                        data-block-id="ca0727f5036e6ac5d934bf905b30c516">
+                        <div class="sl-block-content fragment notranslate" data-highlight-theme="solarized-light"
+                            style="z-index: 13; font-size: 112%;" data-fragment-index="0">
+                            <pre class="javascript"><code>function collectOddValues(arr){
+    
+    let result = []
+
+    function helper(helperInput){
+        if(helperInput.length === 0) {
+            return;
+        }
+        
+        if(helperInput[0] % 2 !== 0){
+            result.push(helperInput[0])
+        }
+        
+        helper(helperInput.slice(1))
+    }
+    
+    helper(arr)
+
+    return result;
+
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="c1b941111bc6e9aa7f4332f5439a2c9e">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 852px; left: 54px; top: 31px;"
+                        data-block-id="070c572313e9c068fb9457c15666981d">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;" dir="ui">
+                            <h1><span style="font-size:1.6em"><span style="color:#ff5722">PURE RECURSION</span></span>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="code"
+                        style="min-width: 30px; min-height: 30px; width: 798px; height: 378px; left: 83px; top: 210px;"
+                        data-block-id="82d3d4710d25d9d456de5defef9dfcbe">
+                        <div class="sl-block-content fragment notranslate" data-highlight-theme="solarized-light"
+                            style="z-index: 12; font-size: 132%;" data-fragment-index="0">
+                            <pre class="javascript"><code>function collectOddValues(arr){
+    let newArr = [];
+    
+    if(arr.length === 0) {
+        return newArr;
+    }
+        
+    if(arr[0] % 2 !== 0){
+        newArr.push(arr[0]);
+    }
+        
+    newArr = newArr.concat(collectOddValues(arr.slice(1)));
+    return newArr;
+}</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="5fa07961350710f9010051962cd1286a">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 852px; left: 64px; top: 31px;"
+                        data-block-id="85202846cd924ad4e7375fd9bab8c50d">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;" dir="ui">
+                            <h1><span style="color:#FFA07A"><span style="font-size:1.2em">Pure Recursion
+                                        Tips</span></span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 800px; left: 80px; top: 251px;"
+                        data-block-id="8ad5b2c430c58d9adcaf7fc2ed3927cb">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;">
+                            <ul>
+                                <li class="fragment" data-fragment-index="0" style="">For arrays, use methods like
+                                    <strong>slice, the spread operator,</strong> and <strong>concat</strong> that make
+                                    copies of arrays so you do not mutate them
+                                </li>
+                                <li style="" class="fragment" data-fragment-index="1">Remember that strings are
+                                    immutable so you will need to use methods like <strong>slice, substr, or
+                                        substring</strong> to make copies of strings</li>
+                                <li style="" class="fragment" data-fragment-index="2">To make copies of objects use
+                                    <strong>Object.assign, or the spread operator</strong>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="1a916e8135d66783195ebe27eb8591b0">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 852px; left: 64px; top: 60px;"
+                        data-block-id="14e35b580c0a6f4a1e5e7957675efca6">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;" dir="ui">
+                            <h1><span style="color:#FFA07A"><span style="font-size:1.2em">What about big
+                                        O?</span></span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 800px; left: 80px; top: 251px;"
+                        data-block-id="b43be4268e6adc2e4b775c2654489847">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <ul>
+                                <li class="fragment" data-fragment-index="0">Measuring <strong>time complexity
+                                    </strong>is relatively simple. You can measure the time complexity of a recursive
+                                    function as then number of recursive calls you need to make relative to the input
+                                </li>
+                                <li class="fragment" data-fragment-index="1">Measuring <strong>space complexity</strong>
+                                    is a bit more challenging. You can measure the space complexity of a recursive
+                                    function as the <strong>maximum</strong> number of functions on the call stack at a
+                                    given time, since the call stack requires memory.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="3b906de6640db6939aec12b19607cf33">
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 1009px; left: -24px; top: 124px; height: auto;"
+                        data-block-id="b3028c7d4ed7c99d6f8016537ffba82e">
+                        <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                            style="z-index: 10; font-size: 91%;">
+                            <h1><span style="color:#00bcd4"><span style="font-size:2.5em">RECURSION</span></span></h1>
+
+                            <h1><span style="color:#3f51b5"><span style="font-size:2.5em">PROBLEM SET</span></span></h1>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="54b2275463a1ee94f04952528075e7c5">
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 806px; left: 74px; top: 43px; height: auto;"
+                        data-block-id="b85e07b1fc4aa81b089735e59b2dce32">
+                        <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                            style="z-index: 11;">
+                            <h1><span style="color:#00bcd4"><span style="font-size:2.0em">POWER</span></span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="code" data-block-id="06319ce46a9394e414f9df6c6097f408"
+                        style="min-width: 30px; min-height: 30px; width: 444px; height: 195px; left: 258px; top: 380px;">
+                        <div class="sl-block-content notranslate" data-highlight-theme="solarized-light"
+                            style="z-index: 12; font-size: 283%;">
+                            <pre class="javascript"><code>power(2,4) //16
+power(3,2) //9
+power(3,3) //27</code></pre>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text" data-block-id="697540fce54be946f17358f8e81261c3"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 180px; top: 238px;">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 13;">
+                            <p>Write a function which accepts a base an an exponent. It should return the result of
+                                raising the base to that exponent.</p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="54cbaa35df2571a965152c3a5a010190">
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 806px; left: 91px; top: 20px; height: auto;"
+                        data-block-id="db81f148d2fe239cb2bcb6321472ed36">
+                        <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                            style="z-index: 10;">
+                            <h1><span style="font-size:3.0em"><span style="color:#00bcd4">HINT!</span></span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text" data-block-id="968b273009f68436da4ca9f852c499de"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 449px; top: 544px;">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;" dir="ui">
+                            <p><span style="font-size:1.6em"><span style="color:#3f51b5">2</span> = 1</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 237px; left: 137px; top: 350px;"
+                        data-block-id="0f8afb4577782d775c478980909983c4">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 13;" dir="ui">
+                            <p><span style="font-size:1.6em">2 = 2 * <span style="color:#e91e63">2 </span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 237px; left: 311px; top: 420px;"
+                        data-block-id="87cefc809095e1f40c98421221fc3f7b">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 14;" dir="ui">
+                            <p><span style="font-size:1.6em"><span style="color:#e91e63">2</span> = 2 * <span
+                                        style="color:#9c27b0">2 </span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 237px; left: 494px; top: 482px;"
+                        data-block-id="4be622b474539d4baa84eab098858996">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 15;" dir="ui">
+                            <p><span style="font-size:1.6em"><span style="color:#9c27b0">2</span> = 2 * <span
+                                        style="color:#3f51b5">2 </span></span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text" data-block-id="c1c887917eb9f268fff805ecfbf92a15"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 34px; left: 180px; top: 350px;">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 16;">
+                            <p>3</p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 34px; left: 347px; top: 350px;"
+                        data-block-id="5698233c53cbf724012148902c165833">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 17;">
+                            <p><span style="color:#e91e63">2</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 34px; left: 347px; top: 420px;"
+                        data-block-id="4f4261c8b22bd17cb66500c5fa81bbf0">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 18;">
+                            <p><span style="color:#e91e63">2</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 34px; left: 531px; top: 420px;"
+                        data-block-id="1ac3bfb52ab0b9c93d6f7222c8739ce3">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 19;">
+                            <p><span style="color:#9c27b0">1</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 34px; left: 531px; top: 482px;"
+                        data-block-id="aa8d3de0e76f367e7d3b127e6f6eb685">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 20;">
+                            <p><span style="color:#9c27b0">1</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 34px; left: 703px; top: 474px;"
+                        data-block-id="6adc0778335a694191f183aaf6bc68ae">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 21;">
+                            <p><span style="color:#3f51b5">0</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 34px; left: 711px; top: 536px;"
+                        data-block-id="6c2d490ddd0c8191fdc852633cde318c">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 23;">
+                            <p><span style="color:#3f51b5">0</span></p>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="3d85c2d26d90142420c94f8067f61636">
+                    <div class="sl-block" data-block-type="text" data-block-id="034ff571dab78cb143825c76cb50f07e"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 180px; top: 140px;">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <h1><span style="font-size:1.4em">productOfArray</span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text" data-block-id="5d48c54016f38f97ee50c6cb79726862"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 278px;">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;">
+                            <p><span style="color:rgb(41, 48, 59); text-align:start">Write a function called
+                                </span>productOfArray<span style="color:rgb(41, 48, 59); text-align:start"> which takes
+                                    in an array of numbers and returns the product of them all.</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="code" data-block-id="16e6c6e42a6350f6fc748ddc803efa1d"
+                        style="min-width: 30px; min-height: 30px; width: 650px; height: 86px; left: 155px; top: 411px;">
+                        <div class="sl-block-content notranslate" data-highlight-theme="solarized-light"
+                            style="z-index: 13; font-size: 195%;">
+                            <pre class="javascript"><code>productOfArray([1,2,3])    // 6
+productOfArray([1,2,3,10]) // 60</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="75228ba78ec69343b0c1b11575af20d5">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 600px; left: 180px; top: 140px;"
+                        data-block-id="6c1b0955bd21a8139cb0d37ab25c7943">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;">
+                            <h1><span style="font-size:1.4em">productOfArray</span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 640px; left: 160px; top: 278px;"
+                        data-block-id="e7baef00a11ef6476161947be702144c">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <p><span style="color:rgb(41, 48, 59); text-align:start">Write a function called
+                                </span>productOfArray<span style="color:rgb(41, 48, 59); text-align:start"> which takes
+                                    in an array of numbers and returns the product of them all.</span></p>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="code"
+                        style="width: 650px; height: 86px; left: 155px; top: 411px;"
+                        data-block-id="5c36ed16d4e1662cb69b50a19b75e1d1">
+                        <div class="sl-block-content notranslate" data-highlight-theme="solarized-light"
+                            style="z-index: 12; font-size: 195%;">
+                            <pre class="javascript"><code>productOfArray([1,2,3])    // 6
+productOfArray([1,2,3,10]) // 60</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="f649a36f1a72a093995e83e90f72fdfa">
+
+
+
+
+
+
+
+
+
+
+                </section>
+                <section data-id="11d2b4e75187ac2e02656933785c0c68">
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 852px; left: 64px; top: 60px;"
+                        data-block-id="f8347360b22c8d5749f2ee9223adc0e2">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 10;" dir="ui">
+                            <h1><span style="color:#FFA07A"><span style="font-size:1.2em">Tail Call
+                                        Optimization</span></span></h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; width: 800px; left: 80px; top: 224px;"
+                        data-block-id="f78dd962dd2f0633acc8f15e6caac943">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 11;">
+                            <ul>
+                                <li class="fragment" data-fragment-index="0">
+                                    <p style="text-align:start">ES2015 allows for <em>tail call optimization</em>, where
+                                        you can make some function calls without growing the call stack.</p>
+                                </li>
+                                <li class="fragment" data-fragment-index="1">
+                                    <p style="text-align:start">By using the <strong>return </strong>keyword in a
+                                        specific fashion we can extract output from a function without keeping it on the
+                                        call stack.</p>
+                                </li>
+                                <li class="fragment" data-fragment-index="2">
+                                    <p style="text-align:start">Unfortunately this has not been implemented across
+                                        multiple browsers so it is not reasonable to implement in production code. </p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+                <section data-id="2a058f0840c658023e88d594f524f1fd">
+                    <div class="sl-block" data-block-type="text"
+                        style="width: 800px; left: 80px; top: 20px; height: auto;"
+                        data-block-id="d30da9ce7810cd92e63d47e3c9d3665e">
+                        <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                            style="z-index: 10;">
+                            <h1>
+                                <span style="color:#ff9800">
+                                    <span style="font-size:98px">Recap</span>
+                                </span>
+                            </h1>
+                        </div>
+                    </div>
+                    <div class="sl-block" data-block-type="text"
+                        style="height: auto; min-width: 30px; min-height: 30px; width: 793px; left: 80px; top: 187px;"
+                        data-block-id="78d7355c4fdbdf14b79968ae18ce9e25">
+                        <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                            style="z-index: 12;">
+                            <ul>
+                                <li class="fragment" data-fragment-index="0" style="">A recursive function is a function
+                                    that invokes itself</li>
+                                <li class="fragment" data-fragment-index="1" style="">Your recursive functions should
+                                    <strong>always</strong> have a base case and be invoked with different input each
+                                    time
+                                </li>
+                                <li class="fragment" data-fragment-index="2" style="">When using recursion, it's often
+                                    essential to return values from one function to another to extract data from each
+                                    function call</li>
+                                <li class="fragment" data-fragment-index="3" style="">Helper method recursion is an
+                                    alternative that allows us to use an external scope in our recursive functions</li>
+                                <li class="fragment" data-fragment-index="4" style="">Pure recursion eliminates the need
+                                    for helper method recursion, but can be trickier to understand at first</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div id="theme-html-output"></div>
+        </div>
+
+        <footer class="embed-footer">
+            <a class="embed-footer-promotion" href="https://cs.slides.com/colt_steele/searching-algorithms-22"
+                target="_blank">By <strong>colt_steele</strong></a>
+            <div class="embed-footer-buttons">
+                <button class="embed-footer-button embed-footer-share icon i-share" aria-label="Share"
+                    data-tooltip="Share"></button>
+                <a class="embed-footer-button embed-footer-fullscreen icon i-fullscreen" aria-label="Fullscreen"
+                    data-tooltip="Fullscreen"
+                    href="https://cs.slides.com/colt_steele/searching-algorithms-22/fullscreen" target="_top"></a>
+            </div>
+        </footer>
+
+
+        <!-- Closes Reveal -->
+        <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+        <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+        <script>
+            Reveal.initialize(
+                {
+                    controls: true,
+                    progress: true,
+                    history: true,
+                    center: true,
+                    // Optional reveal.js plugins
+                    dependencies: [
+                        // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                        // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                        // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                        // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                        // { src: 'dist/js/zoom.js', async: true },
+                        // { src: 'dist/js/notes.js', async: true },
+                        // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                    ]
+                }
+            );
+        </script>
+        <!-- +++ show the html code +++ -->
+        <script>
+
+            let jss = document.querySelectorAll(".js");
+
+            console.log('jss: ', jss)
+            jss.forEach((js) => {
+                let a = js.innerHTML;
+                console.log('innerHTML: ', js)
+                let b = a.split('>');
+                js.textContent = ''
+
+                for (var i = 0; i < b.length; i++) {
+                    let replaceBracket = i == b.length - 1 ? "" : ">";
+                    js.textContent += b[i] + replaceBracket;
+                }
+            })
+        </script>
+    </body>
+
+</html>

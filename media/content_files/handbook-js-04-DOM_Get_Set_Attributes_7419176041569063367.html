@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript DOM <span>Get Set Attributes</span></h1>
+            <p class="summary">In this tutorial you will learn how to get, set and remove attributes from HTML elements
+                in JavaScript.</p>
+            <h2>Working with Attributes</h2>
+            <p>The <a href="/html-tutorial/html-attributes.php">attributes</a> are special words used inside the start
+                tag of an HTML element to control the tag's behavior or provides additional information about the tag.
+            </p>
+            <p class="space">JavaScript provides several methods for adding, removing or changing an HTML element's
+                attribute. In the following sections we will learn about these methods in detail.</p>
+            <h2>Getting Element's Attribute Value</h2>
+            <p>The <code>getAttribute()</code> method is used to get the current value of a attribute on the element.
+            </p>
+            <p>If the specified attribute does not exist on the element, it will return <code>null</code>. Here's an
+                example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                                <code class="language-js">
+                                        &lt;a href="https://www.google.com/" target="_blank" id="myLink">Google &lt;/a>
+
+                                        &lt;script>
+                                                // Selecting the element by ID attribute
+                                                var link = document.getElementById("myLink");
+                                                
+                                                // Getting the attributes values
+                                                var href = link.getAttribute("href");
+                                                alert(href); // Outputs: https://www.google.com/
+                                                
+                                                var target = link.getAttribute("target");
+                                                alert(target); // Outputs: _blank
+                                        &lt;/script>
+                                </code>
+                        </pre>
+            </div>
+            <!--End:Code box-->
+            <p>JavaScript provides several different ways to select elements on a page. Please check out the <a
+                    href="javascript-dom-selectors.php">JavaScript DOM selectors</a> chapter to learn more about them.
+            </p>
+            <hr>
+            <h2>Setting Attributes on Elements</h2>
+            <p>The <code>setAttribute()</code> method is used to set an attribute on the specified element.</p>
+            <p>If the attribute already exists on the element, the value is updated; otherwise a new attribute is added
+                with the specified name and value. The JavaScript code in the following example will add a
+                <code>class</code> and a <code>disabled</code> attribute to the <a
+                    href="/html-reference/html-button-tag.php"><code>&lt;button&gt;</code></a> element.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                                <code class="language-js">
+                                        &lt;button type="button" id="myBtn">Click Me&lt;/button>
+
+                                        &lt;script>
+                                                // Selecting the element
+                                                var btn = document.getElementById("myBtn");
+                                                
+                                                // Setting new attributes
+                                                btn.setAttribute("class", "click-btn");
+                                                btn.setAttribute("disabled", "");
+                                        &lt;/script>
+                                </code>
+                        </pre>
+            </div>
+            <!--End:Code box-->
+            <p>Similarly, you can use the <code>setAttribute()</code> method to update or change the value of an
+                existing attribute on an HTML element. The JavaScript code in the following example will update the
+                value of the existing <code>href</code> attribute of an anchor (<a
+                    href="/html-reference/html-a-tag.php"><code>&lt;a&gt;</code></a>) element.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                                <code class="language-js">
+                                        &lt;a href="#" id="myLink">Tutorial Republic &lt;/a>
+
+                                        &lt;script>
+                                                // Selecting the element
+                                                var link = document.getElementById("myLink");
+                                                
+                                                // Changing the href attribute value
+                                                link.setAttribute("href", "https://www.tutorialrepublic.com");
+                                        &lt;/script>
+                                </code>
+                        </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Removing Attributes from Elements</h2>
+            <p>The <code>removeAttribute()</code> method is used to remove an attribute from the specified element.</p>
+            <p>The JavaScript code in the following example will remove the <code>href</code> attribute from an anchor
+                element.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                                <code class="language-js">
+                                        &lt;a href="https://www.google.com/" id="myLink">Google&lt;/a>
+
+                                        &lt;script>
+                                                // Selecting the element
+                                                var link = document.getElementById("myLink");
+                                                
+                                                // Removing the href attribute
+                                                link.removeAttribute("href");
+                                        &lt;/script>
+                                </code>
+                        </pre>
+            </div>
+            <!--End:Code box-->
+        </div>
+    </div>
+</body>
+
+</html>

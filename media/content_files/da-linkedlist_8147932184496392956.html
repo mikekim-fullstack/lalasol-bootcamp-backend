@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/normalize.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+
+    <style id="user-css-output" type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,700');
+        @import url('https://fonts.googleapis.com/css?family=Oswald:300,400,700');
+
+        .reveal {}
+
+        .reveal .progress span {
+            background: #ff0000;
+        }
+
+        .reveal .slides {
+            font-family: 'Open Sans';
+        }
+
+        .reveal .slides h1,
+        .reveal .slides h2,
+        .reveal .slides h3 {
+            font-family: "Oswald";
+            font-weight: 300;
+        }
+
+        .reveal * {
+            font-family: "Oswald";
+        }
+    </style>
+    <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token"
+        content="t7WpPh1ogP1O4GKPhZUbZNlYZ5nlGMqGy7h/sbYjmaBcHGNhpdWhPdOXywlnIhGi/WdVFJvq+w/altPRJREqZw==" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LWVDH9STBJ"></script>
+    <script type="text/javascript">
+        if (navigator.doNotTrack !== '1' && !/dnt=1/.test(window.location.search)) {
+            window.slidesMeasurementId = 'G-LWVDH9STBJ';
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-LWVDH9STBJ', {
+                page_title: 'decks-embed'
+            });
+
+        }
+    </script>
+</head>
+
+
+<body class="reveal-viewport theme-font-montserrat theme-color-white-blue">
+    <div class="reveal" role="main">
+        <div class="slides">
+            <section data-id="e2d0b629e9f25348b9ac55b7955264cd">
+                <div class="sl-block" data-block-type="text" style="width: 806px; left: 80px; top: 16px; height: auto;"
+                    data-block-id="587bd5ae71408bd8b279dad6a7909750">
+                    <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                        style="z-index: 11; line-height: 1.144; font-size: 117%;" data-has-line-height="">
+                        <h1><span style="color:#cddc39"><span style="font-size:4.0em">Singly </span></span></h1>
+
+                        <h1><span style="color:#009688"><span style="font-size:2.0em">Linked Lists</span></span></h1>
+                    </div>
+                </div>
+
+            </section>
+            <section data-id="f3648c168ab7b9400b8ac030f2dbca03">
+                <div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 53px; height: auto;"
+                    data-block-id="466c56ec2eae9fd7562e208982955004">
+                    <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                        style="z-index: 11;">
+                        <h1><span style="color:#2196f3"><span style="font-size:2.0em">Objectives </span></span></h1>
+
+                        <p> </p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 704px; left: 128px; top: 280px;"
+                    data-block-id="78d7355c4fdbdf14b79968ae18ce9e25">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 12;">
+                        <ul>
+                            <li class="fragment" data-fragment-index="0"><span style="font-size:1.4em">Define what a
+                                    Singly Linked List is</span></li>
+                            <li class="fragment" data-fragment-index="1"><span style="font-size:1.4em">Compare and
+                                    contrast Linked Lists with Arrays </span></li>
+                            <li class="fragment" data-fragment-index="2"><span style="font-size:1.4em">Implement
+                                    insertion, removal and traversal methods on Singly Linked Lists</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section data-id="5cdffe3aa1691778aeebbd41d87ac614">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 55px; top: 88px;"
+                    data-block-id="7748f2517f6d3623d419ab293721a900">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1>
+                            <span style="color:#03a9f4"><span style="font-size:1.2em">What is a </span></span><span
+                                style="color:#cddc39"><span style="font-size:1.2em">linked list</span></span><span
+                                style="color:#03a9f4"><span style="font-size:1.2em">?</span></span>
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 80px; top: 285px;"
+                    data-block-id="fda47e62cfa2e54810584eed34b1685a">
+                    <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 12;" data-fragment-index="0">
+                        <p>A data structure that contains a <strong>head</strong>, <strong>tail</strong> and
+                            <strong>length</strong> property.</p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 800px; left: 75px; top: 418px;"
+                    data-block-id="b739487367d2acc5c3fdbc1b115a1781">
+                    <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 13;" data-fragment-index="1">
+                        <p>Linked Lists consist of nodes, and each <strong>node</strong> has a <strong>value</strong>
+                            and a <strong>pointer</strong> to another node or null</p>
+                    </div>
+                </div>
+
+
+
+
+
+
+            </section>
+            <section data-id="3b9da603845a7f41c831cf5591bed576">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 70px;"
+                    data-block-id="f426f3c05d886e5f857d1820fc4cdeab">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1><span style="color:#e91e63"><span style="font-size:1.2em">Singly Linked Lists </span></span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="line" data-block-id="c04a0ac74cd50547bca12b903e7eafe0"
+                    style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 123px; top: 299px;">
+                    <div class="sl-block-content" data-line-x1="0" data-line-y1="200" data-line-x2="0" data-line-y2="87"
+                        data-line-color="#000000" data-line-start-type="none" data-line-end-type="none"
+                        style="z-index: 11;" data-line-width="5px">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="1"
+                            height="113" viewbox="0 87 1 113">
+                            <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0.5" y1="200.5" x2="0.5" y2="87.5">
+                            </line>
+                            <line stroke="#000000" stroke-width="5" x1="0.5" y1="200.5" x2="0.5" y2="87.5"></line>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="line"
+                    style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 831px; top: 299px;"
+                    data-block-id="c5f5755c1e2b8421de121826028314a9">
+                    <div class="sl-block-content" data-line-x1="0" data-line-y1="200" data-line-x2="1" data-line-y2="86"
+                        data-line-color="#000000" data-line-start-type="none" data-line-end-type="none"
+                        style="z-index: 12;" data-line-width="5px">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="1"
+                            height="114" viewbox="0 86 1 114">
+                            <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0.5" y1="200.5" x2="1.5" y2="86.5">
+                            </line>
+                            <line stroke="#000000" stroke-width="5" x1="0.5" y1="200.5" x2="1.5" y2="86.5"></line>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="line"
+                    style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 123px; top: 301px;"
+                    data-block-id="b4491d9afeb0cb213b5613666c3cfb24">
+                    <div class="sl-block-content" data-line-x1="708" data-line-y1="-10" data-line-x2="0"
+                        data-line-y2="-10" data-line-color="#000000" data-line-start-type="none"
+                        data-line-end-type="none" style="z-index: 13;" data-line-width="5px">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="708"
+                            height="1" viewbox="0 -10 708 1">
+                            <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="708.5" y1="-9.5" x2="0.5" y2="-9.5">
+                            </line>
+                            <line stroke="#000000" stroke-width="5" x1="708.5" y1="-9.5" x2="0.5" y2="-9.5"></line>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="shape" data-block-id="5fddc826db01269a8c63a5e953b835b0"
+                    style="min-width: 4px; min-height: 4px; width: 140px; height: 140px; left: 54px; top: 413px;">
+                    <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)"
+                        data-shape-stretch="true" style="z-index: 14;" data-shape-stroke-color="#000000"
+                        data-shape-stroke-width="10">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%"
+                            preserveaspectratio="none" viewbox="0 0 140 140">
+                            <defs>
+                                <clippath id="shape-mask-1-1527822925855">
+                                    <rect width="140" height="140"></rect>
+                                </clippath>
+                            </defs>
+                            <rect width="140" height="140" clip-path="url(#shape-mask-1-1527822925855)"
+                                class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#000000" stroke-width="20"></rect>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="shape"
+                    style="min-width: 4px; min-height: 4px; width: 140px; height: 140px; left: 288px; top: 413px;"
+                    data-block-id="482b6e4693b633ddfb7f9ccc792c1da0">
+                    <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)"
+                        data-shape-stretch="true" style="z-index: 15;" data-shape-stroke-color="#000000"
+                        data-shape-stroke-width="10">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%"
+                            preserveaspectratio="none" viewbox="0 0 140 140">
+                            <defs>
+                                <clippath id="shape-mask-2-1527822925859">
+                                    <rect width="140" height="140"></rect>
+                                </clippath>
+                            </defs>
+                            <rect width="140" height="140" clip-path="url(#shape-mask-2-1527822925859)"
+                                class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#000000" stroke-width="20"></rect>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="shape"
+                    style="min-width: 4px; min-height: 4px; width: 140px; height: 140px; left: 761px; top: 413px;"
+                    data-block-id="f7e0e2be35deb071d71bb4a2bb35ae50">
+                    <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)"
+                        data-shape-stretch="true" style="z-index: 16;" data-shape-stroke-color="#000000"
+                        data-shape-stroke-width="10">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%"
+                            preserveaspectratio="none" viewbox="0 0 140 140">
+                            <defs>
+                                <clippath id="shape-mask-3-1527822925862">
+                                    <rect width="140" height="140"></rect>
+                                </clippath>
+                            </defs>
+                            <rect width="140" height="140" clip-path="url(#shape-mask-3-1527822925862)"
+                                class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#000000" stroke-width="20"></rect>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="shape"
+                    style="min-width: 4px; min-height: 4px; width: 140px; height: 140px; left: 528px; top: 413px;"
+                    data-block-id="bb801fa8030351a4e884a7eb1cdc7730">
+                    <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgba(0, 0, 0, 0)"
+                        data-shape-stretch="true" style="z-index: 17;" data-shape-stroke-color="#000000"
+                        data-shape-stroke-width="10">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%" height="100%"
+                            preserveaspectratio="none" viewbox="0 0 140 140">
+                            <defs>
+                                <clippath id="shape-mask-4-1527822925865">
+                                    <rect width="140" height="140"></rect>
+                                </clippath>
+                            </defs>
+                            <rect width="140" height="140" clip-path="url(#shape-mask-4-1527822925865)"
+                                class="shape-element" fill="rgba(0, 0, 0, 0)" stroke="#000000" stroke-width="20"></rect>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="line" data-block-id="07d58b4f8520e173155d6cce57c7c7dd"
+                    style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 189px; top: 483px;">
+                    <div class="sl-block-content" data-line-x1="-4" data-line-y1="200" data-line-x2="94"
+                        data-line-y2="200" data-line-color="#000000" data-line-start-type="none"
+                        data-line-end-type="line-arrow" style="z-index: 18;" data-line-width="5px">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="98"
+                            height="1" viewbox="-4 200 98 1">
+                            <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-3.5" y1="200.5" x2="90.5" y2="200.5">
+                            </line>
+                            <line stroke="#000000" stroke-width="5" x1="-3.5" y1="200.5" x2="90.5" y2="200.5"></line>
+                            <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="5"
+                                transform="translate(90,200) rotate(90)" d="M 11.25 11.25 L 0 0 L -11.25 11.25"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="line"
+                    style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 428px; top: 482px;"
+                    data-block-id="9df426bbb4b114bd2603a7811b2b08ec">
+                    <div class="sl-block-content" data-line-x1="-4" data-line-y1="200" data-line-x2="94"
+                        data-line-y2="200" data-line-color="#000000" data-line-start-type="none"
+                        data-line-end-type="line-arrow" style="z-index: 19;" data-line-width="5px">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="98"
+                            height="1" viewbox="-4 200 98 1">
+                            <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-3.5" y1="200.5" x2="90.5" y2="200.5">
+                            </line>
+                            <line stroke="#000000" stroke-width="5" x1="-3.5" y1="200.5" x2="90.5" y2="200.5"></line>
+                            <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="5"
+                                transform="translate(90,200) rotate(90)" d="M 11.25 11.25 L 0 0 L -11.25 11.25"></path>
+                        </svg>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="line"
+                    style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 668px; top: 482px;"
+                    data-block-id="3624b85d1342b0314e0e319385543cce">
+                    <div class="sl-block-content" data-line-x1="-4" data-line-y1="200" data-line-x2="94"
+                        data-line-y2="200" data-line-color="#000000" data-line-start-type="none"
+                        data-line-end-type="line-arrow" style="z-index: 20;" data-line-width="5px">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="98"
+                            height="1" viewbox="-4 200 98 1">
+                            <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="-3.5" y1="200.5" x2="90.5" y2="200.5">
+                            </line>
+                            <line stroke="#000000" stroke-width="5" x1="-3.5" y1="200.5" x2="90.5" y2="200.5"></line>
+                            <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="5"
+                                transform="translate(90,200) rotate(90)" d="M 11.25 11.25 L 0 0 L -11.25 11.25"></path>
+                        </svg>
+                    </div>
+                </div>
+
+                <div class="sl-block" data-block-type="line"
+                    style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 901px; top: 483px;"
+                    data-block-id="929110cf55071fcdb630bb073f69fa25">
+                    <div class="sl-block-content" data-line-x1="156" data-line-y1="200" data-line-x2="210"
+                        data-line-y2="200" data-line-color="#000000" data-line-start-type="none"
+                        data-line-end-type="line-arrow" style="z-index: 21;" data-line-width="5px">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="54"
+                            height="1" viewbox="156 200 54 1">
+                            <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="156.5" y1="200.5" x2="206.5" y2="200.5">
+                            </line>
+                            <line stroke="#000000" stroke-width="5" x1="156.5" y1="200.5" x2="206.5" y2="200.5"></line>
+                            <path style="fill: rgba(0,0,0,0);" stroke="#000000" stroke-width="5"
+                                transform="translate(206,200) rotate(90)" d="M 11.25 11.25 L 0 0 L -11.25 11.25"></path>
+                        </svg>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="sl-block" data-block-type="text" data-block-id="9ce69f6905c40e5ce4caecd8ae85196d"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 59px; left: 901px; top: 498px;">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 22;">
+                        <p>null</p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 62px; left: 686px; top: 498px;"
+                    data-block-id="51cad5bdf1365ced920fd7a985bd0e39">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 23;">
+                        <p>next</p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 62px; left: 447px; top: 498px;"
+                    data-block-id="bf785fd3df4d151426d334ca938bd377">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 24;">
+                        <p>next</p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 62px; left: 209px; top: 498px;"
+                    data-block-id="116a1166674d957928c4187407c39acc">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 25;">
+                        <p>next</p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 62px; left: 93px; top: 454px;"
+                    data-block-id="2934b7e56fd358157f6432dd10b1f86a">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 26; font-size: 150%;">
+                        <p><strong>4</strong></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 62px; left: 327px; top: 454px;"
+                    data-block-id="469852cdcfede5b4bc367d97414c1086">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 27; font-size: 150%;">
+                        <p><strong>6</strong></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 62px; left: 567px; top: 454px;"
+                    data-block-id="a81ed961c5dcce6918af9901dccfca3b">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 28; font-size: 150%;">
+                        <p><strong>8</strong></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 62px; left: 801px; top: 454px;"
+                    data-block-id="f30af9591a2d5dd029b2b3d5cfcda66a">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 29; font-size: 150%;">
+                        <p><strong>2</strong></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 126px; left: 68px; top: 251px;"
+                    data-block-id="7d6627773c2f40d23ec0f6bc4e268bef">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 30;">
+                        <p><strong>HEAD</strong></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 126px; left: 766px; top: 251px;"
+                    data-block-id="113994a956b81fb2c8c6e5aba525176e">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 32;">
+                        <p><strong>TAIL</strong></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 196px; left: 412px; top: 241px;"
+                    data-block-id="b4eddccefc9a561c8b821b6157e048f4">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 33;">
+                        <p><strong>LENGTH = 4</strong></p>
+                    </div>
+                </div>
+            </section>
+            <section data-id="5ee2e1d774924f21c925c6f27eb1ef15">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 57px;"
+                    data-block-id="ce92f8461e11bc8a5133dadb3f2a015f">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1><span style="font-size:1.2em"><span style="color:#2196f3">Comparisons with
+                                    Arrays</span></span></h1>
+                    </div>
+                </div>
+
+
+
+
+                <div class="sl-block" data-block-type="text" data-block-id="47a84cc136a115a224114fd9492fd6c4"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 210px;">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <p><strong>Lists</strong> </p>
+
+                        <ul>
+                            <li>Do not have indexes!</li>
+                            <li>Connected via nodes with a <strong>next</strong> pointer</li>
+                            <li>Random access is not allowed</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 429px;"
+                    data-block-id="b94721d7e5906ef4757fff454761f3f2">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 13;">
+                        <p><span style="text-align:left"><strong>Arrays</strong></span></p>
+
+                        <ul>
+                            <li>Indexed in order!</li>
+                            <li>Insertion and deletion can be expensive</li>
+                            <li>Can quickly be accessed at a specific index</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section data-id="8aaa910a478b1c52fd02df360c06f938">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 53px; top: 84px;"
+                    data-block-id="aeec9a5f87ff1390056f10b091a44a68">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <h1>
+                            <font color="#2196f3">
+                                <span style="font-size:90px">Pushing</span>
+                            </font>
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 326px;"
+                    data-block-id="1ea754ba8a60c475a1c0d92948e4ae46">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 12;">
+                        <p><span style="font-size:1.4em">Adding a new <strong>node </strong>to the end of the Linked
+                                List!</span></p>
+                    </div>
+                </div>
+            </section>
+            <section data-id="461a1471e612295c4c4e32f4c2ac7fff">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 24px;"
+                    data-block-id="e27e5ae328ae7d01ffe2b68738d4fd73">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <h1><span style="color:#40E0D0"><span style="font-size:90px">Pushing pseudocode</span></span>
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="sl-block" data-block-type="text" data-block-id="5c8fa7cdd3f2f9ab0b5858ca75c6aa20"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 171px; top: 560px;">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 12;">
+                        <p><a href="https://visualgo.net/en/list" target="_blank">Let's visualize this!</a></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text" data-block-id="758bd24c3d65bf4d092183850bc382ca"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 848px; left: 66px; top: 175px;">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 13;">
+                        <ul>
+                            <li class="fragment" data-fragment-index="0" style="">This function should accept a value
+                            </li>
+                            <li style="" class="fragment" data-fragment-index="1">Create a new node using the value
+                                passed to the function</li>
+                            <li style="" class="fragment" data-fragment-index="2">If there is no head property on the
+                                list, set the head and tail to be the newly created node</li>
+                            <li style="" class="fragment" data-fragment-index="3">Otherwise set the next property on the
+                                tail to be the new node and set the tail property on the list to be the newly created
+                                node</li>
+                            <li style="" class="fragment" data-fragment-index="4">Increment the length by one</li>
+                            <li style="" class="fragment" data-fragment-index="5">Return the linked list</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section data-id="b233028df4ab5e3961e41a297e2b682d">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 0px;"
+                    data-block-id="b2501fad4b3c81cee6b7b618f800f4fc">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;" dir="ui">
+                        <h1>
+                            <span style="color:#00bcd4">
+                                <span style="font-size:4.0em">YOUR</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 290px;"
+                    data-block-id="ceef5ec5efd682932921ac25eeea022b">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <h1>
+                            <span style="color:#f44336">
+                                <span style="font-size:4.0em">TURN</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </section>
+            <section data-id="b954efc25f9c0a25e29d96cf25186672">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 105px;"
+                    data-block-id="76166893cee6962e2d387c5fc84fa563">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1>
+                            <span style="color:#FF8C00">
+                                <span style="font-size:90px">Popping</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 347px;"
+                    data-block-id="2d7e84decc0d89922b7562531b91470d">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 12;">
+                        <p><span style="font-size:1.4em">Removing a <strong>node </strong>from the end of the Linked
+                                List!</span></p>
+                    </div>
+                </div>
+            </section>
+            <section data-id="1cc61a871f6fa9db601b3fa6a3080309">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 60px; top: 94px;"
+                    data-block-id="4341e373f72d661073daab49357a9d15">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1><span style="color:#FF8C00"><span style="font-size:90px">Popping pseudocode</span></span>
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 171px; top: 560px;"
+                    data-block-id="1fd2386c89c7366f834139f4eef54484">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <p><a href="https://visualgo.net/en/list" target="_blank">Let's visualize this!</a></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 848px; left: 72px; top: 244px;"
+                    data-block-id="a9527dcebce3b9fe9c2a508495652068">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 13;">
+                        <ul>
+                            <li class="fragment" data-fragment-index="0" style="">If there are no nodes in the list,
+                                return undefined </li>
+                            <li style="" class="fragment" data-fragment-index="1">Loop through the list until you reach
+                                the tail</li>
+                            <li style="" class="fragment" data-fragment-index="2">Set the next property of the 2nd to
+                                last node to be null</li>
+                            <li style="" class="fragment" data-fragment-index="3">Set the tail to be the 2nd to last
+                                node</li>
+                            <li style="" class="fragment" data-fragment-index="4">Decrement the length of the list by 1
+                            </li>
+                            <li style="" class="fragment" data-fragment-index="5">Return the value of the node removed
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section data-id="38b8ec65977ad289fcd902d3d2abe80a">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 0px;"
+                    data-block-id="b2501fad4b3c81cee6b7b618f800f4fc">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;" dir="ui">
+                        <h1>
+                            <span style="color:#00bcd4">
+                                <span style="font-size:4.0em">YOUR</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 290px;"
+                    data-block-id="ceef5ec5efd682932921ac25eeea022b">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <h1>
+                            <span style="color:#f44336">
+                                <span style="font-size:4.0em">TURN</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </section>
+            <section data-id="163ca24edb64fac8c5aa5dede727f279">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 103px;"
+                    data-block-id="f9fef12017f522d1665a8f14f59e6730">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;" dir="ui">
+                        <h1><span style="font-size:1.8em"><span style="color:#00bcd4">Shifting </span></span></h1>
+                    </div>
+                </div>
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 159px; top: 349px;"
+                    data-block-id="979449d1880dad9f3563f9f97c3ae1e7">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 12;">
+                        <p><span style="font-size:1.4em">Removing a new <strong>node </strong>from the beginning of the
+                                Linked List!</span></p>
+                    </div>
+                </div>
+            </section>
+            <section data-id="d1ff3a4aa1c5c2261817d067164d476e">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 70px;"
+                    data-block-id="e2840d68bce05b20b8d1608441947014">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;" dir="ui">
+                        <h1><span style="font-size:1.6em"><span style="color:#03a9f4">Shifting pseudocode</span></span>
+                        </h1>
+                    </div>
+                </div>
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 171px; top: 560px;"
+                    data-block-id="046aff8f491a582a034e9fe02246279e">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <p><a href="https://visualgo.net/en/list" target="_blank">Let's visualize this!</a></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 848px; left: 71px; top: 239px;"
+                    data-block-id="060daa466422515a1614659602e0f3f5">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 13;">
+                        <ul>
+                            <li class="fragment" data-fragment-index="0" style="">If there are no nodes, return
+                                undefined</li>
+                            <li style="" class="fragment" data-fragment-index="1">Store the current head property in a
+                                variable</li>
+                            <li style="" class="fragment" data-fragment-index="2">Set the head property to be the
+                                current head's next property</li>
+                            <li style="" class="fragment" data-fragment-index="3">Decrement the length by 1</li>
+                            <li style="" class="fragment" data-fragment-index="4">Return the value of the node removed
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section data-id="79b3a7c39024675fe61289825d71ac1f">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 0px;"
+                    data-block-id="b2501fad4b3c81cee6b7b618f800f4fc">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;" dir="ui">
+                        <h1>
+                            <span style="color:#00bcd4">
+                                <span style="font-size:4.0em">YOUR</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 290px;"
+                    data-block-id="ceef5ec5efd682932921ac25eeea022b">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <h1>
+                            <span style="color:#f44336">
+                                <span style="font-size:4.0em">TURN</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </section>
+            <section data-id="cd591cbce8f4ef090483afe5913e06e8">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 93px;"
+                    data-block-id="934a94b249b012fcbd2fdbe48e270271">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1>
+                            <span style="font-size:1.2em">
+                                <span style="color:#4caf50">Unshifting</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 337px;"
+                    data-block-id="d2898477a4ff63a95931b0df44857c0b">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 12;">
+                        <p><span style="font-size:1.4em">Adding a new <strong>node </strong>to the beginning of the
+                                Linked List!</span></p>
+                    </div>
+                </div>
+            </section>
+            <section data-id="ec8d0415276d312432a1b12be30d4546">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 49px;"
+                    data-block-id="6913c639dc90af94058880276d53b6e6">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1><span style="font-size:1.2em"><span style="color:#4caf50">Unshifting
+                                    pseudocode</span></span></h1>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 169px; top: 591px;"
+                    data-block-id="6885fb8ad1984d37b633f9d3bfcfdf39">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <p><a href="https://visualgo.net/en/list" target="_blank">Let's visualize this!</a></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 848px; left: 64px; top: 184px;"
+                    data-block-id="6531d8ff55724933f04e4ff3e2785b85">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 13;">
+                        <ul>
+                            <li style="" class="fragment" data-fragment-index="0">This function should accept a value
+                            </li>
+                            <li style="" class="fragment" data-fragment-index="1">Create a new node using the value
+                                passed to the function</li>
+                            <li style="" class="fragment" data-fragment-index="2">If there is no head property on the
+                                list, set the head and tail to be the newly created node</li>
+                            <li style="" class="fragment" data-fragment-index="3">Otherwise set the newly created node's
+                                next property to be the current head property on the list</li>
+                            <li style="" class="fragment" data-fragment-index="4">Set the head property on the list to
+                                be that newly created node</li>
+                            <li style="" class="fragment" data-fragment-index="5">Increment the length of the list by 1
+                            </li>
+                            <li style="" class="fragment" data-fragment-index="6">Return the linked list</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section data-id="7acc19ca160cf416334f150fe3bb6327">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 0px;"
+                    data-block-id="b2501fad4b3c81cee6b7b618f800f4fc">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;" dir="ui">
+                        <h1>
+                            <span style="color:#00bcd4">
+                                <span style="font-size:4.0em">YOUR</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 290px;"
+                    data-block-id="ceef5ec5efd682932921ac25eeea022b">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <h1>
+                            <span style="color:#f44336">
+                                <span style="font-size:4.0em">TURN</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </section>
+            <section data-id="4c663b19a6d858ecdaecf3fad547315c">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 95px;"
+                    data-block-id="04cab694d517a824ccbf8cbbb3c03c7d">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1><span style="color:#0000CD"><span style="font-size:1.2em">Get</span> </span></h1>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 339px;"
+                    data-block-id="46e0dde3ca881cdccdfca004613c40c7">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 12;">
+                        <p><span style="font-size:1.4em">Retrieving a <strong>node </strong>by it's position in the
+                                Linked List!</span></p>
+                    </div>
+                </div>
+            </section>
+            <section data-id="3a774aa7921311945797c0bb02f6cd30">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 82px;"
+                    data-block-id="566e42c863efeef37931588edb9c3823">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1><span style="color:#0000CD"><span style="font-size:1.2em">Get pseudocode</span></span></h1>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 171px; top: 560px;"
+                    data-block-id="4837eb8402ac3605071aa221f94b5fa8">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <p><a href="https://visualgo.net/en/list" target="_blank">Let's visualize this!</a></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 848px; left: 69px; top: 280px;"
+                    data-block-id="cee059ad946b6f5a0de34f45733bdbe8">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 13;">
+                        <ul>
+                            <li class="fragment" data-fragment-index="0" style="">This function should accept an index
+                            </li>
+                            <li style="" class="fragment" data-fragment-index="1">If the index is less than zero or
+                                greater than or equal to the length of the list, return null</li>
+                            <li style="" class="fragment" data-fragment-index="2">Loop through the list until you reach
+                                the index and return the node at that specific index</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section data-id="393d58e090740df80757a500c22936ad">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 0px;"
+                    data-block-id="f94a0161c60b44c3a5e70c4ea3abbb81">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;" dir="ui">
+                        <h1>
+                            <span style="color:#00bcd4">
+                                <span style="font-size:4.0em">YOUR</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 290px;"
+                    data-block-id="f6d6c85071ecc8274992862d83dc6eda">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <h1>
+                            <span style="color:#f44336">
+                                <span style="font-size:4.0em">TURN</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </section>
+            <section data-id="2e807df9382319ea62a213f53214443b">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 45px; top: 110px;"
+                    data-block-id="8ee169fdb5aa1672824cd4e7ee704e8a">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1><span style="color:#0000CD"><span style="font-size:1.2em">Set </span></span></h1>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 270px;"
+                    data-block-id="c960ff9c2169d521fa9852a98fd63fe4">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 12;">
+                        <p><span style="font-size:42px">Changing the <strong>value</strong> of a node based on it's
+                                position in the Linked List</span></p>
+                    </div>
+                </div>
+            </section>
+            <section data-id="7416580769fae52ce0f643e141d16e8c">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 58px; top: 76px;"
+                    data-block-id="1c24d18573badedaf763b1a35c54324f">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1>
+                            <font color="#0000cd"><span style="font-size:90px">Set pseudocode</span></font>
+                        </h1>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 171px; top: 560px;"
+                    data-block-id="1ba46cdc3ad2ddb7e8a14d497a58e172">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <p><a href="https://visualgo.net/en/list" target="_blank">Let's visualize this!</a></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 848px; left: 72px; top: 290px;"
+                    data-block-id="9c95d3c3ab7b79eb6a79a0832e184a05">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 13;">
+                        <ul>
+                            <li style="" class="fragment" data-fragment-index="0">This function should accept a value
+                                and an index</li>
+                            <li style="" class="fragment" data-fragment-index="1">Use your <strong>get</strong> function
+                                to find the specific node.</li>
+                            <li style="" class="fragment" data-fragment-index="2">If the node is not found, return false
+                            </li>
+                            <li style="" class="fragment" data-fragment-index="3">If the node is found, set the value of
+                                that node to be the value passed to the function and return true</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section data-id="3967ec06f38dcbf4d907ead2718fdb59">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 0px;"
+                    data-block-id="5e02f55de91a4a84567aca4739154451">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;" dir="ui">
+                        <h1>
+                            <span style="color:#00bcd4">
+                                <span style="font-size:4.0em">YOUR</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 290px;"
+                    data-block-id="1fd2023fbfb94352673f836f3ca69736">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <h1>
+                            <span style="color:#f44336">
+                                <span style="font-size:4.0em">TURN</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </section>
+            <section data-id="659808a7e226d0711afd5a9ce8e079b4">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 93px;"
+                    data-block-id="a784894e62d52936730d54616b002aca">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1><span style="color:#EE82EE"><span style="font-size:1.2em">Insert </span></span></h1>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 312px;"
+                    data-block-id="844e228318a1a6f10289dfaa34af324b">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 12;">
+                        <p><span style="font-size:42px">Adding a node to the Linked List at a <strong>specific
+                                </strong>position</span></p>
+                    </div>
+                </div>
+            </section>
+            <section data-id="78252d022cabd8e53355300efb8e263d">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 37px;"
+                    data-block-id="48a49254bdee63f9435d9040347154e1">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1><span style="color:#EE82EE"><span style="font-size:1.2em">Insert pseudocode</span></span>
+                        </h1>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 171px; top: 625px;"
+                    data-block-id="3aa97687ceaef750861f02cd5205b35d">
+                    <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;" data-fragment-index="0">
+                        <p><a href="https://visualgo.net/en/list" target="_blank">Let's visualize this!</a></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 928px; left: 32px; top: 174px;"
+                    data-block-id="6b18d96030bb7ad51ea83787684bdb8d">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 13;">
+                        <ul>
+                            <li class="fragment" data-fragment-index="1">If the index is less than zero or greater than
+                                the length, return false</li>
+                            <li class="fragment" data-fragment-index="2">If the index is the same as the length, push a
+                                new node to the end of the list</li>
+                            <li class="fragment" data-fragment-index="3">If the index is 0, unshift a new node to the
+                                start of the list</li>
+                            <li class="fragment" data-fragment-index="4">Otherwise, using the <strong>get</strong>
+                                method, access the node at the index - 1</li>
+                            <li class="fragment" data-fragment-index="5">Set the next property on that node to be the
+                                new node</li>
+                            <li class="fragment" data-fragment-index="6">Set the next property on the new node to be the
+                                previous next</li>
+                            <li class="fragment" data-fragment-index="7">Increment the length</li>
+                            <li class="fragment" data-fragment-index="8">Return true</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section data-id="324dacd184bf642f23e2d2157297acc2">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 0px;"
+                    data-block-id="21864fb165acb6eaf6a6d91432898bfb">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;" dir="ui">
+                        <h1>
+                            <span style="color:#00bcd4">
+                                <span style="font-size:4.0em">YOUR</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 290px;"
+                    data-block-id="65ca9c88252396f02fad1e6c03fd8e1c">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <h1>
+                            <span style="color:#f44336">
+                                <span style="font-size:4.0em">TURN</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </section>
+            <section data-id="af0d3ea5729b257b2dfe39c2e7c508ec">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 93px;"
+                    data-block-id="83d32155dfb49fb33ee308bf77d44323">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1><span style="color:#EE82EE"><span style="font-size:1.2em">Remove</span> </span></h1>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 337px;"
+                    data-block-id="52c887b5f4ccd64e665e447f81c73eb1">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 12;">
+                        <p><span style="font-size:42px">Removing a node from the Linked List at a <strong>specific
+                                </strong>position</span></p>
+                    </div>
+                </div>
+            </section>
+            <section data-id="98eb0edc03dfa0f4d82e68927e309fa1">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 23px;"
+                    data-block-id="fd096408d70cf7b6e92ef247c2f55c28">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1><span style="color:#EE82EE"><span style="font-size:1.2em">Remove pseudocode</span></span>
+                        </h1>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 173px; top: 591px;"
+                    data-block-id="30b2fd424b6bbfa7d9687c2f9e2c1be9">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <p><a href="https://visualgo.net/en/list" target="_blank">Let's visualize this!</a></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 848px; left: 49px; top: 164px;"
+                    data-block-id="26c3cc2f76b0200a45d989bcbcbc170d">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 13;">
+                        <ul>
+                            <li class="fragment" data-fragment-index="0">If the index is less than zero or greater than
+                                the length, return undefined</li>
+                            <li class="fragment" data-fragment-index="1">If the index is the same as the length-1, pop
+                            </li>
+                            <li class="fragment" data-fragment-index="2">If the index is 0, shift</li>
+                            <li class="fragment" data-fragment-index="3">Otherwise, using the <strong>get</strong>
+                                method, access the node at the index - 1</li>
+                            <li class="fragment" data-fragment-index="4">Set the next property on that node to be the
+                                next of the next node</li>
+                            <li class="fragment" data-fragment-index="5">Decrement the length</li>
+                            <li class="fragment" data-fragment-index="6">Return the value of the node removed</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section data-id="b86d3c172733311d97d4e0ac7da06814">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 0px;"
+                    data-block-id="b2501fad4b3c81cee6b7b618f800f4fc">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;" dir="ui">
+                        <h1>
+                            <span style="color:#00bcd4">
+                                <span style="font-size:4.0em">YOUR</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 290px;"
+                    data-block-id="ceef5ec5efd682932921ac25eeea022b">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <h1>
+                            <span style="color:#f44336">
+                                <span style="font-size:4.0em">TURN</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </section>
+            <section data-id="7182c9d7ed91afbaaff16482862c89e4">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 155px;"
+                    data-block-id="b8f2c2e43a21245bbbdc732381743578">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1><span style="color:#673ab7"><span style="font-size:2.0em">REVERSE</span></span></h1>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 640px; left: 160px; top: 337px;"
+                    data-block-id="bf44301cdc9bc1d22158e7941d8fa455">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 12;">
+                        <p><span style="font-size:42px">Reversing the Linked List </span></p>
+
+                        <p><span style="font-size:42px"><strong>in place!</strong></span></p>
+                    </div>
+                </div>
+            </section>
+            <section data-id="d18c75976a80ae73d02c4d0f71c60870">
+                <div class="sl-block" data-block-type="line" data-block-id="75185a6492f21566dfdfde39928ddd10"
+                    style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 178px; top: 282px;">
+                    <div class="sl-block-content" data-line-x1="0" data-line-y1="200" data-line-x2="86"
+                        data-line-y2="200" data-line-color="#00bcd4" data-line-start-type="none"
+                        data-line-end-type="line-arrow" style="z-index: 15;" data-line-width="10px"><svg
+                            xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="86"
+                            height="1" viewbox="0 200 86 1">
+                            <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="200" x2="79" y2="200"></line>
+                            <line stroke="#00bcd4" stroke-width="10" x1="0" y1="200" x2="79" y2="200"></line>
+                            <path style="fill: rgba(0,0,0,0);" stroke="#00bcd4" stroke-width="10"
+                                transform="translate(79,200) rotate(90)" d="M 22.5 22.5 L 0 0 L -22.5 22.5"></path>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="line"
+                    style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 702px; top: 282px;"
+                    data-block-id="6abf264d79ac66a2109405da76e00c19">
+                    <div class="sl-block-content" data-line-x1="0" data-line-y1="200" data-line-x2="86"
+                        data-line-y2="200" data-line-color="#00bcd4" data-line-start-type="none"
+                        data-line-end-type="line-arrow" style="z-index: 16;" data-line-width="10px"><svg
+                            xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="86"
+                            height="1" viewbox="0 200 86 1">
+                            <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="200" x2="79" y2="200"></line>
+                            <line stroke="#00bcd4" stroke-width="10" x1="0" y1="200" x2="79" y2="200"></line>
+                            <path style="fill: rgba(0,0,0,0);" stroke="#00bcd4" stroke-width="10"
+                                transform="translate(79,200) rotate(90)" d="M 22.5 22.5 L 0 0 L -22.5 22.5"></path>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="text" data-block-id="3e6ef947d47b1f994461ac25313d7404"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 105px; left: 42px; top: 243px;">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 17;">
+                        <p><span style="color:#fafafa"><span style="font-size:2.0em">13</span></span></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="shape" data-block-id="1223fbdd8d5b1ca1cd738251485d089a"
+                    style="min-width: 4px; min-height: 4px; width: 144px; height: 144px; left: 22px; top: 210px;">
+                    <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(139, 195, 74)"
+                        data-shape-stretch="true" style="z-index: 11;"><svg xmlns="http://www.w3.org/2000/svg"
+                            version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 144 144">
+                            <rect width="144" height="144" class="shape-element" fill="rgb(139, 195, 74)"></rect>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="shape"
+                    style="min-width: 4px; min-height: 4px; width: 144px; height: 144px; left: 275px; top: 210px;"
+                    data-block-id="5a5123c480202eb78a63997dc7925b67">
+                    <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(139, 195, 74)"
+                        data-shape-stretch="true" style="z-index: 14;"><svg xmlns="http://www.w3.org/2000/svg"
+                            version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 144 144">
+                            <rect width="144" height="144" class="shape-element" fill="rgb(139, 195, 74)"></rect>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="line"
+                    style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 437px; top: 282px;"
+                    data-block-id="ff798fb858394d3769d37c1e4229a538">
+                    <div class="sl-block-content" data-line-x1="0" data-line-y1="200" data-line-x2="86"
+                        data-line-y2="200" data-line-color="#00bcd4" data-line-start-type="none"
+                        data-line-end-type="line-arrow" style="z-index: 18;" data-line-width="10px"><svg
+                            xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="86"
+                            height="1" viewbox="0 200 86 1">
+                            <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="0" y1="200" x2="79" y2="200"></line>
+                            <line stroke="#00bcd4" stroke-width="10" x1="0" y1="200" x2="79" y2="200"></line>
+                            <path style="fill: rgba(0,0,0,0);" stroke="#00bcd4" stroke-width="10"
+                                transform="translate(79,200) rotate(90)" d="M 22.5 22.5 L 0 0 L -22.5 22.5"></path>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="shape"
+                    style="min-width: 4px; min-height: 4px; width: 144px; height: 144px; left: 537px; top: 210px;"
+                    data-block-id="accdf5a99a833945d6f6a73bd6b6d8e0">
+                    <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(139, 195, 74)"
+                        data-shape-stretch="true" style="z-index: 13;"><svg xmlns="http://www.w3.org/2000/svg"
+                            version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 144 144">
+                            <rect width="144" height="144" class="shape-element" fill="rgb(139, 195, 74)"></rect>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="shape"
+                    style="min-width: 4px; min-height: 4px; width: 144px; height: 144px; left: 800px; top: 210px;"
+                    data-block-id="2f19f82b97e79b4e03f3c187cfe1576d">
+                    <div class="sl-block-content" data-shape-type="rect" data-shape-fill-color="rgb(139, 195, 74)"
+                        data-shape-stretch="true" style="z-index: 12;"><svg xmlns="http://www.w3.org/2000/svg"
+                            version="1.1" width="100%" height="100%" preserveaspectratio="none" viewbox="0 0 144 144">
+                            <rect width="144" height="144" class="shape-element" fill="rgb(139, 195, 74)"></rect>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 105px; left: 295px; top: 243px;"
+                    data-block-id="c1103750557ea3aa3b446d60c7c2844e">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 19;">
+                        <p><span style="color:#fafafa"><span style="font-size:2.0em">27</span></span></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 105px; left: 560px; top: 243px;"
+                    data-block-id="8f822b50af76701b4bd28a812368fefc">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 20;">
+                        <p><span style="color:#fafafa"><span style="font-size:2.0em">32</span></span></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 105px; left: 828px; top: 243px;"
+                    data-block-id="3b4416c5ca654814df8cf00748c0b59f">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 21;">
+                        <p><span style="color:#fafafa"><span style="font-size:2.0em">71</span></span></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text" data-block-id="4e52b61a6e96e7a2ab7159133292f4c6"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 144px; left: 8px; top: 377px;">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 22;">
+                        <p>HEAD</p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 144px; left: 809px; top: 377px;"
+                    data-block-id="ae92758d3a38c2c8ccfe80b5aa19f159">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 23;">
+                        <p>TAIL</p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="line"
+                    style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 178px; top: 535px;"
+                    data-block-id="4e4ea4a3aba5842120dbd7ef574a4a15">
+                    <div class="sl-block-content fragment" data-line-x1="0" data-line-y1="200" data-line-x2="86"
+                        data-line-y2="200" data-line-color="#00bcd4" data-line-start-type="line-arrow"
+                        data-line-end-type="none" style="z-index: 28;" data-line-width="10px" data-fragment-index="2">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="86"
+                            height="1" viewbox="0 200 86 1">
+                            <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="8" y1="200" x2="86" y2="200"></line>
+                            <line stroke="#00bcd4" stroke-width="10" x1="8" y1="200" x2="86" y2="200"></line>
+                            <path style="fill: rgba(0,0,0,0);" stroke="#00bcd4" stroke-width="10"
+                                transform="translate(8,200) rotate(90)" d="M -22.5 -22.5 L 0 0 L 22.5 -22.5"></path>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="line"
+                    style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 702px; top: 535px;"
+                    data-block-id="bec2de40b617f88a4cc18a49a411c3af">
+                    <div class="sl-block-content fragment" data-line-x1="0" data-line-y1="200" data-line-x2="86"
+                        data-line-y2="200" data-line-color="#00bcd4" data-line-start-type="line-arrow"
+                        data-line-end-type="none" style="z-index: 29;" data-line-width="10px" data-fragment-index="6">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="86"
+                            height="1" viewbox="0 200 86 1">
+                            <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="8" y1="200" x2="86" y2="200"></line>
+                            <line stroke="#00bcd4" stroke-width="10" x1="8" y1="200" x2="86" y2="200"></line>
+                            <path style="fill: rgba(0,0,0,0);" stroke="#00bcd4" stroke-width="10"
+                                transform="translate(8,200) rotate(90)" d="M -22.5 -22.5 L 0 0 L 22.5 -22.5"></path>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 105px; left: 42px; top: 496px;"
+                    data-block-id="843692f51c6aea51a04ee928b4ad6d86">
+                    <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 30;" data-fragment-index="0">
+                        <p><span style="color:#fafafa"><span style="font-size:2.0em">13</span></span></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="shape"
+                    style="min-width: 4px; min-height: 4px; width: 144px; height: 144px; left: 22px; top: 463px;"
+                    data-block-id="899e8530f01f7b332f70aa3a0729d2d7">
+                    <div class="sl-block-content fragment" data-shape-type="rect"
+                        data-shape-fill-color="rgb(139, 195, 74)" data-shape-stretch="true" style="z-index: 24;"
+                        data-fragment-index="0"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%"
+                            height="100%" preserveaspectratio="none" viewbox="0 0 144 144">
+                            <rect width="144" height="144" class="shape-element" fill="rgb(139, 195, 74)"></rect>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="shape"
+                    style="min-width: 4px; min-height: 4px; width: 144px; height: 144px; left: 275px; top: 463px;"
+                    data-block-id="2b03b2b1986d7419289d96014b636f54">
+                    <div class="sl-block-content fragment" data-shape-type="rect"
+                        data-shape-fill-color="rgb(139, 195, 74)" data-shape-stretch="true" style="z-index: 27;"
+                        data-fragment-index="1"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%"
+                            height="100%" preserveaspectratio="none" viewbox="0 0 144 144">
+                            <rect width="144" height="144" class="shape-element" fill="rgb(139, 195, 74)"></rect>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="line"
+                    style="width: auto; height: auto; min-width: 1px; min-height: 1px; left: 437px; top: 535px;"
+                    data-block-id="6fd34c7826b4e6c7c11e9f7ab336d73f">
+                    <div class="sl-block-content fragment" data-line-x1="0" data-line-y1="200" data-line-x2="86"
+                        data-line-y2="200" data-line-color="#00bcd4" data-line-start-type="line-arrow"
+                        data-line-end-type="none" style="z-index: 31;" data-line-width="10px" data-fragment-index="4">
+                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" preserveaspectratio="xMidYMid" width="86"
+                            height="1" viewbox="0 200 86 1">
+                            <line stroke="rgba(0,0,0,0)" stroke-width="15" x1="8" y1="200" x2="86" y2="200"></line>
+                            <line stroke="#00bcd4" stroke-width="10" x1="8" y1="200" x2="86" y2="200"></line>
+                            <path style="fill: rgba(0,0,0,0);" stroke="#00bcd4" stroke-width="10"
+                                transform="translate(8,200) rotate(90)" d="M -22.5 -22.5 L 0 0 L 22.5 -22.5"></path>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="shape"
+                    style="min-width: 4px; min-height: 4px; width: 144px; height: 144px; left: 537px; top: 463px;"
+                    data-block-id="3a36c788cf78cb01af5510fd8a3e19a3">
+                    <div class="sl-block-content fragment" data-shape-type="rect"
+                        data-shape-fill-color="rgb(139, 195, 74)" data-shape-stretch="true" style="z-index: 26;"
+                        data-fragment-index="3"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%"
+                            height="100%" preserveaspectratio="none" viewbox="0 0 144 144">
+                            <rect width="144" height="144" class="shape-element" fill="rgb(139, 195, 74)"></rect>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="shape"
+                    style="min-width: 4px; min-height: 4px; width: 144px; height: 144px; left: 800px; top: 463px;"
+                    data-block-id="aaae05ede285377e55485a4cd4686050">
+                    <div class="sl-block-content fragment" data-shape-type="rect"
+                        data-shape-fill-color="rgb(139, 195, 74)" data-shape-stretch="true" style="z-index: 25;"
+                        data-fragment-index="5"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" width="100%"
+                            height="100%" preserveaspectratio="none" viewbox="0 0 144 144">
+                            <rect width="144" height="144" class="shape-element" fill="rgb(139, 195, 74)"></rect>
+                        </svg></div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 105px; left: 295px; top: 496px;"
+                    data-block-id="f01055e02b4e9e889a5f9c24a15378fb">
+                    <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 32;" data-fragment-index="1">
+                        <p><span style="color:#fafafa"><span style="font-size:2.0em">27</span></span></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 105px; left: 560px; top: 496px;"
+                    data-block-id="2a32c81193a8b1c9d718e71f68cf80d5">
+                    <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 33;" data-fragment-index="3">
+                        <p><span style="color:#fafafa"><span style="font-size:2.0em">32</span></span></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 105px; left: 828px; top: 496px;"
+                    data-block-id="2fe16bce838477c5d0690b12327290d6">
+                    <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 34;" data-fragment-index="5">
+                        <p><span style="color:#fafafa"><span style="font-size:2.0em">71</span></span></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 144px; left: 23px; top: 626px;"
+                    data-block-id="9e5aa55ed9cb6c149ec6b4df405c21f6">
+                    <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 35;" data-fragment-index="0">
+                        <p>TAIL</p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 144px; left: 809px; top: 626px;"
+                    data-block-id="36ecabfd1cb4731560ee849e3f159b10">
+                    <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 36;" data-fragment-index="7">
+                        <p>HEAD</p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text" data-block-id="76ff9620f6c271ccec2302ec65b131b1"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 966px; left: -3px; top: 76px;">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 37;">
+                        <p><span style="color:#3f51b5"><span style="font-size:2.0em">REVERSING A SINGLY LINKED
+                                    LIST</span></span></p>
+                    </div>
+                </div>
+            </section>
+            <section data-id="a1cd2cd5f26290f2f5d1ac2b796f4b74">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 852px; left: 54px; top: 39px;"
+                    data-block-id="453360e931f4126d626c3f4ae8011369">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;">
+                        <h1><span style="color:#673ab7"><span style="font-size:1.2em">Reverse pseudocode</span></span>
+                        </h1>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+
+
+
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 600px; left: 171px; top: 647px;"
+                    data-block-id="7173173f7ac16ca45549d14bd9e5c858">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <p><a href="https://visualgo.net/en/list" target="_blank">Let's visualize this!</a></p>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 848px; left: 39px; top: 189px;"
+                    data-block-id="bff4106c3378b8bf1c99fd2c1c5133ee">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 13;">
+                        <ul>
+                            <li class="fragment" data-fragment-index="0">Swap the head and tail</li>
+                            <li class="fragment" data-fragment-index="1">Create a variable called next</li>
+                            <li class="fragment" data-fragment-index="2">Create a variable called prev</li>
+                            <li class="fragment" data-fragment-index="3">Create a variable called node and initialize it
+                                to the head property</li>
+                            <li class="fragment" data-fragment-index="4">Loop through the list</li>
+                            <li class="fragment" data-fragment-index="5">Set next to be the next property on whatever
+                                node is</li>
+                            <li class="fragment" data-fragment-index="6">Set the next property on the node to be
+                                whatever prev is</li>
+                            <li class="fragment" data-fragment-index="7">Set prev to be the value of the node variable
+                            </li>
+                            <li class="fragment" data-fragment-index="8">Set the node variable to be the value of the
+                                next variable</li>
+                            <li class="fragment" data-fragment-index="9">Once you have finished looping, return the list
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            <section data-id="2bf9ce0f79625736b0a2467013ef1244">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 0px;"
+                    data-block-id="91b3d264e81bb352eb4a6b6b7d171787">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 10;" dir="ui">
+                        <h1>
+                            <span style="color:#00bcd4">
+                                <span style="font-size:4.0em">YOUR</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 877px; left: 16px; top: 290px;"
+                    data-block-id="3f8f6144b3555ed0e29747bc0c32d9ff">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 11;">
+                        <h1>
+                            <span style="color:#f44336">
+                                <span style="font-size:4.0em">TURN</span>
+                            </span>
+                        </h1>
+                    </div>
+                </div>
+            </section>
+            <section data-id="7769f5037bdc0fdc4f5d5fd221a91845">
+                <div class="sl-block" data-block-type="text" style="width: 937px; left: 12px; top: 25px; height: auto;"
+                    data-block-id="d30da9ce7810cd92e63d47e3c9d3665e">
+                    <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                        style="z-index: 10; line-height: 0.988;" data-has-line-height="">
+                        <h1><span style="color:#00bcd4"><span style="font-size:2.0em">Big O </span></span></h1>
+
+                        <h1><span style="color:#00bcd4"><span style="font-size:98px">of Singly Linked Lists</span>
+                            </span></h1>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 860px; left: 50px; top: 316px;"
+                    data-block-id="8dcd6cadb3c630aa79395c81ac1658de">
+                    <div class="sl-block-content fragment" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 13;" data-fragment-index="0">
+                        <p><span style="font-size:1.6em">Insertion - <strong>O(1)</strong></span></p>
+
+                        <p><span style="font-size:1.6em">Removal - <strong>It depends.... O(1) or O(N)</strong></span>
+                        </p>
+
+                        <p><span style="font-size:1.6em">Searching - <strong>O(N)</strong></span></p>
+
+                        <p><span style="font-size:1.6em">Access - <strong>O(N)</strong></span></p>
+                    </div>
+                </div>
+            </section>
+            <section data-id="fe88c4c49d3106f6d8b6415cbd5a9b2e">
+                <div class="sl-block" data-block-type="text" style="width: 800px; left: 80px; top: 43px; height: auto;"
+                    data-block-id="f0d695d38d0ff6cf95e7cd4d4918b0ac">
+                    <div class="sl-block-content" data-placeholder-tag="h1" data-placeholder-text="Title Text"
+                        style="z-index: 10;">
+                        <h1><span style="color:#f44336"><span style="font-size:2.0em">RECAP</span></span></h1>
+                    </div>
+                </div>
+                <div class="sl-block" data-block-type="text"
+                    style="height: auto; min-width: 30px; min-height: 30px; width: 848px; left: 69px; top: 248px;"
+                    data-block-id="6b4b17dc19525b702bf6ab7b86a9b179">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                        style="z-index: 12;">
+                        <ul>
+                            <li class="fragment" data-fragment-index="0">Singly Linked Lists are an excellent
+                                alternative to arrays when insertion and deletion at the beginning are frequently
+                                required</li>
+                            <li class="fragment" data-fragment-index="1">Arrays contain a built in index whereas Linked
+                                Lists do not</li>
+                            <li class="fragment" data-fragment-index="2">The idea of a list data structure that consists
+                                of nodes is the foundation for other data structures like Stacks and Queues</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <div id="theme-html-output"></div>
+    </div>
+
+    <footer class="embed-footer">
+        <a class="embed-footer-promotion" href="https://cs.slides.com/colt_steele/singly-linked-lists"
+            target="_blank">By <strong>colt_steele</strong></a>
+        <div class="embed-footer-buttons">
+            <button class="embed-footer-button embed-footer-share icon i-share" aria-label="Share"
+                data-tooltip="Share"></button>
+            <a class="embed-footer-button embed-footer-fullscreen icon i-fullscreen" aria-label="Fullscreen"
+                data-tooltip="Fullscreen" href="https://cs.slides.com/colt_steele/singly-linked-lists/fullscreen"
+                target="_top"></a>
+        </div>
+    </footer>
+
+
+    <!-- Closes Reveal -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/head.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/reveal.js"></script>
+    <script>
+        Reveal.initialize(
+            {
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                // Optional reveal.js plugins
+                dependencies: [
+                    // { src: 'dist/js/classList.js', condition: function () { return !document.body.classList; } },
+                    // { src: 'dist/js/marked.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/markdown.js', condition: function () { return !!document.querySelector('[data-markdown]'); } },
+                    // { src: 'dist/js/highlight.js', async: true, condition: function () { return !!document.querySelector('pre code'); }, callback: function () { hljs.initHighlightingOnLoad(); } },
+                    // { src: 'dist/js/zoom.js', async: true },
+                    // { src: 'dist/js/notes.js', async: true },
+                    // { src: 'dist/js/accessibility-helper.js', async: true, condition: function () { return !!document.body.classList; }}
+                ]
+            }
+        );
+    </script>
+    <!-- +++ show the html code +++ -->
+    <script>
+
+        let jss = document.querySelectorAll(".js");
+
+        console.log('jss: ', jss)
+        jss.forEach((js) => {
+            let a = js.innerHTML;
+            console.log('innerHTML: ', js)
+            let b = a.split('>');
+            js.textContent = ''
+
+            for (var i = 0; i < b.length; i++) {
+                let replaceBracket = i == b.length - 1 ? "" : ">";
+                js.textContent += b[i] + replaceBracket;
+            }
+        })
+    </script>
+</body>
+
+</html>

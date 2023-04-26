@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+    <!-- For syntax highlighting -->
+    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+    <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
+    <!-- light editor-->
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+    <style>
+        .remark-slide-scaler {
+            width: 100% !important;
+            height: 100% !important;
+            transform: scale(1) !important;
+            left: 0 !important;
+            top: 0 !important;
+        }
+
+        @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+        @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+        @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+        body {
+            font-family: 'Droid Serif';
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Yanone Kaffeesatz';
+            font-weight: 400;
+            margin-bottom: 0;
+        }
+
+        .imp {
+            color: brown;
+            font-family: bold;
+        }
+
+        .remark-slide-content h1 {
+            font-size: 3em;
+        }
+
+        .remark-slide-content h2 {
+            font-size: 2em;
+        }
+
+        .remark-slide-content h3 {
+            font-size: 1.6em;
+        }
+
+        .footnote {
+            position: absolute;
+            bottom: 3em;
+        }
+
+        li p {
+            line-height: 1.25em;
+        }
+
+        .red {
+            color: #fa0000;
+        }
+
+        .large {
+            font-size: 2em;
+        }
+
+        a,
+        a>code {
+            color: rgb(249, 38, 114);
+            text-decoration: none;
+        }
+
+        code {
+            background: #e7e8e2;
+            border-radius: 5px;
+        }
+
+        .remark-code,
+        .remark-inline-code {
+            font-family: 'Ubuntu Mono';
+        }
+
+        .remark-code-line-highlighted {
+            background-color: #373832;
+        }
+
+        .pull-left {
+            float: left;
+            width: 47%;
+        }
+
+        .pull-right {
+            float: right;
+            width: 47%;
+        }
+
+        .pull-right~p {
+            clear: both;
+        }
+
+        #slideshow .slide .content code {
+            font-size: 0.8em;
+        }
+
+        #slideshow .slide .content pre code {
+            font-size: 0.9em;
+            padding: 15px;
+            background-color: #272822;
+
+        }
+
+        .remark-code {
+            font-size: 0.9em;
+            padding: 15px;
+            background-color: #000 !important;
+
+            color: white;
+
+        }
+
+        .remark-code-line {
+            color: #ddd;
+        }
+
+        .hljs-subst {
+            color: #aaa !important;
+        }
+
+        .inverse {
+            background: #272822;
+            color: #777872;
+            text-shadow: 0 0 20px #333;
+        }
+
+        .hljs-number,
+        .hljs-title,
+        .hljs-string {
+            color: #f92672 !important;
+        }
+
+        .hljs-keyword {
+            color: lightgreen !important;
+        }
+
+        .inverse h1,
+        .inverse h2 {
+            color: #f3f3f3;
+            line-height: 0.8em;
+        }
+
+        /* Slide-specific styling */
+        #slide-inverse .footnote {
+            bottom: 12px;
+            left: 20px;
+        }
+
+        #slide-how .slides {
+            font-size: 0.9em;
+            position: absolute;
+            top: 151px;
+            right: 140px;
+        }
+
+        #slide-how .slides h3 {
+            margin-top: 0.2em;
+        }
+
+        #slide-how .slides .first,
+        #slide-how .slides .second {
+            padding: 1px 20px;
+            height: 90px;
+            width: 120px;
+            -moz-box-shadow: 0 0 10px #777;
+            -webkit-box-shadow: 0 0 10px #777;
+            box-shadow: 0 0 10px #777;
+        }
+
+        #slide-how .slides .first {
+            background: #fff;
+            position: absolute;
+            top: 20%;
+            left: 20%;
+            z-index: 1;
+        }
+
+        #slide-how .slides .second {
+            position: relative;
+            background: #fff;
+            z-index: 0;
+        }
+
+        /* Two-column layout */
+        .left-column {
+            color: #777;
+            width: 20%;
+            height: 92%;
+            float: left;
+        }
+
+        .left-column h2:last-of-type,
+        .left-column h3:last-child {
+            color: #000;
+        }
+
+        .right-column {
+            width: 75%;
+            float: right;
+            padding-top: 1em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <textarea id="source">
+
+  name: inverse
+  layout: true
+  class: center middle inverse
+  # React Lifecycle Methods
+  
+  ---
+  
+  ---
+  
+  name: code
+  layout: true
+  class:code
+  
+  ---
+    #  What is React Lifecycle Methods ?
+  
+    * The lifecycle methods are called during the life-cycle of an component, which allows us to update the UI and application state.
+    * They are pre-built optional or required methods which we can run according to where the component is in its life. 
+    * They may also help in closing the gap between 3rd party libraries and React.
+    * They’re to be used in special cases, when other fallbacks like rearranging your components or moving your state around won’t work.
+    * NOTE: In time of this slide the React version is  16.31.xx. Its API may change in future
+    * WARNING: They (except  'constructor' ) add complexity to your app. Don’t use them unless you must
+  
+  ---
+  
+  # Phases of a React component
+  
+  - 1 Mounting ( component is created and inserted into the DOM )
+  - 2 Updation ( if state or props changes update occurs )
+  - 3 Unmounting ( component is removed from the DOM )
+  
+  ---
+    <img src="../assets/img/react/lifecycle.png" width="115%" style="margin-left: -6em">
+  
+  ---
+   ### TLDR
+    <img src="../assets/img/react/react-lifecycle.png" width="115%" style="margin-left: -6em">
+  
+  ---
+  ### TLDR
+    <img src="../assets/img/react/react-lifecycle-definition.png" width="115%" style="margin-left: -6em">
+  
+  
+  ---
+  # Mounting
+    ```javascript
+      Constructor -> render -> componentDidMount
+    ```
+  * Process of converting the virtual components into actual DOM elements that are placed in the DOM by React.
+  * (e.g. an HTML div or li element) in the DOM tree.
+  * When React first calls 'render' method it says to be mounting, re-render is just updates the DOM.
+  
+  #### Topics to be covered in Mounting:
+  * What is contructor and super?
+  * Setting up the initial states in constructor
+  * getDerivedStateFromProps ( we will learn this in updation as it's called in both stages )
+  * defaultProps
+  * render
+  * componentDidMount
+  
+  
+  ---
+  ### Constructor
+  
+  * Constructors is called before component is mounted 
+  * Is only place where you assign states and call super from parent class/component
+  * You don't need constructor if you don't setup a state or bind methods in your component
+  * Don't call api or create a function inside constructor
+  * Avoid copying props to state. Instead use props directly. This also related to defaultProps.
+  
+  
+  ---
+  ### Example:
+  * Constructors is called before component is mounted 
+  * Is only place where you assign states and call super from parent class/component
+  
+  ```javascript
+  
+  class Album extends React.Component {
+    constructor() {
+      super();
+    }
+  }
+  ```
+  - set initial state
+  
+  ```javascript
+  class Album extends React.Component {
+    constructor(props) {
+      super(props)
+      this.state = {name: 'Ulan'}
+    }
+  }
+  
+  ```
+  ---
+  ### Example
+  - You don't need constructor if you don't setup a state or bind methods in your component
+  
+  ```javascript
+  
+  class Name extends Component {
+      render () {
+          return (
+              <p> Name: { this.props.name }</p>
+          );
+      }
+  }
+  ```
+  
+  ---
+  ### Do we need to call <span class="imp">super()</span> inside a constructor?
+  
+  - ES6 class constructors MUST call <span class="imp">super()</span> if they are subclasses
+  - Always call <span class="imp">super()</span> if you have a constructor
+  - A subclass does not have to have a constructor
+  
+  ```javascript
+  
+  class MyClass extends React.Component {
+      constructor(){
+          console.log(this) //Error: 'this' is not allowed before super()
+      }
+  }
+  ```
+  
+  ---
+  ### What is the deal with <span class="imp">super()</span> vs <span class="imp">super(props)</span> ?
+  
+  - Call <span class="imp">super(props)</span> only if you want to access <span class="imp">this.props</span>  inside the constructor
+  
+  ```javascript
+  class MyClass extends React.Component{
+      constructor(props){
+          super();
+          console.log(this.props); // this.props is undefined
+  
+      }
+  }
+  ```
+  ```javascript
+  class MyClass extends React.Component{
+      render(){
+          // There is no need to call `super(props)` or even having a constructor
+  
+          // this.props is automatically set for you by React
+  
+          // not just in render but another where else other than the constructor
+  
+          console.log(this.props);  // it works!
+  
+      }
+  }
+  ```
+  
+  ---
+  ### DefaultProps
+  
+  - defaultProps avoids us having undefined props
+  - this might look different or even get replaced in functional components 
+  
+  ```javascript
+  
+  class Album extends React.Component {
+    render () {
+          return (
+              <p> Name: { this.props.name }</p> // 'Rose'
+          );
+      }
+  }
+  
+  Album.defaultProps = {
+    name: 'Rose'
+  };
+  
+  ```
+  
+  ---
+  ###  componentDidMount
+  - Invoked immediately after a component is mounted (inserted into the tree).
+  - In this method, we can access the DOM
+  - This method is a good place to set up any subscriptions. If you do that, don’t forget to unsubscribe in componentWillUnmount().
+  
+  #### Usage
+    - Integrating third party Javascript libraries(jquery, D3)
+    - The API calls should be made in here.
+  
+  ```javascript
+      componentDidMount() {
+          fetch('https://jsonplaceholder.typicode.com/photos')
+            .then(response => response.json())
+            .then(json => console.log(json))
+      }
+  ```
+  
+  ---
+  #  Updating
+    An update can be caused by changes to props or state. 
+    These methods are called when a component is being re-rendered:
+  
+   ```javascript
+   static getDerivedStateFromProps -> shouldComponentUpdate  -> render -> componentDidUpdate -> getSnapshotBeforeUpdate
+  ```
+  #### Topics to be covered in Updating:
+  - getDerivedStateFromProps (i am covering it here although it also triggered in mounting)
+  - shouldComponentUpdate
+  - render (we already know)
+  - componentDidUpdate
+  - getSnapshotBeforeUpdate
+  
+  ---
+  ###  getDerivedStateFromProps()
+  
+  - WARNING: getDerivedStateFromProps is an advanced feature and should be used sparingly because of this complexity
+  - it is invoked right before calling the render method, both on the initial mount and on subsequent updates. 
+  - it exists for only one purpose where it enables a component to update its internal state as the result of changes in props. !important
+  - You might use other preffered methods in most cases
+  - if you don't structure your components well enoguh using this will lead to confusing bugs
+  
+  Preffered solutions:
+  - Recommendation: Fully controlled component
+  - Memoization ( not best solution and complex )
+  - others
+  
+  ---
+  ### Example
+  
+  ```javascript
+        class EmailInput extends Component {
+          state = { email: this.props.email };
+  
+          render() {
+            return <input onChange={this.handleChange} value={this.state.email} />;
+          }
+  
+          handleChange = event => {
+            this.setState({ email: event.target.value });
+          };
+  
+          getDerivedStateFromProps(nextProps) {
+            // This will erase any local state updates!
+            // Do not do this.
+            this.setState({ email: nextProps.email });
+          }
+        }
+  ```
+  solution1: Fully controlled component
+  
+  ```javascript
+          function EmailInput(props) {
+            return <input onChange={props.onChange} value={props.email} />;
+          }
+  ```
+  
+  ---
+  ###  shouldComponentUpdate()
+  
+  - Tells the React that when the component receives new props or state is being updated, should React re-render or it can skip rendering?
+  - By default, this method return <span class="imp">true</span> and React re-render on every change.
+  - Note that React will call this method even if the props have not changed, so make sure to compare the current and next values if you only want to handle changes. This may occur when the parent component causes your component to re-render.
+  - This method only exists as a performance optimization.
+  - In most cases rely on default rendering behavior
+  
+  - if <span class="imp">shouldComponentUpdate()</span> returns false,
+    then <span class="imp"> render(), and componentDidUpdate()</span> will not be invoked.
+  
+  
+  ```javascript
+    shouldComponentUpdate(nextProps, nextState) {
+      let shouldUpdate = this.props.status !== nextProps.status;
+      return shouldUpdate;
+    }
+  ```
+  
+  ---
+  ### componentDidUpdate()
+  - It is invoked immediately after updating occurs. 
+  - It won't be called for the initial render.
+  - Invoked when you need something to be the absolutely last thing to be executed.
+  - componentDidUpdate() will not be invoked if shouldComponentUpdate() returns false.
+  - This is a risky behavior and can easily enter an infinite loop. Proceed with caution!
+  
+  ```javascript
+        componentDidUpdate(prevProps) {
+          // Typical usage (don't forget to compare props):
+          if (this.props.userID !== prevProps.userID) {
+            this.fetchData(this.props.userID);
+          }
+        }
+  ```
+  - Check if there has been a change in props from what it currently is. 
+  - In this case, there won’t be a need to make the API call if the props did not change.
+  
+  
+  ---
+  ### getSnapshotBeforeUpdate()
+  
+  - is invoked right before the most recently rendered output is committed to e.g. the DOM. In other word update.
+  - anything you wanted to save before UI gets updated. Example: scroll position etc.
+  - Any value returned by this lifecycle will be passed as a parameter to componentDidUpdate().
+  - WARNING: if you are unsure, you probably don't need it. If sure you will know it.
+  - Again this lifecycle method is used very rare cases.
+  
+  ---
+  ### Example
+  
+  ```javascript
+        class ScrollingList extends React.Component {
+          constructor(props) {
+            super(props);
+            this.listRef = React.createRef();
+          }
+  
+          getSnapshotBeforeUpdate(prevProps, prevState) {
+            // Are we adding new items to the list?
+            // Capture the scroll position so we can adjust scroll later.
+            if (prevProps.list.length < this.props.list.length) {
+              const list = this.listRef.current;
+              return list.scrollHeight - list.scrollTop;
+            }
+            return null;
+          }
+  
+          componentDidUpdate(prevProps, prevState, snapshot) {
+            // If we have a snapshot value, we've just added new items.
+            // Adjust scroll so these new items don't push the old ones out of view.
+            // (snapshot here is the value returned from getSnapshotBeforeUpdate)
+            if (snapshot !== null) {
+              const list = this.listRef.current;
+              list.scrollTop = list.scrollHeight - snapshot;
+            }
+          }
+  
+          render() {
+            return (
+              <div ref={this.listRef}>{/* ...contents... */}</div>
+            );
+          }
+        }
+  ```
+  
+  ---
+  # Unmounting
+  - This method is called when a component is being removed from the DOM
+  
+  
+  ---
+  ### componentWillUnmount()
+  - Invoked immediately before a component is unmounted and destroyed
+  - All the cleanups related to the component
+  - Ex: invalidating timers, canceling network requests, or cleaning up any subscriptions that were created in componentDidMount().
+  
+  
+  ```javascript
+  componentWillUnmount() {
+      if (this.timeout) {
+        clearTimeout(this.timeout);
+      }
+    }
+  ```
+  
+  ---
+  # References
+  
+  - https://reactjs.org/docs/react-component.html
+  - https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html
+  - https://hackernoon.com/reactjs-component-lifecycle-methods-a-deep-dive-38275d9d13c0
+  - https://www.fullstackreact.com/30-days-of-react/day-7/
+  
+  
+      </textarea>
+
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+    <script>
+        var slideshow = remark.create({
+            highlightLines: true,
+        });
+    </script>
+
+</body>
+
+</html>

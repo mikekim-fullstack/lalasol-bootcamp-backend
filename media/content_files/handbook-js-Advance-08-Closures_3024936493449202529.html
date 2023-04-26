@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    div class="wrapper">
+    <div class="content">
+        <h1>JavaScript <span>Closures</span></h1>
+        <p class="summary">In this tutorial you will learn what JavaScript closure is and how it works.</p>
+        <h2>Understanding the JavaScript Closures</h2>
+        <p>In the <a href="/javascript-tutorial/javascript-functions.php#variable-scope">JavaScript functions</a>
+            chapter you've learnt that in JavaScript a variable's scope can be <em>global</em> or <em>local</em>. Since
+            ES6 you can also create <a href="/javascript-tutorial/javascript-es6-features.php#let-keyword">block-scoped
+                variables</a> using the <code>let</code> keyword.</p>
+        <p>A global variable can be accessed and manipulated anywhere in the program, whereas a local variable can only
+            be accessed and manipulated by the function they are declared in.</p>
+        <p>However, there are certain situations when you want a variable to be available throughout the script, but you
+            don't want just any part of your code to be able to change its value accidently.</p>
+        <p>Let's see what happens if you try to achieve this using the global variable:</p>
+        <!--Code box-->
+        <div class="example">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token comment">// Global variable</span>
+<span class="token keyword">var</span> counter  <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">// A function dedicated to manipulate the 'counter' variable</span>
+<span class="token keyword">function</span> <span class="token function">makeCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> counter <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Calling the function</span>
+<span class="token function">makeCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>counter<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Prints: 1</span>
+
+<span class="token function">makeCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>counter<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Prints: 2</span>
+
+<span class="token comment">// Trying to manipulate the 'counter' variable from outside</span>
+counter <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>counter<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Prints: 10</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <p>As you can see in the above example, the value of the <code>counter</code> variable can be changed from
+            anywhere in the program, without calling the <code>makeCounter()</code> function (<i>line no-17</i>).</p>
+        <p>Now, let's try to achieve the same thing with the local variable and see what happens:</p>
+        <!--Code box-->
+        <div class="example">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">function</span> <span class="token function">makeCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token comment">// Local variable</span>
+<span class="token keyword">var</span> counter  <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Manipulating the 'counter' variable</span>
+<span class="token keyword">return</span> counter <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// Calling the function</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">makeCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Prints: 1</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">makeCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Prints: 1</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <p>In this case the <code>counter</code> variable cannot be manipulated from outside, since it is local to
+            <code>makeCounter()</code> function, but its value will also not increase after subsequent function call,
+            because every time we call the function it reset the <code>counter</code> variable value, which you can
+            clearly see in the above example (<i>line no-11</i>). The JavaScript closure can solve our problem.</p>
+        <p>A closure is basically an inner function that has access to the parent function's scope, even after the
+            parent function has finished executing. This is accomplished by creating a function inside another function.
+            Let's take a look at the following example to see how it works:</p>
+        <!--Code box-->
+        <div class="example break">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">function</span> <span class="token function">makeCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">var</span> counter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Nested function</span>
+<span class="token keyword">function</span> <span class="token function">make</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+counter <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">return</span> counter<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">return</span> make<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* Execute the makeCounter() function and store the
+returned value in the myCounter variable */</span>
+<span class="token keyword">var</span> myCounter <span class="token operator">=</span> <span class="token function">makeCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">myCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Prints: 1</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">myCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Prints: 2</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <p>As you can see in the above example, the inner function <code>make()</code> is returned from the outer
+            function <code>makeCounter()</code>. So the value of the <code>myCounter</code> is the inner
+            <code>make()</code> function (<i>line no-14</i>), and calling <code>myCounter</code> effectively calls
+            <code>make()</code>. In JavaScript functions can assigned to variables, passed as arguments to other
+            functions, can be nested inside other functions, and more.</p>
+        <p>You'll also notice that the inner function <code>make()</code> is still able to access the value of
+            <code>counter</code> variable defined in the outer function, even though the <code>makeCounter()</code>
+            function has already finished executing (<i>line no-14</i>). It happens because functions in JavaScript form
+            closures. Closures internally store references to their <em>outer variables</em>, and can access and update
+            their values.</p>
+        <p>In the example above, the <code>make()</code> function is a closure whose code refers to the outer variable
+            <code>counter</code>. This implies that whenever the <code>make()</code> function is invoked, the code
+            inside it is able to access and update the <code>counter</code> variable because it is stored in the
+            closure.</p>
+        <p>Finally, since the outer function has finished executing, no other part of the code can access or manipulate
+            the <code>counter</code> variable. Only the inner function has exclusive access to it.</p>
+        <p>The previous example can also be written using anonymous function expression, like this:</p>
+        <!--Code box-->
+        <div class="example break">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token comment">// Anonymous function expression</span>
+<span class="token keyword">var</span> myCounter <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">var</span> counter <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Nested anonymous function</span>
+<span class="token keyword">return</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+counter <span class="token operator">+=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">return</span> counter<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">myCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Prints: 1</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token function">myCounter</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Prints: 2</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <!--Tip Box-->
+        <div class="color-box">
+            <div class="shadow">
+                <div class="info-tab tip-icon" title="Useful Tips"><i></i></div>
+                <div class="tip-box">
+                    <p><strong>Tip:</strong> In JavaScript, all functions have access to the global scope, as well as
+                        the scope above them. As JavaScript supports nested functions, this typically means that the
+                        nested functions have access to any value declared in a higher scope including its parent
+                        function's scope.</p>
+                </div>
+            </div>
+        </div>
+        <!--End:Tip Box-->
+        <!--Note box-->
+        <div class="color-box">
+            <div class="shadow">
+                <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                <div class="note-box">
+                    <p><strong>Note:</strong> The global variables live as long as your application (i.e. your web page)
+                        lives. Whereas, the local variables have a short life span, they are created when the function
+                        is invoked, and destroyed as soon as the function is finished executing.</p>
+                </div>
+            </div>
+        </div>
+        <!--End:Note box-->
+        <hr>
+        <h2>Creating the Getter and Setter Functions</h2>
+        <p>Here we will create a variable <code>secret</code> and protect it from being directly manipulated from
+            outside code using closure. We will also create getter and setter functions to get and set its value.</p>
+        <p>Additionally, the setter function will also perform a quick check whether the specified value is a number or
+            not, and if it is not it will not change the variable value.</p>
+        <!--Code box-->
+        <div class="example break">
+            <div class="codebox">
+
+                <pre
+                    class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> getValue<span class="token punctuation">,</span> setValue<span class="token punctuation">;</span>
+
+<span class="token comment">// Self-executing function</span>
+<span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">var</span> secret <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Getter function</span>
+<span class="token function-variable function">getValue</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> secret<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Setter function</span>
+<span class="token function-variable function">setValue</span> <span class="token operator">=</span> <span class="token keyword">function</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token keyword">typeof</span> x <span class="token operator">===</span> <span class="token string">"number"</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+secret <span class="token operator">=</span> x<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Calling the functions</span>
+<span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Returns: 0</span>
+<span class="token function">setValue</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Returns: 10</span>
+<span class="token function">setValue</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">getValue</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Returns: 10</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+            </div>
+        </div>
+        <!--End:Code box-->
+        <!--Tip Box-->
+        <div class="color-box">
+            <div class="shadow">
+                <div class="info-tab tip-icon" title="Useful Tips"><i></i></div>
+                <div class="tip-box">
+                    <p><strong>Tip:</strong> Self-executing functions are also called <em>immediately invoked function
+                            expression (IIFE)</em>, <em>immediately executed function</em>, or <em>self-executing
+                            anonymous function</em>.</p>
+                </div>
+            </div>
+        </div>
+        <!--End:Tip Box-->
+
+    </div>
+</body>
+
+</html>

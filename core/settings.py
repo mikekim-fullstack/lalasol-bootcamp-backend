@@ -112,6 +112,9 @@ def addHttp (a):
 
 CSRF_TRUSTED_ORIGINS=[
     "https://lalasol-bootcamp.web.app",
+    "https://cdnjs.cloudflare.com",
+     "https://use.fontawesome.com",
+    "https://fonts.googleapis.com",
     "http://0.0.0.0:$PORT",
      "http://127.0.0.1:3000",
      "http://localhost:3000", 
@@ -124,6 +127,10 @@ CSRF_TRUSTED_ORIGINS=[
 ]
 CORS_ALLOWED_ORIGINS = [
     "https://lalasol-bootcamp.web.app",
+    "http://lalasol-bootcamp.web.app",
+    "https://cdnjs.cloudflare.com",
+    "https://use.fontawesome.com",
+    "https://fonts.googleapis.com",
     "http://0.0.0.0:$PORT",
     "http://127.0.0.1:3000",
     "http://localhost:3000", 
@@ -135,7 +142,6 @@ CORS_ALLOWED_ORIGINS = [
    
 ]
 CORS_ORIGIN_ALLOW_ALL = True
-
 
 CSRF_TRUSTED_ORIGINS = [
          "https://lalasol-bootcamp.web.app",
@@ -164,13 +170,16 @@ X_CONTENT_TYPE_OPTIONS='NOSNIFF'
 # Keep our policy as strict as possible
 CSP_DEFAULT_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co")
 CSP_STYLE_SRC = ("'self'","'unsafe-eval'", "'unsafe-inline'", 'fonts.googleapis.com', "https://lalasol-bootcamp.web.app","http://127.0.0.1:3000")
-CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co")
-CSP_FONT_SRC = ("'self'",'fonts.gstatic.com','https://lalasol-bootcamp.web.app/','https://lalasol-bootcamp-backend-production.up.railway.app','https://fonts.googleapis.com',"http://localhost:3000","http://127.0.0.1:3000",)
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co","https://cdnjs.cloudflare.com", "https://use.fontawesome.com",
+    "https://fonts.googleapis.com",)
+CSP_FONT_SRC = ("'self'",'fonts.gstatic.com','https://lalasol-bootcamp.web.app/','https://lalasol-bootcamp-backend-production.up.railway.app','https://fonts.googleapis.com',"http://localhost:3000","http://127.0.0.1:3000", "https://use.fontawesome.com",
+    "https://fonts.googleapis.com",)
 CSP_IMG_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co",'https://images.pexels.com','https://youtube.com')
 CSP_FRAME_SRC=("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co",'https://youtube.com')
 # Access_Control_Allow_Origin= "https://lalasol-bootcamp.web.app"
-ACCESS_CONTROL_ALLOW_ORIGIN =  "https://lalasol-bootcamp.web.app"
+ACCESS_CONTROL_ALLOW_ORIGIN = [ "https://lalasol-bootcamp.web.app"]
 # Application definition
+# CORS_ALLOW_ALL_ORIGINS = True
 
 
 ROOT_URLCONF = "core.urls"

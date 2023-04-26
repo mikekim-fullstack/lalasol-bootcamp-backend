@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript <span>DOM Navigation</span></h1>
+            <p class="summary">In this tutorial you will learn how to navigate between DOM nodes in JavaScript.</p>
+            <h2>Navigating Between DOM Nodes</h2>
+            <p>In the previous chapters you've learnt how to select individual elements on a web page. But there are
+                many occasions where you need to access a child, parent or ancestor element. See the <a
+                    href="javascript-dom-nodes.php">JavaScript DOM nodes</a> chapter to understand the logical
+                relationships between the nodes in a DOM tree.</p>
+            <p class="space">DOM node provides several properties and methods that allow you to navigate or traverse
+                through the tree structure of the DOM and make changes very easily. In the following section we will
+                learn how to navigate up, down, and sideways in the DOM tree using JavaScript.</p>
+            <h2>Accessing the Child Nodes</h2>
+            <p>You can use the <code>firstChild</code> and <code>lastChild</code> properties of the DOM node to access
+                the first and last direct <em>child node</em> of a node, respectively. If the node doesn't have any
+                child element, it returns <code>null</code>.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                                <code class="language-js">
+                                        &lt;div id="main">
+                                                &lt;h1 id="title">My Heading&lt;/h1>
+                                                &lt;p id="hint">&lt;span>This is some text.&lt;/span>&lt;/p>
+                                        &lt;/div>
+                                                
+                                        &lt;script>
+                                                var main = document.getElementById("main");
+                                                console.log(main.firstChild.nodeName); // Prints: #text
+                                                
+                                                var hint = document.getElementById("hint");
+                                                console.log(hint.firstChild.nodeName); // Prints: SPAN
+                                        &lt;/script>
+                                </code>
+                        </pre>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> The <code>nodeName</code> is a read-only property that returns the
+                            name of the current node as a string. For example, it returns the tag name for element node,
+                            <code>#text</code> for text node, <code>#comment</code> for comment node,
+                            <code>#document</code> for document node, and so on.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <p>If you notice the above example, the <code>nodeName</code> of the first-child node of the main DIV
+                element returns #text instead of H1. Because, whitespace such as spaces, tabs, newlines, etc. are valid
+                characters and they form #text nodes and become a part of the DOM tree. Therefore, since the
+                <code>&lt;div&gt;</code> tag contains a newline before the <code>&lt;h1&gt;</code> tag, so it will
+                create a #text node.</p>
+            <p>To avoid the issue with <code>firstChild</code> and <code><code>lastChild</code></code> returning #text
+                or #comment nodes, you could alternatively use the <code>firstElementChild</code> and
+                <code>lastElementChild</code> properties to return only the first and last <em>element node</em>,
+                respectively. But, it will not work in IE 9 and earlier.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                                <code class="language-js">
+                                        &lt;div id="main">
+                                                &lt;h1 id="title">My Heading&lt;/h1>
+                                                &lt;p id="hint">&lt;span>This is some text.&lt;/span>&lt;/p>
+                                        &lt;/div>
+                                                
+                                        &lt;script>
+                                                var main = document.getElementById("main");
+                                                alert(main.firstElementChild.nodeName); // Outputs: H1
+                                                main.firstElementChild.style.color = "red";
+                                                
+                                                var hint = document.getElementById("hint");
+                                                alert(hint.firstElementChild.nodeName); // Outputs: SPAN
+                                                hint.firstElementChild.style.color = "blue";
+                                        &lt;/script>
+                                </code>
+                        </pre>
+            </div>
+            <!--End:Code box-->
+            <p>Similarly, you can use the <code>childNodes</code> property to access all child nodes of a given element,
+                where the first child node is assigned index 0. Here's an example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                                <code class="language-js">
+                                        &lt;div id="main">
+                                                &lt;h1 id="title">My Heading &lt;/h1>
+                                                &lt;p id="hint"> &lt;span>This is some text. &lt;/span>&lt;/p>
+                                        &lt;/div>
+                                                
+                                        &lt;script>
+                                                var main = document.getElementById("main");
+                                                
+                                                // First check that the element has child nodes 
+                                                if(main.hasChildNodes()) {
+                                                var nodes = main.childNodes;
+                                                
+                                                // Loop through node list and display node name
+                                                for(var i = 0; i < nodes.length; i++) {
+                                                        alert(nodes[i].nodeName);
+                                                }
+                                                }
+                                        &lt;/script>
+                                </code>
+                        </pre>
+            </div>
+            <!--End:Code box-->
+            <p>The <code>childNodes</code> returns all child nodes, including non-element nodes like text and comment
+                nodes. To get a collection of only elements, use <code>children</code> property instead.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                                <code class="language-js">
+                                        &lt;div id="main">
+                                                &lt;h1 id="title">My Heading&lt;/h1>
+                                                &lt;p id="hint">&lt;span>This is some text.&lt;/span>&lt;/p>
+                                        &lt;/div>
+                                                
+                                        &lt;script>
+                                                var main = document.getElementById("main");
+                                                
+                                                // First check that the element has child nodes 
+                                                if(main.hasChildNodes()) {
+                                                var nodes = main.children;
+                                                
+                                                // Loop through node list and display node name
+                                                for(var i = 0; i < nodes.length; i++) {
+                                                        alert(nodes[i].nodeName);
+                                                }
+                                                }
+                                        &lt;/script>
+                                </code>
+                        </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Accessing the Parent Nodes</h2>
+            <p>You can use the <code>parentNode</code> property to access the parent of the specified node in the DOM
+                tree.</p>
+            <p>The <code>parentNode</code> will always return <code>null</code> for document node, since it doesn't have
+                a parent.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                                <code class="language-js">
+                                        &lt;div id="main">
+                                        &lt;h1 id="title">My Heading&lt;/h1>
+                                        &lt;p id="hint">&lt;span>This is some text.&lt;/span>&lt;/p>
+                                        &lt;/div>
+                                        
+                                        &lt;script>
+                                        var hint = document.getElementById("hint");
+                                        alert(hint.parentNode.nodeName); // Outputs: DIV
+                                        alert(document.documentElement.parentNode.nodeName); // Outputs: #document
+                                        alert(document.parentNode); // Outputs: null
+                                        &lt;/script>
+                                </code>
+                        </pre>
+            </div>
+            <!--End:Code box-->
+            <!--Tip Box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab tip-icon" title="Useful Tips"><i></i></div>
+                    <div class="tip-box">
+                        <p><strong>Tip:</strong> The topmost DOM tree nodes can be accessed directly as
+                            <code>document</code> properties. For example, the <a
+                                href="/html-reference/html-html-tag.php"><code>&lt;html&gt;</code></a> element can be
+                            accessed with <code>document.documentElement</code> property, whereas the <a
+                                href="/html-reference/html-head-tag.php"><code>&lt;head&gt;</code></a> element can be
+                            accessed with <code>document.head</code> property, and the <a
+                                href="/html-reference/html-body-tag.php"><code>&lt;body&gt;</code></a> element can be
+                            accessed with <code>document.body</code> property.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Tip Box-->
+            <p>However, if you want to get only element nodes you can use the <code>parentElement</code>, like this:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                                <code class="language-js">
+                                        &lt;div id="main">
+                                                &lt;h1 id="title">My Heading&lt;/h1>
+                                                &lt;p id="hint">&lt;span>This is some text.&lt;/span>&lt;/p>
+                                        &lt;/div>
+                                                
+                                        &lt;script>
+                                                var hint = document.getElementById("hint");
+                                                alert(hint.parentNode.nodeName); // Outputs: DIV
+                                                hint.parentNode.style.backgroundColor = "yellow";
+                                        &lt;/script>
+                                </code>
+                        </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Accessing the Sibling Nodes</h2>
+            <p>You can use the <code>previousSibling</code> and <code>nextSibling</code> properties to access the
+                previous and next node in the DOM tree, respectively. Here's an example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="language-js">
+                                <code class="language-markup">
+                                        &lt;div id="main">
+                                                &lt;h1 id="title">My Heading&lt;/h1>
+                                                &lt;p id="hint">&lt;span>This is some text.&lt;/span>&lt;/p>&lt;hr>
+                                        &lt;/div>
+                                                
+                                        &lt;script>
+                                                var title = document.getElementById("title");
+                                                alert(title.previousSibling.nodeName); // Outputs: #text
+                                                
+                                                var hint = document.getElementById("hint");
+                                                alert(hint.nextSibling.nodeName); // Outputs: HR
+                                        &lt;/script>
+                                </code>
+                        </pre>
+            </div>
+            <!--End:Code box-->
+            <p>Alternatively, you can use the <code>previousElementSibling</code> and <code>nextElementSibling</code> to
+                get the previous and next sibling element skipping any whitespace text nodes. All these properties
+                returns <code>null</code> if there is no such sibling. Here's an example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="language-js">
+                                <code class="language-markup">
+                                        &lt;div id="main">
+                                                &lt;h1 id="title">My Heading&lt;/h1>
+                                                &lt;p id="hint">&lt;span>This is some text.&lt;/span>&lt;/p>
+                                        &lt;/div>
+                                                
+                                        &lt;script>
+                                                var hint = document.getElementById("hint");
+                                                alert(hint.previousElementSibling.nodeName); // Outputs: H1
+                                                alert(hint.previousElementSibling.textContent); // Outputs: My Heading
+                                                
+                                                var title = document.getElementById("title");
+                                                alert(title.nextElementSibling.nodeName); // Outputs: P
+                                                alert(title.nextElementSibling.textContent); // Outputs: This is some text.
+                                        &lt;/script>                                    
+                                </code>
+                        </pre>
+            </div>
+            <!--End:Code box-->
+            <p>The <code>textContent</code> property represents the text content of a node and all of its descendants.
+                See the <a href="javascript-dom-manipulation.php">JavaScript DOM manipulation</a> chapter to learn more
+                about it.</p>
+            <hr>
+            <h2>Types of DOM Nodes</h2>
+            <p>The DOM tree is consists of different types of nodes, such as elements, text, comments, etc.</p>
+            <p>Every node has a <code>nodeType</code> property that you can use to find out what type of node you are
+                dealing with. The following table lists the most important node types:</p>
+            <div class="shadow">
+                <table class="data">
+                    <tbody>
+                        <tr>
+                            <th>Constant</th>
+                            <th>Value</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td><code>ELEMENT_NODE</code></td>
+                            <td>1</td>
+                            <td>An element node such as <code>&lt;p&gt;</code> or <code>&lt;img&gt;</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>TEXT_NODE</code></td>
+                            <td>3</td>
+                            <td>The actual text of element.</td>
+                        </tr>
+                        <tr>
+                            <td><code>COMMENT_NODE</code></td>
+                            <td>8</td>
+                            <td>A comment node i.e. <code>&lt;!-- some comment --&gt;</code></td>
+                        </tr>
+                        <tr>
+                            <td><code>DOCUMENT_NODE</code></td>
+                            <td>9</td>
+                            <td>A document node i.e. the parent of <code>&lt;html&gt;</code> element.</td>
+                        </tr>
+                        <tr>
+                            <td><code>DOCUMENT_TYPE_NODE</code></td>
+                            <td>10</td>
+                            <td>A document type node e.g. <code>&lt;!DOCTYPE html&gt;</code> for HTML5 documents.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

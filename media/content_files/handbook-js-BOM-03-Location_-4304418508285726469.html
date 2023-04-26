@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript Window <span>Location</span></h1>
+            <p class="summary">In this tutorial you will learn about the JavaScript window location object.</p>
+            <h2>The Location Object</h2>
+            <p>The location property of a window (i.e. <code>window.location</code>) is a reference to a Location
+                object; it represents the current URL of the document being displayed in that window.</p>
+            <p class="space">Since window object is at the top of the scope chain, so properties of the
+                <code>window.location</code> object can be accessed without <code>window.</code> prefix, for example
+                <code>window.location.href</code> can be written as <code>location.href</code>. The following section
+                will show you how to get the URL of page as well as hostname, protocol, etc. using the location object
+                property of the window object.</p>
+            <h2>Getting the Current Page URL</h2>
+            <p>You can use the <code>window.location.href</code> property to get the entire URL of the current page.</p>
+            <p>The following example will display the complete URL of the page on button click:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                    <code class="language-js">
+                        &lt;script>
+                            function getURL() {
+                                alert("The URL of this page is: " + window.location.href);
+                            }
+                        &lt;/script>
+                            
+                        &lt;button type="button" onclick="getURL();">Get Page URL&lt;/button>
+                    </code>
+                </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Getting Different Part of a URL</h2>
+            <p>Similarly, you can use other properties of the location object such as <code>protocol</code>,
+                <code>hostname</code>, <code>port</code>, <code>pathname</code>, <code>search</code>, etc. to obtain
+                different part of the URL.</p>
+            <p>Try out the following example to see how to use the location property of a window.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                    <code class="language-js">
+                        // Prints complete URL
+                        document.write(window.location.href);
+                            
+                        // Prints protocol like http: or https:
+                        document.write(window.location.protocol); 
+                            
+                        // Prints hostname with port like localhost or localhost:3000
+                        document.write(window.location.host);
+                            
+                        // Prints hostname like localhost or www.example.com
+                        document.write(window.location.hostname);
+                            
+                        // Prints port number like 3000
+                        document.write(window.location.port);
+                            
+                        // Prints pathname like /products/search.php
+                        document.write(window.location.pathname); 
+                            
+                        // Prints query string like ?q=ipad
+                        document.write(window.location.search);
+                            
+                        // Prints fragment identifier like #featured
+                        document.write(window.location.hash);
+                    </code>
+                </pre>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> When you visit a website, you're always connecting to a specific port
+                            (e.g. http://localhost:3000). However, most browsers will simply not display the default
+                            port numbers, for example, 80 for HTTP and 443 for HTTPS.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <hr>
+            <h2>Loading New Documents</h2>
+            <p>You can use the <code>assign()</code> method of the location object i.e.
+                <code>window.location.assign()</code> to load another resource from a URL provided as parameter, for
+                example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                    <code class="language-js">
+                        &lt;script>
+                            function loadHomePage() {
+                                window.location.assign("https://www.tutorialrepublic.com");
+                            }
+                        &lt;/script>
+                            
+                        &lt;button type="button" onclick="loadHomePage();">Load Home Page&lt;/button>
+                    </code>
+                </pre>
+            </div>
+            <!--End:Code box-->
+            <p>You can also use the <code>replace()</code> method to load new document which is almost the same as
+                <code>assign()</code>. The difference is that it doesn't create an entry in the browser's history,
+                meaning the user won't be able to use the back button to navigate to it. Here's an example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                    <code class="language-js">
+                        &lt;script>
+                            function loadHomePage(){
+                                window.location.replace("https://www.tutorialrepublic.com");
+                            }
+                        &lt;/script>
+                            
+                        &lt;button type="button" onclick="loadHomePage();">Load Home Page&lt;/button> 
+                    </code>
+                </pre>
+            </div>
+            <!--End:Code box-->
+            <p>Alternatively, you can use the <code>window.location.href</code> property to load new document in the
+                window. It produce the same effect as using <code>assign()</code> method. Here's is an example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                    <code class="language-js">
+                        &lt;script>
+                            function loadHomePage() {
+                                window.location.href = "https://www.tutorialrepublic.com";
+                            }
+                        &lt;/script>
+                            
+                        &lt;button type="button" onclick="loadHomePage();">Load Home Page&lt;/button>
+                    </code>
+                </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Reloading the Page Dynamically</h2>
+            <p>The <code>reload()</code> method can be used to reload the current page dynamically.</p>
+            <p>You can optionally specify a Boolean parameter <code>true</code> or <code>false</code>. If the parameter
+                is <code>true</code>, the method will force the browser to reload the page from the server. If it is
+                <code>false</code> or not specified, the browser may reload the page from its cache. Here's an example:
+            </p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                    <code class="language-js">
+                        &lt;script>
+                            function forceReload() {
+                                window.location.reload(true);
+                            }
+                        &lt;/script>
+                            
+                        &lt;button type="button" onclick="forceReload();">Reload Page&lt;/button>
+                    </code>
+                </pre>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="note-box">
+                        <i>
+                            <p><strong>Note:</strong> The result of calling <code>reload()</code> method is different
+                                from clicking browser's Reload/Refresh button. The <code>reload()</code> method clears
+                                form control values that otherwise might be retained after clicking the Reload/Refresh
+                                button in some browsers.</p>
+                        </i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

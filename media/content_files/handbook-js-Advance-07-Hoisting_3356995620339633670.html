@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript <span>Hoisting</span></h1>
+            <p class="summary">In this tutorial you will learn about the hoisting behavior of JavaScript.</p>
+            <h2>What is Hoisting</h2>
+            <p class="space">In JavaScript, all <a href="javascript-variables.php">variable</a> and <a
+                    href="javascript-functions.php">function</a> declarations are moved or <em>hoisted</em> to the top
+                of their current scope, regardless of where it is defined. This is the default behavior of JavaScript
+                interpreter which is called <em>hoisting</em>. In the following sections we'll take a closer look at how
+                it actually works.</p>
+            <h2>Function Hoisting</h2>
+            <p>Functions that are defined using a function declaration are automatically hoisted. That means they can be
+                called before they have been defined. Let's understand this with an example:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token comment">// Calling function before declaration</span>
+<span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: Hello, I'm hoisted!</span>
+
+<span class="token keyword">function</span> <span class="token function">sayHello</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">alert</span><span class="token punctuation">(</span><span class="token string">"Hello, I'm hoisted!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>As you can see, we've called the <code>sayHello()</code> function before it is defined, but the code
+                still works. This is because the function declaration is hoisted to the top automatically behind the
+                scenes.</p>
+            <hr>
+            <h2>Variable Hoisting</h2>
+            <p>Similarly, the variable declarations are also hoisted to the top of their current scope automatically.
+                This means that if the variable is declared inside a function block, it will be moved at the top of the
+                function, but if it is declared outside any function it will be moved to top of the script and become
+                globally available. Take a look at the following example, to see how this works:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript">str <span class="token operator">=</span> <span class="token string">"Hello World!"</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: Hello World!</span>
+<span class="token keyword">var</span> str<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>However, JavaScript only hoists declarations, not initializations. That means if a variable is declared
+                and initialized after using it, the value will be <code>undefined</code>. For example:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token function">alert</span><span class="token punctuation">(</span>str<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: undefined</span>
+<span class="token keyword">var</span> str<span class="token punctuation">;</span>
+str <span class="token operator">=</span> <span class="token string">"Hello World!"</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>Here's another example demonstrating the variable hoisting behavior of JavaScript:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment">// Declare and initialize i</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>i <span class="token operator">+</span> <span class="token string">", "</span> <span class="token operator">+</span> j<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: 1, undefined</span>
+<span class="token keyword">var</span> j <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment">// Declare and initialize j</span>
+
+<span class="token keyword">var</span> x <span class="token operator">=</span> <span class="token number">5</span><span class="token punctuation">;</span> <span class="token comment">// Declare and initialize x</span>
+<span class="token keyword">var</span> y<span class="token punctuation">;</span> <span class="token comment">// Declare y</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>x <span class="token operator">+</span> <span class="token string">", "</span> <span class="token operator">+</span> y<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: 5, undefined</span>
+y <span class="token operator">=</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token comment">// Initialize y</span>
+
+<span class="token keyword">var</span> a <span class="token operator">=</span> <span class="token number">3</span><span class="token punctuation">;</span> <span class="token comment">// Declare and initialize a</span>
+b <span class="token operator">=</span> <span class="token number">6</span><span class="token punctuation">;</span> <span class="token comment">// Initialize b</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>a <span class="token operator">+</span> <span class="token string">", "</span> <span class="token operator">+</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: 3, 6</span>
+<span class="token keyword">var</span> b<span class="token punctuation">;</span> <span class="token comment">// Declare b</span>
+
+<span class="token keyword">var</span> u <span class="token operator">=</span> <span class="token number">4</span><span class="token punctuation">;</span> <span class="token comment">// Declare and initialize u</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>u <span class="token operator">+</span> <span class="token string">", "</span> <span class="token operator">+</span> v<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: 4, undefined</span>
+<span class="token keyword">var</span> v<span class="token punctuation">;</span> <span class="token comment">// Declare v</span>
+v <span class="token operator">=</span> <span class="token number">8</span><span class="token punctuation">;</span> <span class="token comment">// Initialize v</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>Variable hoisting may seem a little bit confusing at first glance, but if you go through these examples
+                carefully you will easily understand how it works.</p>
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div title="Important Notes" class="info-tab note-icon"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> It is considered best practice to declare your variables at the top of
+                            the current scope, because of hoisting behavior. Also, using a variable without declaring is
+                            not allowed in <a href="javascript-strict-mode.php">JavaScript strict mode</a>. See the next
+                            chapter to learn more about the strict mode.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+
+        </div>
+</body>
+
+</html>

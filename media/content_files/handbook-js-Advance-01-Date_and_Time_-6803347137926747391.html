@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript <span>Date and Time</span></h1>
+            <p class="summary">In this tutorial you will learn how to work with date and time in JavaScript.</p>
+            <h2>Using the Date Object</h2>
+            <p class="space">The Date object is a built-in JavaScript object. It allows you to get the user's local time
+                by accessing the computer system clock through the browser. The Date object also provides several
+                methods for managing, manipulating, and formatting dates and times.</p>
+            <h2 class="section-title"><span>Creating a Date Object</span></h2>
+            <p>Before we start working with the date and time, we need to create a Date object. Unlike other built-in
+                objects, such as arrays or functions, dates don't have a corresponding literal form: all date objects
+                need to be created using the Date constructor function which is <code>Date()</code>.</p>
+            <p class="space">There are four different ways to create a Date object in JavaScript.</p>
+            <h2>The <code>new Date()</code> Syntax</h2>
+            <p>You can simply declare a new Date object without initializing its value. In this case, the date and time
+                value will be set to the current date and time on the user's device on which the script is run.</p>
+            <!--Code box-->
+            <div class="example space">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <h2>The new Date(<em>year</em>, <em>month</em>, ...) Syntax</h2>
+            <p>You can also initialize a Date object by passing the following parameters separated by commas: year,
+                month, day, hours, minutes, seconds, and milliseconds.</p>
+            <p>The year and month parameters are required other parameters are optional.</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2018</span><span class="token punctuation">,</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">31</span><span class="token punctuation">,</span><span class="token number">14</span><span class="token punctuation">,</span><span class="token number">35</span><span class="token punctuation">,</span><span class="token number">20</span><span class="token punctuation">,</span><span class="token number">50</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p class="space">This date is actually represent 31 January 2018 at 14:35:20 and 50 milliseconds. You can
+                ignore the time part and specify just the date part if you wish.</p>
+            <h2>The new Date(<em>dateString</em>) Syntax</h2>
+            <p>JavaScript also allows you to create a Date object by passing the string representing a date, or a date
+                and time, as shown in the following example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token string">"31 January 2018"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p class="space">This date represents 31 January 2018. You can also specify strings like Jan 31 2018, or any
+                of a number of valid variations, JavaScript will automatically handle that.</p>
+            <h2>The new Date(<em>milliseconds</em>) Syntax</h2>
+            <p>You can also define a Date object by passing the number of milliseconds since January 1, 1970, at
+                00:00:00 GMT. This time is known as the <em>UNIX epoch</em> because 1970 was the year when the UNIX
+                operating system was formally introduced. Here's an example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">1517356800000</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>The above date represents Wednesday 31 January 2018 05:30:00 GMT+0530.</p>
+            <p>Once you have created an instance of the Date object, you can use its methods to perform various tasks,
+                such as getting different component of a date, setting or modifying individual date and time value, etc.
+                These methods are described in detail in the following sections.</p>
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> JavaScript provides shortcuts called "literals" for creating most of
+                            the native object without having to use the <code>new</code> operator, like
+                            <code>new Object()</code>, <code>new Array()</code>, etc.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <hr>
+            <h2>Getting the Current Date and Time</h2>
+            <p>To get the current date and time, create a new Date object without passing any parameters. This will
+                create an object with the current date and time. Here's an example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> now <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>now<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the current date and time</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>The output of this example will look something like this (depending on time zone offset):</p>
+            <div class="output-box" id="dateDemo">Sun Apr 05 2020 02:16:15 GMT-0500 (Central Daylight Time)</div>
+            <script>
+                var d = new Date();
+                document.getElementById("dateDemo").innerHTML = d;
+            </script>
+            <hr>
+            <h2>Creating the Date and Time Strings</h2>
+            <p>The JavaScript Date object provides several methods, such as <code>toDateString()</code>,
+                <code>toLocaleDateString()</code>, etc. to generate date strings in different formats. Here's is an
+                example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">toDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display an abbreviated date string</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">toLocaleDateString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display a localized date string</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">toISOString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the ISO standardized date string</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">toUTCString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display a date string converted to UTC time</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">toString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the full date string with local time zone</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>Similarly, you can use the <code>toLocaleTimeString()</code>, <code>toTimeString()</code> methods of the
+                Date object to generate time strings, as shown in the following example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">toTimeString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the time portion of the date</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">toLocaleTimeString</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display a localized time string</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2 class="section-title"><span>Getting Specific Date and Time Components</span></h2>
+            <p class="space">Once you have a proper date object, a number of methods are available to you to extract
+                details from it, such as the month, date, hours or minutes value etc. The following section describes
+                the various methods of extracting individual pieces of information from a Date object.</p>
+            <h2>Getting the Year, Month and Date</h2>
+            <p>The Date object provides several methods such as <code>getFullYear()</code>, <code>getMonth()</code>,
+                <code>getDay()</code>, etc. that you can use to extract the specific date components from the Date
+                object, such as year, day of month, day of week, etc. respectively. The following example demonstrates
+                how to get specific date components from the Date object using these methods:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Extracting date part</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">getDate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the day of the month</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">getDay</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the number of days into the week (0-6)</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">getMonth</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the number of months into the year (0-11)</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the full year (four digits)</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>The <code>getDay()</code> method returns a number representing the day of the week (from 0 to 6) instead
+                of returning a name such as Sunday or Monday in such a way that, if it is Sunday, the method returns 0;
+                and if it is Monday , the method returns 1, and so on.</p>
+            <p class="space">Likewise, the <code>getMonth()</code> method returns the number of months (from 0 to 11)
+                instead of name of the month. Here 0 represents the first month of the year. Therefore, if it is January
+                the method returns 0 not 1; and if it is August, the method returns 7.</p>
+            <h2>Getting the Hours, Minutes, Seconds, and Milliseconds</h2>
+            <p>Similarly, the Date object provides methods like <code>getHours()</code>, <code>getMinutes()</code>,
+                <code>getSeconds()</code>, <code>getTimezoneOffset()</code> etc. to extract the time components from the
+                Date object.</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// Extracting time part </span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">getHours</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the number of hours into the day (0-23)</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">getMinutes</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the number of minutes into the hour (0-59)</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">getSeconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the seconds into the minute (0-59)</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">getMilliseconds</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the number of milliseconds into second (0-999)</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">getTime</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the number of milliseconds since 1/1/1970</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">getTimezoneOffset</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display the time-zone offset (from Greenwich Mean Time) in minutes</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 48px;"></span><span style="height: 48px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>The <code>getHours()</code> method returns the number of hours into the day (from 0 to 23) according to
+                the 24-hour clock. So, when it is midnight, the method returns 0; and when it is 3:00 P.M., it returns
+                15.</p>
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> The Date objects also have methods to obtain the UTC components. Just
+                            place UTC after get, such as <code>getUTCDate()</code>, <code>getUTCHour()</code>,
+                            <code>getUTCMinutes()</code>, and so on.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <hr>
+            <h2 class="section-title"><span>Setting the Date and Time Values</span></h2>
+            <p class="space">In addition to retrieving date and time values, you can also set or modify these values
+                using the JavaScript. This is most often used in program where you have to change the value of a date
+                object from one particular date or time to another. Let's see how it works.</p>
+            <h2>Setting the Year, Month and Date</h2>
+            <p>The Date object provides methods such as <code>setFullYear()</code>, <code>setMonth()</code> and
+                <code>setDate()</code> methods to set the year, month, date components of the Date object respectively.
+            </p>
+            <p>For instance, in the following example we have used <code>setFullYear()</code> method to change the
+                current date stored in a variable ahead of two year in the future.</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+d<span class="token punctuation">.</span><span class="token function">setFullYear</span><span class="token punctuation">(</span>d<span class="token punctuation">.</span><span class="token function">getFullYear</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Display future date</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>The output of the above example will look something like this:</p>
+            <div class="output-box" id="futureDateDemo">Tue Apr 05 2022 02:16:15 GMT-0500 (Central Daylight Time)</div>
+            <script>
+                var d = new Date();
+                d.setFullYear(d.getFullYear() + 2);
+                document.getElementById("futureDateDemo").innerHTML = d;
+            </script>
+            <p>Likewise, you can use the <code>setMonth()</code> method to set or modify the month part of a Date
+                object.</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Current date and time</span>
+d<span class="token punctuation">.</span><span class="token function">setMonth</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Sets month to 0, January</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>The <code>setMonth()</code> method require an integer value from 0 to 11, if you set the value of the
+                month greater than 11, the year value of the date object will increment.</p>
+            <p>In other words, a value of 12 results in the year value increasing by 1, and the month value set to 0, as
+                demonstrated in the following example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2018</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// June 24, 2018</span>
+d<span class="token punctuation">.</span><span class="token function">setMonth</span><span class="token punctuation">(</span><span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Sets month to 12, new date will be January 24, 2019</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>Similarly, you can modify the date part of the date object, like this:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2018</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// June 24, 2018</span>
+d<span class="token punctuation">.</span><span class="token function">setDate</span><span class="token punctuation">(</span><span class="token number">15</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Sets date to 15, new date will be June 15, 2018</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>The <code>setDate()</code> method require an integer value from 1 to 31. Also, if you pass the values
+                greater than the number of days in the month, the month will increment. For example:</p>
+            <!--Code box-->
+            <div class="example space">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2018</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// June 24, 2018</span>
+d<span class="token punctuation">.</span><span class="token function">setDate</span><span class="token punctuation">(</span><span class="token number">36</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Sets day to 36, new date will be July 6, 2018</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <h2>Setting the Hours, Minutes and Seconds</h2>
+            <p>Methods for setting the time values are also pretty straight forward. The <code>setHours()</code>,
+                <code>setMinutes()</code>, <code>setSeconds()</code>, <code>setMilliseconds()</code> can be used to set
+                the hour, minutes, seconds, and milliseconds part of the Date object respectively.</p>
+            <p>Each method takes integer values as parameters. Hours range from 0 to 23. Minutes and seconds range from
+                0 to 59. And milliseconds range from 0 to 999. Here is an example:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-js"><code class=" language-js"><span class="token keyword">var</span> d <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Date</span><span class="token punctuation">(</span><span class="token number">2018</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">24</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// June 24, 2018 00:00:00</span>
+d<span class="token punctuation">.</span><span class="token function">setHours</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+d<span class="token punctuation">.</span><span class="token function">setMinutes</span><span class="token punctuation">(</span><span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+d<span class="token punctuation">.</span><span class="token function">setSeconds</span><span class="token punctuation">(</span><span class="token number">45</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+d<span class="token punctuation">.</span><span class="token function">setMilliseconds</span><span class="token punctuation">(</span><span class="token number">600</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>The output of the above example will look something like the following:</p>
+            <div class="output-box" id="setTimeDemo">Sun Jun 24 2018 08:30:45 GMT-0500 (Central Daylight Time)</div>
+            <script>
+                var d = new Date(2018, 5, 24);
+                d.setHours(8);
+                d.setMinutes(30);
+                d.setSeconds(45);
+                d.setMilliseconds(600);
+                document.getElementById("setTimeDemo").innerHTML = d;
+            </script>
+
+        </div>
+
+</body>
+
+</html>

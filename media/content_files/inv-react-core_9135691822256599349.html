@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css">
+    <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script>
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <!-- <link href="../style.css" rel="stylesheet" /> -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <main role="main">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h4 class="display-5">React Interview questions</h4>
+            </div>
+        </div>
+        <div>
+            <span class="badge badge-primary">React</span>
+            <span class="badge badge-primary">State</span>
+            <span class="badge badge-primary">Props</span>
+            <span class="badge badge-primary">JSX</span>
+            <span class="badge badge-primary">Components</span>
+            <span class="badge badge-primary">HOC</span>
+            <span class="badge badge-primary">PropTypes</span>
+            <span class="badge badge-primary">refs</span>
+            <span class="badge badge-primary">DOM</span>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 1) What is React?<span class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-markup">
+                    React is an open-source frontend JavaScript library which is used for building user interfaces especially for single page applications. 
+                    It is used for handling view layer for web and mobile apps. React was created by Jordan Walke, a software engineer working for Facebook. 
+                    React was first deployed on Facebook's News Feed in 2011 and on Instagram in 2012.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 2) What are the major features of React?<span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre">
+                    <code class="language-markup">
+                    The major features of React are:
+                        - It uses VirtualDOM instead of RealDOM considering that RealDOM manipulations are expensive.
+                        - Supports server-side rendering.
+                        - Follows Unidirectional data flow or data binding.
+                        - Uses reusable/composable UI components to develop the view.
+                      
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>3) What is JSX?<span class="float-right badge badge-pill badge-primary">JSX</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    JSX is a XML-like syntax extension to ECMAScript (the acronym stands for JavaScript XML). <br/>
+                    Basically it just provides syntactic sugar for the React.createElement() function, giving us expressiveness of JavaScript along with HTML like template syntax.</br>
+                    In the example below text inside &lt;h1> tag is returned as JavaScript function to the render function.
+        
+                        class App extends React.Component {
+                            render() {
+                                return(
+                                &lt;div>
+                                    &lt;h1>{'Welcome to React world!'}&lt;/h1>
+                                &lt;/div>
+                                )
+                            }
+                        }
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>4) How to get query parameters in React Router v4?<span
+                        class="float-right badge badge-pill badge-primary">react router</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    withRouter and useParams
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>5) How to create components in React?<span
+                        class="float-right badge badge-pill badge-primary">Component</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    - There are two possible ways to create a component.
+    
+                    ----------------
+                    1. Function Components: This is the simplest way to create a component. 
+                    - Those are pure JavaScript functions that accept props object as first parameter and return React elements:
+                    
+                    function Greeting({ message }) {
+                      return &lt;h1>{`Hello, ${message}`}&lt;/h1>
+                    
+                    }
+                    ----------------
+                    2. Class Components: You can also use ES6 class to define a component. 
+                    The above function component can be written as:
+                    
+                    class Greeting extends React.Component {
+                      render() {
+                        return &lt;h1>{`Hello, ${this.props.message}`}&lt;/h1>
+                      }
+                    }
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>6) When to use a Class Component over a Function Component?<span
+                        class="float-right badge badge-pill badge-primary">Component</span></h5>
+                <pre class="pre"><code class="language-markup">
+                    If the component needs state or lifecycle methods then use class component otherwise use function component. 
+                    However, from React 16.8 with the addition of Hooks, you could use state , lifecycle methods and other features that were only available in class component right in your function component.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>7) What are Pure Components?<span
+                        class="float-right badge badge-pill badge-primary">Component</span></h5>
+                <pre class="pre"><code class="language-markup">
+                    React.PureComponent is exactly the same as React.Component except that it handles the shouldComponentUpdate() method for you. 
+                    When props or state changes, PureComponent will do a shallow comparison on both props and state. 
+                    Component on the other hand won't compare current props and state to next out of the box. 
+                    Thus, the component will re-render by default whenever shouldComponentUpdate is called.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>8) What is state in React?<span class="float-right badge badge-pill badge-primary">state
+                        react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    - State of a component is an object that holds some information that may change over the lifetime of the component. 
+                    - We should always try to make our state as simple as possible and minimize the number of stateful components.
+    
+                    - Let's create an user component with message state,
+    
+                    class User extends React.Component {
+                        constructor(props) {
+                            super(props)
+    
+                            this.state = {
+                            message: 'Welcome to React world'
+                            }
+                        }
+    
+                        render() {
+                            return (
+                            &lt;div>
+                                &lt;h1>{this.state.message}&lt;/h1>
+                            &lt;/div>
+                            )
+                        }
+                    }
+    
+                    <img src="./images/state.jpg"/>
+    
+                    - State is similar to props, but it is private and fully controlled by the component. i.e, 
+                    - It is not accessible to any component other than the one that owns and sets it.
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>9) What are props in React?<span class="float-right badge badge-pill badge-primary">props</span>
+                </h5>
+                <pre class="pre"><code class="language-javascript">
+                    Props are inputs to components. They are single values or objects containing a set of values that are passed to components on creation using a naming convention similar to HTML-tag attributes. They are data passed down from a parent component to a child component.
+    
+                    The primary purpose of props in React is to provide following component functionality:
+                    
+                    Pass custom data to your component.
+                    Trigger state changes.
+                    Use via this.props.reactProp inside component's render() method.
+                    For example, let us create an element with reactProp property:
+                    
+                    &lt;Element reactProp={'1'} />
+                    This reactProp (or whatever you came up with) name then becomes a property attached to React's native props object which originally already exists on all components created using React library.
+                    
+                    props.reactProp
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>10) What is the difference between state and props?<span
+                        class="float-right badge badge-pill badge-primary">state props</span></h5>
+                <pre class="pre"><code class="language-markup">
+                    Both props and state are plain JavaScript objects. 
+                    While both of them hold information that influences the output of render, they are different in their functionality with respect to component. 
+                    Props get passed to the component similar to function parameters whereas state is managed within the component similar to variables declared within a function.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>11) Why should we not update the state directly? <span
+                        class="float-right badge badge-pill badge-primary">state</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    If you try to update state directly then it won't re-render the component.
+    
+                    // Wrong
+                    this.state.message = 'Hello world'
+                    Instead use setState() method. It schedules an update to a component's state object. 
+                    When state changes, the component responds by re-rendering.
+                    
+                    // Correct
+                    this.setState({ message: 'Hello World' })
+                    Note: You can directly assign to the state object either in constructor or using latest javascript's class field declaration syntax
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>12) What is the purpose of callback function as an argument of setState()? <span
+                        class="float-right badge badge-pill badge-primary">state</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    The callback function is invoked when setState finished and the component gets rendered. Since setState() is asynchronous the callback function is used for any post action.
+    
+                    Note: It is recommended to use lifecycle method rather than this callback function.
+                    
+                    setState({ name: 'John' }, () => console.log('The name has updated and component re-rendered'))
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>13) How to bind methods or event handlers in JSX callbacks?<span
+                        class="float-right badge badge-pill badge-primary">JSX</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    There are 3 possible ways to achieve this:
+    
+                    1. Binding in Constructor: In JavaScript classes, the methods are not bound by default. The same thing applies for React event handlers defined as class methods. Normally we bind them in constructor.
+                    
+                        class Component extends React.Componenet {
+                            constructor(props) {
+                                super(props)
+                                this.handleClick = this.handleClick.bind(this)
+                            }
+                            
+                            handleClick() {
+                                // ...
+                            }
+                        }
+    
+                    2. Public class fields syntax: If you don't like to use bind approach then public class fields syntax can be used to correctly bind callbacks.
+                    
+                        handleClick = () => {
+                            console.log('this is:', this)
+                        }
+                        &lt;button onClick={this.handleClick}>
+                            {'Click me'}
+                        &lt;/button>
+    
+                    3. Arrow functions in callbacks: You can use arrow functions directly in the callbacks.
+                    
+                        &lt;button onClick={(event) => this.handleClick(event)}>
+                            {'Click me'}
+                        &lt;/button>
+    
+                    Note: If the callback is passed as prop to child components, those components might do an extra re-rendering. 
+                        In those cases, it is preferred to go with .bind() or public class fields syntax approach considering performance.
+                </code>
+            </pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>14) How to pass a parameter to an event handler or callback?<span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    You can use an arrow function to wrap around an event handler and pass parameters:
+    
+                        &lt;button onClick={() => this.handleClick(id)} />
+                    This is an equivalent to calling .bind:
+                    
+                        &lt;button onClick={this.handleClick.bind(this, id)} />
+                    Apart from these two approaches, you can also pass arguments to a function which is defined as array function
+                    
+                        &lt;button onClick={this.handleClick(id)} />
+                        handleClick = (id) => () => {
+                            console.log("Hello, your ticket number is", id)
+                        };
+                    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>15) What is "key" prop and what is the benefit of using it in arrays of elements?<span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    A key is a special string attribute you should include when creating arrays of elements. 
+                    Key prop helps React identify which items have changed, are added, or are removed.
+    
+                    Most often we use ID from our data as key:
+                    
+                        const todoItems = todos.map((todo) =>
+                        &lt;li key={todo.id}>
+                            {todo.text}
+                        &lt;/li>
+                        )
+    
+                    When you don't have stable IDs for rendered items, you may use the item index as a key as a last resort:
+                    
+                        const todoItems = todos.map((todo, index) =>
+                        &lt;li key={index}>
+                            {todo.text}
+                        &lt;/li>
+                        )
+    
+                    Note:
+                    
+                        1. Using indexes for keys is not recommended if the order of items may change. This can negatively impact performance and may cause issues with component state.
+                        2. If you extract list item as separate component then apply keys on list component instead of li tag.
+                        3. There will be a warning message in the console if the key prop is not present on list items.
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>16) What is the use of refs? <span class="float-right badge badge-pill badge-primary">refs</span>
+                </h5>
+                <pre class="pre"><code class="language-markup">
+                    The ref is used to return a reference to the element. 
+                    They should be avoided in most cases, however, they can be useful when you need a direct access to the DOM element or an instance of a component.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>17) How to create refs? <span class="float-right badge badge-pill badge-primary">refs</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                There are two approaches
+    
+                    1. This is a recently added approach. Refs are created using React.createRef() method and attached to React elements via the ref attribute. In order to use refs throughout the component, just assign the ref to the instance property within constructor.
+                    
+                        class MyComponent extends React.Component {
+                        constructor(props) {
+                            super(props)
+                            this.myRef = React.createRef()
+                        }
+                        render() {
+                            return &lt;div ref={this.myRef} />
+                        }
+                        }
+    
+                    2. You can also use ref callbacks approach regardless of React version. For example, the search bar component's input element accessed as follows,
+                    
+                        class SearchBar extends Component {
+                        constructor(props) {
+                            super(props);
+                            this.txtSearch = null;
+                            this.state = { term: '' };
+                            this.setInputSearchRef = e => {
+                                this.txtSearch = e;
+                            }
+                        }
+                        onInputChange(event) {
+                            this.setState({ term: this.txtSearch.value });
+                        }
+                        render() {
+                            return (
+                                &lt;input
+                                    value={this.state.term}
+                                    onChange={this.onInputChange.bind(this)}
+                                    ref={this.setInputSearchRef} />
+                            );
+                        }
+                        }
+                    3. You can also use refs in function components using closures. 
+                    
+                    Note: You can also use inline ref callbacks even though it is not a recommended approach
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>18) What is Virtual DOM? <span class="float-right badge badge-pill badge-primary">DOM</span></h5>
+                <pre class="pre"><code class="language-markup">
+                    The Virtual DOM (VDOM) is an in-memory representation of Real DOM. 
+                    The representation of a UI is kept in memory and synced with the "real" DOM. 
+                    It's a step that happens between the render function being called and the displaying of elements on the screen. 
+                    This entire process is called reconciliation.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>19) How Virtual DOM works? <span class="float-right badge badge-pill badge-primary">DOM</span></h5>
+                <pre class="pre"><code class="language-html">
+                    The Virtual DOM works in three simple steps.
+                        1. Whenever any underlying data changes, the entire UI is re-rendered in Virtual DOM representation.
+    
+                        <img src="./images/vdom1.png"/>
+    
+                        2. Then the difference between the previous DOM representation and the new one is calculated.
+    
+                        <img src="./images/vdom2.png"/>
+    
+                        3. Once the calculations are done, the real DOM will be updated with only the things that have actually changed.
+                        
+                        <img src="./images/vdom3.png"/>
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>20) What is React Fiber?<span class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-html">
+                    Fiber is the new reconciliation engine or reimplementation of core algorithm in React v16. 
+                    The goal of React Fiber is to increase its suitability for areas like animation, layout, gestures, ability to pause, abort, or reuse work and assign priority to different types of updates; and new concurrency primitives.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>21) What are controlled components? <span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    A component that controls the input elements within the forms on subsequent user input is called Controlled Component, i.e, every state mutation will have an associated handler function.
+    
+                    For example, to write all the names in uppercase letters, we use handleChange as below,
+                    
+                        handleChange(event) {
+                        this.setState({value: event.target.value.toUpperCase()})
+                        }
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>22) What are uncontrolled components? <span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    The Uncontrolled Components are the ones that store their own state internally, and you query the DOM using a ref to find its current value when you need it. This is a bit more like traditional HTML.
+    
+                    In the below UserProfile component, the name input is accessed using ref.
+                    
+                        class UserProfile extends React.Component {
+                        constructor(props) {
+                            super(props)
+                            this.handleSubmit = this.handleSubmit.bind(this)
+                            this.input = React.createRef()
+                        }
+                        
+                        handleSubmit(event) {
+                            alert('A name was submitted: ' + this.input.current.value)
+                            event.preventDefault()
+                        }
+                        
+                        render() {
+                            return (
+                            &lt;form onSubmit={this.handleSubmit}>
+                                &lt;label>
+                                {'Name:'}
+                                &lt;input type="text" ref={this.input} />
+                                &lt;/label>
+                                &lt;input type="submit" value="Submit" />
+                            &lt;/form>
+                            );
+                        }
+                        }
+    
+                    In most cases, it's recommend to use controlled components to implement forms.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>23) What is Lifting State Up in React?<span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-html">
+                    When several components need to share the same changing data then it is recommended to lift the shared state up to their closest common ancestor. 
+                    That means if two child components share the same data from its parent, then move the state to parent instead of maintaining local state in both of the child components.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>24) What are the different phases of component lifecycle?<span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    The component lifecycle has three distinct lifecycle phases:
+    
+                        1. Mounting: The component is ready to mount in the browser DOM. This phase covers initialization from constructor(), getDerivedStateFromProps(), render(), and componentDidMount() lifecycle methods.
+                        
+                        2. Updating: In this phase, the component get updated in two ways, sending the new props and updating the state either from setState() or forceUpdate(). This phase covers getDerivedStateFromProps(), shouldComponentUpdate(), render(), getSnapshotBeforeUpdate() and componentDidUpdate() lifecycle methods.
+                        
+                        3. Unmounting: In this last phase, the component is not needed and get unmounted from the browser DOM. This phase includes componentWillUnmount() lifecycle method.
+                        
+                    It's worth mentioning that React internally has a concept of phases when applying changes to the DOM. They are separated as follows
+                        
+                        1. Render The component will render without any side-effects. This applies for Pure components and in this phase, React can pause, abort, or restart the render.
+                        
+                        2. Pre-commit Before the component actually applies the changes to the DOM, there is a moment that allows React to read from the DOM through the getSnapshotBeforeUpdate().
+                        
+                        3. Commit React works with the DOM and executes the final lifecycles respectively componentDidMount() for mounting, componentDidUpdate() for updating, and componentWillUnmount() for unmounting.
+                        
+                    React 16.3+ Phases (or an interactive version)
+    
+                        <img src="./images/phases16.jpg" alt="rlc"/>
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>25) What are the lifecycle methods of React? <span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    Before React 16.3
+    
+                        componentWillMount: Executed before rendering and is used for App level configuration in your root component.
+                        componentDidMount: Executed after first rendering and here all AJAX requests, DOM or state updates, and set up event listeners should occur.
+                        componentWillReceiveProps: Executed when particular prop updates to trigger state transitions.
+                        shouldComponentUpdate: Determines if the component will be updated or not. By default it returns true. If you are sure that the component doesn't need to render after state or props are updated, you can return false value. It is a great place to improve performance as it allows you to prevent a re-render if component receives new prop.
+                        componentWillUpdate: Executed before re-rendering the component when there are props & state changes confirmed by shouldComponentUpdate() which returns true.
+                        componentDidUpdate: Mostly it is used to update the DOM in response to prop or state changes.
+                        componentWillUnmount: It will be used to cancel any outgoing network requests, or remove all event listeners associated with the component.
+                   
+                    React 16.3+
+                    
+                        getDerivedStateFromProps: Invoked right before calling render() and is invoked on every render. This exists for rare use cases where you need derived state. Worth reading if you need derived state.
+                        componentDidMount: Executed after first rendering and here all AJAX requests, DOM or state updates, and set up event listeners should occur.
+                        shouldComponentUpdate: Determines if the component will be updated or not. By default it returns true. If you are sure that the component doesn't need to render after state or props are updated, you can return false value. It is a great place to improve performance as it allows you to prevent a re-render if component receives new prop.
+                        getSnapshotBeforeUpdate: Executed right before rendered output is committed to the DOM. Any value returned by this will be passed into componentDidUpdate(). This is useful to capture information from the DOM i.e. scroll position.
+                        componentDidUpdate: Mostly it is used to update the DOM in response to prop or state changes. This will not fire if shouldComponentUpdate() returns false.
+                        componentWillUnmount It will be used to cancel any outgoing network requests, or remove all event listeners associated with the component.
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>26) What are Higher-Order Components? <span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    A higher-order component (HOC) is a function that takes a component and returns a new component. 
+                    Basically, it's a pattern that is derived from React's compositional nature.
+    
+                    We call them pure components because they can accept any dynamically provided child component but they won't modify or copy any behavior from their input components.
+                    
+                        const EnhancedComponent = higherOrderComponent(WrappedComponent)
+    
+                    HOC can be used for many use cases:               
+                        - Code reuse, logic and bootstrap abstraction.
+                        - Render hijacking.
+                        - State abstraction and manipulation.
+                        - Props manipulation.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>27) What is context?<span class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+    
+                    For example, authenticated user, locale preference, UI theme need to be accessed in the application by many components.
+                    
+                        const {Provider, Consumer} = React.createContext(defaultValue)
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>28) What is children prop? <span class="float-right badge badge-pill badge-primary">react</span>
+                </h5>
+                <pre class="pre"><code class="language-javascript">
+                    Children is a prop (this.prop.children) that allow you to pass components as data to other components, 
+                    just like any other prop you use. Component tree put between component's opening and closing tag will be passed to that component as children prop.
+    
+                    There are a number of methods available in the React API to work with this prop. 
+                    These include React.Children.map, React.Children.forEach, React.Children.count, React.Children.only, React.Children.toArray.
+                    
+                    A simple usage of children prop looks as below,
+                    
+                    const MyDiv = React.createClass({
+                      render: function() {
+                        return &lt;div>{this.props.children}&lt;/div>
+                      }
+                    })
+                    
+                    ReactDOM.render(
+                        &lt;MyDiv>
+                            &lt;span>{'Hello'}&lt;/span>
+                            &lt;span>{'World'}&lt;/span>
+                        &lt;/MyDiv>,
+                        node
+                    )
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>29) What is the purpose of using super constructor with props argument? <span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    A child class constructor cannot make use of this reference until super() method 
+                    has been called. The same applies for ES6 sub-classes as well. 
+                    The main reason of passing props parameter to super() call is to access this.props 
+                    in your child constructors.
+    
+                    Passing props:
+                    
+                        class MyComponent extends React.Component {
+                            constructor(props) {
+                                super(props)
+                            
+                                console.log(this.props) // prints { name: 'John', age: 42 }
+                            }
+                        }
+    
+                    Not passing props:
+                        
+                        class MyComponent extends React.Component {
+                            constructor(props) {
+                                super()
+                            
+                                console.log(this.props) // prints undefined
+                            
+                                // but props parameter is still available
+                                console.log(props) // prints { name: 'John', age: 42 }
+                            }
+                            
+                            render() {
+                                // no difference outside constructor
+                                console.log(this.props) // prints { name: 'John', age: 42 }
+                            }
+                        }
+                    The above code snippets reveals that this.props is different only within the constructor. 
+                    It would be the same outside the constructor.
+    
+                </code></pre>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="text">
+                <h5>30) How to implement default or NotFound page? <span
+                        class="float-right badge badge-pill badge-primary">react router</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    A <Switch> renders the first child <Route> that matches. A <Route> with no path always matches. So you just need to simply drop path attribute as below
+    
+                        <Switch>
+                            <Route exact path="/" component={Home}/>
+                            <Route path="/user" component={User}/>
+                            <Route component={NotFound} />
+                        </Switch>
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>31) What are fragments? <span class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    It's common pattern in React which is used for a component to return multiple elements. 
+                    Fragments let you group a list of children without adding extra nodes to the DOM.
+    
+                    render() {
+                      return (
+                        &lt;React.Fragment>
+                            &lt;ChildA />
+                            &lt;ChildB />
+                            &lt;ChildC />
+                        &lt;/React.Fragment>
+                      )
+                    }
+                    There is also a shorter syntax, but it's not supported in many tools:
+                    
+                    render() {
+                      return (
+                        &lt;>
+                            &lt;ChildA />
+                            &lt;ChildB />
+                            &lt;ChildC />
+                        &lt;/>
+                      )
+                    }
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>32) Why fragments are better than container divs? <span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    Below are the list of reasons,
+    
+                        - Fragments are a bit faster and use less memory by not creating an extra DOM node. This only has a real benefit on very large and deep trees.
+                        - Some CSS mechanisms like Flexbox and CSS Grid have a special parent-child relationships, and adding divs in the middle makes it hard to keep the desired layout.
+                        - The DOM Inspector is less cluttered.
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>33) What are stateless components? <span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    If the behaviour is independent of its state then it can be a stateless component. 
+                    You can use either a function or a class for creating stateless components. 
+                    But unless you need to use a lifecycle hook in your components, you should go for function components. 
+                    There are a lot of benefits if you decide to use function components here; they are easy to write, understand, and test, a little faster, and you can avoid the this keyword altogether.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>34) How do you test react code?<span
+                        class="float-right badge badge-pill badge-primary">testing</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    You can use cypress for end-to-end testing and jest for unit testing
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>35) What are the advantages of React?<span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    Below are the list of main advantages of React,
+    
+                        1. Increases the application's performance with Virtual DOM.
+                        2. JSX makes code easy to read and write.
+                        3. It renders both on client and server side (SSR).
+                        4. Easy to integrate with frameworks (Angular, Backbone) since it is only a view library.
+                        5. Easy to write unit and integration tests with tools such as Jest.
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>38) What are error boundaries in React v16? <span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    Error boundaries are components that catch JavaScript errors anywhere in their child component tree, 
+                    log those errors, and display a fallback UI instead of the component tree that crashed.
+    
+                    A class component becomes an error boundary if it defines a new lifecycle method called componentDidCatch(error, info) or static getDerivedStateFromError() :
+                    
+                        class ErrorBoundary extends React.Component {
+                            constructor(props) {
+                                super(props)
+                                this.state = { hasError: false }
+                            }
+                            
+                            componentDidCatch(error, info) {
+                                // You can also log the error to an error reporting service
+                                logErrorToMyService(error, info)
+                            }
+                            
+                            static getDerivedStateFromError(error) {
+                                // Update state so the next render will show the fallback UI.
+                                return { hasError: true };
+                            }
+                            
+                            render() {
+                                if (this.state.hasError) {
+                                    // You can render any custom fallback UI
+                                    return &lt;h1>{'Something went wrong.'}&lt;/h1>
+                                }
+                                return this.props.children
+                            }
+                        }
+    
+                    After that use it as a regular component:
+                    
+                    &lt;ErrorBoundary>
+                        &lt;MyWidget />
+                    &lt;/ErrorBoundary>
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>36) How error boundaries handled in React v15? <span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    inside componentDidCatch lifecycle
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>37) What is ReactDOMServer? <span class="float-right badge badge-pill badge-primary">react</span>
+                </h5>
+                <pre class="pre"><code class="language-javascript">
+                    The ReactDOMServer object enables you to render components to static markup (typically used on node server). This object is mainly used for server-side rendering (SSR). The following methods can be used in both the server and browser environments:
+    
+                        renderToString()
+                        renderToStaticMarkup()
+                        
+                    For example, you generally run a Node-based web server like Express, Hapi, or Koa, and you call renderToString to render your root component to a string, which you then send as response.
+                    
+                        // using Express
+                        import { renderToString } from 'react-dom/server'
+                        import MyPage from './MyPage'
+                        
+                        app.get('/', (req, res) => {
+                        res.write('&lt;!DOCTYPE html>&lt;html>&lt;head>&lt;title>My Page&lt;/title>&lt;/head>&lt;body>')
+                        res.write('&lt;div id="content">')
+                        res.write(renderToString(&lt;MyPage/>))
+                        res.write('&lt;/div>&lt;/body>&lt;/html>')
+                        res.end()
+                        })
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>38) How to use styles in React? <span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    For Style we can css modules, css preprocessers or css in JS.
+    
+                    The style attribute accepts a JavaScript object with camelCased properties rather than a CSS string. 
+                    This is consistent with the DOM style JavaScript property, is more efficient, and prevents XSS security holes.
+    
+                        const divStyle = {
+                        color: 'blue',
+                        backgroundImage: 'url(' + imgUrl + ')'
+                        };
+                        
+                        function HelloWorldComponent() {
+                        return &lt;div style={divStyle}>Hello World!&lt;/div>
+                        }
+    
+                    Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes in JavaScript (e.g. node.style.backgroundImage).
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>39) What is the impact of indexes as keys?<span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    Keys should be stable, predictable, and unique so that React can keep track of elements.
+    
+                    In the below code snippet each element's key will be based on ordering, rather than tied to the data that is being represented. 
+                    This limits the optimizations that React can do.
+                        
+                        {todos.map((todo, index) =>
+                            &lt;Todo
+                                {...todo}
+                                key={index}
+                            />
+                        )}
+    
+                    If you use element data for unique key, assuming todo.id is unique to this list and stable, 
+                    React would be able to reorder elements without needing to reevaluate them as much.
+                    
+                        {todos.map((todo) =>
+                            &lt;Todo {...todo}
+                                key={todo.id} />
+                        )}
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>40) Can you force a component to re-render without calling setState? <span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    By default, when your component's state or props change, your component will re-render. 
+                    If your render() method depends on some other data, you can tell React that the component needs re-rendering by calling forceUpdate().
+    
+                        component.forceUpdate(callback)
+    
+                    It is recommended to avoid all uses of forceUpdate() and only read from this.props and this.state in render().
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>41) How to conditionally apply class attributes? <span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    You shouldn't use curly braces inside quotes because it is going to be evaluated as a string.
+    
+                        &lt;div className="btn-panel {this.props.visible ? 'show' : 'hidden'}">
+    
+                    Instead you need to move curly braces outside (don't forget to include spaces between class names):
+                    
+                        &lt;div className={'btn-panel ' + (this.props.visible ? 'show' : 'hidden')}>
+                        Template strings will also work:
+                        
+                        &lt;div className={`btn-panel ${this.props.visible ? 'show' : 'hidden'}`}>
+                
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>42) How to listen to state changes?<span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    The componentDidUpdate lifecycle method will be called when state changes. 
+                    You can compare provided state and props values with current state and props to determine if something meaningful changed.
+    
+                        componentDidUpdate(object prevProps, object prevState)
+    
+                    Note: The previous releases of ReactJS also uses componentWillUpdate(object nextProps, object nextState) for state changes. It has been deprecated in latest releases.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>43) Why you can't update props in React?<span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    The React philosophy is that props should be immutable and top-down. 
+                    This means that a parent can send any prop values to a child, but the child can't modify received props.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>44) How to update a component every second?<span
+                        class="float-right badge badge-pill badge-primary">react</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    You need to use setInterval() to trigger the change, but you also need to clear the timer when the component unmounts to prevent errors and memory leaks.
+    
+                        componentDidMount() {
+                            this.interval = setInterval(() => this.setState({ time: Date.now() }), 1000)
+                        }
+                        
+                        componentWillUnmount() {
+                            clearInterval(this.interval)
+                        }
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>45) What are render props? <span class="float-right badge badge-pill badge-primary">react</span>
+                </h5>
+                <pre class="pre"><code class="language-javascript">
+                    Render Props is a simple technique for sharing code between components using a prop whose value is a function. 
+                    The below component uses render prop which returns a React element.
+    
+                        &lt;DataProvider render={data => (
+                            &lt;h1>{`Hello ${data.target}`}&lt;/h1>
+                        )}/>
+    
+                    Libraries such as React Router and DownShift are using this pattern.
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 46) What is Redux? <span class="float-right badge badge-pill badge-primary">redux</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    Redux is a predictable state container for JavaScript apps based on the Flux design pattern. 
+                    Redux can be used together with React, or with any other view library. It is tiny (about 2kB) and has no dependencies.
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 47) What are the core principles of Redux? <span
+                        class="float-right badge badge-pill badge-primary">redux</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    Redux follows three fundamental principles:
+    
+                        1. Single source of truth: The state of your whole application is stored in an object tree within a single store. The single state tree makes it easier to keep track of changes over time and debug or inspect the application.
+                        2. State is read-only: The only way to change the state is to emit an action, an object describing what happened. This ensures that neither the views nor the network callbacks will ever write directly to the state.
+                        3. Changes are made with pure functions: To specify how the state tree is transformed by actions, you write reducers. Reducers are just pure functions that take the previous state and an action as parameters, and return the next state.
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 48) What is the difference between mapStateToProps() and mapDispatchToProps()? <span
+                        class="float-right badge badge-pill badge-primary">redux</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    mapStateToProps() is a utility which helps your component get updated state 
+                    (which is updated by some other components):
+    
+                        const mapStateToProps = (state) => {
+                            return {
+                                todos: getVisibleTodos(state.todos, state.visibilityFilter)
+                            }
+                        }
+    
+                    mapDispatchToProps() is a utility which will help your component to fire an 
+                    action event (dispatching action which may cause change of application state):
+                    
+                        const mapDispatchToProps = (dispatch) => {
+                            return {
+                                onTodoClick: (id) => {
+                                dispatch(toggleTodo(id))
+                                }
+                            }
+                        }
+    
+                    Recommend always using the “object shorthand” form for the mapDispatchToProps
+                    
+                    Redux wrap it in another function that looks like (…args) => dispatch(onTodoClick(…args)), 
+                    and pass that wrapper function as a prop to your component.
+                    
+                        const mapDispatchToProps = ({
+                            onTodoClick
+                        })
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 49) How to dispatch an action on load? <span
+                        class="float-right badge badge-pill badge-primary">redux</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    You can dispatch an action in componentDidMount() method and in render() method you can verify the data.
+    
+                        class App extends Component {
+                        componentDidMount() {
+                            this.props.fetchData()
+                        }
+                        
+                        render() {
+                            return this.props.isLoaded
+                            ? &lt;div>{'Loaded'}&lt;/div>
+                            : &lt;div>{'Not Loaded'}&lt;/div>
+                        }
+                        }
+                        
+                        const mapStateToProps = (state) => ({
+                        isLoaded: state.isLoaded
+                        })
+                        
+                        const mapDispatchToProps = { fetchData }
+                        
+                        export default connect(mapStateToProps, mapDispatchToProps)(App)
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 50) How to use connect() from React Redux? <span
+                        class="float-right badge badge-pill badge-primary">redux</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    You need to follow two steps to use your store in your container:
+    
+                        1. Use mapStateToProps(): It maps the state variables from your store to the props that you specify.
+                        
+                        2. Connect the above props to your container: 
+                            The object returned by the mapStateToProps function is connected to the container. 
+                            You can import connect() from react-redux.
+                        
+                            import React from 'react'
+                            import { connect } from 'react-redux'
+                            
+                            class App extends React.Component {
+                            render() {
+                                return <div>{this.props.containerData}</div>
+                            }
+                            }
+                            
+                            function mapStateToProps(state) {
+                            return { containerData: state.data }
+                            }
+                            
+                            export default connect(mapStateToProps)(App)
+                            
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 51) What is the difference between React context and React Redux? <span
+                        class="float-right badge badge-pill badge-primary">redux</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    You can use Context in your application directly and is going to be great 
+                    for passing down data to deeply nested components which what it was designed for.
+    
+                    Whereas Redux is much more powerful and provides a large number of features that the Context API doesn't provide. 
+                    Also, React Redux uses context internally but it doesn't expose this fact in the public API.
+    
+                    Note:
+                    Context is for small and medium projects, Redux is more complex, for larger projects.
+                    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 52) Why are Redux state functions called reducers? <span
+                        class="float-right badge badge-pill badge-primary">redux</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    Reducers always return the accumulation of the state (based on all previous and current actions). 
+                    Therefore, they act as a reducer of state. Each time a Redux reducer is called, the state and action are passed as parameters. 
+                    This state is then reduced (or accumulated) based on the action, and then the next state is returned. 
+                    You could reduce a collection of actions and an initial state (of the store) on which to perform these actions to get the resulting final state.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 53) How to make AJAX request in Redux? <span
+                        class="float-right badge badge-pill badge-primary">redux</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    You can use redux-thunk middleware which allows you to define async actions.
+    
+                    Let's take an example of fetching specific account as an AJAX call using fetch API:
+                    
+                        export function fetchAccount(id) {
+                            return dispatch => {
+                                dispatch(setLoadingAccountState()) // Show a loading spinner
+                                fetch(`/account/${id}`, (response) => {
+                                dispatch(doneFetchingAccount()) // Hide loading spinner
+                                if (response.status === 200) {
+                                    dispatch(setAccount(response.json)) // Use a normal function to set the received state
+                                } else {
+                                    dispatch(someError)
+                                }
+                                })
+                            }
+                        }
+                        
+                        function setAccount(data) {
+                            return { type: 'SET_Account', data: data }
+                        }
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 54) Should I keep all component's state in Redux store? <span
+                        class="float-right badge badge-pill badge-primary">redux</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    Keep your data in the Redux store, and the UI related state internally in the component.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 55) What is the difference between component and container in React Redux? <span
+                        class="float-right badge badge-pill badge-primary">redux</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    Component is a class or function component that describes the presentational part of your application.
+                    Container is an informal term for a component that is connected to a Redux store. 
+                    Containers subscribe to Redux state updates and dispatch actions, and they usually don't render DOM elements; they delegate rendering to presentational child components.            
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 56) How to structure Redux top level directories? <span
+                        class="float-right badge badge-pill badge-primary">redux</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    Most of the applications has several top-level directories as below:
+    
+                        1. Components: Used for dumb components unaware of Redux.
+                        2. Containers: Used for smart components connected to Redux.
+                        3. Actions: Used for all action creators, where file names correspond to part of the app.
+                        4. Reducers: Used for all reducers, where files name correspond to state key.
+                        5. Store: Used for store initialization.
+    
+                    This structure works well for small and medium size apps.
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 57) What is redux-saga? <span class="float-right badge badge-pill badge-primary">redux</span></h5>
+                <pre class="pre"><code class="language-javascript">
+                    redux-saga is a library that aims to make side effects (asynchronous things like data 
+                    fetching and impure things like accessing the browser cache) 
+                    in React/Redux applications easier and better.
+    
+                    It is available in NPM:
+                    
+                        $ npm install --save redux-saga
+    
+                </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 58) What is an action in Redux?<span
+                        class="float-right badge badge-pill badge-primary">redux</span></h5>
+                <pre class="pre">
+                    <code class="language-javascript">
+                        Actions are plain JavaScript objects or payloads of information that send data from your application to your store. 
+                        They are the only source of information for the store. 
+                        Actions must have a type property that indicates the type of action being performed.
+    
+                        For example, let's take an action which represents adding a new todo item:
+                        
+                            {
+                                type: ADD_TODO,
+                                text: 'Add todo item'
+                            }
+                    </code>
+                </pre>
+            </div>
+        </div>
+        <br />
+        <br />
+
+        <script>
+            // https://syndicode.com/2019/01/09/33-concepts-every-js-developer-should-know/
+            //https://scotch.io/courses/10-need-to-know-javascript-concepts/the-this-keyword
+            //https://javascript.info/
+
+            function toggle(e) {
+                if (e.currentTarget.querySelector('.pre').style.display === 'none') {
+                    e.currentTarget.querySelector('.pre').style.display = 'block'
+                } else {
+                    e.currentTarget.querySelector('.pre').style.display = 'none'
+                }
+            }
+            const boxes = document.getElementsByClassName('box');
+            for (let i = 0; i < boxes.length; i++) {
+                boxes[i].addEventListener('click', toggle);
+                boxes[i].querySelector('.pre').style.display = 'none';
+                boxes[i].querySelector('.pre').style.display = 'none'
+            }
+        </script>
+    </main>
+</body>
+
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript <span>Borrowing Methods</span></h1>
+            <p class="summary">In this tutorial you will learn how to borrow functionality from existing objects in
+                JavaScript.</p>
+            <h2>Borrowing Methods from Objects</h2>
+            <p>In JavaScript, you can borrow methods from other objects to build some functionality without inheriting
+                all their properties and methods.</p>
+            <p>JavaScript provides two methods for all function objects, <code>call()</code> and <code>apply()</code>,
+                that allow a function to be invoked as if it were a method of another object. Here's an example:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> objA <span class="token operator">=</span> <span class="token punctuation">{</span>
+name<span class="token punctuation">:</span> <span class="token string">"object A"</span><span class="token punctuation">,</span>
+say<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>greet<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>greet <span class="token operator">+</span> <span class="token string">", "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+objA<span class="token punctuation">.</span><span class="token function">say</span><span class="token punctuation">(</span><span class="token string">"Hi"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Displays: Hi, object A</span>
+
+<span class="token keyword">var</span> objB <span class="token operator">=</span> <span class="token punctuation">{</span>
+name<span class="token punctuation">:</span> <span class="token string">"object B"</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* The objA doesn't have say() method, but it can borrow it from objA */</span>
+objA<span class="token punctuation">.</span>say<span class="token punctuation">.</span><span class="token function">call</span><span class="token punctuation">(</span>objB<span class="token punctuation">,</span> <span class="token string">"Hello"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Displays: Hello, object B</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Difference Between <code>call()</code> and <code>apply()</code> Methods</h2>
+            <p>The syntax of the <code>apply()</code> method is almost identical to <code>call()</code>, the only
+                difference is, the <code>call()</code> method takes a list of arguments like
+                <code>call(<em>thisObj</em>, <i>arg1</i>, <i>arg2</i>, ...)</code>, while the <code>apply()</code>
+                method takes a single array of arguments like <code>apply(<em>thisObj</em>, [<i>argsArray</i>])</code>.
+            </p>
+            <p>Notice the square brackets (<code>[]</code>), which denotes an array, in the last line of the following
+                example:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> objA <span class="token operator">=</span> <span class="token punctuation">{</span>
+name<span class="token punctuation">:</span> <span class="token string">"object A"</span><span class="token punctuation">,</span>
+say<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>greet<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>greet <span class="token operator">+</span> <span class="token string">", "</span> <span class="token operator">+</span> <span class="token keyword">this</span><span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+objA<span class="token punctuation">.</span><span class="token function">say</span><span class="token punctuation">(</span><span class="token string">"Hi"</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Displays: Hi, object A</span>
+
+<span class="token keyword">var</span> objB <span class="token operator">=</span> <span class="token punctuation">{</span>
+name<span class="token punctuation">:</span> <span class="token string">"object B"</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">/* The objA doesn't have say() method, but it can borrow it from objA */</span>
+objA<span class="token punctuation">.</span>say<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span>objB<span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">"Hello"</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Displays: Hello, object B</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 48px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Using Built-in Methods</h2>
+            <p>The <code>apply()</code> method also allows you to use built-in methods for performing some tasks quickly
+                and easily. One such example is using the <code>Math.max()</code>/<code>Math.min()</code> to find out
+                the maximum or minimum value in an array, that would otherwise require looping over the array values.
+            </p>
+            <p>As you already know from the previous chapters JavaScript arrays do not have a <code>max()</code> method,
+                but <a href="javascript-math-operations.php">Math</a> has, so we can apply the <code>Math.max()</code>
+                method, like this:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Using Math.max apply</span>
+<span class="token keyword">var</span> max <span class="token operator">=</span> Math<span class="token punctuation">.</span>max<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> numbers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>max<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: 7</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div title="Important Notes" class="info-tab note-icon"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> The first argument to both <code>call()</code> and
+                            <code>apply()</code> is the object on which the function is to be invoked. Using
+                            <code>null</code> as the first argument is like calling the function without providing any
+                            object for the <code>this</code> pointer inside the function.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <p>The new ES6 <a href="javascript-es6-features.php#spread-operator">spread operator</a> provides a shorter
+                way to obtain the maximum or minimum value from an array without using the <code>apply()</code> method.
+                Here's an example:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Using spread operator</span>
+<span class="token keyword">var</span> max <span class="token operator">=</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token operator">...</span>numbers<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>max<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: 7</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>However, both spread (<code>...</code>) and <code>apply()</code> will either fail or return the incorrect
+                result if the array has too many elements (e.g. tens of thousands). In that case you can use the
+                <code>Array.reduce()</code> to find the maximum or minimum value in a numeric array, by comparing each
+                value, like this:</p>
+            <!--Code box-->
+            <div class="example break">
+                <div class="codebox">
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">6</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">7</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Using reduce method</span>
+<span class="token keyword">var</span> max <span class="token operator">=</span> numbers<span class="token punctuation">.</span><span class="token function">reduce</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">alert</span><span class="token punctuation">(</span>max<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Outputs: 7</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+
+        </div>
+</body>
+
+</html>

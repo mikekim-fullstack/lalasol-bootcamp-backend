@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript <span>If…Else</span> Statements</h1>
+            <p class="summary">In this tutorial you will learn how to write the decision-making code using
+                if...else...else if conditional statements in JavaScript.</p>
+            <h2>JavaScript Conditional Statements</h2>
+            <p>Like many other programming languages, JavaScript also allows you to write code that perform different
+                actions based on the results of a logical or comparative test conditions at run time. This means, you
+                can create test conditions in the form of expressions that evaluates to either <code>true</code> or
+                <code>false</code> and based on these results you can perform certain actions.</p>
+            <p>There are several conditional statements in JavaScript that you can use to make decisions:</p>
+            <ul>
+                <li>The <strong>if</strong> statement</li>
+                <li>The <strong>if...else</strong> statement</li>
+                <li>The <strong>if...else if....else</strong> statement</li>
+                <li>The <strong>switch...case</strong> statement</li>
+            </ul>
+            <p class="space">We will discuss each of these statements in detail in the coming sections.</p>
+            <h2>The <code>if</code> Statement</h2>
+            <p class="break">The <em>if</em> statement is used to execute a block of code only if the specified
+                condition evaluates to true. This is the simplest JavaScript's conditional statements and can be written
+                like:</p>
+            <div class="syntax">
+                <span class="keyword">if</span>(condition) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<em>// Code to be executed</em><br>
+                }
+            </div>
+            <p>The following example will output "Have a nice weekend!" if the current day is Friday:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+					<code class="language-js">
+                        var now = new Date();
+                        var dayOfWeek = now.getDay(); // Sunday - Saturday : 0 - 6
+                        
+                        if(dayOfWeek == 5) {
+                        alert("Have a nice weekend!");
+                        }
+					</code>
+				</pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>The <code>if...else</code> Statement</h2>
+            <p>You can enhance the decision making capabilities of your JavaScript program by providing an alternative
+                choice through adding an <em>else</em> statement to the <em>if</em> statement.</p>
+            <p class="break">The <em>if...else</em> statement allows you to execute one block of code if the specified
+                condition is evaluates to true and another block of code if it is evaluates to false. It can be written,
+                like this:</p>
+            <div class="syntax">
+                <span class="keyword">if</span>(condition) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><em>// Code to be executed if condition is
+                        true</em></span><br>
+                } <span class="keyword">else</span> {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><em>// Code to be executed if condition is
+                        false</em></span><br>
+                }
+            </div>
+            <p>The JavaScript code in the following example will output "Have a nice weekend!" if the current day is
+                Friday, otherwise it will output the text "Have a nice day!".</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+					<code class="language-js">
+                        var now = new Date();
+                        var dayOfWeek = now.getDay(); // Sunday - Saturday : 0 - 6
+                        
+                        if(dayOfWeek == 5) {
+                            alert("Have a nice weekend!");
+                        } else {
+                            alert("Have a nice day!");
+                        }
+					</code>
+				</pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>The <code>if...else if...else</code> Statement</h2>
+            <p class="break">The <em>if...else if...else</em> a special statement that is used to combine multiple
+                <em>if...else</em> statements.</p>
+            <div class="syntax">
+                <span class="keyword">if</span>(condition1) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><em>// Code to be executed if condition1 is
+                        true</em></span><br>
+                } <span class="keyword">else if</span>(condition2) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><em>// Code to be executed if the condition1 is false and
+                        condition2 is true</em></span><br>
+                } <span class="keyword">else</span> {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"><em>// Code to be executed if both condition1 and
+                        condition2 are false</em></span><br>
+                }
+            </div>
+            <p>The following example will output "Have a nice weekend!" if the current day is Friday, and "Have a nice
+                Sunday!" if the current day is Sunday, otherwise it will output "Have a nice day!"</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+					<code class="language-js">
+                        var now = new Date();
+                        var dayOfWeek = now.getDay(); // Sunday - Saturday : 0 - 6
+                        
+                        if(dayOfWeek == 5) {
+                            alert("Have a nice weekend!");
+                        } else if(dayOfWeek == 0) {
+                            alert("Have a nice Sunday!");
+                        } else {
+                            alert("Have a nice day!");
+                        }
+					</code>
+				</pre>
+            </div>
+            <!--End:Code box-->
+            <p>You will learn about the <a href="javascript-switch-case-statements.php">JavaScript switch-case
+                    statement</a> in the next chapter.</p>
+            <hr>
+            <h2>The Ternary Operator</h2>
+            <p>The ternary operator provides a shorthand way of writing the <em>if...else</em> statements. The ternary
+                operator is represented by the question mark (<code>?</code>) symbol and it takes three operands: a
+                condition to check, a result for <code>true</code>, and a result for <code>false</code>. Its basic
+                syntax is:</p>
+            <div class="syntax">
+                <span class="keyword">var</span> result = (condition) ? value1 : value2
+            </div>
+            <p>If the condition is evaluated to true the value1 will be returned, otherwise value2 will be returned. To
+                understand how this operator works, consider the following examples:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+					<code class="language-js">
+                        var userType;
+                        var age = 21;
+                        if(age < 18) {
+                            userType = 'Child';
+                        } else {
+                            userType = 'Adult';
+                        }
+                        alert(userType); // Displays Adult
+					</code>
+				</pre>
+            </div>
+            <!--End:Code box-->
+            <p>Using the ternary operator the same code could be written in a more compact way:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+					<code class="language-js">
+                        var age = 21;
+                        var userType = age < 18 ? 'Child' : 'Adult';
+                        alert(userType); // Displays Adult
+					</code>
+				</pre>
+            </div>
+
+
+        </div>
+
+</body>
+
+</html>

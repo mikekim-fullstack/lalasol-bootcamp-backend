@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript <span>Math Operations</span></h1>
+            <p class="summary">In this tutorial you will learn how to perform math operations in JavaScript.</p>
+            <h2>Using the Math Object</h2>
+            <p class="space">The JavaScript Math object provides a number of useful properties and methods for
+                performing mathematical tasks like, generating random numbers, rounding numbers, obtaining values such
+                as PI and performing calculation, and so on. It also includes methods for performing mathematical task
+                that are normally impossible or too complex to perform using standard <a
+                    href="javascript-operators.php#arithmetic">mathematical operators</a> (<code>+</code>,
+                <code>-</code>,<code>*</code>, and <code>/</code>) such as calculating sine or cosine values.</p>
+            <h2>The Math.PI Property</h2>
+            <p>The <code>Math.PI</code> property represents the ratio of the circumference of a circle to its diameter.
+                PI (<code>π</code>) is a mathematical constant, which is approximately 3.14159:
+                <code>Math.PI = π ≈ 3.14159</code></p>
+            <p>Here is an example that calculates the area of a circle using the Math.PI property.</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token comment">// Printing PI value</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 3.141592653589793</span>
+
+<span class="token comment">// Function to calculate circle area</span>
+<span class="token keyword">function</span> <span class="token function">calculateCircleArea</span><span class="token punctuation">(</span>radius<span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token keyword">var</span> area <span class="token operator">=</span> <span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token constant">PI</span><span class="token punctuation">)</span> <span class="token operator">*</span> radius <span class="token operator">*</span> radius<span class="token punctuation">;</span>
+<span class="token keyword">return</span> area<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token function">calculateCircleArea</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 78.53981633974483</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token function">calculateCircleArea</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 314.1592653589793</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> The Math object is a built-in JavaScript object so its properties and
+                            methods can be accessed directly. You'll never need to create a Math object, because it is
+                            automatically created by the JavaScript interpreter.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <hr>
+            <h2>Getting the Absolute Value</h2>
+            <p>The <code>Math.abs()</code> method is used to calculate the absolute (positive) value of a number.
+                Therefore, -1 is returned as 1, -5 as 5, and so on. Here is an example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript">document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">abs</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 1</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">abs</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 1</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">abs</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 5</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">abs</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">10.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 10.5</span>
+<span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Generating a Random Number</h2>
+            <p>The <code>Math.random()</code> method is used to generate a floating-point random number in the range
+                from <code>0</code> inclusive up to but not including <code>1</code>. However, if you want a random
+                integer between zero and an integer higher than one, you could use the following solution:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript">document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Expected output: a number between 0 and 1</span>
+
+<span class="token comment">// Function to create random integer </span>
+<span class="token keyword">function</span> <span class="token function">getRandomInt</span><span class="token punctuation">(</span>max<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">random</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">*</span> max<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token function">getRandomInt</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Expected output: 0, 1 or 2</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token function">getRandomInt</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Expected output: 0</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 48px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Calculating the Square Root of a Number</h2>
+            <p>The <code>Math.sqrt()</code> method is used to calculate the square root of a number:
+                <code>Math.sqrt(<i>x</i>) = <span class="sqrt"><i>x</i></span></code></p>
+            <p>If the number is negative, <a href="javascript-data-types.php#number"><code>NaN</code></a> is returned.
+                Here is an example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript">document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 2</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 4</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token number">0.25</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 0.5</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">9</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: NaN</span>
+
+<span class="token comment">/* Function to calculate hypotenuse.
+Hypotenuse is the longest side of a right-angled triangle. */</span>
+<span class="token keyword">function</span> <span class="token function">calculateHypotenuse</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span> b<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+<span class="token keyword">return</span> Math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span><span class="token punctuation">(</span>a <span class="token operator">*</span> a<span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token punctuation">(</span>b <span class="token operator">*</span> b<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token function">calculateHypotenuse</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">4</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 5</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span><span class="token function">calculateHypotenuse</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token number">12</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 13</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Rounding Numbers</h2>
+            <p>The JavaScript Math object provides few methods to round numbers, each one has its own purpose. The
+                following section will describe these methods in detials.</p>
+            <h3 id="ceil">The <code>ceil()</code> Method</h3>
+            <p>The <code>Math.ceil()</code> method rounds a number up to the next highest integer. So, 3.5 becomes 4,
+                -5.7 becomes -5 (because -5 is greater than -6). Here's an example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript">document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span><span class="token number">3.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 4</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: -5</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span><span class="token number">9.99</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 10</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">9.99</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: -9</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">ceil</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 0</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <h3 id="floor">The <code>floor()</code> Method</h3>
+            <p>The <code>Math.floor()</code> method rounds a number down to the next lowest integer. So, 3.5 becomes 3,
+                -5.7 becomes -6 (because -6 is lesser than -5). Here's an example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript">document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token number">3.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 3</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: -6</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token number">9.99</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 9</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">9.99</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: -10</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">floor</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 0</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <h3 id="round">The <code>round()</code> Method</h3>
+            <p>The <code>Math.round()</code> method rounds a number to the nearest integer in such a way that if the
+                decimal part is <code>.5</code> or greater, number is rounded up, otherwise rounded down. So, 3.5
+                becomes 4, -5.7 becomes -6, 4.49 becomes 4, and so on. Here's an example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript">document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token number">3.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 4</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">5.7</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: -6</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token number">7.25</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 7</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token number">4.49</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 4</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">round</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 0</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Finding the Largest and Smallest Numbers</h2>
+            <p>The <code>Math.max()</code> and <code>Math.min()</code> methods is used to find which number is the
+                largest or smallest in a group of numbers, respectively. Here's an example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript">document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 3</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: -1</span>
+
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 1</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: -3</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>You can also find the maximum or minimum value within an array or an array-like object using the
+                <code>apply()</code> method, as shown in the following example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span>max<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> numbers<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 3</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span>min<span class="token punctuation">.</span><span class="token function">apply</span><span class="token punctuation">(</span><span class="token keyword">null</span><span class="token punctuation">,</span> numbers<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 1</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>There is even simpler way to do this. In ECMAScript 6 you can accomplish the same thing using the new <a
+                    href="javascript-es6-features.php#spread-operator">spread operator</a> (<code>...</code>), as shown
+                in example below:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> numbers <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">,</span> <span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">max</span><span class="token punctuation">(</span><span class="token operator">...</span>numbers<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 3</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">min</span><span class="token punctuation">(</span><span class="token operator">...</span>numbers<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 1</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Raising Numbers to a Power</h2>
+            <p>The <code>Math.pow()</code> method is used to raise a number to a specified power.</p>
+            <p>The expression <code>Math.pow(<i>x</i>, <i>y</i>)</code>—equivalent to mathmatically
+                <code>x<sup>y</sup></code>—shows how many times the <em>base</em> <code><i>x</i></code> is multiplied by
+                the <em>exponent</em> <code><i>y</i></code>. Here's an example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript">document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 9</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 0</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">5</span><span class="token punctuation">,</span> <span class="token operator">-</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 0.04</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">,</span> <span class="token number">0.5</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 4 (square root of 4)</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">pow</span><span class="token punctuation">(</span><span class="token number">8</span><span class="token punctuation">,</span> <span class="token number">1</span><span class="token operator">/</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 2 (cube root of 8)</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+            <p>A positive exponent indicates multiplication (5<sup>2</sup> = 5 x 5 = 25), a negative exponent indicates
+                division (5<sup>-2</sup> = 1/5<sup>2</sup> = 0.04), whereas a fractional exponent indicates a root of
+                the base.</p>
+            <hr>
+            <h2>Performing Trigonometric Operations</h2>
+            <p>The JavaScript's Math object also provides several trigonometric methods such as <code>sin()</code>,
+                <code>cos()</code>, <code>tan()</code> to perform trigonometric operations. These methods work in
+                radians, so you need to multiply any degree measurements by <code>π/180</code> before using them.</p>
+            <p>Since, pi radians are equal to 180 degrees: <code>π rad = 180°</code>. Therefore, π/2 radians is equal 90
+                degrees, π/3 radians is equal to 60 degrees, and so on. Here's an example:</p>
+            <!--Code box-->
+            <div class="example">
+                <div class="codebox">
+
+
+                    <pre
+                        class="syntax-highlighter line-numbers language-javascript"><code class=" language-javascript">document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">sin</span><span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span> <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 0</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">sin</span><span class="token punctuation">(</span><span class="token number">90</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span> <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 1</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span> <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 1</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">cos</span><span class="token punctuation">(</span><span class="token number">180</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span> <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: -1</span>
+document<span class="token punctuation">.</span><span class="token function">write</span><span class="token punctuation">(</span>Math<span class="token punctuation">.</span><span class="token function">tan</span><span class="token punctuation">(</span><span class="token number">0</span> <span class="token operator">*</span> Math<span class="token punctuation">.</span><span class="token constant">PI</span> <span class="token operator">/</span> <span class="token number">180</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>  <span class="token comment">// Prints: 0</span><span aria-hidden="true" class="line-numbers-rows"><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span><span style="height: 24px;"></span></span><span class="line-numbers-sizer" style="display: none;"></span></code></pre>
+                </div>
+            </div>
+            <!--End:Code box-->
+
+        </div>
+</body>
+
+</html>

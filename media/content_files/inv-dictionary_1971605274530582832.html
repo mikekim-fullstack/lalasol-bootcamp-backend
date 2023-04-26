@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css">
+    <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script>
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <!-- <link href="../style.css" rel="stylesheet" /> -->
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 0 50px;
+        }
+
+        .dict {
+            float: left;
+            width: 25%;
+        }
+
+        .desc {
+            display: none;
+        }
+
+        .name {
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .name:hover {
+            text-decoration: underline;
+            color: #527ad6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <main role="main">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <h4>Dictionary</h4>
+        </div>
+
+        <h4>A</h4>
+        <div class="dict">
+            <div class="name" data-toggle="modal" data-target="#modal">Headless Browsers</div>
+            <div class="desc">
+                Headless browsers are a web browser without a graphical user interface that can be controlled from a
+                command line interface programmatically for the purpose of web page automation (e.g., functional
+                testing, scraping, unit testing, etc.). Think of headless browsers as a browser that you can run
+                programmatically from the command line that can retrieve and traverse web page code.
+                <p>The most common headless browsers are:</p>
+                <ul>
+                    <li>Headless Chromium</li>
+                    <li>Zombie</li>
+                    <li>slimerjs</li>
+                    <li>puppeteer</li>
+                </ul>
+            </div>
+        </div>
+        <div class="dict">
+            <div class="name" data-toggle="modal" data-target="#modal">Sprint planning </div>
+            <div class="desc">
+                Sprint planning sets the team up for success throughout the sprint. The meeting involves walking through
+                the backlog of work to be done, and prioritizing what should be completed for the next two weeks. The
+                team has to estimate each story to see how much effort is required by us. Based on the effort involved,
+                we can gauge capacity (how much can be done versus the development resource available).
+            </div>
+        </div>
+        <div class="dict">
+            <div class="name" data-toggle="modal" data-target="#modal">Daily stand-up</div>
+            <div class="desc">
+                Daily stand-up is a very brief meeting with your team to explain: what you did yesterday, what am I
+                doing today, and is there anything stopping me from doing my job? (blocking). This keeps everyone in the
+                loop. Keep it short. Once upon a time, a stand-up lasted an hour for me… ?
+            </div>
+        </div>
+        <div class="dict">
+            <div class="name" data-toggle="modal" data-target="#modal">Sprint review </div>
+            <div class="desc">
+                Sprint review happens at the end of the sprint. We showcase to other stakeholders (member of the Product
+                team, users of our system) what we managed to achieve. We do this by doing a demo of the work we have
+                been doing. This gives them confidence that we are progressing.
+            </div>
+        </div>
+        <div class="dict">
+            <div class="name" data-toggle="modal" data-target="#modal">Retrospective</div>
+            <div class="desc">
+                Retrospective is a way to reflect back on what went well and what didn’t. This brings up problems. From
+                those problems we create actions. An action is a thing to initiate a process where we can stop that
+                negative thing from happening again. The things that went well give us an understanding of what makes us
+                work better.
+            </div>
+        </div>
+        <div class="dict">
+            <div class="name" data-toggle="modal" data-target="#modal">Webviews</div>
+            <div class="desc">
+                Webviews are used by a native OS, in a native application, to run web pages. Think of a webview like an
+                iframe or a single tab from a web browser that is embedded in a native application running on a device
+                (e.g., iOS, android, windows).
+                <p>The most common solutions for webview development are:</p>
+                <ul>
+                    <li>Cordova (typically for native phone/tablet apps)</li>
+                    <li>Electron (typically used for desktop apps)</li>
+                </ul>
+            </div>
+        </div>
+        <div class="dict">
+            <div class="name" data-toggle="modal" data-target="#modal">Web Platforms</div>
+            <div class="desc">
+                Web platform for mobile. Mobile Applications
+                Development environments are being dreamed up that use web technologies (e.g., CSS and JavaScript),
+                without web engines, to create native applications.
+                <p>Some examples of these environments are:</p>
+                <ul>
+                    <li>Flutter</li>
+                    <li>React Native</li>
+                    <li>NativeScript</li>
+                </ul>
+            </div>
+        </div>
+        <div class="dict">
+            <div class="name" data-toggle="modal" data-target="#modal">Desktop Applications</div>
+            <div class="desc">
+                <ul>
+                    <li> <strong>Electron</strong> </li>
+                    <li>Proton Native</li>
+                </ul>
+            </div>
+        </div>
+        <div class="dict">
+            <div class="name" data-toggle="modal" data-target="#modal">Unit Testing </div>
+            <div class="desc">
+                Software testing method by which individual units of source code, Intuitively, one can view a unit as
+                the smallest testable part of an application.
+            </div>
+        </div>
+        <div class="dict">
+            <div class="name" data-toggle="modal" data-target="#modal">Functional Testing</div>
+            <div class="desc">
+                Functional testing is a quality assurance (QA) process and a type of black box testing that bases its
+                test cases on the specifications of the software component under test.
+            </div>
+        </div>
+        <div class="dict">
+            <div class="name" data-toggle="modal" data-target="#modal">Integration Testing</div>
+            <div class="desc">
+                Integration testing (sometimes called integration and testing, abbreviated I&T) is the phase in software
+                testing in which individual software modules are combined and tested as a group.
+            </div>
+        </div>
+        <div class="dict">
+            <div class="name" data-toggle="modal" data-target="#modal">Web Browsers</div>
+            <div class="desc">
+                A web browser is software used to retrieve, present, and traverse information on the WWW. Typically,
+                browsers run on a desktop or laptop computer, tablet, or phone, but as of late a browser can be found on
+                just about anything (i.e, on a fridge, in cars, etc.).
+                <p>Some examples of these environments are:</p>
+                <ul>
+                    <li>Chrome</li>
+                    <li>Safari</li>
+                    <li>Internet Explorer (Note: not Edge, referring to IE 9 to IE 11)</li>
+                    <li>Firefox</li>
+                    <li>Edge</li>
+                </ul>
+            </div>
+        </div>
+        <div class="dict">
+            <div class="name" data-toggle="modal" data-target="#modal">JSON</div>
+            <div class="desc">
+                It is the primary data format used for asynchronous browser/server communication (AJAJ), largely
+                replacing XML (used by AJAX). Although originally derived from the JavaScript scripting language, JSON
+                is a language-independent data format. Code for parsing and generating JSON data is readily available in
+                many programming languages. The official Internet media type for JSON is application/json. The JSON
+                filename extension is .json.
+                <p>Sample:</p>
+                <pre class="pre"><code class="language-js">
+  {
+    "links": {
+      "self": "http://example.com/articles",
+      "next": "http://example.com/articles?page[offset]=2",
+      "last": "http://example.com/articles?page[offset]=10"
+    },
+    "data": [{
+      "type": "articles",
+      "id": "1",
+      "attributes": {
+        "title": "JSON:API paints my bikeshed!"
+      },
+      "relationships": {
+        "author": {
+          "links": {
+            "self": "http://example.com/articles/1/relationships/author",
+            "related": "http://example.com/articles/1/author"
+          },
+          "data": { "type": "people", "id": "9" }
+        },
+      },
+      
+    }],
+  }
+                          </code></pre>
+            </div>
+        </div>
+
+        <!-- Modal -->
+
+
+        <p></p>
+        <p></p>
+
+        CMS<br>
+        Node.js<br>
+        Cross-Browser<br>
+        Cross-Platform<br>
+        Accessibility / WAI-ARIA<br>
+        SEO<br>
+        User Experience<br>
+        Usability<br>
+        E-commerce<br>
+        Wireframing<br>
+        CSS Layout<br>
+        DOM<br>
+        Version Control (e.g., GIT)<br>
+        MVC / MVVM / MV*<br>
+        Functional Programming<br>
+        Data Formats (e.g., JSON, XML)<br>
+        Rest API <br>
+        SVG <br>
+        Regular Expressions<br>
+        Task Runners, Build Tools, Process Automation Tools <br>
+        Responsive Web Design<br>
+        OOP <br>
+        Application Architecture <br>
+        Modules <br>
+        Dependency <br>
+        Package Managers <br>
+        UI Widgets <br>
+        Code Quality Testing<br>
+        Code Coverage Testing<br>
+        Command Line / CLI<br>
+        Templating Engines<br>
+        Single Page Applications<br>
+        Web/Browser Security<br>
+        Browser Developer Tools<br>
+        CORS<br>
+        SSL<br>
+        Caching<br>
+        Web Sockets<br>
+        Web Workers<br>
+        Web Storage<br>
+        Containers<br>
+
+        <h3>Network / Server</h3>
+        SSH<br>
+        Shell<br>
+        Command Line<br>
+        VIM<br>
+        Nginx<br>
+        Proxy<br>
+        Firewall<br>
+        Port<br>
+        Docker<br>
+        Deployment<br>
+        CDN<br>
+        Load Balancer<br>
+        Redis<br>
+        memcache<br>
+        AWS<br>
+        S3<br>
+        Pipeline<br>
+        Continuous Integration<br>
+        Hosting<br>
+        Domain<br>
+
+
+
+
+
+
+
+    </main>
+
+    <div>
+        <h4>Helpful links</h4>
+
+        <div class="question"><a
+                href="https://codeburst.io/de-coding-the-front-end-development-interview-process-9601bc4c71e5">Cultural</a>
+        </div>
+        <div class="question"><a href="https://www.fullstack.cafe/blog/front-end-developer-interview-questions">Front
+                End</a></div>
+        <div class="question"><a
+                href="https://medium.com/front-end-developers/how-to-interview-a-front-end-developer-5f9e3de4e6a5">Front
+                End</a></div>
+        <div class="question"><a href="https://www.indeed.com/hire/interview-questions/front-end-developer">Front
+                End</a></div>
+
+
+
+    </div>
+    <script>
+        var names = [...document.querySelectorAll('.name')];
+        names.forEach(name => {
+            name.addEventListener('click', updateModal)
+        })
+        function updateModal() {
+            document.querySelector('.modal-title').innerText = this.innerText;
+            document.querySelector('.modal-body').innerHTML = this.parentElement.querySelector('.desc').innerHTML;
+        }
+    </script>
+
+</body>
+
+</html>

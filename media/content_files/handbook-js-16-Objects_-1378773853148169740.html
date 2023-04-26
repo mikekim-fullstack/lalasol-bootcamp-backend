@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>LaLaSol</title>
+    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://lalasol-bootcamp.web.app/dist/handbook.css">
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/jquery-3.2.1.slim.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/popper.min.js"></script> -->
+    <!-- <script src="https://lalasol-bootcamp.web.app/dist/js/bootstrap.min.js"></script> -->
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/js/prism.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="content">
+            <h1>JavaScript <span>Objects</span></h1>
+            <p class="summary">In this tutorial you will learn how to create and use objects in JavaScript.</p>
+            <h2>What is an Object?</h2>
+            <p>JavaScript is an object-based language and in JavaScript almost everything is an object or acts like an
+                object. So, to work with JavaScript effectively and efficiently we need to understand how objects work
+                as well as how to create your own objects and use them.</p>
+            <p class="space">A JavaScript object is just a collection of named values. These named values are usually
+                referred to as properties of the object. If you remember from the <a
+                    href="javascript-arrays.php">JavaScript arrays</a> chapter, an array is a collection of values,
+                where each value has an index (a numeric key) that starts from zero and increments by one for each
+                value. An object is similar to an array, but the difference is that you define the keys yourself, such
+                as name, age, gender, and so on. In the following sections we'll learn about objects in detail.</p>
+            <h2>Creating Objects</h2>
+            <p>An object can be created with curly brackets <code>{}</code> with an optional list of properties. A
+                property is a "key: value" pair, where the key (or <em>property name</em>) is always a string, and value
+                (or <em>property value</em>) can be any data type, like strings, numbers, Booleans or complex data type
+                like arrays, functions, and other objects. Additionally, properties with functions as their values are
+                often called methods to distinguish them from other properties. A typical JavaScript object may look
+                like this:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            var person = {
+                                name: "Peter",
+                                age: 28,
+                                gender: "Male",
+                                displayName: function() {
+                                    alert(this.name);
+                                }
+                            };
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <p>The above example creates an object called <code>person</code> that has three properties
+                <code>name</code>, <code>age</code>, and <code>gender</code> and one method <code>displayName()</code>.
+                The <code>displayName()</code> method displays the value of <code>this.name</code>, which resolves to
+                <code>person.name</code>. This is the easiest and preferred way to create a new object in JavaScript,
+                which is known as <em>object literals</em> syntax.</p>
+            <p>The property names generally do not need to be quoted unless they are reserved words, or if they contain
+                spaces or special characters (anything other than letters, numbers, and the <code>_</code> and
+                <code>$</code> characters), or if they start with a number, as shown in the following example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            var person = {
+                                "first name": "Peter",
+                                "current age": 28,
+                                gender: "Male"
+                            };
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> Since ECMAScript 5, reserved words can be used as object's property
+                            names without quoting. However, you should avoid doing this for better compatibility.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <hr>
+            <h2>Accessing Object's Properties</h2>
+            <p>To access or get the value of a property, you can use the dot (<code>.</code>), or square bracket
+                (<code>[]</code>) notation, as demonstrated in the following example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            var book = {
+                                "name": "Harry Potter and the Goblet of Fire",
+                                "author": "J. K. Rowling",
+                                "year": 2000
+                            };
+                            
+                            // Dot notation
+                            document.write(book.author);  // Prints: J. K. Rowling
+                            
+                            // Bracket notation
+                            document.write(book["year"]); // Prints: 2000
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <p>The dot notation is easier to read and write, but it cannot always be used. If the name of the property
+                is not valid (i.e. if it contains spaces or special characters), you cannot use the dot notation; you'll
+                have to use bracket notation, as shown in the following example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            var book = {
+                                name: "Harry Potter and the Goblet of Fire",
+                                author: "J. K. Rowling",
+                                "publication date": "8 July 2000"
+                            };
+                            
+                            // Bracket notation
+                            document.write(book["publication date"]); // Prints: 8 July 2000
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <p>The square bracket notation offers much more flexibility than dot notation. It also allows you to specify
+                property names as variables instead of just string literals, as shown in the example below:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            var person = {
+                                name: "Peter",
+                                age: 28,
+                                gender: "Male"
+                            };
+                            
+                            var key = prompt("Enter any property name to get its value");
+                            alert(person[key]); // Outputs: Peter (if enter "name")
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Looping Through Object's Properties</h2>
+            <p>You can iterate through the key-value pairs of an object using the <code>for...in</code> loop. This loop
+                is specially optimized for iterating over object's properties. Here's an example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            var person = {
+                                name: "Peter",
+                                age: 28,
+                                gender: "Male"
+                            };
+                            
+                            // Iterating over object properties
+                            for(var i in person) {  
+                                document.write(person[i] + "<br>"); // Prints: name, age and gender
+                            }
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Setting Object's Properties</h2>
+            <p>Similarly, you can set the new properties or update the existing one using the dot (<code>.</code>) or
+                bracket (<code>[]</code>) notation, as demonstrated in the following example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            var person = {
+                                name: "Peter",
+                                age: 28,
+                                gender: "Male"
+                            };
+                            
+                            // Setting a new property
+                            person.country = "United States";
+                            document.write(person.country); // Prints: United States
+                            
+                            person["email"] = "peterparker@mail.com";
+                            document.write(person.email); // Prints: peterparker@mail.com
+                            
+                            // Updating existing property
+                            person.age = 30;
+                            document.write(person.age); // Prints: 30
+                            
+                            person["name"] = "Peter Parker";
+                            document.write(person.name); // Prints: Peter Parker
+                    
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Deleting Object's Properties</h2>
+            <p>The <code>delete</code> operator can be used to completely remove properties from an object. Deleting is
+                the only way to actually remove a property from an object. Setting the property to
+                <code>undefined</code> or <code>null</code> only changes the value of the property. It does not remove
+                property from the object.</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            var person = {
+                                name: "Peter",
+                                age: 28,
+                                gender: "Male",
+                                displayName: function() {
+                                    alert(this.name);
+                                }
+                            };
+                            
+                            // Deleting property
+                            delete person.age;
+                            alert(person.age); // Outputs: undefined
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <!--Note box-->
+            <div class="color-box">
+                <div class="shadow">
+                    <div class="info-tab note-icon" title="Important Notes"><i></i></div>
+                    <div class="note-box">
+                        <p><strong>Note:</strong> The <code>delete</code> operator only removes an object property or
+                            array element. It has no effect on variables or declared functions. However, you should
+                            avoid <code>delete</code> operator for deleting an array element, as it doesn't change the
+                            array's length, it just leaves a hole in the array.</p>
+                    </div>
+                </div>
+            </div>
+            <!--End:Note box-->
+            <hr>
+            <h2>Calling Object's Methods</h2>
+            <p>You can access an object's method the same way as you would access properties—using the dot notation or
+                using the square bracket notation. Here's an example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            var person = {
+                                name: "Peter",
+                                age: 28,
+                                gender: "Male",
+                                displayName: function() {
+                                    alert(this.name);
+                                }
+                            };
+                            
+                            person.displayName(); // Outputs: Peter
+                            person["displayName"](); // Outputs: Peter                        
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <hr>
+            <h2>Manipulating by Value vs. Reference</h2>
+            <p>JavaScript objects are reference types that mean when you make copies of them, you're really just copying
+                the references to that object. Whereas <a href="javascript-data-types.php">primitive values</a> like
+                strings and numbers are assigned or copied as a whole value. To better understand all this, let's check
+                out the following example:</p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            var message = "Hello World!";
+    
+                            var greet = message; // Assign message variable to a new variable
+                            greet = "Hi, there!";
+                            
+                            document.write(message);  // Prints: Hello World!
+                            document.write(greet);  // Prints: Hi, there!                      
+                        </code>
+                    </pre>
+            </div>
+            <!--End:Code box-->
+            <p>In the above example, we have made a copy of a variable <code>message</code> and changed the value of
+                that copy (i.e. variable <code>greet</code>). The two variables remain distinct and separate. But, if we
+                do the same thing with an object, we will get a different result, as you see in the following example:
+            </p>
+            <!--Code box-->
+            <div>
+                <pre class="line-numbers">
+                        <code class="language-js">
+                            var person = {
+                                name: "Peter",
+                                age: 28,
+                                gender: "Male"
+                            };
+                            
+                            var user = person; // Assign person variable to a new variable
+                            user.name = "Harry";
+                            
+                            document.write(person.name);  // Prints: Harry
+                            document.write(user.name);  // Prints: Harry                   
+                        </code>
+                    </pre>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
