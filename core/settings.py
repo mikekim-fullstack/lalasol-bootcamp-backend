@@ -168,12 +168,12 @@ X_CONTENT_TYPE_OPTIONS='NOSNIFF'
 # CSP_IMG_SRC = ["'self'","https://lalasol-bootcamp.web.app","http://localhost:3000"]
 
 # Keep our policy as strict as possible
-CSP_DEFAULT_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co","https://use.fontawesome.com", "https://fonts.googleapis.com","https://cdn.jsdelivr.net")
-CSP_STYLE_SRC = ("'self'","'unsafe-eval'", "'unsafe-inline'", 'fonts.googleapis.com', "https://lalasol-bootcamp.web.app","http://127.0.0.1:3000","https://use.fontawesome.com", "https://fonts.googleapis.com","https://cdn.jsdelivr.net")
-CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co","https://cdnjs.cloudflare.com", "https://use.fontawesome.com", "https://fonts.googleapis.com","https://cdn.jsdelivr.net")
-CSP_FONT_SRC = ("'self'",'fonts.gstatic.com','https://lalasol-bootcamp.web.app','https://lalasol-bootcamp-backend-production.up.railway.app','https://fonts.googleapis.com',"http://localhost:3000","http://127.0.0.1:3000", "https://use.fontawesome.com", "https://fonts.googleapis.com","https://cdn.jsdelivr.net")
+CSP_DEFAULT_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co","https://use.fontawesome.com", "https://fonts.googleapis.com","https://cdn.jsdelivr.net","https://www.w3schools.com")
+CSP_STYLE_SRC = ("'self'","'unsafe-eval'", "'unsafe-inline'", 'fonts.googleapis.com', "https://lalasol-bootcamp.web.app","http://127.0.0.1:3000","https://use.fontawesome.com", "https://fonts.googleapis.com","https://cdn.jsdelivr.net","https://www.w3schools.com")
+CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co","https://cdnjs.cloudflare.com", "https://use.fontawesome.com", "https://fonts.googleapis.com","https://cdn.jsdelivr.net","https://www.w3schools.com")
+CSP_FONT_SRC = ("'self'",'fonts.gstatic.com','https://lalasol-bootcamp.web.app','https://lalasol-bootcamp-backend-production.up.railway.app','https://fonts.googleapis.com',"http://localhost:3000","http://127.0.0.1:3000", "https://use.fontawesome.com", "https://fonts.googleapis.com","https://cdn.jsdelivr.net","https://www.w3schools.com")
 CSP_IMG_SRC = ("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co",'https://images.pexels.com','https://youtube.com')
-CSP_FRAME_SRC=("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co",'https://youtube.com')
+CSP_FRAME_SRC=("'self'","https://lalasol-bootcamp.web.app","http://127.0.0.1:3000", "http://localhost:3000","https://learn.seytech.co",'https://youtube.com',"https://www.w3schools.com")
 # Access_Control_Allow_Origin= "https://lalasol-bootcamp.web.app"
 ACCESS_CONTROL_ALLOW_ORIGIN = [ "https://lalasol-bootcamp.web.app"]
 # Application definition
