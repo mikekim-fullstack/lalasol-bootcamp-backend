@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Portfolio</title>
+
+    <!-- <link href="style.css" rel="stylesheet"> -->
+    <style>
+        /*
+        $textColor: #090a0c
+        */
+
+        body,
+        ul {
+            margin: 0;
+            padding: 0;
+            font-family: "Rambla", sans-serif;
+        }
+
+        ul li {
+            list-style: none;
+        }
+
+        header {
+            background-color: white;
+            width: 200px;
+            position: fixed;
+            height: 100vh;
+            text-align: center;
+            padding: 30px;
+            box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.29);
+        }
+
+        header ul {
+            text-align: left;
+            font-size: 20px;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        header ul li {
+            margin: 10px;
+            border-bottom: solid 1px #eee;
+        }
+
+        header ul li a {
+            color: #090a0c;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+        }
+
+        header ul li a:hover {
+            color: orange;
+        }
+
+        .img {
+            text-align: center;
+
+        }
+
+        header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+        }
+
+        .container {
+            margin-left: 280px;
+        }
+
+
+
+        /*Section*/
+        section {
+            padding: 50px 0;
+        }
+
+        #home {
+            text-align: center;
+            padding-top: 100px;
+            background: url(https://lalasol-bootcamp.web.app/images/bg-masthead.jpg);
+            height: calc(100vh - 150px);
+            background-size: cover;
+        }
+
+        #home img {
+            width: 200px;
+            height: 200px;
+            border-radius: 100px;
+            border: 10px solid rgba(255, 255, 255, 0.5);
+        }
+
+        #home .title {
+            font-size: 50px;
+            color: black;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin: 30px 0;
+        }
+
+        #home .title:hover {
+            color: white;
+        }
+
+        #home .title span {
+            transition: all .3s;
+        }
+
+        #home .title:hover span {
+            box-shadow: 5px 5px 15px 5px #555;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        #home .btn {
+            display: inline-block;
+            padding: 15px;
+            background-color: white;
+        }
+
+        #home .btn {
+            border: solid 3px white;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        #home .btn a {
+            color: #090a0c;
+            text-decoration: none;
+            text-transform: uppercase;
+            display: block;
+            transition: all .3s;
+        }
+
+        #home .btn.reverse {
+            background: none;
+            color: white;
+        }
+
+        #home .btn.reverse a {
+            color: white;
+        }
+
+        #home .btn.reverse:hover {
+            background-color: white;
+        }
+
+        #home .btn.reverse:hover a {
+            color: #090a0c;
+        }
+
+        #home .btn:hover {
+            background: none;
+        }
+
+        #home .btn:hover a {
+            color: white;
+        }
+
+        /*About*/
+        #about {
+            display: flex;
+        }
+
+        .about-img {
+            width: 50%;
+            display: inline-block;
+            text-align: center;
+        }
+
+        .about-img img {
+            width: 90%;
+        }
+
+        .about-content {
+            width: 40%;
+            display: inline-block;
+        }
+
+        table .title {
+            width: 150px;
+            font-weight: bold;
+            padding: 5px 0;
+        }
+
+        .about-content .btn {
+            margin-top: 16px;
+            color: white;
+            background-color: #ff4f00;
+            padding: 15px;
+            display: inline-block;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .about-content .btn:hover {
+            color: white;
+            background-color: black;
+        }
+
+        #what {
+            text-align: center;
+        }
+
+        #what .list {
+            margin-top: 60px;
+        }
+
+        #what .list div {
+            width: 20%;
+            margin: 20px;
+            display: inline-block;
+            height: 150px;
+            font-size: 25px;
+            line-height: 150px;
+            border: solid 1px #eee;
+            transition: all .3s;
+            cursor: pointer;
+        }
+
+        #what .list div:hover {
+            box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.29);
+            border: solid 1px #ff4f00;
+            border-radius: 20px;
+            font-size: 30px;
+            color: #ff4f00;
+            margin: 0;
+        }
+
+        #experience {
+            text-align: center;
+        }
+
+        .experience-box {
+            width: 46%;
+            margin: 10px;
+            border: solid 1px #eee;
+            display: inline-block;
+            text-align: left;
+            padding: 20px;
+            box-sizing: border-box;
+            transition: all .3s;
+        }
+
+        .experience-box:hover {
+            box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.29);
+        }
+
+        .experience-box:hover .header .years {
+            padding: 10px 50px;
+            width: 300px;
+        }
+
+        .experience-box .header {
+            position: relative;
+            font-size: 14px;
+            color: white;
+        }
+
+        .experience-box .header .years {
+            padding: 10px;
+            background-color: #ff4f00;
+            display: inline-block;
+            transition: all .3s;
+        }
+
+        .experience-box .header .icon {
+            position: absolute;
+            right: 20px;
+            top: 0px;
+            padding: 5px;
+            background-color: #ff4f00;
+            border-radius: 100px;
+            width: 30px;
+        }
+
+        /*Skills*/
+
+        #skills .skills-box {
+            width: 44%;
+            margin: 10px;
+            display: inline-block;
+            text-align: left;
+            padding: 10px;
+        }
+
+        #skills {
+            display: flex;
+        }
+
+        #skills .progress {
+            background-color: #eee;
+            font-size: 12px;
+            margin: 20px 0;
+
+        }
+
+        #skills .progress .progress-inside {
+            background-color: #ff4f00;
+            color: white;
+            padding: 5px 10px;
+            display: inline-block;
+            transition: all .3s;
+        }
+
+        #skills .progress .progress-inside.html {
+            width: 40%;
+        }
+
+        #skills .progress .progress-inside.css {
+            width: 85%;
+        }
+
+        #skills .progress .progress-inside.js {
+            width: 70%;
+        }
+
+        #skills .progress .progress-inside.react {
+            width: 60%;
+        }
+
+        #skills .progress .progress-inside.design {
+            width: 80%;
+        }
+
+        #skills .progress:hover .progress-inside.html {
+            width: 60%;
+        }
+
+        #skills .progress:hover .progress-inside.css {
+            width: 90%;
+        }
+
+        #skills .progress:hover .progress-inside.js {
+            width: 80%;
+        }
+
+        #skills .progress:hover .progress-inside.react {
+            width: 85%;
+        }
+
+        #skills .progress:hover .progress-inside.design {
+            width: 90%;
+        }
+
+        .skills-box .language {
+            display: inline-block;
+            width: 40%;
+            padding: 20px;
+            border: solid 1px #eee;
+            margin: 10px;
+            box-sizing: border-box;
+            transition: all .3s;
+        }
+
+        .skills-box .language:hover {
+            box-shadow: 0px 3px 20px 0px rgba(0, 0, 0, 0.29);
+            margin: 0px;
+        }
+
+        .skills-box .language span {
+            display: inline-block;
+            padding: 15px 10px;
+            color: white;
+            background-color: #ff4f00;
+            border-radius: 50px;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src='https://lalasol-bootcamp.web.app/images/testimonials-1.jpg' />
+        <h2>Elmira Kim</h2>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#what">Skill</a></li>
+            <li><a href="#experience">Portfolio</a></li>
+        </ul>
+    </header>
+    <div class="container">
+        <section name="home" id="home">
+            <img src="https://lalasol-bootcamp.web.app/images/testimonials-1.jpg">
+            <div class="title"><span>Elmira Kim</span></div>
+            <div class="btn"><a href="#work">My Work</a></div>
+            <div class="btn reverse"><a href="#skills">Hire Me</a></div>
+        </section>
+        <section name="about" id="about">
+            <div class="about-img"><img src="https://lalasol-bootcamp.web.app/images/testimonials-1.jpg"></div>
+            <div class="about-content">
+                <h1>About Me</h1>
+                <hr />
+                <p>I design and develop services for customers of all sizes, specializing in creating stylish, modern
+                    websites, web services and online stores. My passion is to design digital user experiences through
+                    the bold interface and meaningful interactions. Check out my Portfolio</p>
+                <p>Specializing in creating stylish, modern websites, web services and online stores. My passion is to
+                    design digital user experiences through the bold interface and meaningful interactions. Check out my
+                    Portfolio</p>
+                <table class="table">
+                    <tr>
+                        <td class="title">Name</td>
+                        <td>Elmira Kim</td>
+                    </tr>
+                    <tr>
+                        <td class="title">Birthday</td class="title">
+                        <td>April 10</td>
+                    </tr>
+                    <tr>
+                        <td class="title">Address</td>
+                        <td>Seattle, WA</td>
+                    </tr>
+                    <tr>
+                        <td class="title">E-mail</td>
+                        <td>support@seytech.co</td>
+                    </tr>
+                    <tr>
+                        <td class="title">Phone</td>
+                        <td>(310) 986 - 7703</td>
+                    </tr>
+                    <tr>
+                        <td class="title">Website</td>
+                        <td>seytech.co</td>
+                    </tr>
+                    <tr>
+                        <td class="title">Freelance</td>
+                        <td>Available</td>
+                    </tr>
+                </table>
+                <div class="btn">Download Resume</div>
+            </div>
+        </section>
+        <section name="what" id="what">
+            <h1 class="header">WHAT CAN I DO</h1>
+            <h5>A LEAD UI DEVELOPER BASED IN SEATTLE</h5>
+            <div class="list">
+                <div>Concepting</div>
+                <div>Web Design</div>
+                <div>UI/UX Design</div>
+                <div>Prototype</div>
+                <div>Web App</div>
+                <div>Mobile App</div>
+                <div>Interview</div>
+                <div>Consulting</div>
+            </div>
+        </section>
+        <section name="experience" id="experience">
+            <h1 class="header">MY EXPERIENCE</h1>
+            <h5>A LEAD UI DEVELOPER BASED IN SEATTLE</h5>
+            <div class="experience-box">
+                <div class="header">
+                    <div class="years">2019 - 2020</div>
+
+                    <img class="icon" src="https://image.flaticon.com/icons/png/128/261/261061.png" />
+                </div>
+                <h3>Instructor - Seytech</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua.
+                </p>
+            </div>
+            <div class="experience-box">
+                <div class="header">
+                    <div class="years">2018 - 2019</div>
+                    <img class="icon" src="https://image.flaticon.com/icons/png/128/261/261075.png" />
+                </div>
+                <h3>Tech Lead - Amazon</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua.
+                </p>
+            </div>
+            <div class="experience-box">
+                <div class="header">
+                    <div class="years">2017 - 2028</div>
+                    <img class="icon" src="https://image.flaticon.com/icons/png/128/261/261063.png" />
+                </div>
+                <h3>Software Engineer - Vixlet</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua.
+                </p>
+            </div>
+            <div class="experience-box">
+                <div class="header">
+                    <div class="years">2016 - 2017</div>
+                    <img class="icon" src="https://image.flaticon.com/icons/png/128/261/261071.png" />
+                </div>
+                <h3>Front End Engineer - Freelancer</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua.
+                </p>
+            </div>
+        </section>
+        <section name="skills" id="skills">
+            <div class="skills-box">
+                <div class="header">Experience Skill</div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                <div class="progress">
+                    <div class="progress-inside html">HTML</div>
+                    <strong class="percentage">40%</strong>
+                </div>
+                <div class="progress">
+                    <div class="progress-inside css">CSS</div>
+                    <strong class="percentage">85%</strong>
+                </div>
+                <div class="progress">
+                    <div class="progress-inside js">JS</div>
+                    <strong class="percentage">70%</strong>
+                </div>
+                <div class="progress">
+                    <div class="progress-inside react">React</div>
+                    <strong class="percentage">60%</strong>
+                </div>
+                <div class="progress">
+                    <div class="progress-inside design">Design</div>
+                    <strong class="percentage">90%</strong>
+                </div>
+            </div>
+            <div class="skills-box">
+                <div class="header">Language Skill</div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.</p>
+                <div class="language"><span>90%</span> Kyrgyz</div>
+                <div class="language"><span>80%</span> Russian</div>
+                <div class="language"><span>70%</span> English</div>
+                <div class="language"><span>85%</span> Turkish</div>
+            </div>
+        </section>
+    </div>
+
+</body>
+
+</html>
