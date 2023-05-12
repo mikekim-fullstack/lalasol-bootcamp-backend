@@ -1,12 +1,10 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Products Complete</title>
-    <!-- <link rel="stylesheet" href="./styles.css" /> -->
+    <title>Single Product</title>
     <style>
         *,
         ::after,
@@ -352,63 +350,69 @@ Single Product
 </head>
 
 <body>
-    <h4>Requirements</h4>
-    <ol>
-        <li>Build this project</li>
-        <!-- <li>Use images and style from <a href="starter.zip">here</a></li> -->
-    </ol>
-    <hr>
-    <section class="products">
-        <!-- title -->
-        <div class="title">
-            <h2>our products</h2>
-            <div class="title-underline"></div>
-        </div>
-        <!-- products -->
-        <div class="products-center"></div>
-    </section>
+    <a href="React-Products_3279247790470151773.html" class="btn home-link">back home</a>
+    <section class="product"></section>
     <script>
-        const url = 'https://course-api.com/javascript-store-products';
+        const productDOM = document.querySelector('.product');
+        const url = 'https://course-api.com/javascript-store-single-product';
 
-        const productsDOM = document.querySelector('.products-center');
-
-        const fetchProducts = async () => {
-            productsDOM.innerHTML = '<div class="loading"></div>';
+        const fetchProduct = async () => {
             try {
-                const resp = await fetch(url);
-                const data = await resp.json();
+                productDOM.innerHTML = '<h4 class="product-loading">Loading... </h4>';
+                // console.log(window.location.search);
+                const params = new URLSearchParams(window.location.search);
+                const id = params.get('id');
+
+                const response = await fetch(`${url}?id=${id}`);
+                const data = await response.json();
                 return data;
             } catch (error) {
-                productsDOM.innerHTML = '<p class="error">there was an error</p>';
+                productDOM.innerHTML =
+                    '<p class="error">There was a problem loading the product. Please try again later </p>';
             }
         };
 
-        const displayProducts = (list) => {
-            const productList = list
-                .map((product) => {
-                    const { id } = product;
-                    const { name: title, price } = product.fields;
-                    const { url: img } = product.fields.image[0];
-                    const formatPrice = price / 100;
-                    // id,name,price,img
-                    return `<a class="single-product" href="product.html?id=${id}&name=john&age=25">
-            <img src="${img}" class="single-product-img img" alt="${title}" />
-            <footer>
-              <h5 class="name">${title}</h5>
-              <span class="price">$${formatPrice}</span>
-            </footer>
-          </a>`;
+        const displayProduct = (product) => {
+            // company, colors, description, name:title, price, image(url:img)
+            const {
+                company,
+                colors,
+                description,
+                name: title,
+                price,
+                image,
+            } = product.fields;
+            const { url: img } = image[0];
+            document.title = title.toUpperCase();
+
+            // colors
+            const colorsList = colors
+                .map((color) => {
+                    return `<span class="product-color" style="background: ${color}"></span>`;
                 })
                 .join('');
-            productsDOM.innerHTML = ` <div class="products-container">
-         ${productList}
-          
-        </div>`;
+
+            productDOM.innerHTML = `<div class="product-wrapper">
+        <img src="${img}" class="img" alt="${title}" />
+        <div class="product-info">
+          <h3>${title}</h3>
+          <h5>${company}</h5>
+          <span>${price / 100}</span>
+          <div class="colors">
+            ${colorsList}
+            
+          </div>
+          <p>
+           ${description}
+          </p>
+          <button class="btn">add to cart</button>
+        </div>
+      </div>`;
         };
 
         const start = async () => {
-            const data = await fetchProducts();
-            displayProducts(data);
+            const data = await fetchProduct();
+            displayProduct(data);
         };
 
         start();
