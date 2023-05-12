@@ -362,7 +362,7 @@ Single Product
                 // console.log(window.location.search);
                 const params = new URLSearchParams(window.location.search);
                 const id = params.get('id');
-
+                console.log('params: ', params, ', id: ', id)
                 const response = await fetch(`${url}?id=${id}`);
                 const data = await response.json();
                 return data;
