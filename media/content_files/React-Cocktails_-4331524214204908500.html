@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cocktails</title>
+    <!-- font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    <!-- css -->
+    <!-- <link rel="stylesheet" href="./styles.css" /> -->
+    <style>
+        /*
+=============== 
+Fonts
+===============
+*/
+        @import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto:400,700&display=swap');
+
+        /*
+=============== 
+Variables
+===============
+*/
+
+        :root {
+            /* dark shades of primary color*/
+            --clr-primary-1: hsl(205, 86%, 17%);
+            --clr-primary-2: hsl(205, 77%, 27%);
+            --clr-primary-3: hsl(205, 72%, 37%);
+            --clr-primary-4: hsl(205, 63%, 48%);
+            /* primary/main color */
+            --clr-primary-5: #49a6e9;
+            /* lighter shades of primary color */
+            --clr-primary-6: hsl(205, 89%, 70%);
+            --clr-primary-7: hsl(205, 90%, 76%);
+            --clr-primary-8: hsl(205, 86%, 81%);
+            --clr-primary-9: hsl(205, 90%, 88%);
+            --clr-primary-10: hsl(205, 100%, 96%);
+            /* darkest grey - used for headings */
+            --clr-grey-1: hsl(209, 61%, 16%);
+            --clr-grey-2: hsl(211, 39%, 23%);
+            --clr-grey-3: hsl(209, 34%, 30%);
+            --clr-grey-4: hsl(209, 28%, 39%);
+            /* grey used for paragraphs */
+            --clr-grey-5: hsl(210, 22%, 49%);
+            --clr-grey-6: hsl(209, 23%, 60%);
+            --clr-grey-7: hsl(211, 27%, 70%);
+            --clr-grey-8: hsl(210, 31%, 80%);
+            --clr-grey-9: hsl(212, 33%, 89%);
+            --clr-grey-10: hsl(210, 36%, 96%);
+            --clr-white: #fff;
+            --clr-red-dark: hsl(360, 67%, 44%);
+            --clr-red-light: hsl(360, 71%, 66%);
+            --clr-green-dark: hsl(125, 67%, 44%);
+            --clr-green-light: hsl(125, 71%, 66%);
+            --clr-black: #222;
+            --ff-primary: 'Roboto', sans-serif;
+            --ff-secondary: 'Open Sans', sans-serif;
+            --transition: all 0.3s linear;
+            --spacing: 0.25rem;
+            --radius: 0.5rem;
+            --light-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --dark-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            --max-width: 1170px;
+            --fixed-width: 620px;
+        }
+
+        /*
+=============== 
+Global Styles
+===============
+*/
+
+        *,
+        ::after,
+        ::before {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--ff-secondary);
+            background: var(--clr-grey-10);
+            color: var(--clr-grey-1);
+            line-height: 1.5;
+            font-size: 0.875rem;
+        }
+
+        ul {
+            list-style-type: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            letter-spacing: var(--spacing);
+            text-transform: capitalize;
+            line-height: 1.25;
+            margin-bottom: 0.75rem;
+            font-family: var(--ff-primary);
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2rem;
+        }
+
+        h3 {
+            font-size: 1.25rem;
+        }
+
+        h4 {
+            font-size: 0.875rem;
+        }
+
+        p {
+            margin-bottom: 1.25rem;
+            color: var(--clr-grey-5);
+        }
+
+        @media screen and (min-width: 800px) {
+            h1 {
+                font-size: 4rem;
+            }
+
+            h2 {
+                font-size: 2.5rem;
+            }
+
+            h3 {
+                font-size: 1.75rem;
+            }
+
+            h4 {
+                font-size: 1rem;
+            }
+
+            body {
+                font-size: 1rem;
+            }
+
+            h1,
+            h2,
+            h3,
+            h4 {
+                line-height: 1;
+            }
+        }
+
+        /*  global classes */
+
+        .btn {
+            text-transform: uppercase;
+            background: var(--clr-primary-5);
+            color: var(--clr-white);
+            padding: 0.375rem 0.75rem;
+            letter-spacing: var(--spacing);
+            display: block;
+            transition: var(--transition);
+            font-size: 0.875rem;
+            border: 2px solid var(--clr-primary-5);
+            cursor: pointer;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+            border-radius: var(--radius);
+        }
+
+        .btn:hover {
+            color: var(--clr-primary-5);
+            background: var(--clr-primary-1);
+            border-color: var(--clr-primary-1);
+        }
+
+        /* section */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-center {
+            width: 85vw;
+            margin: 0 auto;
+            max-width: 1170px;
+        }
+
+        @media screen and (min-width: 576px) {
+            .section-center {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                column-gap: 4rem;
+            }
+        }
+
+        @media screen and (min-width: 992px) {
+            .section-center {
+                width: 95vw;
+            }
+        }
+
+        /* loading */
+        .loading {
+            min-height: 100vh;
+            display: grid;
+            justify-content: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--clr-grey-10);
+            padding-top: 5rem;
+            z-index: 999;
+        }
+
+        .hide-loading {
+            display: none;
+        }
+
+        /* search form */
+        .search-form {
+            text-align: center;
+            padding-top: 5rem;
+            width: 85vw;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        input {
+            width: 100%;
+            font-size: 1rem;
+            border-color: transparent;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+        }
+
+        input {
+            border-radius: var(--radius);
+        }
+
+        input::placeholder {
+            text-transform: capitalize;
+            color: var(--clr-grey-3);
+        }
+
+        /* cocktails */
+        .cocktails {
+            position: relative;
+        }
+
+        .title {
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .cocktail {
+            background: var(--clr-white);
+            border-radius: var(--radius);
+            box-shadow: var(--light-shadow);
+            transition: var(--transition);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .cocktail:hover {
+            box-shadow: var(--dark-shadow);
+            transform: scale(1.005);
+        }
+
+        .cocktail img {
+            width: 100%;
+            display: block;
+            border-radius: var(--radius);
+            border: 10px solid var(--clr-white);
+            transition: var(--transition);
+            height: 268px;
+            object-fit: cover;
+        }
+
+        .cocktail:hover img {
+            filter: blur(2px) grayscale(50%);
+        }
+
+        .cocktail h3 {
+            position: absolute;
+            bottom: -1rem;
+            right: -1rem;
+            background: var(--clr-black);
+            color: var(--clr-white);
+            padding: 1rem 1.5rem;
+            text-align: center;
+            margin-bottom: 0;
+            text-transform: uppercase;
+            font-family: monospace;
+            font-size: 2rem;
+            border-radius: var(--radius);
+        }
+
+        /* single cocktail */
+        .single-drink {
+            width: 85vw;
+            max-width: var(--max-width);
+            margin: 0 auto;
+            margin-top: 4rem;
+        }
+
+        .drink-img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            border: 10px solid var(--clr-white);
+            border-radius: var(--radius);
+        }
+
+        @media screen and (min-width: 992px) {
+            .single-drink {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                column-gap: 3rem;
+            }
+        }
+
+        .drink-info {
+            padding-top: 2rem;
+        }
+
+        .drink-ingredients .far {
+            margin-right: 1rem;
+        }
+
+        .single-drink .btn {
+            display: inline-block;
+            margin-top: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h4>Requirements</h4>
+    <ol>
+        <li>Build this project</li>
+        <!-- <li>Use images and style from <a href="starter.zip">here</a></li> -->
+    </ol>
+    <hr>
+    <form class="search-form">
+        <h2>cocktails API</h2>
+        <input type="text" placeholder="search your favorite cocktail" name="drink" />
+    </form>
+    <section class="section cocktails">
+        <article class="loading">
+            <img src="https://lalasol-bootcamp.web.app/images/loading.gif" alt="loading" />
+        </article>
+        <h2 class="title"></h2>
+        <div class="section-center"></div>
+    </section>
+    <!-- <script type="module" src="https://lalasol-bootcamp.web.app/js/cocktailApp.js"></script> -->
+    <script>
+
+        const setDrink = (section) => {
+            section.addEventListener('click', function (e) {
+                // e.preventDefault();
+                const id = e.target.parentElement.dataset.id;
+                // JSON.stringify JSON.parse
+                localStorage.setItem('drink', id);
+            });
+        };
+        const getElement = (selection) => {
+            const element = document.querySelector(selection);
+            if (element) return element;
+            throw new Error("no element selected");
+        };
+
+
+        const loading = getElement('.loading');
+
+        const showLoading = () => {
+            loading.classList.remove('hide-loading');
+        };
+        const hideLoading = () => {
+            loading.classList.add('hide-loading');
+        };
+
+
+        const baseURL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
+
+        const form = getElement('.search-form');
+        const input = getElement('[name="drink"]');
+
+        form.addEventListener('keyup', function (e) {
+            e.preventDefault();
+            const value = input.value;
+            if (!value) return;
+            showDrinks(`${baseURL}${value}`);
+        });
+
+        // import { showLoading } from 'https://lalasol-bootcamp.web.app/js/toggleLoading.js';
+        const fetchDrinks = async (url) => {
+            showLoading();
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                console.log(error);
+            }
+        };
+
+        // import get from 'https://lalasol-bootcamp.web.app/js/getElement.js';
+        // import { hideLoading } from 'https://lalasol-bootcamp.web.app/js/toggleLoading.js';
+        const displayDrinks = ({ drinks }) => {
+            const section = getElement('.section-center');
+            const title = getElement('.title');
+            if (!drinks) {
+                // hide loading
+                hideLoading();
+                title.textContent = 'sorry, no drinks matched your search';
+                section.innerHTML = null;
+                return;
+            }
+            const newDrinks = drinks
+                .map((drink) => {
+                    const { idDrink: id, strDrink: name, strDrinkThumb: image } = drink;
+
+                    return `<a href="React-Drink.html">
+          <article class="cocktail" data-id="${id}">
+            <img src="${image}" alt="${name}" />
+            <h3>${name}</h3>
+          </article>
+        </a>`;
+                })
+                .join('');
+            hideLoading();
+            title.textContent = '';
+            section.innerHTML = newDrinks;
+            return section;
+        };
+
+        // export default displayDrinks;
+
+
+
+
+        // import fetchDrinks from 'https://lalasol-bootcamp.web.app/js/fetchDrinks.js';
+        // import displayDrinks from 'https://lalasol-bootcamp.web.app/js/displayDrinks.js';
+        // import setDrink from 'https://lalasol-bootcamp.web.app/js/setDrink.js';
+        const showDrinks = async (url) => {
+            // fetch drinks
+            const data = await fetchDrinks(url);
+
+            // display drinks
+            const section = await displayDrinks(data);
+            if (section) {
+                setDrink(section);
+            }
+        };
+
+        // export default setDrink;]
+        // import presentDrinks from 'https://lalasol-bootcamp.web.app/js/presentDrinks.js';
+        // import 'https://lalasol-bootcamp.web.app/js/searchForm.js';
+        const URL = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=a';
+
+        window.addEventListener('DOMContentLoaded', () => {
+            showDrinks(URL);
+        });
+    </script>
+    <script>
+
+
+        // export default getElement;
+    </script>
+    <script>
+
+    </script>
+    <script>
+
+    </script>
+    <script>
+
+    </script>
+    <script>
+
+    </script>
+
+</body>
+
+</html>
