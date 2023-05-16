@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>LaLaSol</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="/assets/css/interview.css" /> -->
+    <!-- <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" /> -->
+    <script src="https://lalasol-bootcamp.web.app/dist/prism.js"></script>
+    <style>
+        .pre {
+            background: #f9f9fa;
+            border: 1px solid rgba(51, 51, 51, 0.1);
+            padding: 10px;
+            width: 100%;
+        }
+
+        .row {
+            margin: 0 !important;
+        }
+
+        .jumbotron {
+            height: 60px;
+            padding: 15px;
+        }
+
+        .box {
+            padding: 10px;
+            margin: 10px 0;
+            border: solid 1px #f3ebff;
+        }
+
+        .float-right::after {
+            clear: both;
+        }
+
+        .badge {
+            margin: 0 5px;
+        }
+
+        .question {
+            margin: 0;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        hr {
+            margin: 0;
+        }
+
+        .question:before {
+            content: '*  ';
+        }
+
+        .interview {
+            padding-left: 10px;
+        }
+
+        .interview .answer img {
+            max-width: 600px;
+        }
+
+        .interview .answer {
+            display: none;
+        }
+
+        .interview .question:hover {
+            background-color: lightblue;
+        }
+
+        .interview .question:hover+.answer {
+            display: block;
+        }
+
+        .box {
+            margin-top: 10px;
+        }
+
+        .box h5 {
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <main role="main">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h4 class="display-5">Interview - JS questions</h4>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>1) What is functional programming?</h5>
+                <pre class="pre"><code class="language-js">
+                FP produces programs by composing mathematical functions and avoids shared state & mutable data.
+                
+                Terms: Pure functions, Avoid side-effects, higher order functions
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>2) What is asynchronous programming, and why is it important in JavaScript?</h5>
+                <pre class="pre"><code class="language-js">
+                Synchronous programming means that, barring conditionals and function calls, code is executed sequentially from top-to-bottom, 
+                blocking on long-running tasks such as network requests and disk I/O.
+                Asynchronous programming means that the engine runs in an event loop. When a blocking operation is needed, the request is started,
+                and the code keeps running without blocking for the result. When the response is ready, an interrupt is fired, which causes
+                an event handler to be run, where the control flow continues. In this way, a single program thread can handle many concurrent operations.
+                
+                Terms: top-to-bottom, blocking, event loop
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    3) What is a potential pitfall with using typeof bar === "object" to determine if bar is an
+                    object? How can this pitfall be avoided?
+                </h5>
+                <pre class="pre"><code class="language-js">
+                typeof [] also an object. typeof null also an object
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>4) What is NaN? What is its type? How can you reliably test if a value is equal to NaN?</h5>
+                <pre class="pre"><code class="language-js">
+                NaN === NaN // ? why?
+                isNaN();
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>4) What is a closure, and how/why would you use one?</h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>5) What is debounce?</h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>5) The data types supported by JavaScript are:</h5>
+                <pre class="pre"><code class="language-js">
+Undefined
+Null
+Boolean
+String
+Symbol
+Number
+Object
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>6) Explain var, let, const</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>7) What is the difference between the operators ‘==‘ & ‘===‘?</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>8) Explain bind, call, apply. Give Samples</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>Explain "hoisting".</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>9) How to empty an Array in JavaScript?</h5>
+                <pre class="pre"><code class="language-js">
+                arrayList = [],
+                arrayList.length = 0;
+                arrayList.splice(0, arrayList.length);
+                while(arrayList.length) { arrayList.pop() }
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>10) What is the difference between undefined and not defined in JavaScript?</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>11) What is Big O notation, and why is it useful?</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>12) What is the event loop? Can you draw a simple diagram to explain event loop?</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>13) If and website is slow how what would you do to make it faster?</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>14) What is the DOM?</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>15) What is event bubbling and how does it work?</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>15) What is event capturing and how does it work?</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>16) Is there any difference between window and document?</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>17) Does document.onload and window.onload fire at the same time?</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>18) Is attribute similar to property?</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>19) How could you prevent a click on an anchor from going to the link?</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>20) What are the different ways to get an element from DOM? Differences?</h5>
+                <pre class="pre"><code class="language-js">
+
+            </code></pre>
+            </div>
+        </div>
+
+        <div class="question">What is the fastest way to select elements by using css selectors?</div>
+        <div class="question">How come, I can't use forEach or similar array methods on a NodeList?</div>
+        <div class="question">If you need to implement getElementByAttribute, how would you implement it?</div>
+        <div class="question">How would you add a class to an element by query selector?</div>
+        <div class="question">How could I verify whether one element is child of another?</div>
+        <div class="question">
+            What is the best way to create a DOM element? Set innherHTML or use createElement?
+        </div>
+        <div class="question">What is createDocumentFragment and why you might use it?</div>
+        <div class="question">What is reflow? What causes reflow? How could you reduce reflow?</div>
+        <div class="question">What is repaint and when does this happen?</div>
+        <div class="question">
+            How could you make sure to run some JavaScript when DOM is ready like $(document).ready?
+        </div>
+        <div class="question">What is event bubble? How does event flows in DOM?</div>
+        <div class="question">How could you capture all clicks in a page?</div>
+        <div class="question">How can you get all the texts in a web page?</div>
+        <div class="question">What is debounce and how could you implement debounce?</div>
+        <div class="question">If and website is slow how what would you do to make it faster?</div>
+        <div class="box">
+            <div class="text">
+                <h5>1) What build tool you use and tell me some advantages to use that build tool</h5>
+                <pre class="pre"><code class="language-js">
+Which Version of JS? es6 (will all browsers support)
+CSS preprocessors: sass, less (will all browsers support)
+Which js framework? React
+Task runners? gulp, grunt
+Module bundlers: webpack, browserify
+Package managers: npm, yarn
+Testing frameworks: jest, mocha, Jasmine
+Linting tools: eslint, jslint
+React: 
+    State Management: Redux,
+    Hooks,
+    React Router
+    Middleware(saga, thunk)
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    1) Create a function that, given a DOM Element on the page, will visit the element itself and
+                    all of its descendents (not just its immediate children). For each element visited, the function
+                    should pass that element to a provided callback function.
+
+                    <p>The arguments to the function should be:</p>
+
+                    <p>a DOM element</p>
+                    <p>a callback function (that takes a DOM element as its argument)</p>
+                </h5>
+                <pre class="pre"><code class="language-js">
+                function Traverse(p_element,p_callback) {
+                    p_callback(p_element);
+                    var list = p_element.children;
+                    for (var i = 0; i < list.length; i++) {
+                        Traverse(list[i],p_callback);  // recursive call
+                    }
+                 }
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>How could I verify whether one element is child of another?</h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>After getting all elements with classname="seytech" can i use .forEach? How about .map?</h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    Can you describe the main difference between the Array.forEach() loop and Array.map() methods
+                    and why you would pick one versus the other?
+                </h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>What's a typical use case for anonymous functions?</h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    Explain the difference between: function Person(){}, var person = Person(), and var person = new
+                    Person()?
+                </h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>Get element with id 'seytech' and add classname "bootcamp" to that element</h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>If you need to implement getElementByAttribute, how would you implement it?</h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>Write a simple promise</h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>what is 'this' keyword and what's its behavior</h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>what is DOM tree? how can u traverse it?</h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>difference between array and object</h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    What are the advantages of using ES6 maps over objects? What about using ES6 sets over arrays?
+                </h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>How would you ensure clicking on this picture would go to a specific link?</h5>
+                <pre class="pre"><code class="language-js">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>Scroll vs Debounce</h5>
+                <pre class="pre"><code class="language-js">
+                How many times would `addEventListener('scroll', handleScroll);` run as the user looks at their News Feed? And what would be user experience if the `handleScroll` function takes 100ms to execute.  
+
+Related to question 1, how could you implement debouncing? Say you wanted the `handleScroll` function to be called only after 200ms has passed between scroll events.  
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>Explain event delegation.</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>Can you give an example of one of the ways that working with this has changed in ES6?</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>Explain how prototypal inheritance works.</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>What's the difference between a variable that is: null, undefined or undeclared?</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>Explain the difference between mutable and immutable objects.</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>Explain the difference between mutable and immutable objects.</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>What are the pros and cons of immutability?</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>How can you achieve immutability in your own code?</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>Explain the difference between synchronous and asynchronous functions.</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>What is event loop?</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>What is the definition of a higher-order function?</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>What is a promise? Where and how would you use promise?</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>Write an immediately invoked function expression (IIFE)</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>Can you give an example of one of the ways that working with this has changed in ES6?</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>How would you compare two objects in JavaScript?</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    What is the significance of, and reason for, wrapping the entire content of a JavaScript source
+                    file in a function block?
+                </h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>What is NaN? What is its type? How can you reliably test if a value is equal to NaN?</h5>
+                <pre class="pre"><code class="language-js">
+            </code></pre>
+            </div>
+        </div>
+    </main>
+    <script>
+        function toggle(e) {
+            if (e.currentTarget.querySelector('.pre').style.display === 'none') {
+                e.currentTarget.querySelector('.pre').style.display = 'block';
+            } else {
+                e.currentTarget.querySelector('.pre').style.display = 'none';
+            }
+        }
+        const boxes = document.getElementsByClassName('box');
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].addEventListener('click', toggle);
+            boxes[i].querySelector('.pre').style.display = 'none';
+            boxes[i].querySelector('.pre').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>

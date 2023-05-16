@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>LaLaSol</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="/assets/css/interview.css" /> -->
+    <!-- <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" /> -->
+    <script src="https://lalasol-bootcamp.web.app/dist/prism.js"></script>
+    <style>
+        .pre {
+            background: #f9f9fa;
+            border: 1px solid rgba(51, 51, 51, 0.1);
+            padding: 10px;
+            width: 100%;
+        }
+
+        .row {
+            margin: 0 !important;
+        }
+
+        .jumbotron {
+            height: 60px;
+            padding: 15px;
+        }
+
+        .box {
+            padding: 10px;
+            margin: 10px 0;
+            border: solid 1px #f3ebff;
+        }
+
+        .float-right::after {
+            clear: both;
+        }
+
+        .badge {
+            margin: 0 5px;
+        }
+
+        .question {
+            margin: 0;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        hr {
+            margin: 0;
+        }
+
+        .question:before {
+            content: '*  ';
+        }
+
+        .interview {
+            padding-left: 10px;
+        }
+
+        .interview .answer img {
+            max-width: 600px;
+        }
+
+        .interview .answer {
+            display: none;
+        }
+
+        .interview .question:hover {
+            background-color: lightblue;
+        }
+
+        .interview .question:hover+.answer {
+            display: block;
+        }
+
+        .box {
+            margin-top: 10px;
+        }
+
+        .box h5 {
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <main role="main">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h4 class="display-5">Interview - JS questions</h4>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 1) The data types supported by JavaScript are:</h5>
+                <pre class="pre"><code class="language-js">
+<img src="../images/data-types.png" />
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 2) Explain var, let, const</h5>
+                <pre class="pre"><code class="language-js">
+                <div>
+                    <img width="700px" src="../images/var-let-const.png" />
+                    <img width="700px" src="../images/var-let-const-2.png" />
+                </div>
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 3) What is the difference between the operators ‘==‘ & ‘===‘?</h5>
+                <pre class="pre"><code class="language-js">
+                <div>
+                    “The triple equals operator (‘===’) compares both type and value, while the double equals (‘==’) only compares value.”
+                    <a target="_blank" href="https://codeahoy.com/javascript/2019/10/12/==-vs-===-in-javascript/">more info</a>
+
+                <img src="../images/equalsign.png" />
+                </div>
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 4) What is a closure, and how/why would you use one?</h5>
+                <pre class="pre"><code class="language-js">
+                <div>
+                    Closure is a function that references variables in the outer scope from its inner scope <a target="_blank" href="https://www.javascripttutorial.net/javascript-closure/">. more info</a>
+                    
+                    <img src="../images/closure.png" />
+                </div>
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 5) What is a potential pitfall with using typeof bar === "object" to determine if bar is an object?
+                    How can this pitfall be avoided?</h5>
+                <pre class="pre"><code class="language-js">
+                typeof [] also an object. typeof null also an object
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>6) Explain "hoisting".</h5>
+                <pre class="pre"><code class="language-js">
+                <div>
+                    <img width="600px" src="../images/hoisting1.png" />
+
+                    <img src="../images/hoisting2.png" />
+                </div>
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 7) How to empty an Array in JavaScript?</h5>
+                <pre class="pre"><code class="language-js">
+                arrayList = [],
+                arrayList.length = 0;
+                arrayList.splice(0, arrayList.length);
+                while(arrayList.length) { arrayList.pop() }
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 8) What is the difference between undefined and not defined in JavaScript?</h5>
+                <pre class="pre"><code class="language-js">
+                var e;
+                console.log(e)  // undefined
+                console.log(a)  // undefined
+                console.log(b)  // "ReferenceError": b is not defined
+                console.log(c)  // "ReferenceError": c is not defined
+                var a = 5;
+                let b = 10;
+                const d = 15;
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 9) What is Big O notation, and why is it useful?</h5>
+                <pre class="pre"><code class="language-js">
+                <div>
+                    Big O Notation is used in computer science to analyse the performance of an algorithm.
+                    
+                    
+                    <img src="../images/bigo.png" />
+                </div>
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 10) What is NaN? What is its type? How can you reliably test if a value is equal to NaN?</h5>
+                <pre class="pre"><code class="language-js">
+                Special value called NaN, which stands for Not-a–Number.
+
+                NaN === NaN // ? why?  <a target="_blank" href="https://www.javascripttutorial.net/javascript-nan/">more info</a>
+                isNaN();
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    11) Write an immediately invoked function expression (IIFE)
+                </h5>
+                <pre class="pre"><code class="language-js">
+                IIFE is a way to execute functions immediately, as soon as they are created.
+                IIFEs are very useful because they don't pollute the global object,
+                and they are a simple way to isolate variables declarations
+
+                // es5
+                (function doSomething() {
+                    console.log("executed")
+                  })()
+
+                // es6
+                (() => {
+                    console.log("executed")
+                  })()
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 12) If and website is slow how what would you do to make it faster?</h5>
+                <pre class="pre"><code class="language-js">
+                * Compress and optimize your images
+                * Cache your web pages
+                * Minify CSS, JavaScript, and HTML
+                * Use CDN
+                * Reduce server response time
+                * Use asynchronous and defer loading for your CSS and JavaScript files
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 13) What is the DOM?</h5>
+                <pre class="pre"><code class="language-js">
+                <div>
+                    The Document Object Model is a model that defines HTML documents as a tree structure,
+                    where each node of the tree is an object which represents a part of the document.
+
+                    <img width="700px" src="../images/dom.png" />
+                </div>
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 14) What is event bubbling and how does it work?</h5>
+                <pre class="pre"><code class="language-js">
+                <div>
+                    When an event happens on an element, it first runs the handlers on it,
+                    then on its parent, then all the way up on other ancestors.
+
+                    <img width="700px" src="../images/bubble.png" />
+                </div>
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 15) How could you prevent a click on an anchor from going to the link?</h5>
+                <pre class="pre"><code class="language-js">
+
+                preventDefault() prevents the default browser behavior for a given element (link would not work)
+                stopPropagation() stops an event from bubbling or propagating up the DOM tree
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 16) What are the different ways to get an element from DOM? Differences?</h5>
+                <pre class="pre"><code class="language-js">
+                Get element by Id (Fastest one)
+                Get element by className
+                Get element by Name
+                Get element by tagName
+                Get element by CSS Selector
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 17) How could you make sure to run some JavaScript when DOM is ready like $(document).ready?</h5>
+                <pre class="pre"><code class="language-js">
+                window.addEventListener('DOMContentLoaded', (event) => {
+                    console.log('DOM fully loaded and parsed');
+                });
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 18) How could you capture all clicks in a page?</h5>
+                <pre class="pre"><code class="language-js">
+                <div>
+                    You can handle all click using window.onclick and then filter using event.target
+
+                    <img width="500px" src="../images/click.png" />
+                </div>
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 19) How can you get all the texts in a web page?</h5>
+                <pre class="pre"><code class="language-js">
+                textContent gets the content of all elements, including script and style elements,
+                whereas innerText only gets the content of "human-readable" elements.
+                ex: const box = document.getElementById('box');
+                console.log(box.textContent);
+                
+
+                "document.body.textContent" gets all text content of the webpage
+            </code></pre>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="text">
+                <h5>
+                    20) Get element with id 'seytech' and add classname "bootcamp" to that element
+                </h5>
+                <pre class="pre"><code class="language-js">
+                const element = document.querySelector("#seytech");
+                element.classList.add("bootcamp");
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    21) What is 'this' keyword and what's its behavior
+                </h5>
+                <pre class="pre"><code class="language-js">
+                <div>
+                    This refers to current object. 
+
+                    <img width="600px" src="../images/this2.png" />
+
+
+                    <img width="600px" src="../images/this.png" />
+                    
+                </div>
+
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    22) Explain the difference between synchronous and asynchronous functions.
+                </h5>
+                <pre class="pre"><code class="language-js">
+                Synchronous code runs in sequence. This means that each operation must wait for the previous one
+                to complete before executing. Asynchronous code runs in parallel.
+                This means that an operation can occur while another one is still being processed
+
+                console.log('One');
+                setTimeout(() => console.log('Two'), 100);
+                console.log('Three');
+                // LOGS: 'One', 'Three', 'Two'
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    23) What is the definition of a higher-order function?
+                </h5>
+                <pre class="pre"><code class="language-js">
+                A function that either takes a function(s) as argument or returns a function.
+                ex: filter, reduce, forEach etc
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 24) What is debounce?</h5>
+                <pre class="pre"><code class="language-js">
+                debounce function makes sure that your code is only triggered once per user input.
+                ex: Search box suggestions and eliminating double-button clicks are all use cases for debounce
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 25) What is the event loop? Can you draw a simple diagram to explain event loop?</h5>
+                <pre class="pre"><code class="language-js">
+                <div>
+                    Event loop is responsible for executing the code, collecting and processing events, and executing queued sub-tasks
+                    <a target="_blank" href="https://www.youtube.com/watch?v=8aGhZQkoFbQ&ab_channel=JSConf">more info</a>
+                </div>
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 26) Explain bind, call, apply. Give Samples</h5>
+                <pre class="pre"><code class="language-js">
+                * Call is a function that helps you change the context of the invoking function.
+                * Apply is very similar to the call function.
+                * Bind is a function that helps you create another function
+                that you can execute later with the new context of this that is provided
+
+                const person = {
+                    firstName:"John",
+                    lastName: "Doe",
+                    fullName: function () {
+                      return this.firstName + " " + this.lastName;
+                    }
+                  }
+                  
+                  const member = {
+                    firstName:"Hege",
+                    lastName: "Nilsen",
+                  }
+                  
+                  let fullName = person.fullName.bind(member);
+                  fullName() // Hege Nilsen
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    27) What is a promise? Where and how would you use promise? Write a simple promise
+                </h5>
+                <pre class="pre"><code class="language-js">
+                A promise is an object that may produce a single value some time in the future
+                note: fetch(api call) returns a promise function.
+
+                const myPromise = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                      resolve('this is the eventual value the promise will return');
+                    }, 300);
+                  });
+                  
+                  console.log(myPromise);
+            </code></pre>
+            </div>
+        </div>
+
+
+
+
+    </main>
+    <script>
+        function toggle(e) {
+            if (e.currentTarget.querySelector('.pre').style.display === 'none') {
+                e.currentTarget.querySelector('.pre').style.display = 'block'
+            } else {
+                e.currentTarget.querySelector('.pre').style.display = 'none'
+            }
+        }
+        const boxes = document.getElementsByClassName('box');
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].addEventListener('click', toggle);
+            boxes[i].querySelector('.pre').style.display = 'none';
+            boxes[i].querySelector('.pre').style.display = 'none'
+        }
+    </script>
+</body>
+
+</html>

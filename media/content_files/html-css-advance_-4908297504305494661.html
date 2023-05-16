@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Seytech</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://lalasol-bootcamp.web.app/dist/prism.js"></script>
+    <style>
+        .pre {
+            background: #f9f9fa;
+            border: 1px solid rgba(51, 51, 51, 0.1);
+            padding: 10px;
+            width: 100%;
+        }
+
+        .row {
+            margin: 0 !important;
+        }
+
+        .jumbotron {
+            height: 60px;
+            padding: 15px;
+        }
+
+        .box {
+            padding: 10px;
+            margin: 10px 0;
+            border: solid 1px #f3ebff;
+        }
+
+        .float-right::after {
+            clear: both;
+        }
+
+        .badge {
+            margin: 0 5px;
+        }
+
+        .question {
+            margin: 0;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        hr {
+            margin: 0;
+        }
+
+        .question:before {
+            content: '*  ';
+        }
+
+        .interview {
+            padding-left: 10px;
+        }
+
+        .interview .answer img {
+            max-width: 600px;
+        }
+
+        .interview .answer {
+            display: none;
+        }
+
+        .interview .question:hover {
+            background-color: lightblue;
+        }
+
+        .interview .question:hover+.answer {
+            display: block;
+        }
+
+        .box {
+            margin-top: 10px;
+        }
+
+        .box h5 {
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <main role="main">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h4 class="display-5">HTML Interview questions</h4>
+            </div>
+        </div>
+        <div>
+            <span class="badge badge-primary">Metadata</span>
+            <span class="badge badge-primary">Semantic HTML</span>
+            <span class="badge badge-primary">SVG</span>
+            <span class="badge badge-primary">Canvas</span>
+            <span class="badge badge-primary">data-attr</span>
+            <span class="badge badge-primary">Block vs Inline Elements</span>
+            <span class="badge badge-primary">Web Workers</span>
+            <span class="badge badge-primary">HTML5 APIs</span>
+            <span class="badge badge-primary">Web Storage</span>
+            <span class="badge badge-primary">Accessibility</span>
+            <span class="badge badge-primary">Server-Side Events</span>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>1) Can you explain the difference between coding a web site to be responsive versus using a
+                    mobile-first strategy?</h5>
+                <pre class="pre"><code class="language-html">
+                Making a website responsive means the some elements will respond by
+      adapting its size or other functionality according to the device's
+      screen size, typically the viewport width, through CSS media queries,
+      for example, making the font size smaller on smaller devices.<br />
+
+
+      A mobile-first strategy is also responsive, however it agrees we
+      should default and define all the styles for mobile devices, and only
+      add specific responsive rules to other devices later. Following the
+      previous example:<br />
+
+      A mobile-first strategy has 2 main advantages:<br />
+
+      It's more performant on mobile devices, since all the rules applied
+      for them don't have to be validated against any media queries.<br />
+      It forces to write cleaner code in respect to responsive CSS rules.<br />
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>2) Explain &lt;noscript> tag in html?<span
+                        class="float-right badge badge-pill badge-primary">1</span></h5>
+                <pre class="pre"><code class="language-html">
+                The HTML &lt;noscript> element defines a section of HTML to be inserted if a script type
+                on the page is unsupported or if scripting is currently turned off in the browser.
+
+                &lt;noscript>Your browser does not support JavaScript!&lt;/noscript>
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>3) Explain disabled and readonly attributes?<span
+                        class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-html">
+                Disabled means that no data from that form element will be submitted when the form is submitted.
+
+                Read-only means any data from within the element will be submitted, but it cannot be changed by the user.
+
+                &lt;input type="text" value="seytech" readonly />
+                &lt;input type="text" disabled />
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>4) What is SVG? How do you use them in your code? What are their benefits, if any? What are the
+                    differences between svg files and image files?<span
+                        class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-html">
+                SVG stands for “Scalable Vector Graphics” and is an XML based, vector image format.
+                * SEO Friendly
+                * SVGs Can Be Embedded Into HTML (eliminating http requests and speeding up your site.)
+                * Editable
+                * Can Be Animated
+
+                Common Use Cases and Browser Support
+                 * Logos and Icons
+                 * Animations
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>5) What are the different new form element types in HTML 5?<span
+                        class="float-right badge badge-pill badge-primary">1</span></h5>
+                <pre class="pre"><code class="language-html">
+                Following is a list of 10 frequently used new elements in HTML 5:
+
+                * Color
+                * Date
+                * Datetime-local
+                * Email
+                * Time
+                * Url
+                * Range
+                * Telephone
+                * Number
+                * Search
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>6) What are the new &lt;input> types for form validation in HTML5?<span
+                        class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-html">
+                The new input types for form validation are:
+
+                * email
+                * URL
+                * number
+                * tel
+                * date
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>7) What is the purpose of using alternative texts in images?<span
+                        class="float-right badge badge-pill badge-primary">1</span></h5>
+                <pre class="pre"><code class="language-html">
+                Adding alternative text to photos is first and foremost a principle of web accessibility.
+                Visually impaired users using screen readers will be read an alt attribute to better understand an on-page image.
+
+                2. Alt tags will be displayed in place of an image if an image file cannot be loaded.
+
+                3. Alt tags provide better image context/descriptions to search engine crawlers, helping them to index an image properly.
+
+                &lt;img src="kitten.gif" alt="Kitten dancing">
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>8) What are data-attributes good for?<span
+                        class="float-right badge badge-pill badge-primary">1</span></h5>
+                <pre class="pre"><code class="language-html">
+                allow you to store extra information/ data in the DOM.
+                You can write valid html with embedded private data.
+                You can easily access data attribute by using javascript.
+                Example &lt;div id="myDiv" data-user="jsDude" data-list-size="5" data-maxage="180">&lt;/div>
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>9) What were some of the key goals and motivations for the HTML5 specification?<span
+                        class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-html">
+                HTML5 was designed to replace both HTML 4, XHTML, and the HTML DOM Level 2.
+
+Major goals of the HTML specification were to:
+
+* Deliver rich content (graphics, movies, etc.) without the need for additional plugins (e.g., Flash).
+* Provide better semantic support for web page structure through the introduction of new structural element tags.
+* Provide a stricter parsing standard to simplify error handling, ensure more consistent cross-browser behavior, and simplify backward compatibility with documents written to older standards.
+* Provide better cross-platform support (i.e., to work well whether running on a PC, Tablet, or Smartphone).
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>10) What are some of the key new features in HTML5?<span
+                        class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-html">
+                Improved support for embedding graphics, audio, and video content via the new &lt;canvas>, &lt;audio>, and &lt;video> tags.
+
+                Extensions to the JavaScript API such as geolocation and drag-and-drop as well for storage and caching.
+
+                Introduction of “web workers”.
+
+                Several new semantic tags were also added to complement the structural logic of modern web applications.
+                These include the &lt;main>, &lt;nav>, &lt;article>, &lt;section>, &lt;header>, &lt;footer>, and &lt;aside> tags.
+
+                New form controls, such as &lt;calendar>, &lt;date>, &lt;time>, &lt;email>, &lt;url>, and &lt;search>.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>11) What are “web workers”?<span class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-html">
+                <a target="_blank" href="https://www.w3schools.com/html/html5_webworkers.asp">Web workers</a> at long last bring multi-threading to JavaScript.
+
+                A web worker is a script that runs in the background (i.e., in another thread)
+                without the page needing to wait for it to complete.
+                The user can continue to interact with the page while the web worker runs in the background.
+                Workers utilize thread-like message passing to achieve parallelism.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>12) What is HTML5 Web Storage? Explain localStorage and sessionStorage. Describe the difference
+                    between a cookie, sessionStorage and localStorage.<span
+                        class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-html">
+                With web storage, web applications can store data locally within the user's browser.
+
+                Before HTML5, application data had to be stored in cookies, included in every server request.
+                Web storage is more secure, and large amounts of data can be stored locally, without affecting website performance.
+
+                Unlike cookies, the storage limit is far larger (at least 5MB) and information is never transferred to the server.
+
+                Web storage is per origin (per domain and protocol). All pages, from one origin, can store and access the same data.
+
+                window.localStorage - stores data with no expiration date
+                window.sessionStorage - stores data for one session (data is lost when the browser tab is closed)
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>13) What is the Geolocation API in HTML5?<span
+                        class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-js">
+HTML5’s Geolocation API lets users share their physical location with chosen web sites.
+JavaScript can capture a user’s latitude and longitude and can send it to the back-end web server to enable
+location-aware features like finding local businesses or showing their location on a map.
+
+Today, most browsers and mobile devices support the Geolocation API.
+The Geolocation API works with a new property of the global navigator object.
+
+A Geolocation object can be created as follows:
+
+var geolocation = navigator.geolocation;
+The geolocation object is a service object that allows widgets to retrieve information
+about the geographic location of the user’s device.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>14) Why is it generally a good idea to position CSS &lt;link>s between &lt;head>&lt;/head> and JS
+                    &lt;script>s just before &lt;/body>? Do you know any exceptions?<span
+                        class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-html">
+                Putting &lt;link>s in the head is part of proper specification in building an optimized website.
+                When a page first loads, HTML and CSS are being parsed simultaneously;
+                HTML creates the DOM (Document Object Model) and CSS creates the CSSOM (CSS Object Model).
+                Both are needed to create the visuals in a website, allowing for a quick "first meaningful paint" timing.
+                This progressive rendering is a category optimization sites are measured in their performance scores.
+                Putting stylesheets near the bottom of the document is what prohibits progressive rendering in many browsers.
+                Some browsers block rendering to avoid having to repaint elements of the page if their styles change.
+                The user is then stuck viewing a blank white page. Other times there can be flashes of unstyled content (FOUC),
+                which can shows a webpage with no styling applied.
+
+                Placing &lt;script>s just before &lt;/body>
+
+                &lt;script>s block HTML parsing while they are being downloaded and executed.
+                Placing the scripts at the bottom will allow the HTML to be parsed and displayed to the user first.
+
+                Place library script such as the jQuery library in the head section.
+                Also, placing &lt;script>s at the bottom means that the browser cannot start downloading the scripts until the entire document is parsed.
+                This ensures your code that needs to manipulate DOM elements will not throw and error and halt the entire script.
+                If you need to put &lt;script> in the &lt;head>, use the defer attribute, which will achieve the same effect of downloading and running the script only after the HTML is parsed.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>15) Describe the difference between &lt;script>, &lt;script async> and &lt;script defer><span
+                        class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-html">
+                &lt;script> - HTML parsing is blocked, the script is fetched and executed immediately,
+                HTML parsing resumes after the script is executed.
+
+                &lt;script async> - The script will be fetched in parallel to HTML parsing and executed
+                as soon as it is available (potentially before HTML parsing completes).
+                Use async when the script is independent of any other scripts on the page, for example, analytics.
+
+                &lt;script defer> - The script will be fetched in parallel to HTML parsing and executed
+                when the page has finished parsing. If there are multiple of them, each deferred script is
+                executed in the order they were encoun­tered in the document. If a script relies on a fully-parsed DOM,
+                the defer attribute will be useful in ensuring that the HTML is fully parsed before executing.
+                There's not much difference in putting a normal &lt;script> at the end of &lt;body>.
+                A deferred script must not contain document.write.
+
+                Note: The async and defer attrib­utes are ignored for scripts that have no src attribute.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>16) what is multipart form data?<span class="float-right badge badge-pill badge-primary">1</span>
+                </h5>
+                <pre class="pre"><code class="language-html">
+                The enctype attribute specifies how the form-data should be encoded when submitting it to the server.
+                Note: The enctype attribute can be used only if method="post".
+                Multi-part means form data divides into multiple parts and send to the server.
+
+                Example:
+                &lt;form action="/server-url" method="post" enctype="multipart/form-data">
+                        ...
+                &lt;/form>
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>17) What Is The Difference Between The Html Form Methods Get And Post?<span
+                        class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-html">
+GET:
+* Appends form-data into the URL in name/value pairs
+* The length of a URL is limited (about 3000 characters)
+* Never use GET to send sensitive data! (will be visible in the URL)
+* Useful for form submissions where a user wants to bookmark the result
+* GET is better for non-secure data, like query strings in Google
+
+POST:
+* Appends form-data inside the body of the HTTP request (data is not shown in URL)
+* Has no size limitations
+* Form submissions with POST cannot be bookmarked
+
+&lt;form action="/action_page.php" method="post">
+    ...
+&lt;/form>
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>18) Explain HTML5 Server-Sent Events?<span
+                        class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-html">
+                HTML5 server-sent events (SSE) allow a web page to receive a constant stream of updates from the server without having to send XMLHttpRequests.
+                Examples: Facebook/Twitter updates, stock price updates, news feeds, sport results, etc.
+                it works over HTTP and HTTPS, it’s firewall friendly, and it’s simple.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>19) Explain HTML5 Web Sockets?<span class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-html">
+                WebSockets is an advanced technology that makes it possible to open an interactive communication session between
+                the user's browser and a server. With this API, you can send messages to a server and receive event-driven
+                responses without having to poll the server for a reply.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>20) What's the difference between "resetting" and "normalizing" CSS? Which
+                    would you choose, and why?</h5>
+                <pre class="pre"><code class="language-html">
+                <i>Resetting</i> - Resetting is meant to strip all default browser
+                styling on elements. For e.g. margins, paddings, font-sizes of all
+                elements are reset to be the same. You will have to redeclare styling
+                for common typographic elements. <br />
+                <i>Normalizing</i> - Normalizing preserves useful default styles
+                rather than "unstyling" everything. It also corrects bugs for common
+                browser dependencies.<br />
+                I would choose resetting when I have a very customized or
+                unconventional site design such that I need to do a lot of my own
+                styling and do not need any default styling to be preserved.<br />
+                Read more
+                <a
+                  href="https://www.quora.com/Whats-the-difference-between-resetting-and-normalizing-CSS-Which-would-you-choose-and-why"
+                  target="_blank"
+                  >here</a
+                >
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5> 21)
+                    What are the various clearing techniques and which is appropriate for
+                    what context?
+                </h5>
+                <pre class="pre"><code class="language-html">
+                Empty div method -
+                <code>&lt;div style="clear:both;"&gt; &lt;/div&gt;</code><br />
+                Clearfix method - Refer to the <code>.clearfix</code> class above.
+                <br />
+                overflow: <code>auto or overflow: hidden</code> method - Parent will
+                establish a new block formatting context and expand to contains its
+                floated children.<br />
+                In large projects, I would write a utility .clearfix class and use
+                them in places where I need it. overflow: hidden might clip children
+                if the children is taller than the parent and is not very ideal.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>22) What's the difference between the "nth-of-type()" and "nth-child()" selectors?</h5>
+                <pre class="pre"><code class="language-html">
+                
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">23) Write several properties of the flexbox?</h5>
+                <pre class="pre"><code class="language-html">
+There are several properties of the flexbox that are used in the HTML
+webpage.<br />
+They are:<br />
+flex-direction<br />
+flex-wrap<br />
+flex-flow<br />
+justify-content<br />
+align-items<br />
+align-content<br /></code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    23) Explain CSS sprites, and how you would implement them on a page or
+                    site?
+                </h5>
+                <pre class="pre"><code class="language-html">
+                CSS sprites combine multiple images into one single larger image. It
+          is a commonly-used technique for icons (Gmail uses it). How to
+          implement it:<br />
+
+          1. Use a sprite generator that packs multiple images into one and
+          generate the appropriate CSS for it.<br />
+          2. Each image would have a corresponding CSS class with
+          background-image, background-position and background-size properties
+          defined.<br />
+          3. To use that image, add the corresponding class to your element.<br />
+
+          Advantages: <br />
+
+          - Reduce the number of HTTP requests for multiple images (only one
+          single request is required per spritesheet). But with HTTP2, loading
+          multiple images is no longer much of an issue.<br />
+          - Advance downloading of assets that won't be downloaded until needed,
+          such as images that only appear upon :hover pseudo-states. Blinking
+          wouldn't be seen.<br />
+          Read more
+          <a
+            href="https://www.w3schools.com/css/css_image_sprites.asp"
+            target="_blank"
+            >here</a
+          >
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    24) How would you approach fixing browser-specific styling issues?
+                </h5>
+                <pre class="pre"><code class="language-html">
+                - After identifying the issue and the offending browser, use a
+                separate style sheet that only loads when that specific browser is
+                being used. - This technique requires server-side rendering though.<br />
+                - Use libraries like Bootstrap that already handles these styling
+                issues for you.<br />
+                - Use autoprefixer to automatically add vendor prefixes to your
+                code.<br />
+                Use Reset CSS or Normalize.css.<br />
+                - If you're using Postcss (or a similar transpiling library), there
+                may be plugins which allow you to opt in for using modern CSS syntax
+                (and even W3C proposals) that will transform those sections of your
+                code into corresponding safe code that will work in the targets you've
+                used.<br />
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    25) Can you give an example of an @media property other than screen?
+                </h5>
+                <pre class="pre"><code class="language-html">
+                Yes, there are four types of @media properties (including screen):
+          <br />
+          <code>all</code> - for all media type devices<br />
+          <code>print</code> - for printers<br />
+          <code>speech</code> - for screenreaders that "reads" the page out
+          loud<br />
+          <code>screen</code> - for computer screens, tablets, smart-phones
+          etc.<br />
+          Here is an example of print media type's usage:<br />
+          <code>
+            @media print { <br />body<br />
+            { color: black; } <br />} </code
+          ><br />
+          Read more
+          <a
+            href="https://www.w3schools.com/cssref/css3_pr_mediaquery.asp"
+            target="_blank"
+            >here</a
+          >
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    26) What are the advantages/disadvantages of using CSS preprocessors?
+                </h5>
+                <pre class="pre"><code class="language-html">
+                <i>Advantages:</i><br />
+                - CSS is made more maintainable.<br />
+                - Easy to write nested selectors. <br />
+                - Variables for consistent theming. Can share theme files across
+                different projects.<br />
+                - Mixins to generate repeated CSS.<br />
+                - Sass features like loops, lists, and maps can make configuration
+                easier and less verbose.<br />
+                - Splitting your code into multiple files. CSS files can be split up
+                too but doing so will require an HTTP request to download each CSS
+                file.<br />
+                <i>Disadvantages:</i><br />
+                - Requires tools for preprocessing. Re-compilation time can be
+                slow.<br />
+                - Not writing currently and potentially usable CSS. For example, by
+                using something like postcss-loader with webpack, you can write
+                potentially future-compatible CSS, allowing you to use things like CSS
+                variables instead of Sass variables. Thus, you're learning new skills
+                that could pay off if/when they become standardized.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    27) What UI, Security, Performance, SEO, Maintainability or Technology
+                    considerations do you make while building a web application or site?
+                </h5>
+                <pre class="pre"><code class="language-html">
+                <i>UI:</i> Depending on your audience, accessibility can be your
+                biggest challenge and resources such as http://a11yproject.com are
+                great in suggesting patterns to achieve whats needed. Beyond that, a
+                pleasant palette and intuitive interfaces are the foundation, which
+                arise from well developed style guides containing code snippets that
+                help developers quickly deliver features with pre-themed UI elements
+                that alleviate common pain points such as non-conforming elements that
+                may distract stake holders during the iteration and approval
+                process.<br />
+                <i>Security:</i>
+                - Login pages should be encrypted<br />
+                - Data validation should be done server-side<br />
+                - Manage your Web site via encrypted connections<br />
+                <i>Performance:</i> Concatenation and minification of JS and CSS
+                files, delivering SVG images wherever possible, icon fonts, use
+                sprites as necessary and compressing images.<br />
+                <i>SEO:</i> When it comes to SEO, I refer to my approach as “the new
+                old school.” That is, I don’t believe there is any “magic in your
+                meta” tags and I encourage business owners to simply create content
+                that is relevant to your business, write clearly and often, advertise
+                when necessary, make sure your site is mobile friendly, that sharing
+                your content is easy, and you have control of your Google, Twitter,
+                Facebook, Yahoo, Bing, Foursquare, Pinterest, Instagram (insert hot
+                new here…) accounts, and everything really does fall into place. As
+                your business grows, more visitors come, more people share and the
+                search engines notice.<br />
+                <i>Maintainability and Technology Considerations:</i> Use tooling that
+                is more flexible and adhere’s to a standard. A great example of this
+                is PostCSS, where the concept is, you write plain old CSS – and NEW
+                CSS as well, including syntax not yet implemented in browsers and let
+                a plugin process your css and manipulate the output so it’s browser
+                ready. Then as time passes, W3C syntax is agreed upon, pre-fix use
+                subsides, and you can re-process your CSS with less and less
+                manipulation.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    28) How would you optimize a website’s assets/resources?
+                </h5>
+                <pre class="pre"><code class="language-html">
+                Concatenate and compress CSS, JavaScript and HTML files wherever
+                possible, configure your server to deliver a Gzip files, cache
+                resources, set longer expirations dates on http headers of resources
+                you don’t expect to change often – such as a logo. Images can be some
+                of the heaviest files we deliver, so compress wisely. Soon the
+                <code>picture</code> element will be implemented across browsers, so
+                we can optimize the delivery of image content. Also in the near future
+                consider using <code>WebP</code> format for images – it is quite
+                smaller in size than JPEG and PNG files. Finally, use a CDN or other
+                domains to host your resources and leverage domain sharding.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    29) Explain what ARIA and screen readers are, and how to make a website
+                    accessible.
+                </h5>
+                <pre class="pre"><code class="language-html">
+                Screen readers are software programs that provide assistive
+          technologies that allow people with disabilities (such as no sight,
+          sound or mouse-ing ability) to use web applications. You can make your
+          sites more accessible by following ARIA standards such as semantic
+          HTML, alt attributes and using <code>[role=button]</code> in the
+          expected ways.<br />
+          Ref:
+          <a href="https://w3c.github.io/using-aria/" target="_blank"
+            >Using ARIA</a
+          >
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    30) What does CORS stand for and what issue does it address?
+                </h5>
+                <pre class="pre"><code class="language-html">
+                Cross Origin Resource Sharing. To address the fact that browsers
+                restrict cross-origin HTTP requests initiated from within scripts.
+                CORS gives web servers cross-domain access controls, which enable
+                secure cross-domain data transfers.
+                <a
+                  href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS#:~:text=Cross%2DOrigin%20Resource%20Sharing%20(CORS)%20is%20a%20mechanism%20that,resources%20from%20a%20different%20origin."
+                  target="_blank"
+                  >here</a
+                >
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5>
+                    31) Describe the difference between: <code>script</code>,
+                    <code>script async</code>, <code>script defer</code>
+                </h5>
+                <pre class="pre"><code class="language-html">
+                <i>Normal Execution: script:</i><br />
+                Parsing of the HTML code pauses while the script is executing. For
+                slow servers and heavy scripts this means that displaying the webpage
+                will be delayed.<br />
+                <i>Deferred Execution: script defer</i><br />
+                Delays script execution until the HTML parser has finished. A positive
+                effect of this attribute is that the DOM will be available for your
+                script. However, since not every browser supports defer yet, can’t
+                rely on it.<br />
+      
+                <i>Asynchronous Execution: script async</i><br />
+                HTML parsing may continue and the script will be executed as soon as
+                it’s ready.<br />
+            </code></pre>
+            </div>
+        </div>
+        <script>
+            // https://syndicode.com/2019/01/09/33-concepts-every-js-developer-should-know/
+            //https://scotch.io/courses/10-need-to-know-javascript-concepts/the-this-keyword
+            //https://javascript.info/
+
+            function toggle(e) {
+                if (e.currentTarget.querySelector('.pre').style.display === 'none') {
+                    e.currentTarget.querySelector('.pre').style.display = 'block'
+                } else {
+                    e.currentTarget.querySelector('.pre').style.display = 'none'
+                }
+            }
+            const boxes = document.getElementsByClassName('box');
+            for (let i = 0; i < boxes.length; i++) {
+                boxes[i].addEventListener('click', toggle);
+                boxes[i].querySelector('.pre').style.display = 'none';
+                boxes[i].querySelector('.pre').style.display = 'none'
+            }
+        </script>
+    </main>
+</body>
+
+</html>

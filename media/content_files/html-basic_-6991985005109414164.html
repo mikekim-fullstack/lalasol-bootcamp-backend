@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>LaLaSol</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="/assets/css/interview.css" /> -->
+    <!-- <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" /> -->
+    <script src="https://lalasol-bootcamp.web.app/dist/prism.js"></script>
+    <style>
+        .pre {
+            background: #f9f9fa;
+            border: 1px solid rgba(51, 51, 51, 0.1);
+            padding: 10px;
+            width: 100%;
+        }
+
+        .row {
+            margin: 0 !important;
+        }
+
+        .jumbotron {
+            height: 60px;
+            padding: 15px;
+        }
+
+        .box {
+            padding: 10px;
+            margin: 10px 0;
+            border: solid 1px #f3ebff;
+        }
+
+        .float-right::after {
+            clear: both;
+        }
+
+        .badge {
+            margin: 0 5px;
+        }
+
+        .question {
+            margin: 0;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        hr {
+            margin: 0;
+        }
+
+        .question:before {
+            content: '*  ';
+        }
+
+        .interview {
+            padding-left: 10px;
+        }
+
+        .interview .answer img {
+            max-width: 600px;
+        }
+
+        .interview .answer {
+            display: none;
+        }
+
+        .interview .question:hover {
+            background-color: lightblue;
+        }
+
+        .interview .question:hover+.answer {
+            display: block;
+        }
+
+        .box {
+            margin-top: 10px;
+        }
+
+        .box h5 {
+            margin-bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <main role="main" class="interview">
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">
+                    1) What does a doctype do?<span class="float-right badge badge-pill badge-primary">1.5</span>
+                </h5>
+                <pre class="pre"><code class="language-html">
+                doctype is an instruction to the browser to inform about the version
+          of html document and how browser should render it. Read more <a
+            href="https://www.w3schools.com/tags/tag_doctype.asp"
+            target="_blank"
+            >here</a
+          >
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">
+                    2) What is semantic HTML? Why do we need to use them?<span
+                        class="float-right badge badge-pill badge-primary">1.5</span>
+                </h5>
+                <pre class="pre"><code class="language-html">
+                Semantic HTML is a coding style.
+                It is the use of HTML markup to reinforce the semantics or meaning of the content.
+                For example: In semantic HTML &lt;b>  tag is not used for bold statement
+                as well as &lt;i> tag is used for italic. Instead of these we use
+                &lt;strong> and &lt;em> tags.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">
+                    3) What are self closing tags?<span class="float-right badge badge-pill badge-primary">1.5</span>
+                </h5>
+                <pre class="pre"><code class="language-html">
+                There are some HTML tags that don't need a closing tag. For example: &lt;image> tag, &lt;br> tag.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">4) Do all HTML tags have an end tag?</h5>
+                <pre class="pre"><code class="language-html">
+                 No. There are some HTML tags that don't need a closing tag. For
+          example: <code>image</code> tag, <code> br </code> tag. Read more <a
+            href="https://blog.teamtreehouse.com/to-close-or-not-to-close-tags-in-html5"
+            target="_blank"
+            >here</a
+          >
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">
+                    5) Explain the three main ways to apply CSS styles to a web page. When would you prefer which
+                    one?<span class="float-right badge badge-pill badge-primary">3</span>
+                </h5>
+                <pre class="pre"><code class="language-html">
+                Inline CSS - You can apply CSS style inside the HTML tags(elements)
+          that’s called inline CSS.<br />
+          Internal Style Sheet - You can apply CSS styles Inside &lt;head&gt;
+          section in HTML using <code>&lt;style&gt;&lt;/style&gt;</code>.<br />
+          External Style Sheet - Create another file save it with .css extension
+          and then link this css file using <code>&lt;link&gt;</code>. <br />
+          Read more <a
+            href="https://www.htmldog.com/guides/css/beginner/applyingcss/#:~:text=There%20are%20three%20ways%20to,Inline%2C%20internal%2C%20and%20external."
+            target="_blank"
+            >here</a
+          >
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">
+                    6) What is the differences between div and span?<span
+                        class="float-right badge badge-pill badge-primary">3</span>
+                </h5>
+                <pre class="pre"><code class="language-html">
+                The difference is that <code>span</code> gives the output with
+          <code>display:inline</code> and <code>div</code> gives the output with
+          <code>display:block</code>. span is used when we need our elements to
+          be shown in a line, one after the other.
+            </code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">6.1) What is the difference between a block-level element and an inline element?
+                    Give samples.<span class="float-right badge badge-pill badge-primary">2</span></h5>
+                <pre class="pre"><code class="language-html">
+						A block-level element is drawn as a block that stretches to fill the full width available to it i.e,
+						the width of its container and will always start on a new line.
+						Elements that are block-level by default: &lt;div>, &lt;img>, &lt;section>, &lt;form>, &lt;nav>.
+		
+						Inline elements are drawn where they are defined and only take up space that is absolutely needed.
+						The easiest way to understand how they work is to look at how text flows on a page.
+						Examples of elements that are inline by default: &lt;span>, &lt;b>, &lt;strong>, &lt;a>, &lt;input>.
+					</code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">
+                    7) What is the use of the required attribute in HTML5?<span
+                        class="float-right badge badge-pill badge-primary">1.5</span>
+                </h5>
+                <pre class="pre"><code class="language-html">It forces a user to fill text on the text field or text area before
+submitting the form. It is used for form validation. Example:
+<code> &lt;input type="text" name="name" required&gt; </code>. Read
+more <a
+            href="https://www.w3schools.com/tags/att_input_required.asp#:~:text=Definition%20and%20Usage,checkbox%2C%20radio%2C%20and%20file."
+            target="_blank"
+            >here</a
+          ></code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">
+                    8) Could you describe the different kinds of selectors?<span
+                        class="float-right badge badge-pill badge-primary">1.5</span>
+                </h5>
+                <pre class="pre"><code class="language-html">
+ We can divide CSS selectors into five categories: <br />
+<code>Simple selectors</code>(id, class, name etc.)<br />
+<code>Combinator selectors</code>(descendant selector(space), child
+selector(>), adjacent sibling selector (+), general sibling selector
+(~) .)<br />
+<code>Pseudo-class selectors</code>(visited, hover, link, active
+etc.)<br />
+<code>Pseudo-elements selectors</code> (first-line, first-letter
+etc.)<br />
+<code>Attribute selectors</code> (a[target] etc.)<br />
+<a
+href="https://www.w3schools.com/css/css_selectors.asp"
+target="_blank"
+>here</a
+></code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">
+                    9) What is the difference between classes and ID’s in CSS?<span
+                        class="float-right badge badge-pill badge-primary">1.5</span>
+                </h5>
+                <pre class="pre"><code class="language-html">
+Classes are reusable CSS reference selectors named
+<code>class=</code> in the HTML document and prefixed by a period in a
+stylesheet. ID’s are declared as <code>id=</code> in HTML and
+referenced by the # (hashtag.) ID’s are designed for unique
+specificity since they can only ever be used by JavaScript once.
+Though styles applied by ID through CSS do affect all instances of the
+ID. Read more
+<a
+href="https://www.htmldog.com/guides/css/intermediate/classid/#:~:text=In%20the%20CSS%2C%20a%20class,character%20(%E2%80%9C%23%E2%80%9D).&text=The%20difference%20between%20an%20ID,to%20identify%20more%20than%20one."
+target="_blank"
+>here</a
+>
+					</code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">
+                    10) What is the CSS display property and can you give a few examples of its use?<span
+                        class="float-right badge badge-pill badge-primary">1.5</span>
+                </h5>
+                <pre class="pre"><code class="language-html">
+The display property specifies the display behavior (the type of
+rendering box) of an element. <br />
+<code>display: none;</code><br />
+<code>display: inline;</code><br />
+<code>display: block;</code><br />
+<code>display: inline-block;</code> <br />
+Read more and check examples
+<a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#:~:text=Specificity%20is%20the%20means%20by,different%20sorts%20of%20CSS%20selectors."
+target="_blank"
+>
+here.</a
+>
+					</code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">
+                    11) What is CSS specificity?<span class="float-right badge badge-pill badge-primary">1.5</span>
+                </h5>
+                <pre class="pre"><code class="language-html">
+Specificity is the means by which browsers decide which CSS property
+values are the most relevant to an element and, therefore, will be
+applied. Check
+<a href="https://www.w3schools.com/cssref/pr_class_display.asp"
+target="_blank">MDN</a> to learn how they used and calculated.</code></pre>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">
+                    12) What does float do?<span class="float-right badge badge-pill badge-primary">1.5</span>
+                </h5>
+                <pre class="pre"><code class="language-html">
+<code>float</code> pushes an element to the sides of a page with text
+wrapped around it. you can create entire page or a smaller area by
+using float. if size of a floated element changes, text around it will
+re-flow to accommodate the changes. You can have float left, right,
+none or inherit.<br />
+if you set, <code>'float: left;'</code> for an image, it will move to
+the left until the margin, padding or border of another block-level
+element is reached. The normal flow will wrap around on the right
+side.<br />
+Read more
+<a
+href="https://developer.mozilla.org/en-US/docs/Web/CSS/float#:~:text=The%20float%20CSS%20property%20places,in%20contrast%20to%20absolute%20positioning)."
+target="_blank"
+>here</a
+></code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">
+                    13) How absolute, relative, fixed and static position differ?<span
+                        class="float-right badge badge-pill badge-primary">1.5</span>
+                </h5>
+                <pre class="pre"><code class="language-html">
+<code>absolute</code>, place an element exactly where you want to
+place it. absolute position is actually set relative to the element's
+parent. if no parent available then relatively place to the page
+itself.<br />
+
+<code>relative</code>, is position an element relative to itself (from
+where the element would be placed, if u don't apply relative
+positioning). for example, if u set position relative to an element
+and set top: 10px, it will move 10px down from where it would be
+normally.<br />
+
+<code>fixed</code>, element is positioned relative to viewport or the
+browser window itself. viewport doesn't changed if u scroll and hence
+fixed element will stay right in the same position.<br />
+
+<code>static</code>, element will be positioned based on the normal
+flow of the document. usually, u will use position static to remove
+other position might be applied to an element.</code></pre>
+            </div>
+        </div>
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">
+                    14) What are the differences between visibility hidden and display none?<span
+                        class="float-right badge badge-pill badge-primary">1.5</span>
+                </h5>
+                <pre class="pre"><code class="language-html">
+ <code>display:</code> none removes the element from the normal layout
+flow and allow other elements to fill in. <br />
+<code>visibility:</code> hidden tag is rendered, it takes space in the
+normal flow but doesn't show it</code></pre>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="text">
+                <h5 class="box-header">15) What are the differences between inline, block and inline-block?</h5>
+                <pre class="pre"><code class="language-html">
+<code>inline</code>, elements do not break the flow. think of span it
+fits in the line. Important points about inline elements, margin/
+padding will push other elements horizontally not vertically.
+Moreover, inline elements ignores height and width.<br />
+
+<code>block</code>, breaks the flow and dont sits inline. they are
+usually container like div, section, ul and also text p, h1, etc.<br />
+
+<code>inline-block</code>, will be similar to inline and will go with
+the flow of the page. Only differences is this this will take height
+and width.<br />
+
+Check
+<a
+href="https://www.w3schools.com/css/css_inline-block.asp"
+target="_blank"
+>
+here for examples
+</a></code></pre>
+            </div>
+        </div>
+
+    </main>
+    <script>
+        function toggle(e) {
+            if (e.currentTarget.parentElement.querySelector('.pre').style.display === 'none') {
+                e.currentTarget.parentElement.querySelector('.pre').style.display = 'block';
+            } else {
+                e.currentTarget.parentElement.querySelector('.pre').style.display = 'none';
+            }
+        }
+        const boxes = document.querySelectorAll('.box-header');
+        for (let i = 0; i < boxes.length; i++) {
+            boxes[i].addEventListener('click', toggle);
+            boxes[i].parentElement.querySelector('.pre').style.display = 'none';
+        }
+    </script>
+</body>
+
+</html>
