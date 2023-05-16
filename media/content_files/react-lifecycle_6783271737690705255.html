@@ -2,226 +2,226 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
-    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
-    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
-    <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
-    <!-- For syntax highlighting -->
-    <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
+  <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/reveal.css">
+  <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/custom.css"> -->
+  <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/simple.css" id="theme">
+  <!-- <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/theme/simple.css" id="theme"> -->
+  <!-- For syntax highlighting -->
+  <!-- <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/zoom.js"></script>
     <script type="text/javascript" src="https://lalasol-bootcamp.web.app/js/notes.js"></script> -->
-    <!-- light editor-->
-    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
-    <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
-    <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
-    <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
-    <style>
-        .remark-slide-scaler {
-            width: 100% !important;
-            height: 100% !important;
-            transform: scale(1) !important;
-            left: 0 !important;
-            top: 0 !important;
-        }
+  <!-- light editor-->
+  <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/light.css">
+  <link rel="stylesheet" href="https://lalasol-bootcamp.web.app/dist/accessibility-helper.css">
+  <!-- dark editor<link rel="stylesheet" href="lib/css/dark.css"> -->
+  <!-- <link rel="stylesheet" href="lib/css/zenburn.css"> -->
+  <style>
+    .remark-slide-scaler {
+      width: 100% !important;
+      height: 100% !important;
+      transform: scale(1) !important;
+      left: 0 !important;
+      top: 0 !important;
+    }
 
-        @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
-        @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
-        @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+    @import url(https://fonts.googleapis.com/css?family=Droid+Serif);
+    @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+    @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
 
-        body {
-            font-family: 'Droid Serif';
-        }
+    body {
+      font-family: 'Droid Serif';
+    }
 
-        h1,
-        h2,
-        h3 {
-            font-family: 'Yanone Kaffeesatz';
-            font-weight: 400;
-            margin-bottom: 0;
-        }
+    h1,
+    h2,
+    h3 {
+      font-family: 'Yanone Kaffeesatz';
+      font-weight: 400;
+      margin-bottom: 0;
+    }
 
-        .imp {
-            color: brown;
-            font-family: bold;
-        }
+    .imp {
+      color: brown;
+      font-family: bold;
+    }
 
-        .remark-slide-content h1 {
-            font-size: 3em;
-        }
+    .remark-slide-content h1 {
+      font-size: 3em;
+    }
 
-        .remark-slide-content h2 {
-            font-size: 2em;
-        }
+    .remark-slide-content h2 {
+      font-size: 2em;
+    }
 
-        .remark-slide-content h3 {
-            font-size: 1.6em;
-        }
+    .remark-slide-content h3 {
+      font-size: 1.6em;
+    }
 
-        .footnote {
-            position: absolute;
-            bottom: 3em;
-        }
+    .footnote {
+      position: absolute;
+      bottom: 3em;
+    }
 
-        li p {
-            line-height: 1.25em;
-        }
+    li p {
+      line-height: 1.25em;
+    }
 
-        .red {
-            color: #fa0000;
-        }
+    .red {
+      color: #fa0000;
+    }
 
-        .large {
-            font-size: 2em;
-        }
+    .large {
+      font-size: 2em;
+    }
 
-        a,
-        a>code {
-            color: rgb(249, 38, 114);
-            text-decoration: none;
-        }
+    a,
+    a>code {
+      color: rgb(249, 38, 114);
+      text-decoration: none;
+    }
 
-        code {
-            background: #e7e8e2;
-            border-radius: 5px;
-        }
+    code {
+      background: #e7e8e2;
+      border-radius: 5px;
+    }
 
-        .remark-code,
-        .remark-inline-code {
-            font-family: 'Ubuntu Mono';
-        }
+    .remark-code,
+    .remark-inline-code {
+      font-family: 'Ubuntu Mono';
+    }
 
-        .remark-code-line-highlighted {
-            background-color: #373832;
-        }
+    .remark-code-line-highlighted {
+      background-color: #373832;
+    }
 
-        .pull-left {
-            float: left;
-            width: 47%;
-        }
+    .pull-left {
+      float: left;
+      width: 47%;
+    }
 
-        .pull-right {
-            float: right;
-            width: 47%;
-        }
+    .pull-right {
+      float: right;
+      width: 47%;
+    }
 
-        .pull-right~p {
-            clear: both;
-        }
+    .pull-right~p {
+      clear: both;
+    }
 
-        #slideshow .slide .content code {
-            font-size: 0.8em;
-        }
+    #slideshow .slide .content code {
+      font-size: 0.8em;
+    }
 
-        #slideshow .slide .content pre code {
-            font-size: 0.9em;
-            padding: 15px;
-            background-color: #272822;
+    #slideshow .slide .content pre code {
+      font-size: 0.9em;
+      padding: 15px;
+      background-color: #272822;
 
-        }
+    }
 
-        .remark-code {
-            font-size: 0.9em;
-            padding: 15px;
-            background-color: #000 !important;
+    .remark-code {
+      font-size: 0.9em;
+      padding: 15px;
+      background-color: #000 !important;
 
-            color: white;
+      color: white;
 
-        }
+    }
 
-        .remark-code-line {
-            color: #ddd;
-        }
+    .remark-code-line {
+      color: #ddd;
+    }
 
-        .hljs-subst {
-            color: #aaa !important;
-        }
+    .hljs-subst {
+      color: #aaa !important;
+    }
 
-        .inverse {
-            background: #272822;
-            color: #777872;
-            text-shadow: 0 0 20px #333;
-        }
+    .inverse {
+      background: #272822;
+      color: #777872;
+      text-shadow: 0 0 20px #333;
+    }
 
-        .hljs-number,
-        .hljs-title,
-        .hljs-string {
-            color: #f92672 !important;
-        }
+    .hljs-number,
+    .hljs-title,
+    .hljs-string {
+      color: #f92672 !important;
+    }
 
-        .hljs-keyword {
-            color: lightgreen !important;
-        }
+    .hljs-keyword {
+      color: lightgreen !important;
+    }
 
-        .inverse h1,
-        .inverse h2 {
-            color: #f3f3f3;
-            line-height: 0.8em;
-        }
+    .inverse h1,
+    .inverse h2 {
+      color: #f3f3f3;
+      line-height: 0.8em;
+    }
 
-        /* Slide-specific styling */
-        #slide-inverse .footnote {
-            bottom: 12px;
-            left: 20px;
-        }
+    /* Slide-specific styling */
+    #slide-inverse .footnote {
+      bottom: 12px;
+      left: 20px;
+    }
 
-        #slide-how .slides {
-            font-size: 0.9em;
-            position: absolute;
-            top: 151px;
-            right: 140px;
-        }
+    #slide-how .slides {
+      font-size: 0.9em;
+      position: absolute;
+      top: 151px;
+      right: 140px;
+    }
 
-        #slide-how .slides h3 {
-            margin-top: 0.2em;
-        }
+    #slide-how .slides h3 {
+      margin-top: 0.2em;
+    }
 
-        #slide-how .slides .first,
-        #slide-how .slides .second {
-            padding: 1px 20px;
-            height: 90px;
-            width: 120px;
-            -moz-box-shadow: 0 0 10px #777;
-            -webkit-box-shadow: 0 0 10px #777;
-            box-shadow: 0 0 10px #777;
-        }
+    #slide-how .slides .first,
+    #slide-how .slides .second {
+      padding: 1px 20px;
+      height: 90px;
+      width: 120px;
+      -moz-box-shadow: 0 0 10px #777;
+      -webkit-box-shadow: 0 0 10px #777;
+      box-shadow: 0 0 10px #777;
+    }
 
-        #slide-how .slides .first {
-            background: #fff;
-            position: absolute;
-            top: 20%;
-            left: 20%;
-            z-index: 1;
-        }
+    #slide-how .slides .first {
+      background: #fff;
+      position: absolute;
+      top: 20%;
+      left: 20%;
+      z-index: 1;
+    }
 
-        #slide-how .slides .second {
-            position: relative;
-            background: #fff;
-            z-index: 0;
-        }
+    #slide-how .slides .second {
+      position: relative;
+      background: #fff;
+      z-index: 0;
+    }
 
-        /* Two-column layout */
-        .left-column {
-            color: #777;
-            width: 20%;
-            height: 92%;
-            float: left;
-        }
+    /* Two-column layout */
+    .left-column {
+      color: #777;
+      width: 20%;
+      height: 92%;
+      float: left;
+    }
 
-        .left-column h2:last-of-type,
-        .left-column h3:last-child {
-            color: #000;
-        }
+    .left-column h2:last-of-type,
+    .left-column h3:last-child {
+      color: #000;
+    }
 
-        .right-column {
-            width: 75%;
-            float: right;
-            padding-top: 1em;
-        }
-    </style>
+    .right-column {
+      width: 75%;
+      float: right;
+      padding-top: 1em;
+    }
+  </style>
 </head>
 
 <body>
 
-    <textarea id="source">
+  <textarea id="source">
 
   name: inverse
   layout: true
@@ -255,15 +255,15 @@
   - 3 Unmounting ( component is removed from the DOM )
   
   ---
-    <img src="../assets/img/react/lifecycle.png" width="115%" style="margin-left: -6em">
+    <img src="../images/lifecycle.png" width="115%" style="margin-left: -6em">
   
   ---
    ### TLDR
-    <img src="../assets/img/react/react-lifecycle.png" width="115%" style="margin-left: -6em">
+    <img src="../images/react-lifecycle.png" width="115%" style="margin-left: -6em">
   
   ---
   ### TLDR
-    <img src="../assets/img/react/react-lifecycle-definition.png" width="115%" style="margin-left: -6em">
+    <img src="../images/react-lifecycle-definition.png" width="115%" style="margin-left: -6em">
   
   
   ---
@@ -595,12 +595,12 @@
   
       </textarea>
 
-    <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
-    <script>
-        var slideshow = remark.create({
-            highlightLines: true,
-        });
-    </script>
+  <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+  <script>
+    var slideshow = remark.create({
+      highlightLines: true,
+    });
+  </script>
 
 </body>
 
