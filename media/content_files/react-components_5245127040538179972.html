@@ -235,9 +235,9 @@ export default Greeting;
 function App() {
 return (
   <div>
-    &lt;Greeting name="Aibek" lastName="A" />
-    &lt;Greeting name="Aizat" lastName="B"/>
-    &lt;Greeting name="Aynura" lastName="C"/>
+    <Greeting name="Aibek" lastName="A" ></Greeting>
+    <Greeting name="Aizat" lastName="B"></Greeting>
+    <Greeting name="Aynura" lastName="C"></Greeting>
   </div>
 );
 }
@@ -343,6 +343,25 @@ imgPath: '/assets/images/avatars/nurseit_kalbaev.jpg'
                 ]
             }
         );
+
+        // <!-- +++ show the html code +++ -->
+
+        // <!-- <script> -->
+
+        let jss = document.querySelectorAll(".js");
+
+        console.log('jss: ', jss)
+        jss.forEach((js) => {
+            let a = js.innerHTML;
+            console.log('innerHTML: ', js)
+            let b = a.split('>');
+            js.textContent = ''
+
+            for (var i = 0; i < b.length; i++) {
+                let replaceBracket = i == b.length - 1 ? "" : ">";
+                js.textContent += b[i] + replaceBracket;
+            }
+        })
     </script>
 </body>
 

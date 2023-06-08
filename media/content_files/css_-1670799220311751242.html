@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>LaLaSol</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <!-- <link rel="stylesheet" href="/assets/css/interview.css" /> -->
+    <link rel="icon" href="../images/favicon.ico" type="image/icon" />
+    <link href="https://lalasol-bootcamp.web.app/dist/prism.css" rel="stylesheet" />
+    <script src="https://lalasol-bootcamp.web.app/dist/prism.js"></script>
+    <style>
+        .pre {
+            background: #f9f9fa;
+            border: 1px solid rgba(51, 51, 51, .1);
+            padding: 10px;
+            width: 100%;
+
+        }
+
+        .row {
+            margin: 0 !important;
+        }
+
+        .jumbotron {
+            height: 60px;
+            padding: 15px;
+        }
+
+        .box {
+            padding: 10px;
+            margin: 10px 0;
+            border: solid 1px #f3ebff;
+        }
+
+        .float-right::after {
+            clear: both;
+        }
+
+        .badge {
+            margin: 0 5px;
+        }
+
+        .question {
+            margin: 3px 0;
+        }
+
+        .question:before {
+            content: '*  ';
+        }
+
+        .row {
+            margin: 0 !important;
+        }
+
+        .jumbotron {
+            height: 60px;
+            padding: 15px;
+        }
+
+        .box {
+            padding: 10px;
+            margin: 10px 0;
+            border: solid 1px #f3ebff;
+        }
+
+        .float-right::after {
+            clear: both;
+        }
+
+        .badge {
+            margin: 0 5px;
+        }
+
+        .leetcode-link {
+            margin-left: 20px;
+        }
+
+
+        .video-algo,
+        .code-algo {
+            width: 50%;
+            height: 400px;
+        }
+
+        .video-algo,
+        .code-algo {
+            width: 50%;
+            height: 400px;
+            float: left;
+        }
+
+        .answer:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .answer {
+            padding: 20px 0;
+            background-color: black;
+            display: none;
+        }
+
+        code[class*="language-"],
+        pre[class*="language-"] {
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <main role="main">
+        <!-- Main jumbotron for a primary marketing message or call to action -->
+        <div class="jumbotron">
+            <div class="container">
+                <h4 class="display-5">CSS Interview questions</h4>
+            </div>
+        </div>
+        <div>
+            <span class="badge badge-primary">Css Selectors</span>
+            <span class="badge badge-primary">Pseudo Classes / Pseudo Elements</span>
+            <span class="badge badge-primary">Css Specificity</span>
+            <span class="badge badge-primary">Css Pre-Processors</span>
+            <span class="badge badge-primary">Display Properties</span>
+            <span class="badge badge-primary">Position Properties</span>
+            <span class="badge badge-primary">Css Layouts(table, float, flex, grid)</span>
+            <span class="badge badge-primary">block vs inline</span>
+            <span class="badge badge-primary">Media Queries</span>
+            <span class="badge badge-primary">Box Model</span>
+            <span class="badge badge-primary">box-sizing</span>
+            <span class="badge badge-primary">Sprites</span>
+            <span class="badge badge-primary">Resetting Normalizing</span>
+            <span class="badge badge-primary">CSS Frameworks</span>
+            <span class="badge badge-primary">CSS Animations</span>
+            <div class="box">
+                <div class="text">
+                    <h5> 1) Explain CSS Selectors? (How to target elements?)<span
+                            class="float-right badge badge-pill badge-primary">1</span></h5>
+                    <pre class="pre"><code class="language-html">
+1. Simple selectors 
+ - Element name (body, div, ...), ID name(#name), class name(.name)
+2. Combinator selectors (select elements based on a specific relationship between them)
+ - descendant selector (space)
+ - child selector (>)
+ - adjacent sibling selector (+)
+ - general sibling selector (~)
+
+3. Pseudo-class selectors (select elements based on a certain state)
+ - (:)
+4. Pseudo-elements selectors (select and style a part of an element)
+ - (::)
+5. Attribute selectors (select elements based on an attribute or attribute value)
+ - [attribute='value']
+   e.g.)
+   [class|='top'], input[type='value'], a[target='_blank']
+
+                    </code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5> 2) Explain Pseudo elements.<span class="float-right badge badge-pill badge-primary">1</span>
+                    </h5>
+                    <pre class="pre"><code class="language-html">
+A pseudo-class is used to define a special part of an element(::).
+::before 	    -Insert something before the content of each <p> element
+::after 	    -Insert something after the content of each <p> element
+::first-letter 	-Selects the first letter of each <p> element
+::first-line 	-Selects the first line of each <p> element
+::marker 	    -Selects the markers of list items
+::selection 	-Selects the portion of an element that is selected by a user
+
+                        <img width="800px" src="../images/css-4.png" />
+                    </code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5> 3) Explain pseudo classes.<span class="float-right badge badge-pill badge-primary">1</span>
+                    </h5>
+                    <pre class="pre"><code class="language-html">
+A pseudo-class is used to define a special state of an element(:).
+a:link, a:visited, a:hover, a:active
+p:first-child, p:nth-child(odd), p:nth-of-type(3)
+
+                        <img width="800px" src="../images/css-5.png" />
+                    </code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5> 4) Explain the three main ways to apply CSS styles to a web page.<span
+                            class="float-right badge badge-pill badge-primary">1</span></h5>
+                    <pre class="pre"><code class="language-html">
+1. Inline sytle(style=''), 
+2. Internal style(&lt;style> ... &lt;/style>), 
+3. External style(&lt;link rel='stylesheet' href='index.css'>&lt;/link>)
+
+                        <img width="800px" src="../images/css-1.png" />
+                    </code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5> 5) What is CSS selector specificity and how does it work?<span
+                            class="float-right badge badge-pill badge-primary">1</span></h5>
+                    <pre class="pre"><code class="language-html">
+                        <!-- <img width="400px" src="../images/css-6.png"/> -->
+CSS selector specificity is a rule that determines which styles should be applied to an HTML element 
+when multiple selectors target the same element and conflict with each other. 
+It's a way to assign a weight or priority to selectors in order to resolve conflicts and determine the final styles.
+
+Specificity is calculated based on various components of a selector, such as the type selector, class selector, ID selector, and inline styles. 
+Each of these components has a value assigned to it , and when selectors are compared, the one with the higher specificity value wins and its styles are applied.
+
+The specificity value is calculated using four parts:
+    0. !important (wins among those)
+    1. Inline Styles                               - 1000
+    2. ID selectors                                -  100
+    3. Classes, Attributes and Pseudo-classes      -   10
+    4. Elements and Pseudo-elements                -    1 
+
+    e.g.)
+    #div-1 > .second-block > .text {
+        color: blue
+    } => 100+10+10 = 120
+    
+    .first-block > #div-2 > #paragraph {
+        color: red
+    } => 10+100+100=210 (WINS)
+
+When comparing selectors, the specificity value is calculated for each component, and the selector with the highest total specificity wins. 
+For example, a selector with an ID and a class will have a higher specificity than a selector with only a class.
+If two or more selectors have the same specificity, the one that appears later in the stylesheet takes precedence. 
+However, inline styles always override any conflicting styles, regardless of their specificity.
+Understanding CSS selector specificity is crucial for resolving conflicts and applying styles accurately when dealing with complex stylesheets. 
+By properly structuring and organizing selectors, you can ensure consistent and predictable styling across your web pages.
+                    </code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5> 6) Describe Floats and how they work?<span
+                            class="float-right badge badge-pill badge-primary">1</span></h5>
+                    <pre class="pre"><code class="language-html">
+In CSS, the "float" property is used to position elements horizontally within their containing parent element. When an element is floated, 
+it is taken out of the normal flow of the document and positioned to the left or right of its parent or preceding sibling elements.
+
+The "float" property accepts three possible values: "left," "right," and "none." 
+When an element is set to "left" or "right," it will be moved to the respective side and any following content will flow around it. 
+
+If multiple elements are floated, they will be positioned adjacent to each other in the order they appear in the HTML markup.
+
+It's important to note that floated elements are taken out of the normal document flow, which can affect the layout of surrounding elements. 
+To prevent this, you can use the "clear:both" property to specify that no element should be allowed to float on the left or right side of the cleared element.
+                    </code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5> 7) Describe z-index and how stacking context is formed.<span
+                            class="float-right badge badge-pill badge-primary">1</span></h5>
+                    <pre class="pre"><code class="language-html">
+In CSS, the z-index property controls the stacking order of elements on a web page along the z-axis, which is the depth or "third dimension" of the page.
+It determines how elements are layered and displayed on top of each other.
+
+The z-index property accepts an integer value, where higher values bring elements closer to the viewer and lower values push elements farther back. 
+Elements with higher z-index values will appear in front of elements with lower values.                       
+                    </code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5>8) Explain Box model.<span class="float-right badge badge-pill badge-primary">1</span></h5>
+                    <pre class="pre"><code class="language-html">
+The box model is a fundamental concept in CSS (Cascading Style Sheets) that describes how elements are rendered and how their dimensions are calculated on a web page. 
+It represents the structure and layout of an element by dividing it into several layers or boxes.
+
+In the box model, each element is represented as a rectangular box, consisting of four main components:
+
+1. Content: It represents the actual content of the element, such as text, images, or other HTML elements. 
+   The content area is defined by the width and height properties.
+
+2. Padding: The padding is a transparent area surrounding the content and is used to create space between the content and the border. 
+   It is controlled by the padding property and can be set independently for each side (top, right, bottom, left).
+
+3. Border: The border is a line or outline that surrounds the padding and content of an element. 
+   It separates the element from its neighboring elements. 
+   The border can be customized in terms of its width, style, and color using the border property.
+
+4. Margin: The margin is the outermost layer of the box model and provides space between the element and other elements on the page. 
+   It is controlled by the margin property and, similar to padding, can be set independently for each side.
+
+*Note that the background covers a content and a padding in the box model.
+
+Together, these components determine the overall size and spacing of an element. 
+The total width of an element is calculated by adding the content width, padding, border, and margin. 
+Similarly, the total height is calculated by adding the content height, padding, border, and margin.
+
+By understanding and manipulating the box model, you can control the positioning, layout, and spacing of elements on a web page.                        
+                        <img width="800px" src="../images/css-7.png"/>
+                    </code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5>9) Explain all the position states used in CSS.<span
+                            class="float-right badge badge-pill badge-primary">1</span></h5>
+                    <pre class="pre"><code class="language-html">
+In CSS (Cascading Style Sheets), position states are used to control the positioning of elements on a web page. There are five main position states available in CSS:
+
+1. Static (default):
+    - Static positioning is the default position state for all elements.
+    - Elements with static positioning are positioned according to the normal flow of the document.
+    - Top, right, bottom, left, and z-index properties have no effect on statically positioned elements.
+
+2. Relative:
+    - Relative positioning allows you to position an element relative to its normal position.
+    - When an element is set to relative, you can use the top, right, bottom, and left properties to adjust its position.
+    - Other elements on the page will not be affected by the relative positioning of the element.
+
+3. Absolute:
+    - Absolute positioning removes the element from the normal flow of the document.
+    - The element is positioned relative to its closest positioned ancestor (an ancestor with a position value other than static) or the initial containing block if no positioned ancestor exists.
+    - Using top, right, bottom, and left properties, you can precisely position the element within its containing block.
+    - Absolutely positioned elements are not affected by other elements, and they can overlap other content.
+
+4. Fixed:
+    - Fixed positioning is similar to absolute positioning, but the element is positioned relative to the browser window instead of its containing block or ancestor.
+    - The fixed element remains in a fixed position even when the page is scrolled.
+    - Like absolute positioning, you can use top, right, bottom, and left properties to specify the position of the element.
+
+5. Sticky:
+    - Sticky positioning is a mix of relative and fixed positioning.
+    - A sticky element is positioned relative to its nearest scrolling ancestor or the viewport if no scrolling ancestor exists.
+    - Initially, the element is positioned according to the normal flow of the document, but as the page is scrolled, it "sticks" 
+      to the specified position until it reaches a defined boundary.
+    - To create a sticky element, you need to set the top, right, bottom, or left property and also specify a value for one of those properties (e.g., top: 20px).
+
+These position states provide flexibility in arranging and positioning elements within a web page layout, allowing developers to create dynamic and visually appealing designs.                   
+                    </code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5>10) Differentiate between the ID and class.<span
+                            class="float-right badge badge-pill badge-primary">1</span></h5>
+                    <pre class="pre"><code class="language-html">
+                        <img width="800px" src="../images/css-11.png"/>
+                    </code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5>11) Can you give an example of an @media property other than screen?<span
+                            class="float-right badge badge-pill badge-primary">1</span></h5>
+                    <pre class="pre"><code class="language-html">
+1. all    -	Used for all media type devices
+2. print  -	Used for printers
+3. screen -	Used for computer screens, tablets, smart-phones etc. (@media screen and (minwidth:768px){...})
+4. speech -	Used for screenreaders that "reads" the page out loud                       
+                    </code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5 class="box-header">12) What is Box Model? What are the properties related to it?</h5>
+                    <pre class="pre"><code class="language-html">
+    Technically, height, width, padding and border are part of box model
+    and margin is related to it.<br />
+    
+    <i>Extra:</i> Everything in a web page is a box where you can control
+    size, position, background, etc. Each box/ content area is optionally
+    surrounded by padding, border and margin. When you set height and
+    width of an element, you set content height and width.<br />
+    
+    Check
+    <a
+    href="https://www.w3schools.com/css/css_boxmodel.asp"
+    target="_blank"
+    >
+    here for examples
+    </a></code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5 class="box-header">13) How <code>overflow</code> attribute works in CSS ?</h5>
+                    <pre
+                        class="pre"><code class="language-html">
+In CSS, the overflow attribute is used to control how content that exceeds the dimensions of an element is displayed. 
+It specifies whether to clip the content, add scrollbars, or automatically display the content in some other way.
+
+The overflow attribute can take several values:
+
+    visible (default): Content is not clipped, and it may extend beyond the dimensions of the element. 
+                        This means that content can overlap with other elements.
+
+    hidden: Content that exceeds the dimensions of the element is clipped and not visible. 
+            No scrollbars are displayed, and the content is effectively hidden.
+
+    scroll: Content that exceeds the dimensions of the element is clipped, 
+            but scrollbars are added to allow users to scroll and view the clipped content.
+
+    auto: Similar to scroll, scrollbars are added when the content exceeds the dimensions of the element. However, 
+            if the content fits within the element's dimensions, no scrollbars are displayed.
+
+The overflow attribute can be applied to any block-level element or an element with a specified height and width. 
+It is commonly used with elements such as &lt;div> or &lt;iframe> to control the behavior of overflowing content.</code></pre>
+                    </code></pre>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="text">
+                    <h5 class="box-header">14) How do you align a p center-center inside a div?</h5>
+                    <pre class="pre"><code class="language-html">
+    <code>text-align: center</code> will do the horizontal alignment but
+    <code>vertical-align: middle</code> will not work here. there are
+    couple of different ways to solve this problem and one of them are positioning. 
+
+    // HTML 
+    &lt;div class="container">
+        &lt;p class="centered">This is some text.&lt;/p>
+    &lt;/div>
+
+      
+    // 1. Using Position
+    .container {
+        position: relative;
+        height: 300px; /* Set the height of the container div */
+      }
+      
+      .centered {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center; /* Center the text horizontally within the &lt;p> element */
+      }
+      
+    // 2. Using Flex box
+    .container {
+        display: flex;
+        justify-content: center; /* Horizontally center the content */
+        align-items: center; /* Vertically center the content */
+        height: 300px; /* Set the height of the container div */
+      }
+      
+      .centered {
+        text-align: center; /* Center the text horizontally within the &lt;p> element */
+      }
+      
+    
+    Check
+    <a
+    href="http://vanseodesign.com/css/vertical-centering/"
+    target="_blank"
+    >
+    here for examples
+    </a></code></pre>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="text">
+                    <h5 class="box-header">15) Should you use !important?</h5>
+                    <pre class="pre"><code class="language-html">
+    When you’re wrestling with specificity, trying to override that one
+    style, you may be tempted to add !important to your style. Think very
+    carefully before you do so! It may seem harmless, but if you do this
+    all over the place, you will soon find yourself in a big mess that you
+    cannot get out of.<br />
+    
+    What !important does, is make that particular style have the highest
+    specificity possible. Nothing else can override it, apart from another
+    !important. You might be able to see where this is going, but once you
+    start using them, you’ll almost certainly get into a position where
+    you need to override a rule marked as !important, which forces you to
+    use another one. And so the cycle continues.<br />
+    <code>
+    /* high specificity */<br />
+    .large .navigation.navigation-large { <br />
+    font-size: 2em;<br />
+    }<br />
+    
+    /* will override the above, but it's dangerous! */<br />
+    .navigation {<br />
+    font-size: 3em !important;<br />
+    }
+    </code>
+    Read more
+    <a
+    href="https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity#:~:text=Although%20technically%20!,natural%20cascading%20in%20your%20stylesheets."
+    target="_blank"
+    >here</a
+    ></code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5 class="box-header">16) Explain the term Responsive web design ?</h5>
+                    <pre class="pre"><code class="language-html">
+    It is a method in which we design and develop a web page according to
+    the user activities and conditions which are based on various
+    components like the size of the screen, portability of the web page on
+    the different devices, etc. It is done by using different flexible
+    layouts and grids.<br />
+    Read more
+    <a
+    href="https://www.smashingmagazine.com/2011/01/guidelines-for-responsive-web-design/"
+    target="_blank"
+    >here</a
+    ></code></pre>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="text">
+                    <h5 class="box-header">17) What is CSS flexbox?</h5>
+                    <pre class="pre"><code class="language-html">
+    It iIt allows you to design a flexible responsive layout structure without
+    using any float or positioning property of CSS. To use CSS flexbox you
+    need to define a flex container initially.<br />
+    Read more
+    <a
+    href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/"
+    target="_blank"
+    >here</a
+    ></code></pre>
+                </div>
+            </div>
+            <div class="box">
+                <div class="text">
+                    <h5 class="box-header">
+                        18) What does <code>* { box-sizing: border-box; }</code> do? What are its advantages?
+                    </h5>
+                    <pre class="pre"><code class="language-html">
+    By default, elements have box-sizing: content-box applied, and only
+    the content size is being accounted for.<br />
+    <code>box-sizing:</code> border-box changes how the width and height
+    of elements are being calculated, border and padding are also being
+    included in the calculation.<br />
+    The <code>height</code> of an element is now calculated by the
+    content's height + vertical padding + vertical border width.<br />
+    The <code>width</code> of an element is now calculated by the
+    content's width + horizontal padding + horizontal border width. Taking
+    into account paddings and borders as part of our box model resonates
+    better with how designers actually imagine content in grids.<br />
+    Check examples at
+    <a
+    href="https://www.w3schools.com/css/css3_box-sizing.asp"
+    target="_blank"
+    >W3schools</a
+    ></code></pre>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="text">
+                    <h5>19) What is the CSS display property and can you give a few examples of its use?</h5>
+                    <pre class="pre"><code class="language-html">
+                        <code>display: none;</code><br />
+                        <code>display: inline;</code><br />
+                        <code>display: block;</code><br />
+                        <code>display: inline-block;</code> <br />
+                        <code>display: flex;</code> <br />
+                        <code>display: grid;</code> <br />
+                    </code></pre>
+                </div>
+            </div>
+
+
+            <script>
+                function toggle(e) {
+                    if (e.currentTarget.querySelector('.pre').style.display === 'none') {
+                        e.currentTarget.querySelector('.pre').style.display = 'block'
+                    } else {
+                        e.currentTarget.querySelector('.pre').style.display = 'none'
+                    }
+                }
+                const boxes = document.getElementsByClassName('box');
+                for (let i = 0; i < boxes.length; i++) {
+                    boxes[i].addEventListener('click', toggle);
+                    boxes[i].querySelector('.pre').style.display = 'none';
+                    boxes[i].querySelector('.pre').style.display = 'none'
+                }
+            </script>
+    </main>
+
+</body>
+
+</html>

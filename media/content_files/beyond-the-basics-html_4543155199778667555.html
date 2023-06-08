@@ -487,13 +487,98 @@ border-color: #666666;
                 <p>
                     If a margin is set to auto on a box that has width, it will take up as much space as possible.
                 </p>
-                <p>CENTERED</p>
+                <p>VIRTICALLY CENTERED</p>
                 <pre><code class="css">margin: auto;
 width: 300px;
+</code></pre>
+                <p>FLUSH-RIGHT</p>
+                <pre><code>
+ margin-left:auto;                   
+ margin-right:5px;
+ width:300px;                   
+                </code></pre>
+            </section>
+            <section>
+                <h3>Vertical Centered</h3>
+                <p>How to Center an Element with the CSS Position Property</p>
+                <pre style="width:auto;"><code class="html" >&lt;div class="container-positon">
+    &lt;div class="position-centered-element">
+        &lt;p>I'm vertically centered by the 'position'&lt;/p>
+    &lt;/div>
+&lt;/div></code></pre>
+
+                <pre style="width:auto;"><code class="css" >
+    .container-position {
+        position: relative;
+        border: 1px solid pink;
+    }
+    
+    .position-centered-element {
+        border: 1px solid blue;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
 </code></pre>
             </section>
 
             <section>
+                <h3>Vertical Centered</h3>
+                <p>How to Center an Element with the CSS display flex or grid Property</p>
+                <pre style="width:auto;"><code class="html" >&lt;div class="container-flex">
+    &lt;div class="flex-centered-element">
+        &lt;p>I'm vertically centered by the 'flex'&lt;/p>
+    &lt;/div>
+&lt;/div></code></pre>
+
+                <pre style="width:auto;"><code class="css" >
+    .container-flex {
+        display: flex; // or grid
+        align-items: center;
+        justify-content: center;
+    }
+</code></pre>
+            </section>
+            <section>
+                <h3>Wrapper</h3>
+                <p>Wrapper is a good way to center content if a content is centered within its parent.</p>
+                <pre><code class="html" >&lt;div class='outer'>
+    &lt;div class='inner'>Content&lt;/div>
+    &lt;/div></code></pre>
+
+                <pre><code class="css" >
+    div.outer{
+        border: 1px solid blue;
+        width:50%;
+    }
+    div.inner{
+        color:yellow;
+        text-align:center;
+        border: 10px solid green;
+        padding: 20px;
+        width:150px;
+        background: blueviolet;
+        margin: 0 auto;
+    }
+</code></pre>
+            </section>
+            </section>
+
+            <section>
+                <h3>Property: Height</h3>
+                <p>Set a height of element which does not include a padding and border.</p>
+                <p>Total height should add paddings and borders</p>
+                <pre><code class="css" >
+p.alert{
+    height:50px;
+    padding: 5px;
+    border: 2px solid blue;// total height will be 50 + 5*2 + 2*2 = 64px;
+}
+</code></pre>
+            </section>
+            <section>
+
                 <h2>Questions?</h2>
             </section>
         </div>
